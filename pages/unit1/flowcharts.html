@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flowcharts — Unit 1 — C Programming eBook</title>
+<meta name="description" content="Learn how flowcharts represent an algorithm's logic visually using shapes and arrows, and complete this chapter's mini project.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="../../css/variables.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/diagrams.css">
+<link rel="stylesheet" href="../../css/quiz.css">
+
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<style>
+  .topic-layout { display: grid; grid-template-columns: 1fr 220px; gap: var(--space-6); align-items: start; }
+  .topic-toc { position: sticky; top: calc(var(--topnav-height) + var(--space-4)); border: 1px solid var(--border); border-radius: var(--radius-md); padding: var(--space-4); font-size: 0.85rem; }
+  .topic-toc a { display: block; padding: var(--space-1) 0; color: var(--text-muted); }
+  .topic-toc a:hover { color: var(--color-primary); text-decoration: none; }
+  .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
+  .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
+  .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
+  .flowchart-legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4); margin: var(--space-5) 0; }
+  .flowchart-legend-item { display: flex; align-items: center; gap: var(--space-3); border: 1px solid var(--border); border-radius: var(--radius-md); padding: var(--space-3); }
+  .flowchart-legend-item .flow-box, .flowchart-legend-item .flow-box-start, .flowchart-legend-item .flow-box-end, .flowchart-legend-item .flow-box-decision { min-width: 100px; padding: var(--space-2) var(--space-3); font-size: 0.85rem; margin: 0; }
+  .flow-branch-label { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; }
+  .flow-branch-row { display: flex; align-items: flex-start; justify-content: center; gap: var(--space-6); width: 100%; }
+  .flow-branch-col { display: flex; flex-direction: column; align-items: center; }
+  @media (max-width: 1000px) { .topic-layout { grid-template-columns: 1fr; } .topic-toc { position: static; } }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progress-bar"></div>
+
+<div class="shell" id="shell">
+
+  <nav class="topnav">
+    <div class="topnav-left">
+      <button class="icon-btn mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <a href="../../index.html" class="logo">
+        <i class="fa-solid fa-code" style="color: var(--color-primary);"></i>
+        C Programming eBook
+      </a>
+      <div class="breadcrumbs">
+        <a href="../../index.html">Home</a>
+        <span>/</span>
+        <a href="index.html">Unit 1</a>
+        <span>/</span>
+        <span>Flowcharts</span>
+      </div>
+    </div>
+    <div class="topnav-right">
+      <button class="icon-btn" id="search-open" aria-label="Search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+      <button class="icon-btn" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+        <i class="fa-solid fa-sun icon-sun"></i>
+        <i class="fa-solid fa-moon icon-moon"></i>
+      </button>
+    </div>
+  </nav>
+
+  <aside class="sidebar">
+    <button class="icon-btn" id="sidebar-collapse" aria-label="Collapse sidebar" style="margin-bottom: var(--space-4);">
+      <i class="fa-solid fa-angles-left"></i>
+    </button>
+
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 1</span></div>
+      <a class="sidebar-link" href="index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Unit 1 Overview</span></a>
+      <a class="sidebar-link" href="evolution-of-programming.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="sidebar-label">Evolution of Programming</span></a>
+      <a class="sidebar-link" href="programming-languages.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Programming Languages</span></a>
+      <a class="sidebar-link" href="problem-solving.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Problem Solving</span></a>
+      <a class="sidebar-link" href="sequential-logic.html"><i class="fa-solid fa-list-ol"></i><span class="sidebar-label">Sequential Logic</span></a>
+      <a class="sidebar-link" href="algorithms.html"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-label">Algorithms</span></a>
+      <a class="sidebar-link" href="pseudocode.html"><i class="fa-solid fa-file-lines"></i><span class="sidebar-label">Pseudocode</span></a>
+      <a class="sidebar-link active" href="flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 2</span></div>
+      <a class="sidebar-link" href="../unit2/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">C Building Blocks &amp; Data Types</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 3</span></div>
+      <a class="sidebar-link" href="../unit3/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Control Statements</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 4</span></div>
+      <a class="sidebar-link" href="../unit4/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Strings, Functions &amp; Pointers</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 5</span></div>
+      <a class="sidebar-link" href="../unit5/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Structures, Files &amp; Memory Management</span></a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="topic-layout">
+      <div>
+        <h1>Flowcharts</h1>
+        <p class="lead">The third and final way to represent an algorithm in this chapter: as a picture, drawn with shapes and arrows instead of written words.</p>
+
+        <section class="topic-section" id="introduction">
+          <h2>1. What Is It?</h2>
+          <p>A flowchart is a diagram that represents an algorithm's steps as connected shapes: ovals for start/end, rectangles for actions/steps, diamonds for decisions, and arrows for the direction of flow. It's the visual counterpart to pseudocode — the exact same logic, drawn instead of written.</p>
+        </section>
+
+        <section class="topic-section" id="why">
+          <h2>2. Why Do We Need to Know This?</h2>
+          <p>Some people, and some problems, are simply easier to reason about visually than as text. Flowcharts also make it trivial to spot missing branches or dead ends in logic — a decision diamond with only one arrow leaving it is an obvious, visible bug that might hide for longer in a page of written pseudocode.</p>
+        </section>
+
+        <section class="topic-section" id="real-life">
+          <h2>3. Real-Life Example</h2>
+          <p>A subway or metro map is a flowchart-like diagram: stations are steps, junctions are decisions ("change lines here"), and the colored lines are arrows showing every possible route — all understandable at a glance, without reading a paragraph of written directions.</p>
+        </section>
+
+        <section class="topic-section" id="visual">
+          <h2>4. Visual Explanation</h2>
+          <p>First, a legend of every shape used in the flowcharts on this page:</p>
+          <div class="flowchart-legend">
+            <div class="flowchart-legend-item">
+              <div class="flow-box flow-box-start"><span>Start</span></div>
+              <span>Oval (pill-shaped) — <strong>Start</strong> or <strong>End</strong> of the process</span>
+            </div>
+            <div class="flowchart-legend-item">
+              <div class="flow-box"><span>Step</span></div>
+              <span>Rectangle — a <strong>Process / Action</strong></span>
+            </div>
+            <div class="flowchart-legend-item">
+              <div class="flow-box flow-box-decision"><span>?</span></div>
+              <span>Skewed diamond-style box — a <strong>Decision</strong> (Yes/No branches)</span>
+            </div>
+            <div class="flowchart-legend-item">
+              <div class="flow-arrow" style="height: 40px;"></div>
+              <span>Arrow — <strong>direction of flow</strong></span>
+            </div>
+          </div>
+
+          <p>Now the full flowchart for the same recurring problem from the Algorithms and Pseudocode pages — <strong>largest of two numbers</strong> — in its third and final representation:</p>
+          <div class="flowchart">
+            <div class="flow-box flow-box-start"><span>Start</span></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box"><span>Input A, B</span></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box flow-box-decision"><span>Is A &gt; B?</span></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-branch-row">
+              <div class="flow-branch-col">
+                <span class="flow-branch-label">Yes</span>
+                <div class="flow-arrow"></div>
+                <div class="flow-box"><span>Display A</span></div>
+              </div>
+              <div class="flow-branch-col">
+                <span class="flow-branch-label">No</span>
+                <div class="flow-arrow"></div>
+                <div class="flow-box"><span>Display B</span></div>
+              </div>
+            </div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box flow-box-end"><span>End</span></div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="syntax">
+          <h2>5. Flowchart Symbol Rules</h2>
+          <ul>
+            <li>Exactly <strong>one Start</strong> and <strong>one End</strong> shape per flowchart — never more, never fewer.</li>
+            <li>Every decision diamond must have <strong>exactly two labeled arrows</strong> leaving it — commonly "Yes" and "No".</li>
+            <li>Arrows only flow in the direction of execution — avoid unlabeled loops back to earlier boxes without a clear, obvious reason.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="mistakes">
+          <h2>10. Common Mistakes</h2>
+          <ul class="mistake-list">
+            <li>Missing one branch of a decision diamond (e.g. only drawing what happens if "Yes," with no arrow for "No").</li>
+            <li>Drawing multiple "Start" boxes, or forgetting to include an "End" box at all.</li>
+            <li>Arrows that don't clearly show direction, leaving the reader unsure which way the flow moves.</li>
+            <li>Cramming more than one action into a single box — each box should represent exactly one step, not several.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="debugging">
+          <h2>11. Debugging Tips</h2>
+          <p>If a flowchart "looks right" but the algorithm it represents still fails, check every decision diamond and confirm both branches actually lead somewhere — a dangling branch (an arrow that trails off, or a "No" path that was simply never drawn) is the most common flowchart-logic bug, and it hides in plain sight until you deliberately trace both arrows out of every diamond.</p>
+        </section>
+
+        <section class="topic-section" id="best-practices">
+          <h2>12. Best Practices</h2>
+          <ul class="best-practice-list">
+            <li>One action per box — if you catch yourself writing "and" inside a rectangle, split it into two boxes.</li>
+            <li>Label every decision branch explicitly — "Yes"/"No", or the actual condition outcome, never leave a branch unlabeled.</li>
+            <li>Keep the whole flowchart readable in one consistent direction — top-to-bottom or left-to-right — not zig-zagging across the page.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="interview">
+          <h2>13. Interview Questions</h2>
+          <p><strong>Easy:</strong> What shape represents a decision in a flowchart?</p>
+          <p><strong>Medium:</strong> Why must a decision diamond always have two labeled branches?</p>
+          <p><strong>Hard:</strong> How would you flowchart a process with 3 possible outcomes, not just 2?</p>
+          <p><strong>HR:</strong> Do you prefer planning visually (flowcharts) or in writing (pseudocode)? Why?</p>
+          <p><strong>Conceptual:</strong> What's the relationship between an algorithm, pseudocode, and a flowchart?</p>
+          <p><strong>Scenario-based:</strong> Draw (describe in words) a flowchart for "is a number even or odd?"</p>
+        </section>
+
+        <section class="topic-section" id="mcq">
+          <h2>14. MCQs</h2>
+          <div class="quiz" data-quiz-source="flowchartsQuiz"></div>
+        </section>
+
+        <section class="topic-section" id="exercises">
+          <h2>15. Programming Exercises</h2>
+          <p><strong>Easy:</strong> Describe, in words, the flowchart for "check if a number is positive or negative."</p>
+          <p><strong>Medium:</strong> Describe, in words, the flowchart for "largest of three numbers" — the same recurring problem, now as a flowchart.</p>
+          <p><strong>Hard:</strong> Describe, in words, the flowchart for the leap-year check — the same recurring problem, now in its third representation.</p>
+        </section>
+
+        <section class="topic-section" id="assignments">
+          <h2>16. Assignments</h2>
+          <p>Take a pseudocode example you wrote earlier in this chapter (for example, an everyday task broken into pseudocode) and describe, box by box and decision by decision, what its flowchart would look like.</p>
+        </section>
+
+        <section class="topic-section" id="miniproject">
+          <h2>17. Mini Project</h2>
+          <p><strong>Plan a Real-World Process, Three Ways.</strong></p>
+          <p>You've now met all three ways of representing an algorithm's logic taught in this chapter: as a numbered plain-English algorithm, as pseudocode, and as a flowchart. This mini project is your chance to prove you can move between all three for a process you choose yourself.</p>
+          <p>Pick a real task from everyday life — for example, making a cup of tea, checking out a library book, or crossing a busy road safely. It should have at least one decision point (something that could go two different ways), so your flowchart actually needs a decision diamond.</p>
+          <p>Produce all three of the following for your chosen task:</p>
+          <ul>
+            <li><strong>A numbered plain-English algorithm</strong> — following the conventions from the Algorithms page (clear, ordered, unambiguous steps).</li>
+            <li><strong>The same logic as pseudocode</strong> — using the keywords from the Pseudocode page (<code>INPUT</code>, <code>IF</code>/<code>ELSE</code>, <code>DISPLAY</code>, and so on).</li>
+            <li><strong>A description of the same logic as a flowchart</strong> — following this page's symbol rules (one Start, one End, every decision diamond with two labeled branches).</li>
+          </ul>
+          <p>When you're done, compare all three side by side. They should describe exactly the same underlying logic — just in three different shapes. If any of them disagree with the others, that's a sign one of your three versions has a bug worth fixing. Completing this project means you've genuinely internalized the core idea of this entire chapter: an algorithm is the logic, and plain English, pseudocode, and a flowchart are just three different costumes it can wear.</p>
+        </section>
+
+        <section class="topic-section" id="summary">
+          <h2>18. Chapter Summary</h2>
+          <p>A flowchart is the visual representation of an algorithm's logic — the same underlying reasoning as plain-English algorithm steps or pseudocode, just drawn instead of written. Across this chapter, one recurring example — largest of two numbers — was represented three ways: numbered steps, pseudocode, and a flowchart, proving they're three views of the exact same idea.</p>
+        </section>
+
+        <section class="topic-section" id="cheatsheet">
+          <h2>19. Cheat Sheet</h2>
+          <ul>
+            <li><strong>Oval</strong> — Start / End.</li>
+            <li><strong>Rectangle</strong> — Process (an action or step).</li>
+            <li><strong>Diamond</strong> — Decision.</li>
+            <li><strong>Arrow</strong> — Flow direction.</li>
+            <li><strong>Hard rule:</strong> every decision needs two labeled branches.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="faq">
+          <h2>20. FAQs</h2>
+          <p><strong>Q: Do I need special software to draw flowcharts?</strong><br>A: No — pen and paper, or any plain diagram, is enough. This course draws flowcharts in HTML/CSS for the web page, but drawing them by hand is just as valid.</p>
+          <p><strong>Q: Which is "better," pseudocode or a flowchart?</strong><br>A: Neither — pick whichever helps you reason about a specific problem. Some people, and some problems, suit one better than the other.</p>
+        </section>
+
+        <section class="topic-section" id="takeaways">
+          <h2>21. Key Takeaways</h2>
+          <ul>
+            <li>Flowcharts are algorithms drawn as shapes — ovals, rectangles, diamonds, and arrows.</li>
+            <li>Every decision needs two labeled branches; a dangling or missing branch is a visible bug.</li>
+            <li>Algorithm, pseudocode, and flowchart are three representations of the same logic — this chapter is complete once you can move fluently between all three.</li>
+          </ul>
+        </section>
+
+        <div class="topic-nav-footer">
+          <a href="pseudocode.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Previous: Pseudocode</a>
+          <a href="index.html" class="btn btn-primary">Back to Unit 1 Overview <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <nav class="topic-toc" aria-label="On this page">
+        <strong>On This Page</strong>
+        <a href="#introduction">What Is It?</a>
+        <a href="#why">Why Do We Need to Know This?</a>
+        <a href="#real-life">Real-Life Example</a>
+        <a href="#visual">Visual Explanation</a>
+        <a href="#syntax">Flowchart Symbol Rules</a>
+        <a href="#mistakes">Common Mistakes</a>
+        <a href="#debugging">Debugging Tips</a>
+        <a href="#best-practices">Best Practices</a>
+        <a href="#interview">Interview Questions</a>
+        <a href="#mcq">MCQs</a>
+        <a href="#exercises">Exercises</a>
+        <a href="#assignments">Assignments</a>
+        <a href="#miniproject">Mini Project</a>
+        <a href="#summary">Chapter Summary</a>
+        <a href="#cheatsheet">Cheat Sheet</a>
+        <a href="#faq">FAQs</a>
+        <a href="#takeaways">Key Takeaways</a>
+      </nav>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for absolute beginners. &copy; 2026 C Programming eBook.</p>
+  </footer>
+
+</div>
+
+<div class="search-panel" id="search-panel" data-open="false">
+  <div class="search-panel-inner">
+    <div class="search-input-row">
+      <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+      <input type="text" id="search-input" placeholder="Search topics... (Ctrl+K)">
+      <button class="icon-btn" id="search-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="search-results" id="search-results"></ul>
+  </div>
+</div>
+
+<script>
+window.flowchartsQuiz = [
+  { question: "What shape represents Start or End in a flowchart?", options: ["Rectangle", "Oval (pill-shaped)", "Diamond", "Triangle"], correctIndex: 1, explanation: "The oval, or pill-shaped box, marks the single Start and single End of a flowchart." },
+  { question: "What shape represents a Process or Action step?", options: ["Oval", "Diamond", "Rectangle", "Arrow"], correctIndex: 2, explanation: "Rectangles represent a single process or action, such as an assignment or an input/output step." },
+  { question: "What shape represents a Decision in a flowchart?", options: ["Rectangle", "Diamond (or skewed box)", "Oval", "Circle"], correctIndex: 1, explanation: "A diamond (drawn here as a skewed box) represents a decision with branching outcomes." },
+  { question: "What does an arrow represent in a flowchart?", options: ["A decision", "A comment", "The direction of flow", "The end of the program"], correctIndex: 2, explanation: "Arrows connect shapes and show the direction execution flows through the chart." },
+  { question: "How many Start shapes should a correct flowchart have?", options: ["Zero", "Exactly one", "Exactly two", "As many as needed"], correctIndex: 1, explanation: "A flowchart should have exactly one Start shape — multiple starts make the flow ambiguous." },
+  { question: "How many labeled arrows should leave a decision diamond?", options: ["One", "Exactly two", "Three or more", "Zero"], correctIndex: 1, explanation: "A decision diamond must have exactly two labeled branches, commonly 'Yes' and 'No'." },
+  { question: "What is a common, obvious bug you can spot visually in a flowchart?", options: ["A rectangle with rounded corners", "A decision diamond with only one arrow leaving it", "An arrow pointing downward", "Too many colors"], correctIndex: 1, explanation: "A decision diamond with only one exit arrow means a branch is missing — a visible, spottable logic bug." },
+  { question: "Which of these is NOT a common flowchart mistake?", options: ["Missing one branch of a decision", "Having no End box", "Labeling every decision branch clearly", "Cramming multiple actions into one box"], correctIndex: 2, explanation: "Labeling every decision branch clearly is a best practice, not a mistake — the other three options are common errors." },
+  { question: "If a rectangle box contains two separate actions crammed together, what should you do?", options: ["Leave it as is", "Split it into two separate boxes", "Turn it into a diamond", "Delete the box"], correctIndex: 1, explanation: "Each box should represent exactly one action — multiple actions in one box should be split into separate steps." },
+  { question: "What is the relationship between an algorithm, pseudocode, and a flowchart?", options: ["They are unrelated techniques", "They are three different representations of the same underlying logic", "A flowchart replaces the need for an algorithm", "Pseudocode is only used after a flowchart is drawn"], correctIndex: 1, explanation: "All three describe the same steps and decisions — just in plain English, structured pseudo-language, or a diagram." },
+  { question: "In the 'largest of two numbers' flowchart, what shape is 'Is A > B?'", options: ["Rectangle", "Oval", "Decision diamond", "Arrow"], correctIndex: 2, explanation: "'Is A > B?' is a yes/no question, so it belongs in a decision diamond with two labeled branches." },
+  { question: "Why should arrows only flow in the direction of execution?", options: ["To make the chart look nicer", "So the reader can clearly follow how execution actually moves through the logic", "Because arrows use less ink", "It doesn't matter which direction arrows point"], correctIndex: 1, explanation: "Clear, direction-consistent arrows let a reader trace execution without ambiguity." },
+  { question: "What is a subway/metro map a real-life example of?", options: ["A pseudocode listing", "A flowchart-like diagram", "Machine code", "A variable declaration"], correctIndex: 1, explanation: "Stations, junctions, and lines on a metro map mirror steps, decisions, and arrows in a flowchart." },
+  { question: "If a decision diamond's 'No' branch trails off without connecting to anything, what is this called?", options: ["A best practice", "A dangling branch — a common flowchart-logic bug", "A valid End point", "A syntax rule"], correctIndex: 1, explanation: "A branch that doesn't lead anywhere is a dangling branch, the most common flowchart-logic bug." },
+  { question: "Which of the following best fits the 'one action per box' best practice?", options: ["A rectangle saying 'Input A, B, and calculate sum'", "A rectangle saying 'Input A, B' followed by a separate rectangle for the calculation", "A diamond containing three actions", "Skipping boxes entirely"], correctIndex: 1, explanation: "Splitting distinct actions into separate boxes keeps each step clear and traceable." },
+  { question: "How many End shapes should a correct flowchart have?", options: ["Exactly one", "None", "As many as there are decisions", "Two, one per branch"], correctIndex: 0, explanation: "Just like Start, a flowchart should have exactly one End shape to clearly mark completion." },
+  { question: "What is the recommended way to keep a flowchart readable?", options: ["Zig-zag freely across the page", "Keep it consistently top-to-bottom or left-to-right", "Mix multiple directions randomly", "Avoid using arrows"], correctIndex: 1, explanation: "A consistent single direction (top-to-bottom or left-to-right) keeps a flowchart easy to follow." },
+  { question: "Is special software required to draw a flowchart?", options: ["Yes, always", "No — pen and paper or a plain diagram is enough", "Only diagramming apps can create valid flowcharts", "Only if the flowchart has more than 5 boxes"], correctIndex: 1, explanation: "Flowcharts can be drawn by hand; software is a convenience, not a requirement." },
+  { question: "A process with 3 possible outcomes, rather than a simple Yes/No, is typically handled by:", options: ["A single diamond with three arrows and no labels", "Chaining multiple decision diamonds together", "Ignoring the third outcome", "Removing the decision entirely"], correctIndex: 1, explanation: "Multiple outcomes are handled by chaining decisions — the visual version of if-else-if logic covered in a later unit." },
+  { question: "Which statement about pseudocode vs. flowcharts is most accurate?", options: ["Flowcharts are always objectively better", "Pseudocode is always objectively better", "Neither is universally 'better' — choose whichever suits the problem or person", "They cannot represent the same logic"], correctIndex: 2, explanation: "Pseudocode and flowcharts are just different views of the same logic; which is more useful depends on the problem and the person." }
+];
+</script>
+<script src="../../js/theme.js"></script>
+<script src="../../js/sidebar.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/quiz.js"></script>
+<script src="../../js/copy-code.js"></script>
+</body>
+</html>
