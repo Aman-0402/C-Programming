@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Storage Classes — Unit 2 — C Programming eBook</title>
+<meta name="description" content="Learn C's four storage class keywords — auto, static, register, and extern — and how they control a variable's lifetime and persistence.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="../../css/variables.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/diagrams.css">
+<link rel="stylesheet" href="../../css/quiz.css">
+
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<style>
+  .topic-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-6); align-items: start; }
+  .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
+  .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
+  .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
+</style>
+</head>
+<body>
+
+<button class="icon-btn theme-toggle-float" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+  <i class="fa-solid fa-sun icon-sun"></i>
+  <i class="fa-solid fa-moon icon-moon"></i>
+</button>
+
+<div class="social-float">
+  <a class="icon-btn" href="https://github.com/Aman-0402" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+    <i class="fa-brands fa-github"></i>
+  </a>
+  <a class="icon-btn" href="https://www.linkedin.com/in/aman-raj-081905211/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+</div>
+
+<div class="shell" id="shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo" style="margin-bottom: var(--space-5);">
+      <a href="../../index.html" class="logo">
+        <i class="fa-solid fa-code" style="color: var(--color-primary);"></i><span class="sidebar-label"> C Programming eBook</span>
+      </a>
+    </div>
+
+    <button class="icon-btn" id="sidebar-collapse" aria-label="Collapse sidebar" style="margin-bottom: var(--space-4);">
+      <i class="fa-solid fa-angles-left"></i>
+    </button>
+
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 1</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit1-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">Unit 1</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit1-submenu">
+      <a class="sidebar-link" href="../unit1/evolution-of-programming.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="sidebar-label">Evolution of Programming</span></a>
+      <a class="sidebar-link" href="../unit1/programming-languages.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Programming Languages</span></a>
+      <a class="sidebar-link" href="../unit1/problem-solving.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Problem Solving</span></a>
+      <a class="sidebar-link" href="../unit1/sequential-logic.html"><i class="fa-solid fa-list-ol"></i><span class="sidebar-label">Sequential Logic</span></a>
+      <a class="sidebar-link" href="../unit1/algorithms.html"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-label">Algorithms</span></a>
+      <a class="sidebar-link" href="../unit1/pseudocode.html"><i class="fa-solid fa-file-lines"></i><span class="sidebar-label">Pseudocode</span></a>
+      <a class="sidebar-link" href="../unit1/flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
+      <a class="sidebar-link" href="../unit1/introduction-to-c.html"><i class="fa-solid fa-c"></i><span class="sidebar-label">Introduction to C</span></a>
+      <a class="sidebar-link" href="../unit1/history-of-c.html"><i class="fa-solid fa-scroll"></i><span class="sidebar-label">History of C</span></a>
+      <a class="sidebar-link" href="../unit1/features-of-c.html"><i class="fa-solid fa-star"></i><span class="sidebar-label">Features of C</span></a>
+      <a class="sidebar-link" href="../unit1/applications-of-c.html"><i class="fa-solid fa-industry"></i><span class="sidebar-label">Applications</span></a>
+      <a class="sidebar-link" href="../unit1/structure-of-c-program.html"><i class="fa-solid fa-code"></i><span class="sidebar-label">Structure of C Program</span></a>
+      <a class="sidebar-link" href="../unit1/c-compiler.html"><i class="fa-solid fa-gears"></i><span class="sidebar-label">C Compiler</span></a>
+      <a class="sidebar-link" href="../unit1/compilation-process.html"><i class="fa-solid fa-arrows-turn-right"></i><span class="sidebar-label">Compilation Process</span></a>
+      <a class="sidebar-link" href="../unit1/source-code.html"><i class="fa-solid fa-file-code"></i><span class="sidebar-label">Source Code</span></a>
+      <a class="sidebar-link" href="../unit1/object-code.html"><i class="fa-solid fa-cube"></i><span class="sidebar-label">Object Code</span></a>
+      <a class="sidebar-link" href="../unit1/executable-code.html"><i class="fa-solid fa-play"></i><span class="sidebar-label">Executable Code</span></a>
+      <a class="sidebar-link" href="../unit1/execution-process.html"><i class="fa-solid fa-microchip"></i><span class="sidebar-label">Execution Process</span></a>
+      <a class="sidebar-link" href="../unit1/assembler.html"><i class="fa-solid fa-wrench"></i><span class="sidebar-label">Assembler</span></a>
+      <a class="sidebar-link" href="../unit1/linker.html"><i class="fa-solid fa-link"></i><span class="sidebar-label">Linker</span></a>
+      <a class="sidebar-link" href="../unit1/loader.html"><i class="fa-solid fa-upload"></i><span class="sidebar-label">Loader</span></a>
+      <a class="sidebar-link" href="../unit1/interpreter.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Interpreter</span></a>
+      <a class="sidebar-link" href="../unit1/compilers-and-interpreters.html"><i class="fa-solid fa-code-compare"></i><span class="sidebar-label">Compilers &amp; Interpreters</span></a>
+      <a class="sidebar-link" href="../unit1/operating-systems.html"><i class="fa-solid fa-desktop"></i><span class="sidebar-label">Operating Systems</span></a>
+      <a class="sidebar-link" href="../unit1/debugging.html"><i class="fa-solid fa-bug"></i><span class="sidebar-label">Debugging</span></a>
+      <a class="sidebar-link" href="../unit1/comments.html"><i class="fa-solid fa-comment"></i><span class="sidebar-label">Comments</span></a>
+      <a class="sidebar-link" href="../unit1/single-line-comments.html"><i class="fa-solid fa-slash"></i><span class="sidebar-label">Single Line Comments</span></a>
+      <a class="sidebar-link" href="../unit1/multi-line-comments.html"><i class="fa-solid fa-quote-right"></i><span class="sidebar-label">Multi Line Comments</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 2</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit2-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">C Building Blocks &amp; Data Types</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit2-submenu">
+      <a class="sidebar-link" href="tokens.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Tokens</span></a>
+      <a class="sidebar-link" href="keywords.html"><i class="fa-solid fa-key"></i><span class="sidebar-label">Keywords</span></a>
+      <a class="sidebar-link" href="identifiers.html"><i class="fa-solid fa-tag"></i><span class="sidebar-label">Identifiers</span></a>
+      <a class="sidebar-link" href="naming-rules.html"><i class="fa-solid fa-spell-check"></i><span class="sidebar-label">Naming Rules</span></a>
+      <a class="sidebar-link" href="variables.html"><i class="fa-solid fa-box"></i><span class="sidebar-label">Variables</span></a>
+      <a class="sidebar-link" href="constants.html"><i class="fa-solid fa-lock"></i><span class="sidebar-label">Constants</span></a>
+      <a class="sidebar-link" href="values.html"><i class="fa-solid fa-hashtag"></i><span class="sidebar-label">Values</span></a>
+      <a class="sidebar-link" href="scope.html"><i class="fa-solid fa-eye"></i><span class="sidebar-label">Scope</span></a>
+      <a class="sidebar-link" href="binding.html"><i class="fa-solid fa-link"></i><span class="sidebar-label">Binding</span></a>
+      <a class="sidebar-link active" href="storage-classes.html"><i class="fa-solid fa-warehouse"></i><span class="sidebar-label">Storage Classes</span></a>
+      <a class="sidebar-link" href="integer-types.html"><i class="fa-solid fa-1"></i><span class="sidebar-label">Integer Types</span></a>
+      <a class="sidebar-link" href="floating-point-types.html"><i class="fa-solid fa-percent"></i><span class="sidebar-label">Floating Point Types</span></a>
+      <a class="sidebar-link" href="character-type.html"><i class="fa-solid fa-font"></i><span class="sidebar-label">Character Type</span></a>
+      <a class="sidebar-link" href="strings.html"><i class="fa-solid fa-quote-left"></i><span class="sidebar-label">Strings</span></a>
+            </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 3</span></div>
+      <a class="sidebar-link" href="../unit3/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Control Statements</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 4</span></div>
+      <a class="sidebar-link" href="../unit4/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Strings, Functions &amp; Pointers</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 5</span></div>
+      <a class="sidebar-link" href="../unit5/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Structures, Files &amp; Memory Management</span></a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="topic-layout">
+      <div>
+        <h1>Storage Classes</h1>
+        <p class="lead">Four keywords — <code>auto</code>, <code>static</code>, <code>register</code>, and <code>extern</code> — that control a variable's lifetime, default value, and visibility beyond the basics already covered.</p>
+
+        <section class="topic-section" id="introduction">
+          <h2>1. What Is It?</h2>
+          <p>A <strong>storage class</strong> in C specifies a variable's <strong>lifetime</strong> (how long it exists in memory), its default initial value, and additional scope/visibility characteristics beyond what's already been covered. C has exactly <strong>4 storage class keywords</strong>: <code>auto</code>, <code>register</code>, <code>static</code>, and <code>extern</code>.</p>
+        </section>
+
+        <section class="topic-section" id="why">
+          <h2>2. Why Do We Need to Know This?</h2>
+          <p>Storage classes control details like whether a variable's value <em>persists</em> between function calls or <em>resets</em> each time. Understanding this prevents confusion about why some variables seem to "remember" their previous value across calls while others don't.</p>
+        </section>
+
+        <section class="topic-section" id="real-life">
+          <h2>3. Real-Life Example</h2>
+          <p>Think of the difference between a whiteboard that gets erased after every meeting (a normal/<code>auto</code> local variable, reset each time it's used) versus a sticky note left on a desk that stays put between meetings (a <code>static</code> variable, which persists between calls).</p>
+        </section>
+
+        <section class="topic-section" id="visual">
+          <h2>4. Visual Explanation</h2>
+          <p>The 4 C storage classes, at a glance:</p>
+          <div class="feature-grid">
+            <div class="card">
+              <i class="fa-solid fa-box-open" style="color: var(--color-primary); font-size: 1.5rem;"></i>
+              <h3>auto</h3>
+              <p>The default for local variables. This course's examples like <code>add.c</code>'s <code>a</code>, <code>b</code>, and <code>sum</code> are technically <code>auto</code> even without writing the keyword, since it's implicit.</p>
+            </div>
+            <div class="card">
+              <i class="fa-solid fa-note-sticky" style="color: var(--color-secondary); font-size: 1.5rem;"></i>
+              <h3>static</h3>
+              <p>A local variable that keeps its value between function calls, instead of resetting each time the function runs.</p>
+            </div>
+            <div class="card">
+              <i class="fa-solid fa-gauge-high" style="color: var(--color-success); font-size: 1.5rem;"></i>
+              <h3>register</h3>
+              <p>A hint to the compiler to keep a variable readily accessible for speed — largely a historical/advisory keyword in modern C.</p>
+            </div>
+            <div class="card">
+              <i class="fa-solid fa-file-import" style="color: var(--color-warning); font-size: 1.5rem;"></i>
+              <h3>extern</h3>
+              <p>Declares a variable defined elsewhere, often in another file. A preview concept, fully relevant once multi-file programs are covered later in this course.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="syntax">
+          <h2>5. Syntax</h2>
+          <p>A storage class keyword goes before the type in a declaration:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>syntax</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>static int count = 0;
+register int i;
+extern int sharedValue;</pre>
+          </div>
+          <p><code>auto</code> is the default for local variables and is rarely written explicitly — you could write <code>auto int a = 5;</code>, but virtually no one does.</p>
+        </section>
+
+        <section class="topic-section" id="mistakes">
+          <h2>6. Common Mistakes</h2>
+          <ul class="mistake-list">
+            <li>Assuming every local variable needs an explicit storage class keyword — <code>auto</code> is implicit and almost never written.</li>
+            <li>Confusing <code>static</code>'s effect (persisting a value between calls) with <code>const</code>'s effect (making a value permanently unchangeable) — they solve different problems and can even be combined.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="debugging">
+          <h2>7. Debugging Tips</h2>
+          <p>If a variable's value unexpectedly "remembers" its previous state across separate calls to the same function, check whether it was declared <code>static</code>.</p>
+        </section>
+
+        <section class="topic-section" id="best-practices">
+          <h2>8. Best Practices</h2>
+          <ul class="best-practice-list">
+            <li>Use <code>static</code> deliberately and sparingly, only when you specifically need a value to persist across calls.</li>
+            <li>Overusing <code>static</code> can make code harder to reason about, since the variable's behavior is no longer purely local to one call.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="interview">
+          <h2>9. Interview Questions</h2>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Easy:</strong> How many storage class keywords does C have?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>4 — <code>auto</code>, <code>register</code>, <code>static</code>, and <code>extern</code>.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Medium:</strong> What does the <code>auto</code> storage class mean, and do you need to write it explicitly?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>It's the default for local variables (like <code>add.c</code>'s <code>a</code>, <code>b</code>, <code>sum</code>) and is almost never written explicitly.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Hard:</strong> What's the practical effect of declaring a local variable <code>static</code>?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Its value persists between separate calls to the function, instead of being reset each time, unlike a normal (<code>auto</code>) local variable.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>HR:</strong> Have you seen the <code>static</code> keyword used before, in C or another language?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>This is open-ended — a strong answer would describe a specific example, such as a static variable used to persist state or a static method/field in another language.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Conceptual:</strong> Is <code>static</code> the same as <code>const</code>?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>No — <code>static</code> controls a variable's lifetime/persistence across calls, while <code>const</code> controls whether its value can ever be reassigned; they address different concerns.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Scenario-based:</strong> A local variable inside a function seems to "remember" its value the next time the function runs — what storage class is most likely being used?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p><code>static</code>.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mcq">
+          <h2>10. MCQs</h2>
+          <div class="quiz" data-quiz-source="storageClassesQuiz"></div>
+        </section>
+
+        <section class="topic-section" id="exercises">
+          <h2>11. Programming Exercises</h2>
+          <p><strong>Easy:</strong> Name the 4 C storage class keywords.</p>
+          <p><strong>Medium:</strong> Explain what makes a <code>static</code> local variable different from a normal (<code>auto</code>) local variable.</p>
+          <p><strong>Hard:</strong> Research what "register" originally meant in older C compilers, and why it's less impactful in modern compilers (which optimize automatically).</p>
+        </section>
+
+        <section class="topic-section" id="assignments">
+          <h2>12. Assignments</h2>
+          <p>Write a short paragraph explaining, in your own words, when you'd choose to use <code>static</code> for a variable.</p>
+        </section>
+
+        <section class="topic-section" id="faq">
+          <h2>13. FAQs</h2>
+          <p><strong>Q: Do I need to memorize all 4 storage classes right now?</strong><br>A: Recognizing <code>auto</code> and <code>static</code> is most important for now; <code>register</code> and <code>extern</code> become more relevant later in this course.</p>
+          <p><strong>Q: Is <code>auto</code> in C the same as "auto" in some other languages (like C++'s type inference)?</strong><br>A: No — C's <code>auto</code> is purely about storage class/lifetime, unrelated to type inference in other languages.</p>
+        </section>
+
+        <section class="topic-section" id="takeaways">
+          <h2>14. Key Takeaways</h2>
+          <ul>
+            <li>C has 4 storage class keywords: <code>auto</code>, <code>register</code>, <code>static</code>, and <code>extern</code>.</li>
+            <li><code>auto</code> is the implicit default for local variables and is almost never written explicitly.</li>
+            <li><code>static</code> makes a local variable's value persist between separate calls to the function, instead of resetting each time.</li>
+          </ul>
+        </section>
+
+        <div class="topic-nav-footer">
+          <a href="binding.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Previous: Binding</a>
+          <a href="integer-types.html" class="btn btn-primary">Next: Integer Types <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for absolute beginners. &copy; 2026 C Programming eBook.</p>
+  </footer>
+
+</div>
+
+<div class="search-panel" id="search-panel" data-open="false">
+  <div class="search-panel-inner">
+    <div class="search-input-row">
+      <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+      <input type="text" id="search-input" placeholder="Search topics... (Ctrl+K)">
+      <button class="icon-btn" id="search-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="search-results" id="search-results"></ul>
+  </div>
+</div>
+
+<script>
+window.storageClassesQuiz = [
+  { question: "How many storage class keywords does C have?", options: ["2", "3", "4", "5"], correctIndex: 2, explanation: "C has exactly 4 storage class keywords: auto, register, static, and extern." },
+  { question: "Which storage class is the implicit default for local variables?", options: ["static", "extern", "register", "auto"], correctIndex: 3, explanation: "auto is the default storage class for local variables and is almost never written explicitly." },
+  { question: "What is the practical effect of declaring a local variable static?", options: ["It becomes a global variable", "Its value persists between separate calls to the function instead of resetting", "It can no longer be changed at all", "It gets stored in a file"], correctIndex: 1, explanation: "A static local variable keeps its value between function calls, instead of being reset each time, unlike a normal (auto) local variable." },
+  { question: "What does the register storage class do in modern C?", options: ["It permanently locks a variable's value", "It declares a variable defined in another file", "It hints to the compiler to keep a variable readily accessible for speed, though it's largely historical/advisory now", "It makes a variable static"], correctIndex: 2, explanation: "register is a hint to the compiler for fast access, but modern compilers optimize automatically, making it largely historical/advisory." },
+  { question: "Which storage class keyword is used to declare a variable that is defined elsewhere, often in another file?", options: ["auto", "static", "register", "extern"], correctIndex: 3, explanation: "extern declares a variable defined elsewhere, often in another file — relevant once multi-file programs are covered." }
+];
+</script>
+<script src="../../js/theme.js"></script>
+<script src="../../js/sidebar.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/quiz.js"></script>
+<script src="../../js/copy-code.js"></script>
+<script src="../../js/accordion.js"></script>
+</body>
+</html>
