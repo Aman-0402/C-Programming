@@ -47,6 +47,10 @@
 /* Sidebar */
 .sidebar {
   grid-row: 1;
+  align-self: start;
+  position: sticky;
+  top: 0;
+  height: 100vh;
   border-right: 1px solid var(--border);
   background: var(--surface);
   padding: var(--space-5) var(--space-3);
@@ -87,6 +91,35 @@
 .sidebar-link.active {
   background: var(--color-primary);
   color: #fff;
+}
+
+.sidebar-toggle {
+  width: 100%;
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.toggle-chevron {
+  margin-left: auto;
+  font-size: 0.8rem;
+  transition: transform 0.2s ease;
+}
+
+.sidebar-toggle[aria-expanded="true"] .toggle-chevron {
+  transform: rotate(180deg);
+}
+
+.sidebar-submenu {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.25s ease;
+}
+
+.sidebar-submenu.open {
+  max-height: 500px;
 }
 
 /* Content */

@@ -31,4 +31,19 @@
       link.classList.add('active');
     }
   });
+
+  sidebar.querySelectorAll('.sidebar-toggle').forEach(function (toggle) {
+    const submenu = document.getElementById(toggle.id.replace('-toggle', '-submenu'));
+    if (!submenu) return;
+
+    if (submenu.querySelector('.active')) {
+      submenu.classList.add('open');
+      toggle.setAttribute('aria-expanded', 'true');
+    }
+
+    toggle.addEventListener('click', function () {
+      const open = submenu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+  });
 })();

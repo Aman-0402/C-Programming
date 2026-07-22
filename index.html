@@ -57,7 +57,11 @@
 
     <div class="sidebar-unit">
       <div class="sidebar-unit-title"><span class="sidebar-label">Unit 1</span></div>
-      <a class="sidebar-link" href="pages/unit1/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Unit 1 Overview</span></a>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit1-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">Unit 1</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit1-submenu">
       <a class="sidebar-link" href="pages/unit1/evolution-of-programming.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="sidebar-label">Evolution of Programming</span></a>
       <a class="sidebar-link" href="pages/unit1/programming-languages.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Programming Languages</span></a>
       <a class="sidebar-link" href="pages/unit1/problem-solving.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Problem Solving</span></a>
@@ -65,6 +69,7 @@
       <a class="sidebar-link" href="pages/unit1/algorithms.html"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-label">Algorithms</span></a>
       <a class="sidebar-link" href="pages/unit1/pseudocode.html"><i class="fa-solid fa-file-lines"></i><span class="sidebar-label">Pseudocode</span></a>
       <a class="sidebar-link" href="pages/unit1/flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
+      </div>
     </div>
     <div class="sidebar-unit">
       <div class="sidebar-unit-title"><span class="sidebar-label">Unit 2</span></div>
@@ -91,7 +96,7 @@
       <h1>Learn C Programming, From Zero to Advanced</h1>
       <p class="lead">An interactive eBook that explains every concept with real-life analogies, visual diagrams, dry runs, and hands-on practice — built for people who have never written a single line of code.</p>
       <div class="hero-actions">
-        <a href="pages/unit1/index.html" class="btn btn-primary"><i class="fa-solid fa-play"></i> Start Learning</a>
+        <a href="pages/unit1/evolution-of-programming.html" class="btn btn-primary"><i class="fa-solid fa-play"></i> Start Learning</a>
         <a href="#units" class="btn btn-ghost">Browse Units</a>
       </div>
     </section>
@@ -137,7 +142,7 @@
           <h3>Programming Fundamentals &amp; C Basics</h3>
           <div class="topic-count">28 topics</div>
           <p>Algorithms, pseudocode, flowcharts, and how C source becomes a running program.</p>
-          <a href="pages/unit1/index.html" class="btn btn-ghost">Start Unit <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="pages/unit1/evolution-of-programming.html" class="btn btn-ghost">Start Unit <i class="fa-solid fa-arrow-right"></i></a>
         </div>
         <div class="card unit-card">
           <div class="unit-card-number">2</div>
