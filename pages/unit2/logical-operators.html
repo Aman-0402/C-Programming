@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Logical Operators — Unit 2 — C Programming eBook</title>
+<meta name="description" content="Learn how && , || , and ! combine relational conditions in C, extend add.c with combined checks, and complete this chapter's capstone mini project.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="../../css/variables.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/diagrams.css">
+<link rel="stylesheet" href="../../css/quiz.css">
+
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<style>
+  .topic-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-6); align-items: start; }
+  .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
+  .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
+  .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
+</style>
+</head>
+<body>
+
+<button class="icon-btn theme-toggle-float" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+  <i class="fa-solid fa-sun icon-sun"></i>
+  <i class="fa-solid fa-moon icon-moon"></i>
+</button>
+
+<div class="social-float">
+  <a class="icon-btn" href="https://github.com/Aman-0402" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+    <i class="fa-brands fa-github"></i>
+  </a>
+  <a class="icon-btn" href="https://www.linkedin.com/in/aman-raj-081905211/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+</div>
+
+<div class="shell" id="shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo" style="margin-bottom: var(--space-5);">
+      <a href="../../index.html" class="logo">
+        <i class="fa-solid fa-code" style="color: var(--color-primary);"></i><span class="sidebar-label"> C Programming eBook</span>
+      </a>
+    </div>
+
+    <button class="icon-btn" id="sidebar-collapse" aria-label="Collapse sidebar" style="margin-bottom: var(--space-4);">
+      <i class="fa-solid fa-angles-left"></i>
+    </button>
+
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 1</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit1-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">Unit 1</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit1-submenu">
+      <a class="sidebar-link" href="../unit1/evolution-of-programming.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="sidebar-label">Evolution of Programming</span></a>
+      <a class="sidebar-link" href="../unit1/programming-languages.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Programming Languages</span></a>
+      <a class="sidebar-link" href="../unit1/problem-solving.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Problem Solving</span></a>
+      <a class="sidebar-link" href="../unit1/sequential-logic.html"><i class="fa-solid fa-list-ol"></i><span class="sidebar-label">Sequential Logic</span></a>
+      <a class="sidebar-link" href="../unit1/algorithms.html"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-label">Algorithms</span></a>
+      <a class="sidebar-link" href="../unit1/pseudocode.html"><i class="fa-solid fa-file-lines"></i><span class="sidebar-label">Pseudocode</span></a>
+      <a class="sidebar-link" href="../unit1/flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
+      <a class="sidebar-link" href="../unit1/introduction-to-c.html"><i class="fa-solid fa-c"></i><span class="sidebar-label">Introduction to C</span></a>
+      <a class="sidebar-link" href="../unit1/history-of-c.html"><i class="fa-solid fa-scroll"></i><span class="sidebar-label">History of C</span></a>
+      <a class="sidebar-link" href="../unit1/features-of-c.html"><i class="fa-solid fa-star"></i><span class="sidebar-label">Features of C</span></a>
+      <a class="sidebar-link" href="../unit1/applications-of-c.html"><i class="fa-solid fa-industry"></i><span class="sidebar-label">Applications</span></a>
+      <a class="sidebar-link" href="../unit1/structure-of-c-program.html"><i class="fa-solid fa-code"></i><span class="sidebar-label">Structure of C Program</span></a>
+      <a class="sidebar-link" href="../unit1/c-compiler.html"><i class="fa-solid fa-gears"></i><span class="sidebar-label">C Compiler</span></a>
+      <a class="sidebar-link" href="../unit1/compilation-process.html"><i class="fa-solid fa-arrows-turn-right"></i><span class="sidebar-label">Compilation Process</span></a>
+      <a class="sidebar-link" href="../unit1/source-code.html"><i class="fa-solid fa-file-code"></i><span class="sidebar-label">Source Code</span></a>
+      <a class="sidebar-link" href="../unit1/object-code.html"><i class="fa-solid fa-cube"></i><span class="sidebar-label">Object Code</span></a>
+      <a class="sidebar-link" href="../unit1/executable-code.html"><i class="fa-solid fa-play"></i><span class="sidebar-label">Executable Code</span></a>
+      <a class="sidebar-link" href="../unit1/execution-process.html"><i class="fa-solid fa-microchip"></i><span class="sidebar-label">Execution Process</span></a>
+      <a class="sidebar-link" href="../unit1/assembler.html"><i class="fa-solid fa-wrench"></i><span class="sidebar-label">Assembler</span></a>
+      <a class="sidebar-link" href="../unit1/linker.html"><i class="fa-solid fa-link"></i><span class="sidebar-label">Linker</span></a>
+      <a class="sidebar-link" href="../unit1/loader.html"><i class="fa-solid fa-upload"></i><span class="sidebar-label">Loader</span></a>
+      <a class="sidebar-link" href="../unit1/interpreter.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Interpreter</span></a>
+      <a class="sidebar-link" href="../unit1/compilers-and-interpreters.html"><i class="fa-solid fa-code-compare"></i><span class="sidebar-label">Compilers &amp; Interpreters</span></a>
+      <a class="sidebar-link" href="../unit1/operating-systems.html"><i class="fa-solid fa-desktop"></i><span class="sidebar-label">Operating Systems</span></a>
+      <a class="sidebar-link" href="../unit1/debugging.html"><i class="fa-solid fa-bug"></i><span class="sidebar-label">Debugging</span></a>
+      <a class="sidebar-link" href="../unit1/comments.html"><i class="fa-solid fa-comment"></i><span class="sidebar-label">Comments</span></a>
+      <a class="sidebar-link" href="../unit1/single-line-comments.html"><i class="fa-solid fa-slash"></i><span class="sidebar-label">Single Line Comments</span></a>
+      <a class="sidebar-link" href="../unit1/multi-line-comments.html"><i class="fa-solid fa-quote-right"></i><span class="sidebar-label">Multi Line Comments</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 2</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit2-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">C Building Blocks &amp; Data Types</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit2-submenu">
+      <a class="sidebar-link" href="tokens.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Tokens</span></a>
+      <a class="sidebar-link" href="keywords.html"><i class="fa-solid fa-key"></i><span class="sidebar-label">Keywords</span></a>
+      <a class="sidebar-link" href="identifiers.html"><i class="fa-solid fa-tag"></i><span class="sidebar-label">Identifiers</span></a>
+      <a class="sidebar-link" href="naming-rules.html"><i class="fa-solid fa-spell-check"></i><span class="sidebar-label">Naming Rules</span></a>
+      <a class="sidebar-link" href="variables.html"><i class="fa-solid fa-box"></i><span class="sidebar-label">Variables</span></a>
+      <a class="sidebar-link" href="constants.html"><i class="fa-solid fa-lock"></i><span class="sidebar-label">Constants</span></a>
+      <a class="sidebar-link" href="values.html"><i class="fa-solid fa-hashtag"></i><span class="sidebar-label">Values</span></a>
+      <a class="sidebar-link" href="scope.html"><i class="fa-solid fa-eye"></i><span class="sidebar-label">Scope</span></a>
+      <a class="sidebar-link" href="binding.html"><i class="fa-solid fa-link"></i><span class="sidebar-label">Binding</span></a>
+      <a class="sidebar-link" href="storage-classes.html"><i class="fa-solid fa-warehouse"></i><span class="sidebar-label">Storage Classes</span></a>
+      <a class="sidebar-link" href="integer-types.html"><i class="fa-solid fa-1"></i><span class="sidebar-label">Integer Types</span></a>
+      <a class="sidebar-link" href="floating-point-types.html"><i class="fa-solid fa-percent"></i><span class="sidebar-label">Floating Point Types</span></a>
+      <a class="sidebar-link" href="character-type.html"><i class="fa-solid fa-font"></i><span class="sidebar-label">Character Type</span></a>
+      <a class="sidebar-link" href="strings.html"><i class="fa-solid fa-quote-left"></i><span class="sidebar-label">Strings</span></a>
+      <a class="sidebar-link" href="l-value.html"><i class="fa-solid fa-arrow-left-long"></i><span class="sidebar-label">L-value</span></a>
+      <a class="sidebar-link" href="r-value.html"><i class="fa-solid fa-arrow-right-long"></i><span class="sidebar-label">R-value</span></a>
+      <a class="sidebar-link" href="type-conversion.html"><i class="fa-solid fa-arrows-rotate"></i><span class="sidebar-label">Type Conversion</span></a>
+      <a class="sidebar-link" href="operators.html"><i class="fa-solid fa-calculator"></i><span class="sidebar-label">Operators</span></a>
+      <a class="sidebar-link" href="arithmetic-operators.html"><i class="fa-solid fa-plus-minus"></i><span class="sidebar-label">Arithmetic Operators</span></a>
+      <a class="sidebar-link" href="relational-operators.html"><i class="fa-solid fa-equals"></i><span class="sidebar-label">Relational Operators</span></a>
+      <a class="sidebar-link active" href="logical-operators.html"><i class="fa-solid fa-code-branch"></i><span class="sidebar-label">Logical Operators</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 3</span></div>
+      <a class="sidebar-link" href="../unit3/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Control Statements</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 4</span></div>
+      <a class="sidebar-link" href="../unit4/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Strings, Functions &amp; Pointers</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 5</span></div>
+      <a class="sidebar-link" href="../unit5/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Structures, Files &amp; Memory Management</span></a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="topic-layout">
+      <div>
+        <h1>Logical Operators</h1>
+        <p class="lead">The last topic in this chapter — how <code>&&</code>, <code>||</code>, and <code>!</code> combine multiple true/false conditions into a single overall decision, extending <code>add.c</code> one final time.</p>
+
+        <section class="topic-section" id="introduction">
+          <h2>1. What Is It?</h2>
+          <p><strong>Logical operators</strong> combine multiple true/false conditions into a single overall true/false result. C provides three of them: <code>&&</code> (AND — true only if <strong>both</strong> conditions are true), <code>||</code> (OR — true if <strong>at least one</strong> condition is true), and <code>!</code> (NOT — reverses a condition's true/false result).</p>
+        </section>
+
+        <section class="topic-section" id="why">
+          <h2>2. Why Do We Need to Know This?</h2>
+          <p>Real decisions in programs usually depend on more than one condition at once — for example, "is this number positive <em>and</em> even?" Logical operators are how multiple relational checks, covered on the previous page, get combined into one overall decision that a program can act on.</p>
+        </section>
+
+        <section class="topic-section" id="real-life">
+          <h2>3. Real-Life Example</h2>
+          <p>Think of a two-key security system that requires <strong>both</strong> keys to be turned at once to open — that's <code>&&</code> (AND) in action. Compare that to a system that accepts <strong>either</strong> of two valid keycards — that's <code>||</code> (OR). Logical operators express exactly these kinds of combined requirements.</p>
+        </section>
+
+        <section class="topic-section" id="syntax">
+          <h2>4. Syntax</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>syntax</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>condition1 && condition2   // AND — true only if BOTH are true
+condition1 || condition2   // OR — true if AT LEAST ONE is true
+!condition                 // NOT — reverses a condition's result</pre>
+          </div>
+          <p>Just like relational results from the previous page, the overall result of a logical expression is an <code>int</code>: <code>1</code> for true, <code>0</code> for false.</p>
+        </section>
+
+        <section class="topic-section" id="stepbystep">
+          <h2>5. Step-by-Step Code</h2>
+          <p>Extending <code>add.c</code> with a combined relational + logical check:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>add.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>#include &lt;stdio.h&gt;
+
+int main() {
+    int a = 5;
+    int b = 3;
+    int bothPositive = (a > 0) && (b > 0);
+
+    printf("Are both a and b positive? %d\n", bothPositive);
+
+    return 0;
+}</pre>
+          </div>
+          <ul>
+            <li><code>(a > 0)</code> evaluates to true, giving <code>1</code>.</li>
+            <li><code>(b > 0)</code> also evaluates to true, giving <code>1</code>.</li>
+            <li>Combined with <code>&&</code>, since <strong>both</strong> individual conditions are true, <code>bothPositive</code> becomes <code>1</code>.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="dryrun">
+          <h2>6. Dry Run</h2>
+          <p>Tracing through execution with <code>a = 5</code>, <code>b = 3</code>:</p>
+          <ul>
+            <li><code>(a > 0)</code> is evaluated first: <code>5 > 0</code> is true.</li>
+            <li><code>(b > 0)</code> is evaluated next: <code>3 > 0</code> is true.</li>
+            <li><code>&&</code> requires <strong>both</strong> to be true — since they are, <code>bothPositive</code> is set to <code>1</code>.</li>
+          </ul>
+          <p>The exact output is:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>output</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>Are both a and b positive? 1</pre>
+          </div>
+          <p>If <code>b</code> were <code>-3</code> instead, <code>(b > 0)</code> would become false. Even though <code>(a > 0)</code> is still true, <code>&&</code> requires <strong>both</strong> sides to be true, so the overall result would become <code>0</code>.</p>
+        </section>
+
+        <section class="topic-section" id="mistakes">
+          <h2>7. Common Mistakes</h2>
+          <ul class="mistake-list">
+            <li>Confusing <code>&&</code> (AND — requires both conditions) with <code>||</code> (OR — requires at least one) and using the wrong one for the intended logic.</li>
+            <li>Forgetting that <code>!</code> reverses a result — <code>!(a > b)</code> means "NOT (a is greater than b)," which is the same as "a is less than or equal to b."</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="debugging">
+          <h2>8. Debugging Tips</h2>
+          <p>If a combined condition isn't behaving as expected, break it into its individual pieces and check each relational comparison separately first, before combining them with <code>&&</code> or <code>||</code>. Isolating each piece makes it much easier to spot which part of the logic is wrong.</p>
+        </section>
+
+        <section class="topic-section" id="best-practices">
+          <h2>9. Best Practices</h2>
+          <ul class="best-practice-list">
+            <li>Use parentheses generously around individual conditions inside a logical expression, even when not strictly required, to make the intended grouping unambiguous to any reader — for example, <code>(a > 0) && (b > 0)</code> rather than <code>a > 0 && b > 0</code>.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="interview">
+          <h2>10. Interview Questions</h2>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Easy:</strong> What does <code>&&</code> mean in C?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p><code>&&</code> is the logical AND operator — the overall result is true only if both conditions are true.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Medium:</strong> What does <code>||</code> mean in C?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p><code>||</code> is the logical OR operator — the overall result is true if at least one of the conditions is true.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Hard:</strong> What does <code>!(a > b)</code> mean, in plain English?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>It's the reverse of "a is greater than b," meaning "a is less than or equal to b."</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>HR:</strong> Can you think of a real-life decision that needs both AND and OR logic together?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>This is open-ended — a strong answer might describe an eligibility check with multiple requirements, such as "age is at least 18 AND (has a valid ID OR has a guardian's signature)."</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Conceptual:</strong> If one side of <code>&&</code> is false, does C still need to check the other side?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>No — C uses short-circuit evaluation, meaning if the first condition in <code>&&</code> is already false, the overall result is already determined to be false, and the second condition isn't even evaluated. It's a nuance worth knowing as you write more complex conditions later.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Scenario-based:</strong> You want to check that a number is both greater than 0 AND less than 100 — which logical operator would you use to combine the two relational checks?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p><code>&&</code> (AND), since both conditions — greater than 0, and less than 100 — must be true simultaneously for the number to be in range.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mcq">
+          <h2>11. MCQs</h2>
+          <div class="quiz" data-quiz-source="logicalOperatorsQuiz"></div>
+        </section>
+
+        <section class="topic-section" id="exercises">
+          <h2>12. Programming Exercises</h2>
+          <p><strong>Easy:</strong> Is <code>1 && 0</code> true or false in C, as a 1/0 result?</p>
+          <p><strong>Medium:</strong> Write a combined condition checking if <code>a</code> is greater than 0 OR <code>b</code> is greater than 0.</p>
+          <p><strong>Hard:</strong> Predict the result of <code>!(a > b)</code> given <code>a = 5</code>, <code>b = 3</code>.</p>
+        </section>
+
+        <section class="topic-section" id="assignments">
+          <h2>13. Assignments</h2>
+          <p>Extend this page's program with one more combined condition of your choosing, using either <code>&&</code> or <code>||</code>, and <code>printf</code> the resulting 1/0 value.</p>
+          <p>When you're comfortable with this, move on to this chapter's closing <a href="#miniproject">Mini Project</a> below.</p>
+        </section>
+
+        <section class="topic-section" id="miniproject">
+          <h2>14. Mini Project</h2>
+          <p><strong>Build a Range Checker.</strong></p>
+          <p>Using relational operators combined with a logical operator, write a small program that:</p>
+          <ul>
+            <li>Declares a number variable.</li>
+            <li>Uses relational operators combined with a logical operator to check whether that number falls within a specific valid range (for example, between 1 and 100 inclusive).</li>
+            <li>Prints whether the number is "in range" or "out of range," using the resulting 1/0 value — or, at minimum, writes out in a comment what a <code>1</code> versus a <code>0</code> result would mean.</li>
+          </ul>
+          <p>This mini project capstones the "Values &amp; Basic Operators" chapter. You now understand l-values and r-values, type conversion, and all 3 basic operator categories — arithmetic, relational, and logical. You're ready to move on to more advanced operators in the next chapter.</p>
+        </section>
+
+        <section class="topic-section" id="faq">
+          <h2>15. FAQs</h2>
+          <p><strong>Q: Is <code>&&</code> the same as "and" written out as a word?</strong><br>A: Conceptually yes, but C requires the specific symbols <code>&&</code> / <code>||</code> / <code>!</code> — it doesn't accept English words as operators.</p>
+          <p><strong>Q: Can I combine more than two conditions with <code>&&</code> or <code>||</code>?</strong><br>A: Yes — you can chain multiple conditions together, e.g. <code>(a > 0) && (b > 0) && (a != b)</code>, though this course's examples keep it to two for clarity.</p>
+        </section>
+
+        <section class="topic-section" id="takeaways">
+          <h2>16. Key Takeaways</h2>
+          <ul>
+            <li>C provides 3 logical operators: <code>&&</code> (AND — requires both), <code>||</code> (OR — requires at least one), and <code>!</code> (NOT — reverses a result).</li>
+            <li>Logical operators combine multiple relational checks into a single overall true/false decision, represented as an <code>int</code> (<code>1</code> or <code>0</code>).</li>
+            <li>This page closes out the "Values &amp; Basic Operators" chapter — l-values, r-values, type conversion, and the arithmetic, relational, and logical operator categories.</li>
+          </ul>
+        </section>
+
+        <div class="topic-nav-footer">
+          <a href="relational-operators.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Previous: Relational Operators</a>
+          <span></span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for absolute beginners. &copy; 2026 C Programming eBook.</p>
+  </footer>
+
+</div>
+
+<div class="search-panel" id="search-panel" data-open="false">
+  <div class="search-panel-inner">
+    <div class="search-input-row">
+      <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+      <input type="text" id="search-input" placeholder="Search topics... (Ctrl+K)">
+      <button class="icon-btn" id="search-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="search-results" id="search-results"></ul>
+  </div>
+</div>
+
+<script>
+window.logicalOperatorsQuiz = [
+  { question: "What does the && operator require for its overall result to be true?", options: ["At least one condition to be true", "Both conditions to be true", "Neither condition to be true", "Exactly one condition to be true"], correctIndex: 1, explanation: "&& is logical AND — the overall result is true only when both conditions are true." },
+  { question: "What does the || operator require for its overall result to be true?", options: ["Both conditions must be true", "At least one condition must be true", "Both conditions must be false", "Only the second condition matters"], correctIndex: 1, explanation: "|| is logical OR — the overall result is true if at least one of the conditions is true." },
+  { question: "What does ! do to a condition's result?", options: ["It doubles the result", "It combines it with another condition", "It reverses the true/false result", "It converts it to a float"], correctIndex: 2, explanation: "! is logical NOT — it reverses a condition's true/false result." },
+  { question: "Given `int a = 5, b = 3; int bothPositive = (a > 0) && (b > 0);`, what is printed by `printf(\"Are both a and b positive? %d\\n\", bothPositive);`?", options: ["Are both a and b positive? 0", "Are both a and b positive? 1", "Are both a and b positive? true", "Are both a and b positive? -1"], correctIndex: 1, explanation: "(a > 0) is true and (b > 0) is true; since && requires both to be true, bothPositive is 1." },
+  { question: "You want to check that a number is greater than 0 AND less than 100 — which operator combines these two relational checks correctly?", options: ["||", "!", "&&", "=="], correctIndex: 2, explanation: "&& (AND) is correct since both conditions must hold true simultaneously." }
+];
+</script>
+<script src="../../js/theme.js"></script>
+<script src="../../js/sidebar.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/quiz.js"></script>
+<script src="../../js/copy-code.js"></script>
+<script src="../../js/accordion.js"></script>
+</body>
+</html>
