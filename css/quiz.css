@@ -1,0 +1,69 @@
+/* css/quiz.css — interactive MCQ quiz styling */
+
+.quiz {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  margin: var(--space-5) 0;
+}
+
+.quiz-progress {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: var(--space-2);
+}
+
+.quiz-options {
+  list-style: none;
+  margin: var(--space-4) 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.quiz-option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+.quiz-option:hover {
+  background: var(--bg);
+}
+
+.quiz-option-correct {
+  border-color: var(--color-success);
+  background: color-mix(in srgb, var(--color-success) 12%, transparent);
+}
+
+.quiz-option-incorrect {
+  border-color: var(--color-danger);
+  background: color-mix(in srgb, var(--color-danger) 12%, transparent);
+}
+
+.quiz-feedback {
+  margin-top: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+}
+
+.quiz-feedback-correct {
+  background: color-mix(in srgb, var(--color-success) 12%, transparent);
+  color: var(--color-success);
+}
+
+.quiz-feedback-incorrect {
+  background: color-mix(in srgb, var(--color-danger) 12%, transparent);
+  color: var(--color-danger);
+}
+
+.quiz-score {
+  font-size: 1.1rem;
+}
