@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pseudocode — Unit 1 — C Programming eBook</title>
-<meta name="description" content="Learn pseudocode — structured, code-like plain English that bridges an algorithm's numbered steps and real C code.">
+<meta name="description" content="What pseudocode is, its keywords, the Problem to Algorithm to Pseudocode to C Program pipeline, worked examples, and pseudocode vs algorithm vs C program.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -157,189 +157,312 @@
     <div class="topic-layout">
       <div>
         <h1>Pseudocode</h1>
-        <p class="lead">Once you've broken a problem into numbered steps, pseudocode is where those steps start looking like code — without yet worrying about C's exact punctuation rules.</p>
+        <p class="lead">Pseudocode is where an algorithm starts looking like code — plain English mixed with programming-style keywords, still without any real syntax rules to worry about.</p>
 
-        <section class="topic-section" id="introduction">
-          <h2>What Is It?</h2>
-          <p>Pseudocode is an algorithm written in structured, code-like plain English — using keywords such as <code>START</code>, <code>INPUT</code>, <code>IF...THEN...ELSE</code>, <code>WHILE</code>, <code>DISPLAY</code>, and <code>END</code> — without following any real programming language's exact syntax rules.</p>
-          <p>It's a bridge between the numbered-step algorithms you saw in the previous topic and the real C code you'll start writing in the next chapter.</p>
+        <section class="topic-section" id="what-is-pseudocode">
+          <h2>What is Pseudocode?</h2>
+          <p><strong>Definition:</strong> Pseudocode is an informal way of writing program logic using simple English statements mixed with programming-like keywords.</p>
+          <p>It is not a programming language, so it cannot be compiled or executed.</p>
+          <p><strong>Pseudocode = Algorithm + Programming Style</strong></p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>Why Do We Need to Know This?</h2>
-          <p>Pseudocode lets you plan a program's logic without worrying about C's punctuation rules (semicolons, braces, exact keyword names) yet. It separates "getting the logic right" from "getting the syntax right" — a separation that's especially valuable for beginners, who tend to get stuck arguing with syntax errors before their logic is even solid.</p>
+          <h2>Why Do We Use Pseudocode?</h2>
+          <p>Imagine you're building a house.</p>
+          <ul>
+            <li><strong>Algorithm</strong> &rarr; Plan of what needs to be done.</li>
+            <li><strong>Pseudocode</strong> &rarr; More detailed instructions for the workers.</li>
+            <li><strong>Program</strong> &rarr; The actual house.</li>
+          </ul>
+          <p>Similarly:</p>
+          <div class="flowchart">
+            <div class="flow-box flow-box-start">Problem</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Algorithm</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Pseudocode</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box flow-box-end">C Program</div>
+          </div>
+          <p>Pseudocode makes it easier to convert ideas into code.</p>
+        </section>
+
+        <section class="topic-section" id="features">
+          <h2>Features of Pseudocode</h2>
+          <ul>
+            <li>Uses simple English.</li>
+            <li>Easy to read and understand.</li>
+            <li>Independent of any programming language.</li>
+            <li>Focuses on logic, not syntax.</li>
+            <li>Easy to convert into C, Java, Python, etc.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="keywords">
+          <h2>Common Keywords in Pseudocode</h2>
+          <table class="compare-table">
+            <thead>
+              <tr><th>Keyword</th><th>Meaning</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>START</code></td><td>Beginning of the program</td></tr>
+              <tr><td><code>STOP</code> / <code>END</code></td><td>End of the program</td></tr>
+              <tr><td><code>INPUT</code></td><td>Read data from the user</td></tr>
+              <tr><td><code>OUTPUT</code></td><td>Display data</td></tr>
+              <tr><td><code>SET</code></td><td>Assign a value</td></tr>
+              <tr><td><code>IF</code></td><td>Decision making</td></tr>
+              <tr><td><code>ELSE</code></td><td>Alternative action</td></tr>
+              <tr><td><code>WHILE</code></td><td>Repeat while a condition is true</td></tr>
+              <tr><td><code>FOR</code></td><td>Repeat a fixed number of times</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="topic-section" id="structure">
+          <h2>General Structure</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Structure</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>START
+INPUT data
+PROCESS data
+OUTPUT result
+STOP</pre>
+          </div>
+        </section>
+
+        <section class="topic-section" id="example-sum">
+          <h2>Example 1: Add Two Numbers</h2>
+          <p><strong>Problem:</strong> Add two numbers.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Pseudocode</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>START
+INPUT A
+INPUT B
+SET Sum = A + B
+OUTPUT Sum
+STOP</pre>
+          </div>
+          <p><strong>Equivalent C Program</strong></p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>add.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>#include &lt;stdio.h&gt;
+
+int main()
+{
+    int A, B, Sum;
+
+    printf("Enter two numbers: ");
+    scanf("%d %d", &amp;A, &amp;B);
+
+    Sum = A + B;
+
+    printf("Sum = %d", Sum);
+
+    return 0;
+}</pre>
+          </div>
+        </section>
+
+        <section class="topic-section" id="example-area">
+          <h2>Example 2: Find the Area of a Rectangle</h2>
+          <p>Formula:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Formula</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>Area = Length &times; Width</pre>
+          </div>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Pseudocode</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>START
+INPUT Length
+INPUT Width
+SET Area = Length &times; Width
+OUTPUT Area
+STOP</pre>
+          </div>
+        </section>
+
+        <section class="topic-section" id="example-evenodd">
+          <h2>Example 3: Check Even or Odd</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Pseudocode</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>START
+INPUT Number
+
+IF Number MOD 2 = 0
+    OUTPUT "Even"
+ELSE
+    OUTPUT "Odd"
+
+STOP</pre>
+          </div>
+          <p><strong>Example</strong></p>
+          <p>Input: <code>18</code></p>
+          <p>Output: <code>Even</code></p>
+        </section>
+
+        <section class="topic-section" id="example-largest">
+          <h2>Example 4: Find the Largest of Two Numbers</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Pseudocode</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>START
+
+INPUT A
+INPUT B
+
+IF A > B
+    OUTPUT A
+ELSE
+    OUTPUT B
+
+STOP</pre>
+          </div>
+        </section>
+
+        <section class="topic-section" id="example-average">
+          <h2>Example 5: Average of Three Numbers</h2>
+          <p>Formula:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Formula</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>Average = (A + B + C) / 3</pre>
+          </div>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Pseudocode</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>START
+
+INPUT A
+INPUT B
+INPUT C
+
+SET Average = (A + B + C) / 3
+
+OUTPUT Average
+
+STOP</pre>
+          </div>
+        </section>
+
+        <section class="topic-section" id="pseudocode-vs-algorithm">
+          <h2>Pseudocode vs Algorithm</h2>
+          <table class="compare-table">
+            <thead>
+              <tr><th>Algorithm</th><th>Pseudocode</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Written in simple steps</td><td>Written like a program</td></tr>
+              <tr><td>Uses natural language</td><td>Uses programming-like keywords</td></tr>
+              <tr><td>Less detailed</td><td>More detailed</td></tr>
+              <tr><td>Easier to understand</td><td>Easier to convert into code</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="topic-section" id="pseudocode-vs-c">
+          <h2>Pseudocode vs C Program</h2>
+          <table class="compare-table">
+            <thead>
+              <tr><th>Pseudocode</th><th>C Program</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>No syntax rules</td><td>Strict syntax rules</td></tr>
+              <tr><td>Cannot be executed</td><td>Can be compiled and executed</td></tr>
+              <tr><td>Language-independent</td><td>Language-dependent</td></tr>
+              <tr><td>Focuses only on logic</td><td>Focuses on logic and syntax</td></tr>
+            </tbody>
+          </table>
         </section>
 
         <section class="topic-section" id="real-life">
           <h2>Real-Life Example</h2>
-          <p>Think of a movie script's stage directions: <em>"ENTER: Character walks to the door, opens it, exits."</em> It's structured and precise, but it isn't written in a formal legal or technical language — anyone can read and follow it. Pseudocode applies that same idea to programming logic: precise enough to act on, plain enough for anyone to read.</p>
-        </section>
-
-        <section class="topic-section" id="visual">
-          <h2>Visual Explanation</h2>
-          <p>The same piece of logic, shown three ways — a plain algorithm step, its pseudocode form, and (as a preview only) what it eventually becomes in real C:</p>
-          <table class="compare-table">
-            <thead>
-              <tr>
-                <th>Plain Algorithm Step</th>
-                <th>Pseudocode</th>
-                <th>Real C (preview only — taught next chapter)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Step: check if A is greater than B</td>
-                <td><code>IF A &gt; B THEN</code></td>
-                <td><code>if (a &gt; b) {</code></td>
-              </tr>
-            </tbody>
-          </table>
-          <p><em>Don't worry about understanding the C column yet — it's just here to show where pseudocode eventually leads.</em></p>
-        </section>
-
-        <section class="topic-section" id="syntax">
-          <h2>Syntax</h2>
-          <p>This course uses a small, consistent set of pseudocode keywords and conventions:</p>
-          <ul>
-            <li><code>START</code> / <code>END</code> — mark the beginning and end of the whole pseudocode.</li>
-            <li><code>INPUT</code> / <code>DISPLAY</code> — read a value in / show a value out.</li>
-            <li><code>IF...THEN...ELSE...ENDIF</code> — make a decision between two paths.</li>
-            <li><code>WHILE...ENDWHILE</code> — repeat while a condition stays true.</li>
-            <li><code>FOR...ENDFOR</code> — repeat a known number of times.</li>
-            <li>Indentation — used to visually show nesting, the same way braces will in C.</li>
-          </ul>
-        </section>
-
-        <section class="topic-section" id="steps">
-          <h2>Step-by-Step Code</h2>
-          <p>Here is the recurring "largest of two numbers" problem, now written as pseudocode:</p>
+          <p><strong>Making Coffee</strong></p>
+          <p><strong>Algorithm</strong></p>
+          <ol>
+            <li>Boil water</li>
+            <li>Add coffee</li>
+            <li>Add sugar</li>
+            <li>Stir</li>
+            <li>Serve</li>
+          </ol>
+          <p><strong>Pseudocode</strong></p>
           <div class="code-block">
             <div class="code-block-header">
-              <span>pseudocode</span>
+              <span>Pseudocode</span>
               <button class="copy-btn">Copy</button>
             </div>
             <pre>START
-INPUT A, B
-IF A > B THEN
-  DISPLAY A
-ELSE
-  DISPLAY B
-ENDIF
-END</pre>
+Boil Water
+Add Coffee
+Add Sugar
+Stir Well
+Serve Coffee
+STOP</pre>
           </div>
-          <p><code>START</code> marks the beginning of the pseudocode. <code>INPUT A, B</code> reads in the two numbers to compare. <code>IF A > B THEN</code> begins the decision — if it's true, <code>DISPLAY A</code> shows A as the larger value. <code>ELSE</code> handles the case where it's false, so <code>DISPLAY B</code> shows B instead. <code>ENDIF</code> closes the decision block, and <code>END</code> marks the end of the pseudocode.</p>
         </section>
 
-        <section class="topic-section" id="dryrun">
-          <h2>Dry Run</h2>
-          <p>Tracing the pseudocode above line-by-line for two different inputs:</p>
-          <p><strong>Case 1: A = 8, B = 3</strong></p>
-          <table class="dryrun-table">
-            <thead><tr><th>Step</th><th>Action</th><th>Result / Notes</th></tr></thead>
-            <tbody>
-              <tr><td>1</td><td><code>INPUT A, B</code></td><td>A = 8, B = 3</td></tr>
-              <tr><td>2</td><td><code>IF A &gt; B THEN</code></td><td>8 &gt; 3 is true</td></tr>
-              <tr><td>3</td><td><code>DISPLAY A</code></td><td>Displays 8</td></tr>
-              <tr><td>4</td><td><code>ENDIF</code> / <code>END</code></td><td>Pseudocode finishes</td></tr>
-            </tbody>
-          </table>
-          <p><strong>Case 2: A = 2, B = 9</strong></p>
-          <table class="dryrun-table">
-            <thead><tr><th>Step</th><th>Action</th><th>Result / Notes</th></tr></thead>
-            <tbody>
-              <tr><td>1</td><td><code>INPUT A, B</code></td><td>A = 2, B = 9</td></tr>
-              <tr><td>2</td><td><code>IF A &gt; B THEN</code></td><td>2 &gt; 9 is false</td></tr>
-              <tr><td>3</td><td><code>ELSE</code> &rarr; <code>DISPLAY B</code></td><td>Displays 9</td></tr>
-              <tr><td>4</td><td><code>ENDIF</code> / <code>END</code></td><td>Pseudocode finishes</td></tr>
-            </tbody>
-          </table>
-        </section>
-
-        <section class="topic-section" id="mistakes">
-          <h2>Common Mistakes</h2>
-          <ul class="mistake-list">
-            <li>Forgetting the closing keyword — leaving off <code>ENDIF</code> or <code>ENDWHILE</code> so it's unclear where a block actually ends.</li>
-            <li>Mixing up pseudocode with real syntax, like adding semicolons that don't belong in pseudocode at all.</li>
-            <li>Writing pseudocode so vague ("do the thing with the numbers") that it doesn't actually resolve the logic.</li>
+        <section class="topic-section" id="advantages">
+          <h2>Advantages of Pseudocode</h2>
+          <ul>
+            <li>Easy to write.</li>
+            <li>Easy to understand.</li>
+            <li>No syntax errors.</li>
+            <li>Helps find logical mistakes before coding.</li>
+            <li>Can be converted into any programming language.</li>
           </ul>
         </section>
 
-        <section class="topic-section" id="debugging">
-          <h2>Debugging Tips</h2>
-          <p>Read your pseudocode aloud as plain instructions to a friend. If it doesn't make unambiguous sense out loud — if you'd have to stop and explain what you meant — it needs to be more precise before you move on to C.</p>
-        </section>
-
-        <section class="topic-section" id="best-practices">
-          <h2>Best Practices</h2>
-          <ul class="best-practice-list">
-            <li>Keep indentation consistent so nested logic is easy to see at a glance.</li>
-            <li>Use the same keyword set consistently — don't invent new keywords partway through.</li>
-            <li>Always close what you open: every <code>IF</code> gets an <code>ENDIF</code>, every <code>WHILE</code> gets an <code>ENDWHILE</code>.</li>
+        <section class="topic-section" id="disadvantages">
+          <h2>Disadvantages</h2>
+          <ul>
+            <li>No universal standard format.</li>
+            <li>Cannot be executed by a computer.</li>
+            <li>Large programs can result in lengthy pseudocode.</li>
           </ul>
         </section>
 
-        <section class="topic-section" id="interview">
-          <h2>Interview Questions</h2>
+        <section class="topic-section" id="facts">
+          <h2>Interesting Facts 💡</h2>
+          <ul>
+            <li>Many software companies ask candidates to write pseudocode during interviews before writing actual code.</li>
+            <li>Competitive programmers often think in pseudocode before implementing solutions.</li>
+            <li>Pseudocode helps teams discuss algorithms without worrying about programming language syntax.</li>
+          </ul>
+        </section>
 
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Easy:</strong> What is pseudocode?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>Structured, code-like plain English for planning a program's logic — using keywords like <code>START</code>, <code>IF</code>, and <code>DISPLAY</code> — without following any real language's exact syntax rules.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Medium:</strong> Why use pseudocode instead of writing real code directly?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>It separates "getting the logic right" from "getting the syntax right." Beginners especially benefit from planning the logic in plain terms first, instead of fighting C's punctuation rules and the underlying problem at the same time.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Hard:</strong> What's the risk of skipping pseudocode and writing C directly for a complex problem?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>You end up debugging syntax errors and logic errors simultaneously, which is much harder to untangle. Planning the logic first in pseudocode isolates and resolves the "thinking" mistakes before any syntax is involved.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>HR:</strong> How do you personally plan out a solution before coding?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>There's no fixed answer — a strong response describes a concrete planning habit, such as writing pseudocode or a quick outline of steps before touching real code, and why that habit helps avoid mistakes.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Conceptual:</strong> Is pseudocode language-specific?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>No — pseudocode is deliberately language-agnostic. It's meant to express logic clearly for any human reader, regardless of which programming language will eventually implement it.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Scenario-based:</strong> Convert this real-life instruction into pseudocode: "If it's raining, take an umbrella, otherwise wear sunglasses."</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p><code>IF raining THEN / DISPLAY "Take an umbrella" / ELSE / DISPLAY "Wear sunglasses" / ENDIF</code></p>
-            </div>
-          </div>
+        <section class="topic-section" id="revision">
+          <h2>Quick Revision</h2>
+          <ul>
+            <li>Pseudocode is an informal way to describe program logic.</li>
+            <li>It uses simple English and programming keywords.</li>
+            <li>It is language-independent.</li>
+            <li>It cannot be compiled or executed.</li>
+            <li>It serves as a bridge between an algorithm and a program.</li>
+          </ul>
         </section>
 
         <section class="topic-section" id="mcq">
@@ -347,35 +470,114 @@ END</pre>
           <div class="quiz" data-quiz-source="pseudocodeQuiz"></div>
         </section>
 
-        <section class="topic-section" id="exercises">
-          <h2>Programming Exercises</h2>
-          <p><strong>Easy:</strong> Write pseudocode to check if a number is positive or negative.</p>
-          <p><strong>Medium:</strong> Write pseudocode for the "largest of three numbers" problem.</p>
-          <p><strong>Hard:</strong> Write pseudocode for a leap-year check.</p>
+        <section class="topic-section" id="interview">
+          <h2>Interview Questions</h2>
+
+          <h3>Beginner</h3>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What is pseudocode?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Pseudocode is an informal way of writing program logic using simple English statements mixed with programming-like keywords. It cannot be compiled or executed.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Why do programmers write pseudocode?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>It makes it easier to convert ideas into code by working out the logic in a readable, language-independent form first, before dealing with any language's strict syntax rules.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>How is pseudocode different from an algorithm?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>An algorithm is written in simple steps using natural language and is less detailed. Pseudocode is written more like a program, using programming-like keywords, and is more detailed — making it easier to convert directly into code.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Can pseudocode be compiled? Why or why not?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>No — pseudocode is not a real programming language and has no strict syntax rules, so a compiler cannot process it. It exists only to communicate logic to humans.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Name some common pseudocode keywords.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>START, STOP/END, INPUT, OUTPUT, SET, IF, ELSE, WHILE, and FOR.</p>
+            </div>
+          </div>
+
+          <h3>Intermediate</h3>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Explain the advantages of pseudocode in software development.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>It's easy to write and understand, has no syntax errors to worry about, helps find logical mistakes before coding, and can be converted into any programming language once the logic is confirmed correct.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Compare pseudocode with a C program.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Pseudocode has no syntax rules, cannot be executed, is language-independent, and focuses only on logic. A C program has strict syntax rules, can be compiled and executed, is language-dependent, and must handle both logic and syntax correctly.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Why is pseudocode considered language-independent?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>It uses simple English and generic keywords like INPUT, OUTPUT, and IF rather than any specific language's syntax, so the same pseudocode can be converted into C, Java, Python, or any other language.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>How does pseudocode help reduce programming errors?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>By letting you verify the logic is correct before writing any real syntax, pseudocode catches logical mistakes early — separately from syntax errors — so you aren't debugging both kinds of problems at once.</p>
+            </div>
+          </div>
         </section>
 
-        <section class="topic-section" id="assignments">
-          <h2>Assignments</h2>
-          <p>Take an everyday-task breakdown you wrote earlier (like the steps for making a sandwich) and convert it into properly formatted pseudocode using this page's keyword conventions — <code>START</code>/<code>END</code>, <code>INPUT</code>/<code>DISPLAY</code>, <code>IF...THEN...ELSE...ENDIF</code>, and consistent indentation.</p>
-        </section>
-
-        <section class="topic-section" id="faq">
-          <h2>FAQs</h2>
-          <p><strong>Q: Is pseudocode checked by a compiler?</strong><br>A: No — it's for humans only, and it is never run by a computer.</p>
-          <p><strong>Q: Do all courses/companies use the exact same pseudocode keywords?</strong><br>A: No — conventions vary from place to place. The important part is being unambiguous and consistent within one document.</p>
-        </section>
-
-        <section class="topic-section" id="takeaways">
-          <h2>Key Takeaways</h2>
-          <ul>
-            <li>Pseudocode separates a program's logic from its exact syntax.</li>
-            <li>It uses a small, consistent keyword set — <code>START</code>/<code>END</code>, <code>INPUT</code>/<code>DISPLAY</code>, <code>IF...ENDIF</code>, <code>WHILE...ENDWHILE</code>, <code>FOR...ENDFOR</code>.</li>
-            <li>It's the last planning step before real C code starts in the next chapter.</li>
-          </ul>
+        <section class="topic-section" id="practice">
+          <h2>Practice Questions</h2>
+          <p><strong>Q1.</strong> Write pseudocode to calculate the simple interest. Formula: <code>SI = (P &times; R &times; T) / 100</code></p>
+          <p><strong>Q2.</strong> Write pseudocode to find the largest of three numbers.</p>
+          <p><strong>Q3.</strong> Write pseudocode to swap two numbers using a temporary variable.</p>
+          <p><strong>Q4.</strong> Write pseudocode to determine whether a given number is positive, negative, or zero.</p>
         </section>
 
         <div class="topic-nav-footer">
-          <a href="algorithms.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Previous: Algorithms</a>
+          <a href="algorithms.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Previous: Writing Algorithms</a>
           <a href="flowcharts.html" class="btn btn-primary">Next: Flowcharts <i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </div>
@@ -402,11 +604,11 @@ END</pre>
 
 <script>
 window.pseudocodeQuiz = [
-  { question: "What is pseudocode?", options: ["A real programming language compiled to machine code", "Structured, code-like plain English for planning logic", "A type of flowchart", "A C library"], correctIndex: 1, explanation: "Pseudocode is an algorithm written in structured, code-like plain English, without following any real language's exact syntax rules." },
-  { question: "What keyword typically marks the beginning of a pseudocode block in this course?", options: ["BEGIN-PROGRAM", "START", "MAIN", "OPEN"], correctIndex: 1, explanation: "This course uses START and END to mark the beginning and end of pseudocode." },
-  { question: "Which keyword closes an IF block in this course's pseudocode convention?", options: ["ENDIF", "STOPIF", "CLOSE", "}"], correctIndex: 0, explanation: "IF...THEN...ELSE blocks are closed with ENDIF, not curly braces (braces belong to real C syntax)." },
-  { question: "What is the main purpose of writing pseudocode before real code?", options: ["To make the program run faster", "To separate planning the logic from worrying about exact syntax", "To replace the need for testing", "To automatically generate C code"], correctIndex: 1, explanation: "Pseudocode lets you focus on getting the logic right first, separately from C's punctuation and syntax rules." },
-  { question: "Consider: IF A > B THEN / DISPLAY A / ELSE / DISPLAY B / ENDIF. What does this pseudocode do?", options: ["Always displays A", "Displays the larger of A and B", "Displays the smaller of A and B", "Adds A and B together"], correctIndex: 1, explanation: "It checks whether A is greater than B, displaying A if true and B otherwise — so it displays whichever value is larger." }
+  { question: "What is pseudocode?", options: ["A programming language", "A compiler", "An informal description of program logic", "Machine code"], correctIndex: 2, explanation: "Pseudocode is an informal way of writing program logic using simple English mixed with programming-like keywords." },
+  { question: "Which of the following is not a characteristic of pseudocode?", options: ["Easy to understand", "Language-independent", "Can be compiled directly", "Helps in program planning"], correctIndex: 2, explanation: "Pseudocode has no syntax rules and cannot be compiled or executed directly — it's for humans only." },
+  { question: "Which keyword is commonly used to read user input?", options: ["PRINT", "INPUT", "DISPLAY", "SHOW"], correctIndex: 1, explanation: "INPUT is the keyword used to read data from the user in pseudocode." },
+  { question: "Pseudocode is mainly written:", options: ["After debugging", "Before writing the actual program", "After compilation", "After execution"], correctIndex: 1, explanation: "Pseudocode is written before the actual program, as a bridge between the algorithm and the C code." },
+  { question: "Which statement is true?", options: ["Pseudocode follows strict syntax rules.", "Pseudocode can be executed by a compiler.", "Pseudocode focuses on program logic rather than syntax.", "Pseudocode is machine language."], correctIndex: 2, explanation: "Pseudocode focuses only on logic, with no syntax rules and no ability to be compiled or executed." }
 ];
 </script>
 <script src="../../js/theme.js"></script>
