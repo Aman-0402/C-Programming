@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Integer Types — Unit 2 — C Programming eBook</title>
+<meta name="description" content="Learn C's int data type for storing whole numbers, its size variants, and start this chapter's new student profile recurring example.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="../../css/variables.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/diagrams.css">
+<link rel="stylesheet" href="../../css/quiz.css">
+
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<style>
+  .topic-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-6); align-items: start; }
+  .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
+  .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
+  .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
+</style>
+</head>
+<body>
+
+<button class="icon-btn theme-toggle-float" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+  <i class="fa-solid fa-sun icon-sun"></i>
+  <i class="fa-solid fa-moon icon-moon"></i>
+</button>
+
+<div class="social-float">
+  <a class="icon-btn" href="https://github.com/Aman-0402" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+    <i class="fa-brands fa-github"></i>
+  </a>
+  <a class="icon-btn" href="https://www.linkedin.com/in/aman-raj-081905211/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+</div>
+
+<div class="shell" id="shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo" style="margin-bottom: var(--space-5);">
+      <a href="../../index.html" class="logo">
+        <i class="fa-solid fa-code" style="color: var(--color-primary);"></i><span class="sidebar-label"> C Programming eBook</span>
+      </a>
+    </div>
+
+    <button class="icon-btn" id="sidebar-collapse" aria-label="Collapse sidebar" style="margin-bottom: var(--space-4);">
+      <i class="fa-solid fa-angles-left"></i>
+    </button>
+
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 1</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit1-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">Unit 1</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit1-submenu">
+      <a class="sidebar-link" href="../unit1/evolution-of-programming.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="sidebar-label">Evolution of Programming</span></a>
+      <a class="sidebar-link" href="../unit1/programming-languages.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Programming Languages</span></a>
+      <a class="sidebar-link" href="../unit1/problem-solving.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Problem Solving</span></a>
+      <a class="sidebar-link" href="../unit1/sequential-logic.html"><i class="fa-solid fa-list-ol"></i><span class="sidebar-label">Sequential Logic</span></a>
+      <a class="sidebar-link" href="../unit1/algorithms.html"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-label">Algorithms</span></a>
+      <a class="sidebar-link" href="../unit1/pseudocode.html"><i class="fa-solid fa-file-lines"></i><span class="sidebar-label">Pseudocode</span></a>
+      <a class="sidebar-link" href="../unit1/flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
+      <a class="sidebar-link" href="../unit1/introduction-to-c.html"><i class="fa-solid fa-c"></i><span class="sidebar-label">Introduction to C</span></a>
+      <a class="sidebar-link" href="../unit1/history-of-c.html"><i class="fa-solid fa-scroll"></i><span class="sidebar-label">History of C</span></a>
+      <a class="sidebar-link" href="../unit1/features-of-c.html"><i class="fa-solid fa-star"></i><span class="sidebar-label">Features of C</span></a>
+      <a class="sidebar-link" href="../unit1/applications-of-c.html"><i class="fa-solid fa-industry"></i><span class="sidebar-label">Applications</span></a>
+      <a class="sidebar-link" href="../unit1/structure-of-c-program.html"><i class="fa-solid fa-code"></i><span class="sidebar-label">Structure of C Program</span></a>
+      <a class="sidebar-link" href="../unit1/c-compiler.html"><i class="fa-solid fa-gears"></i><span class="sidebar-label">C Compiler</span></a>
+      <a class="sidebar-link" href="../unit1/compilation-process.html"><i class="fa-solid fa-arrows-turn-right"></i><span class="sidebar-label">Compilation Process</span></a>
+      <a class="sidebar-link" href="../unit1/source-code.html"><i class="fa-solid fa-file-code"></i><span class="sidebar-label">Source Code</span></a>
+      <a class="sidebar-link" href="../unit1/object-code.html"><i class="fa-solid fa-cube"></i><span class="sidebar-label">Object Code</span></a>
+      <a class="sidebar-link" href="../unit1/executable-code.html"><i class="fa-solid fa-play"></i><span class="sidebar-label">Executable Code</span></a>
+      <a class="sidebar-link" href="../unit1/execution-process.html"><i class="fa-solid fa-microchip"></i><span class="sidebar-label">Execution Process</span></a>
+      <a class="sidebar-link" href="../unit1/assembler.html"><i class="fa-solid fa-wrench"></i><span class="sidebar-label">Assembler</span></a>
+      <a class="sidebar-link" href="../unit1/linker.html"><i class="fa-solid fa-link"></i><span class="sidebar-label">Linker</span></a>
+      <a class="sidebar-link" href="../unit1/loader.html"><i class="fa-solid fa-upload"></i><span class="sidebar-label">Loader</span></a>
+      <a class="sidebar-link" href="../unit1/interpreter.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Interpreter</span></a>
+      <a class="sidebar-link" href="../unit1/compilers-and-interpreters.html"><i class="fa-solid fa-code-compare"></i><span class="sidebar-label">Compilers &amp; Interpreters</span></a>
+      <a class="sidebar-link" href="../unit1/operating-systems.html"><i class="fa-solid fa-desktop"></i><span class="sidebar-label">Operating Systems</span></a>
+      <a class="sidebar-link" href="../unit1/debugging.html"><i class="fa-solid fa-bug"></i><span class="sidebar-label">Debugging</span></a>
+      <a class="sidebar-link" href="../unit1/comments.html"><i class="fa-solid fa-comment"></i><span class="sidebar-label">Comments</span></a>
+      <a class="sidebar-link" href="../unit1/single-line-comments.html"><i class="fa-solid fa-slash"></i><span class="sidebar-label">Single Line Comments</span></a>
+      <a class="sidebar-link" href="../unit1/multi-line-comments.html"><i class="fa-solid fa-quote-right"></i><span class="sidebar-label">Multi Line Comments</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 2</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit2-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">C Building Blocks &amp; Data Types</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit2-submenu">
+      <a class="sidebar-link" href="tokens.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Tokens</span></a>
+      <a class="sidebar-link" href="keywords.html"><i class="fa-solid fa-key"></i><span class="sidebar-label">Keywords</span></a>
+      <a class="sidebar-link" href="identifiers.html"><i class="fa-solid fa-tag"></i><span class="sidebar-label">Identifiers</span></a>
+      <a class="sidebar-link" href="naming-rules.html"><i class="fa-solid fa-spell-check"></i><span class="sidebar-label">Naming Rules</span></a>
+      <a class="sidebar-link" href="variables.html"><i class="fa-solid fa-box"></i><span class="sidebar-label">Variables</span></a>
+      <a class="sidebar-link" href="constants.html"><i class="fa-solid fa-lock"></i><span class="sidebar-label">Constants</span></a>
+      <a class="sidebar-link" href="values.html"><i class="fa-solid fa-hashtag"></i><span class="sidebar-label">Values</span></a>
+      <a class="sidebar-link" href="scope.html"><i class="fa-solid fa-eye"></i><span class="sidebar-label">Scope</span></a>
+      <a class="sidebar-link" href="binding.html"><i class="fa-solid fa-link"></i><span class="sidebar-label">Binding</span></a>
+      <a class="sidebar-link" href="storage-classes.html"><i class="fa-solid fa-warehouse"></i><span class="sidebar-label">Storage Classes</span></a>
+      <a class="sidebar-link active" href="integer-types.html"><i class="fa-solid fa-1"></i><span class="sidebar-label">Integer Types</span></a>
+      <a class="sidebar-link" href="floating-point-types.html"><i class="fa-solid fa-percent"></i><span class="sidebar-label">Floating Point Types</span></a>
+      <a class="sidebar-link" href="character-type.html"><i class="fa-solid fa-font"></i><span class="sidebar-label">Character Type</span></a>
+      <a class="sidebar-link" href="strings.html"><i class="fa-solid fa-quote-left"></i><span class="sidebar-label">Strings</span></a>
+            </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 3</span></div>
+      <a class="sidebar-link" href="../unit3/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Control Statements</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 4</span></div>
+      <a class="sidebar-link" href="../unit4/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Strings, Functions &amp; Pointers</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 5</span></div>
+      <a class="sidebar-link" href="../unit5/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Structures, Files &amp; Memory Management</span></a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="topic-layout">
+      <div>
+        <h1>Integer Types</h1>
+        <p class="lead">A new chapter, a new running example — meet <code>int</code>, C's basic whole-number data type, and start building a small "student profile" program that will grow over the next few pages.</p>
+
+        <section class="topic-section" id="introduction">
+          <h2>1. What Is It?</h2>
+          <p><code>int</code> is C's basic integer data type — it stores <strong>whole numbers</strong> (numbers with no decimal point), like <code>20</code>, <code>-5</code>, or <code>0</code>. C also provides size variants — <code>short</code>, <code>long</code>, and <code>long long</code> — for controlling how much memory an integer uses and what range of values it can hold, though plain <code>int</code> is by far the most common choice for everyday use.</p>
+        </section>
+
+        <section class="topic-section" id="why">
+          <h2>2. Why Do We Need to Know This?</h2>
+          <p>Choosing the right data type for a piece of data — starting with recognizing when a whole number is appropriate — is foundational to writing correct, memory-efficient C programs. Every value you store needs a type, and <code>int</code> is usually the very first one you'll reach for.</p>
+        </section>
+
+        <section class="topic-section" id="real-life">
+          <h2>3. Real-Life Example</h2>
+          <p>Think of choosing a container size for counting whole items, like eggs in a carton — you wouldn't use a container designed for liquid measurements (which can hold fractional amounts) to count discrete whole things. An <code>int</code> is exactly that kind of "whole item" container: it's built for counting, not for measuring precise fractional amounts.</p>
+        </section>
+
+        <section class="topic-section" id="visual">
+          <h2>4. Visual Explanation</h2>
+          <p>Here's how a single <code>int</code> variable holds its whole-number value in memory:</p>
+          <div class="memory-diagram">
+            <div class="memory-cell">
+              <div class="memory-cell-label">int age</div>
+              <div class="memory-cell-value">20</div>
+            </div>
+          </div>
+          <p><code>age</code> holds the whole number <code>20</code> — no decimal point, nothing fractional. That's the defining trait of an <code>int</code>.</p>
+        </section>
+
+        <section class="topic-section" id="syntax">
+          <h2>5. Syntax</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>syntax</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>int variableName = wholeNumberValue;
+
+// example:
+int age = 20;</pre>
+          </div>
+          <p>C also offers size variants of <code>int</code> — <code>short int</code>, <code>long int</code>, and <code>long long int</code> — for situations where you need a smaller or much larger range of whole numbers. At this stage, it's enough to know these variants exist; their specific byte sizes are covered later.</p>
+        </section>
+
+        <section class="topic-section" id="code">
+          <h2>6. Step-by-Step Code</h2>
+          <p>This page starts a small recurring example — a <strong>student profile</strong> program — beginning with just its whole-number part:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>profile.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>#include &lt;stdio.h&gt;
+
+int main() {
+    int age = 20;
+
+    printf("Age: %d\n", age);
+
+    return 0;
+}</pre>
+          </div>
+          <ul>
+            <li><code>int age = 20;</code> declares an <code>int</code> variable named <code>age</code> and stores the whole number <code>20</code> in it.</li>
+            <li><code>printf("Age: %d\n", age);</code> prints that value, using <code>%d</code> — the format specifier for a whole number (int).</li>
+          </ul>
+          <p>This is just the beginning: over the next few pages, this same <code>profile.c</code> program will grow to include a <strong>height</strong> (floating point), a <strong>grade</strong> (character), and a <strong>name</strong> (string) — each new data type building on this same running example.</p>
+        </section>
+
+        <section class="topic-section" id="mistakes">
+          <h2>7. Common Mistakes</h2>
+          <ul class="mistake-list">
+            <li>Trying to store a decimal value in an <code>int</code> — it gets silently truncated. Storing <code>5.9</code> in an <code>int</code> would just become <code>5</code>, losing the decimal part entirely (covered more precisely on the next page).</li>
+            <li>Assuming all whole numbers need the largest integer type available. Plain <code>int</code> is sufficient for the vast majority of everyday values — reaching for <code>long long</code> "just in case" usually isn't necessary.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="debugging">
+          <h2>8. Debugging Tips</h2>
+          <p>If a calculation you expected to have a decimal result instead shows a whole number with no decimal part, check whether you're accidentally storing it in an <code>int</code> instead of a floating-point type — that silent truncation is a very common source of this kind of bug.</p>
+        </section>
+
+        <section class="topic-section" id="best-practices">
+          <h2>9. Best Practices</h2>
+          <ul class="best-practice-list">
+            <li>Use plain <code>int</code> for everyday whole-number values unless you have a specific reason — like memory constraints or a huge range requirement — to reach for a size variant.</li>
+            <li>Only introduce <code>short</code>, <code>long</code>, or <code>long long</code> when your expected values genuinely call for it, rather than by default.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="interview">
+          <h2>10. Interview Questions</h2>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Easy:</strong> What kind of values does the <code>int</code> type store?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Whole numbers, with no decimal point — values like <code>20</code>, <code>-5</code>, or <code>0</code>.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Medium:</strong> What happens if you try to store a decimal value like <code>5.9</code> in an <code>int</code> variable?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>It gets truncated, keeping only the whole-number part (<code>5</code>) and silently losing the decimal portion (<code>.9</code>).</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Hard:</strong> Why might a program use <code>long</code> or <code>long long</code> instead of plain <code>int</code>?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>To store a much larger range of whole numbers than plain <code>int</code> can hold, when the expected values might exceed <code>int</code>'s typical range.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>HR:</strong> Can you think of a real value in everyday life that would naturally be an <code>int</code>?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>This is open-ended — a strong answer might mention a person's age or a count of items, since both are naturally whole numbers with no meaningful fractional part.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Conceptual:</strong> Is <code>int</code> the only whole-number type in C?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>No — C also has <code>short</code>, <code>long</code>, and <code>long long</code> variants for different memory/range needs, though plain <code>int</code> is the most commonly used.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Scenario-based:</strong> You store someone's height (<code>5.9</code>) in an <code>int</code> variable — what would actually be stored?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Just <code>5</code> — the decimal portion (<code>.9</code>) would be truncated and lost, since <code>int</code> can't represent fractional values.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mcq">
+          <h2>11. MCQs</h2>
+          <div class="quiz" data-quiz-source="integerTypesQuiz"></div>
+        </section>
+
+        <section class="topic-section" id="exercises">
+          <h2>12. Programming Exercises</h2>
+          <p><strong>Easy:</strong> Declare an <code>int</code> variable named <code>count</code> with the value <code>10</code>.</p>
+          <p><strong>Medium:</strong> Explain what happens if you store <code>7.5</code> in an <code>int</code> variable.</p>
+          <p><strong>Hard:</strong> Research the typical minimum/maximum range of a standard <code>int</code> on a modern system (conceptually — no need to memorize exact numbers).</p>
+        </section>
+
+        <section class="topic-section" id="assignments">
+          <h2>13. Assignments</h2>
+          <p>Declare 3 of your own <code>int</code> variables representing real whole-number values — for example, a year, a count, and an age — using sensible, descriptive names for each.</p>
+        </section>
+
+        <section class="topic-section" id="faq">
+          <h2>14. FAQs</h2>
+          <p><strong>Q: Is <code>int</code> always the same size on every system?</strong><br>A: Not guaranteed by the language itself — it can vary by platform/compiler, though it's commonly 4 bytes on modern systems.</p>
+          <p><strong>Q: Should I always use <code>long</code> instead of <code>int</code> to be safe?</strong><br>A: No — plain <code>int</code> suffices for the vast majority of everyday values; oversizing everything isn't necessary or considered good practice.</p>
+        </section>
+
+        <section class="topic-section" id="takeaways">
+          <h2>15. Key Takeaways</h2>
+          <ul>
+            <li><code>int</code> stores whole numbers — no decimal point — and is C's most commonly used numeric type.</li>
+            <li>Storing a decimal value in an <code>int</code> silently truncates it, which is a real and common source of bugs.</li>
+            <li>This page starts the new "student profile" recurring example, which grows across the rest of this chapter to add a height, a grade, and a name.</li>
+          </ul>
+        </section>
+
+        <div class="topic-nav-footer">
+          <a href="storage-classes.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Previous: Storage Classes</a>
+          <a href="floating-point-types.html" class="btn btn-primary">Next: Floating Point Types <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for absolute beginners. &copy; 2026 C Programming eBook.</p>
+  </footer>
+
+</div>
+
+<div class="search-panel" id="search-panel" data-open="false">
+  <div class="search-panel-inner">
+    <div class="search-input-row">
+      <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+      <input type="text" id="search-input" placeholder="Search topics... (Ctrl+K)">
+      <button class="icon-btn" id="search-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="search-results" id="search-results"></ul>
+  </div>
+</div>
+
+<script>
+window.integerTypesQuiz = [
+  { question: "What does an int variable store in C?", options: ["Only positive numbers", "Whole numbers, with no decimal point", "Text characters", "Decimal numbers only"], correctIndex: 1, explanation: "int stores whole numbers, like 20, -5, or 0 — it has no decimal point." },
+  { question: "What happens if you store 5.9 in an int variable?", options: ["It rounds to 6", "It causes a compiler error", "It gets truncated to 5, losing the decimal part", "It stores 5.9 exactly"], correctIndex: 2, explanation: "An int can't hold a fractional part, so a decimal value gets silently truncated — only the whole-number portion (5) is kept." },
+  { question: "Which of these are size variants of int in C?", options: ["short, long, long long", "float, double", "char, string", "signed, boolean"], correctIndex: 0, explanation: "C provides short, long, and long long as size variants of int, for different memory usage and value ranges." },
+  { question: "In the student profile example, what does `int age = 20;` do?", options: ["Declares a floating-point variable", "Declares an int variable named age and stores 20 in it", "Prints the value 20", "Declares a constant that can never change"], correctIndex: 1, explanation: "This line declares an int variable named age and assigns it the whole-number value 20." },
+  { question: "Which format specifier does printf use to display an int value?", options: ["%f", "%c", "%s", "%d"], correctIndex: 3, explanation: "%d is the format specifier used to print an int value with printf." }
+];
+</script>
+<script src="../../js/theme.js"></script>
+<script src="../../js/sidebar.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/quiz.js"></script>
+<script src="../../js/copy-code.js"></script>
+<script src="../../js/accordion.js"></script>
+</body>
+</html>
