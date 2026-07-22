@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arrow Operator — Unit 2 — C Programming eBook</title>
+<meta name="description" content="A conceptual preview of the arrow operator (->), used to access structure members through a pointer — full working examples arrive later once pointers and structures are covered.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="../../css/variables.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/diagrams.css">
+<link rel="stylesheet" href="../../css/quiz.css">
+
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<style>
+  .topic-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-6); align-items: start; }
+  .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
+  .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
+  .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
+</style>
+</head>
+<body>
+
+<button class="icon-btn theme-toggle-float" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+  <i class="fa-solid fa-sun icon-sun"></i>
+  <i class="fa-solid fa-moon icon-moon"></i>
+</button>
+
+<div class="social-float">
+  <a class="icon-btn" href="https://github.com/Aman-0402" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+    <i class="fa-brands fa-github"></i>
+  </a>
+  <a class="icon-btn" href="https://www.linkedin.com/in/aman-raj-081905211/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+</div>
+
+<div class="shell" id="shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo" style="margin-bottom: var(--space-5);">
+      <a href="../../index.html" class="logo">
+        <i class="fa-solid fa-code" style="color: var(--color-primary);"></i><span class="sidebar-label"> C Programming eBook</span>
+      </a>
+    </div>
+
+    <button class="icon-btn" id="sidebar-collapse" aria-label="Collapse sidebar" style="margin-bottom: var(--space-4);">
+      <i class="fa-solid fa-angles-left"></i>
+    </button>
+
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 1</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit1-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">Unit 1</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit1-submenu">
+      <a class="sidebar-link" href="../unit1/evolution-of-programming.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="sidebar-label">Evolution of Programming</span></a>
+      <a class="sidebar-link" href="../unit1/programming-languages.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Programming Languages</span></a>
+      <a class="sidebar-link" href="../unit1/problem-solving.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Problem Solving</span></a>
+      <a class="sidebar-link" href="../unit1/sequential-logic.html"><i class="fa-solid fa-list-ol"></i><span class="sidebar-label">Sequential Logic</span></a>
+      <a class="sidebar-link" href="../unit1/algorithms.html"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-label">Algorithms</span></a>
+      <a class="sidebar-link" href="../unit1/pseudocode.html"><i class="fa-solid fa-file-lines"></i><span class="sidebar-label">Pseudocode</span></a>
+      <a class="sidebar-link" href="../unit1/flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
+      <a class="sidebar-link" href="../unit1/introduction-to-c.html"><i class="fa-solid fa-c"></i><span class="sidebar-label">Introduction to C</span></a>
+      <a class="sidebar-link" href="../unit1/history-of-c.html"><i class="fa-solid fa-scroll"></i><span class="sidebar-label">History of C</span></a>
+      <a class="sidebar-link" href="../unit1/features-of-c.html"><i class="fa-solid fa-star"></i><span class="sidebar-label">Features of C</span></a>
+      <a class="sidebar-link" href="../unit1/applications-of-c.html"><i class="fa-solid fa-industry"></i><span class="sidebar-label">Applications</span></a>
+      <a class="sidebar-link" href="../unit1/structure-of-c-program.html"><i class="fa-solid fa-code"></i><span class="sidebar-label">Structure of C Program</span></a>
+      <a class="sidebar-link" href="../unit1/c-compiler.html"><i class="fa-solid fa-gears"></i><span class="sidebar-label">C Compiler</span></a>
+      <a class="sidebar-link" href="../unit1/compilation-process.html"><i class="fa-solid fa-arrows-turn-right"></i><span class="sidebar-label">Compilation Process</span></a>
+      <a class="sidebar-link" href="../unit1/source-code.html"><i class="fa-solid fa-file-code"></i><span class="sidebar-label">Source Code</span></a>
+      <a class="sidebar-link" href="../unit1/object-code.html"><i class="fa-solid fa-cube"></i><span class="sidebar-label">Object Code</span></a>
+      <a class="sidebar-link" href="../unit1/executable-code.html"><i class="fa-solid fa-play"></i><span class="sidebar-label">Executable Code</span></a>
+      <a class="sidebar-link" href="../unit1/execution-process.html"><i class="fa-solid fa-microchip"></i><span class="sidebar-label">Execution Process</span></a>
+      <a class="sidebar-link" href="../unit1/assembler.html"><i class="fa-solid fa-wrench"></i><span class="sidebar-label">Assembler</span></a>
+      <a class="sidebar-link" href="../unit1/linker.html"><i class="fa-solid fa-link"></i><span class="sidebar-label">Linker</span></a>
+      <a class="sidebar-link" href="../unit1/loader.html"><i class="fa-solid fa-upload"></i><span class="sidebar-label">Loader</span></a>
+      <a class="sidebar-link" href="../unit1/interpreter.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Interpreter</span></a>
+      <a class="sidebar-link" href="../unit1/compilers-and-interpreters.html"><i class="fa-solid fa-code-compare"></i><span class="sidebar-label">Compilers &amp; Interpreters</span></a>
+      <a class="sidebar-link" href="../unit1/operating-systems.html"><i class="fa-solid fa-desktop"></i><span class="sidebar-label">Operating Systems</span></a>
+      <a class="sidebar-link" href="../unit1/debugging.html"><i class="fa-solid fa-bug"></i><span class="sidebar-label">Debugging</span></a>
+      <a class="sidebar-link" href="../unit1/comments.html"><i class="fa-solid fa-comment"></i><span class="sidebar-label">Comments</span></a>
+      <a class="sidebar-link" href="../unit1/single-line-comments.html"><i class="fa-solid fa-slash"></i><span class="sidebar-label">Single Line Comments</span></a>
+      <a class="sidebar-link" href="../unit1/multi-line-comments.html"><i class="fa-solid fa-quote-right"></i><span class="sidebar-label">Multi Line Comments</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 2</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit2-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">C Building Blocks &amp; Data Types</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit2-submenu">
+      <a class="sidebar-link" href="tokens.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Tokens</span></a>
+      <a class="sidebar-link" href="keywords.html"><i class="fa-solid fa-key"></i><span class="sidebar-label">Keywords</span></a>
+      <a class="sidebar-link" href="identifiers.html"><i class="fa-solid fa-tag"></i><span class="sidebar-label">Identifiers</span></a>
+      <a class="sidebar-link" href="naming-rules.html"><i class="fa-solid fa-spell-check"></i><span class="sidebar-label">Naming Rules</span></a>
+      <a class="sidebar-link" href="variables.html"><i class="fa-solid fa-box"></i><span class="sidebar-label">Variables</span></a>
+      <a class="sidebar-link" href="constants.html"><i class="fa-solid fa-lock"></i><span class="sidebar-label">Constants</span></a>
+      <a class="sidebar-link" href="values.html"><i class="fa-solid fa-hashtag"></i><span class="sidebar-label">Values</span></a>
+      <a class="sidebar-link" href="scope.html"><i class="fa-solid fa-eye"></i><span class="sidebar-label">Scope</span></a>
+      <a class="sidebar-link" href="binding.html"><i class="fa-solid fa-link"></i><span class="sidebar-label">Binding</span></a>
+      <a class="sidebar-link" href="storage-classes.html"><i class="fa-solid fa-warehouse"></i><span class="sidebar-label">Storage Classes</span></a>
+      <a class="sidebar-link" href="integer-types.html"><i class="fa-solid fa-1"></i><span class="sidebar-label">Integer Types</span></a>
+      <a class="sidebar-link" href="floating-point-types.html"><i class="fa-solid fa-percent"></i><span class="sidebar-label">Floating Point Types</span></a>
+      <a class="sidebar-link" href="character-type.html"><i class="fa-solid fa-font"></i><span class="sidebar-label">Character Type</span></a>
+      <a class="sidebar-link" href="strings.html"><i class="fa-solid fa-quote-left"></i><span class="sidebar-label">Strings</span></a>
+      <a class="sidebar-link" href="l-value.html"><i class="fa-solid fa-arrow-left-long"></i><span class="sidebar-label">L-value</span></a>
+      <a class="sidebar-link" href="r-value.html"><i class="fa-solid fa-arrow-right-long"></i><span class="sidebar-label">R-value</span></a>
+      <a class="sidebar-link" href="type-conversion.html"><i class="fa-solid fa-arrows-rotate"></i><span class="sidebar-label">Type Conversion</span></a>
+      <a class="sidebar-link" href="operators.html"><i class="fa-solid fa-calculator"></i><span class="sidebar-label">Operators</span></a>
+      <a class="sidebar-link" href="arithmetic-operators.html"><i class="fa-solid fa-plus-minus"></i><span class="sidebar-label">Arithmetic Operators</span></a>
+      <a class="sidebar-link" href="relational-operators.html"><i class="fa-solid fa-equals"></i><span class="sidebar-label">Relational Operators</span></a>
+      <a class="sidebar-link" href="logical-operators.html"><i class="fa-solid fa-code-branch"></i><span class="sidebar-label">Logical Operators</span></a>
+      <a class="sidebar-link" href="assignment-operators.html"><i class="fa-solid fa-right-left"></i><span class="sidebar-label">Assignment Operators</span></a>
+      <a class="sidebar-link" href="comma-operator.html"><i class="fa-solid fa-comma"></i><span class="sidebar-label">Comma Operator</span></a>
+      <a class="sidebar-link" href="sizeof-operator.html"><i class="fa-solid fa-ruler"></i><span class="sidebar-label">sizeof Operator</span></a>
+      <a class="sidebar-link" href="conditional-operator.html"><i class="fa-solid fa-question"></i><span class="sidebar-label">Conditional Operator</span></a>
+      <a class="sidebar-link" href="bitwise-operators.html"><i class="fa-solid fa-microchip"></i><span class="sidebar-label">Bitwise Operators</span></a>
+      <a class="sidebar-link" href="operator-precedence.html"><i class="fa-solid fa-sort"></i><span class="sidebar-label">Operator Precedence</span></a>
+      <a class="sidebar-link" href="associativity.html"><i class="fa-solid fa-arrows-left-right"></i><span class="sidebar-label">Associativity</span></a>
+      <a class="sidebar-link active" href="arrow-operator.html"><i class="fa-solid fa-arrow-right-to-bracket"></i><span class="sidebar-label">Arrow Operator</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 3</span></div>
+      <a class="sidebar-link" href="../unit3/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Control Statements</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 4</span></div>
+      <a class="sidebar-link" href="../unit4/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Strings, Functions &amp; Pointers</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 5</span></div>
+      <a class="sidebar-link" href="../unit5/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Structures, Files &amp; Memory Management</span></a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="topic-layout">
+      <div>
+        <h1>Arrow Operator</h1>
+        <p class="lead">The final topic in this chapter — a conceptual preview only. The arrow operator (<code>-></code>) requires pointers and structures, which aren't covered until later in this course, so no real running code appears on this page.</p>
+
+        <section class="topic-section" id="introduction">
+          <h2>1. What Is It?</h2>
+          <p>The <strong>arrow operator</strong> (<code>-></code>) is used to access a member (a field) of a structure <strong>through a pointer</strong> to that structure — for example, <code>myPointer->fieldName</code> instead of the equivalent longer form <code>(*myPointer).fieldName</code>. It's shorthand that combines <strong>dereferencing a pointer</strong> and <strong>accessing a member</strong> in a single step.</p>
+        </section>
+
+        <section class="topic-section" id="why">
+          <h2>2. Why Do We Need to Know This?</h2>
+          <p>You'll use the arrow operator constantly once you start working with pointers to structures later in this course. Recognizing it now — even just conceptually, without writing any code that uses it yet — means it won't be a surprise when it appears in later units.</p>
+        </section>
+
+        <section class="topic-section" id="real-life">
+          <h2>3. Real-Life Example</h2>
+          <p>Think of following a forwarding address to reach someone's actual mailbox, then opening one specific compartment inside it to get a letter. The arrow operator represents exactly this idea: "go to what this pointer points to, then reach into one specific part of it" — all in a single step.</p>
+        </section>
+
+        <section class="topic-section" id="preview">
+          <h2>4. A Conceptual Preview</h2>
+          <p>Since pointers and structures haven't been covered yet, this page won't show real working code with <code>-></code> — that would only make sense once you understand what a pointer is and what a structure is.</p>
+          <p>This course will return to <code>-></code> in full, with real working examples, once <strong>Unit 4 (Pointers)</strong> and <strong>Unit 5 (Structures)</strong> have been covered. At that point, an example like accessing a <code>struct student</code>'s <code>name</code> field through a pointer, written as <code>studentPtr->name</code>, will make complete sense.</p>
+          <p>For now, it's enough to recognize the shape of the operator — an identifier, followed by <code>-></code>, followed by a member name — and to know roughly what it's for.</p>
+        </section>
+
+        <section class="topic-section" id="mistakes">
+          <h2>5. Common Mistakes</h2>
+          <ul class="mistake-list">
+            <li>Once you do start using <code>-></code> later in this course, a common mistake is confusing it with the dot operator (<code>.</code>) — <code>.</code> is used to access a member directly on a structure itself, while <code>-></code> is used specifically when you have a <strong>pointer</strong> to a structure, not the structure itself.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="debugging">
+          <h2>6. Debugging Tips</h2>
+          <p>Once you reach the pointers and structures material later in this course, a common error message involves trying to use <code>.</code> where <code>-></code> was actually needed (or vice versa). Keep this page's core distinction in mind — <code>.</code> for a structure itself, <code>-></code> for a pointer to one — when that error comes up.</p>
+        </section>
+
+        <section class="topic-section" id="best-practices">
+          <h2>7. Best Practices</h2>
+          <ul class="best-practice-list">
+            <li>For now, simply recognize that <code>-></code> exists and roughly what it's for. There's no need to attempt to use it correctly yet, since its prerequisites — pointers and structures — haven't been covered in this course so far.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="interview">
+          <h2>8. Interview Questions</h2>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Easy:</strong> What is the arrow operator used for?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Accessing a member of a structure through a pointer to that structure.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Medium:</strong> What does <code>myPointer->fieldName</code> combine into one step?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Dereferencing the pointer and then accessing a member of the structure it points to.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Hard:</strong> Why can't this course show a fully working arrow-operator example yet?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Because it requires understanding pointers and structures first, which are taught later in this course (Units 4 and 5).</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>HR:</strong> Have you seen the <code>-></code> syntax before, in C or a similar language?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>This is open-ended — a good answer describes any prior exposure to <code>-></code>, whether in C, C++, or another language with similar pointer/reference syntax, or honestly notes it's new.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Conceptual:</strong> What's the difference between <code>.</code> and <code>-></code> for accessing structure members?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p><code>.</code> is used directly on a structure itself; <code>-></code> is used specifically when you have a pointer to a structure, combining dereferencing and member access in one step.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Scenario-based:</strong> Later in this course, you have a pointer to a structure and want to access one of its fields — which operator would you reach for?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>The arrow operator (<code>-></code>), since you have a pointer, not the structure directly.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mcq">
+          <h2>9. MCQs</h2>
+          <div class="quiz" data-quiz-source="arrowOperatorQuiz"></div>
+        </section>
+
+        <section class="topic-section" id="exercises">
+          <h2>10. Programming Exercises</h2>
+          <p><strong>Easy:</strong> In your own words, what does the arrow operator combine into one step?</p>
+          <p><strong>Medium:</strong> State which operator (<code>.</code> or <code>-></code>) you'd expect to use with a pointer to a structure, versus a structure directly.</p>
+          <p><strong>Hard:</strong> Research briefly (conceptually, no code needed) what a "structure" is in C, to prepare for when this operator becomes fully relevant later in the course.</p>
+        </section>
+
+        <section class="topic-section" id="assignments">
+          <h2>11. Assignments</h2>
+          <p>Write a short paragraph, in your own words, explaining what you expect the arrow operator to be useful for, based on this page's preview. Revisit what you wrote once pointers and structures are formally covered, and see how close your prediction was.</p>
+        </section>
+
+        <section class="topic-section" id="faq">
+          <h2>12. FAQs</h2>
+          <p><strong>Q: Do I need to understand pointers and structures right now to finish this page?</strong><br>A: No — this page is intentionally just a conceptual preview; the full, working treatment comes later in this course.</p>
+          <p><strong>Q: Will this operator be covered again in more depth?</strong><br>A: Yes — once Units 4 (Pointers) and 5 (Structures) are covered, this course returns to <code>-></code> with real, working code examples.</p>
+        </section>
+
+        <section class="topic-section" id="takeaways">
+          <h2>13. Key Takeaways</h2>
+          <ul>
+            <li>The arrow operator (<code>-></code>) is used to access a member of a structure through a pointer to that structure, combining dereferencing and member access in one step.</li>
+            <li>The key thing to remember is the dot-vs-arrow distinction: <code>.</code> for a structure itself, <code>-></code> for a pointer to a structure.</li>
+            <li>This page is a deliberate forward-preview — there's no real code here yet, and this course returns to <code>-></code> in full once pointers (Unit 4) and structures (Unit 5) are covered.</li>
+          </ul>
+        </section>
+
+        <div class="topic-nav-footer">
+          <a href="associativity.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Previous: Associativity</a>
+          <span></span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for absolute beginners. &copy; 2026 C Programming eBook.</p>
+  </footer>
+
+</div>
+
+<div class="search-panel" id="search-panel" data-open="false">
+  <div class="search-panel-inner">
+    <div class="search-input-row">
+      <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+      <input type="text" id="search-input" placeholder="Search topics... (Ctrl+K)">
+      <button class="icon-btn" id="search-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="search-results" id="search-results"></ul>
+  </div>
+</div>
+
+<script>
+window.arrowOperatorQuiz = [
+  { question: "What is the arrow operator (->) used for in C?", options: ["Adding two numbers", "Accessing a member of a structure through a pointer to that structure", "Declaring a new variable", "Comparing two values"], correctIndex: 1, explanation: "The arrow operator accesses a structure's member through a pointer to that structure." },
+  { question: "What does myPointer->fieldName combine into a single step?", options: ["Declaring a pointer and initializing it", "Dereferencing the pointer and accessing a member of the structure it points to", "Comparing two structures", "Converting a pointer to an integer"], correctIndex: 1, explanation: "-> combines dereferencing a pointer with accessing a member, in one step." },
+  { question: "Which operator would you use to access a member directly on a structure itself, not through a pointer?", options: ["->", "*", ".", "&"], correctIndex: 2, explanation: "The dot operator (.) is used directly on a structure itself, while -> is used through a pointer to a structure." },
+  { question: "Why doesn't this page show a fully working arrow-operator code example?", options: ["Because the operator doesn't exist in C", "Because it requires pointers and structures, which are covered later in this course", "Because arrow operators are deprecated", "Because it only works in C++"], correctIndex: 1, explanation: "The arrow operator's prerequisites, pointers and structures, are taught in Units 4 and 5, so a real example isn't shown yet." },
+  { question: "If you have a pointer to a structure and want to access one of its fields, which operator would you reach for?", options: [".", "->", "==", "&&"], correctIndex: 1, explanation: "-> is used specifically when you have a pointer to a structure, not the structure directly." }
+];
+</script>
+<script src="../../js/theme.js"></script>
+<script src="../../js/sidebar.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/quiz.js"></script>
+<script src="../../js/copy-code.js"></script>
+<script src="../../js/accordion.js"></script>
+</body>
+</html>
