@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Algorithms — Unit 1 — C Programming eBook</title>
-<meta name="description" content="What an algorithm is, why it matters before you write any C syntax, and how to write, dry-run, and debug one step by step.">
+<title>Writing Algorithms — Unit 1 — C Programming eBook</title>
+<meta name="description" content="What an algorithm is, its five characteristics, the IPO model, algorithm vs program, and worked examples like sum, area, even/odd, and largest of two numbers.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -152,179 +152,313 @@
   <main class="content">
     <div class="topic-layout">
       <div>
-        <h1>Algorithms</h1>
-        <p class="lead">An algorithm is what you get when a plan becomes precise enough for a machine to follow — the first idea in this chapter you'll carry, unchanged, into every C program you ever write.</p>
+        <h1>Writing Algorithms</h1>
+        <p class="lead">An algorithm is a step-by-step solution to a problem — the plan you write before any C syntax exists, so the code only has to express an idea you already understand clearly.</p>
 
-        <section class="topic-section" id="introduction">
-          <h2>What Is It?</h2>
-          <p>An algorithm is a finite, precise, ordered set of steps to solve a problem or complete a task. It is the output of the "Plan" and "Divide" stages from the Problem Solving topic, made rigorous enough that a computer — not just a human — could follow it exactly, with nothing left to guesswork.</p>
-        </section>
-
-        <section class="topic-section" id="why">
-          <h2>Why Do We Need to Know This?</h2>
-          <p>Every program is an implementation of an algorithm. Learning to design an algorithm in plain steps first — before any C syntax — means the syntax (taught starting in the next chapter) only has to represent an idea you already have clearly, instead of asking you to invent the idea and the syntax at the same time.</p>
+        <section class="topic-section" id="what-is-algorithm">
+          <h2>What is an Algorithm?</h2>
+          <p><strong>Definition:</strong> An algorithm is a finite sequence of well-defined steps used to solve a problem or perform a task.</p>
+          <p>In simple words: <strong>Algorithm = Step-by-step solution to a problem.</strong></p>
         </section>
 
         <section class="topic-section" id="real-life">
           <h2>Real-Life Example</h2>
-          <p>A recipe is an algorithm: precise ordered steps ("preheat oven to 350&deg;F," not "make it hot-ish") with clear inputs (ingredients) and a clear output (the finished dish). Skip a step, or do them out of order, and the recipe fails the same way a program fails when its algorithm is wrong.</p>
-        </section>
-
-        <section class="topic-section" id="visual">
-          <h2>Visual Explanation</h2>
-          <p>The flowchart below traces the algorithm "find the largest of two numbers":</p>
-          <div class="flowchart">
-            <div class="flow-box flow-box-start">Start</div>
-            <div class="flow-arrow"></div>
-            <div class="flow-box">Get number A and B</div>
-            <div class="flow-arrow"></div>
-            <div class="flow-box flow-box-decision"><span>Is A &gt; B?</span></div>
-            <div class="flow-arrow"></div>
-            <div class="flow-box">Yes &rarr; Largest is A &nbsp;|&nbsp; No &rarr; Largest is B</div>
-            <div class="flow-arrow"></div>
-            <div class="flow-box">Display result</div>
-            <div class="flow-arrow"></div>
-            <div class="flow-box flow-box-end">End</div>
+          <p><strong>Problem:</strong> Brush Your Teeth</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Algorithm</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>Start
+Pick up the toothbrush.
+Apply toothpaste.
+Brush your teeth.
+Rinse your mouth.
+Stop.</pre>
           </div>
+          <p>Notice that every step is written in order.</p>
         </section>
 
-        <section class="topic-section" id="syntax">
-          <h2>Algorithm-Writing Conventions</h2>
-          <p>Algorithms in this course follow a few simple conventions so they stay unambiguous and easy to translate into code later:</p>
+        <section class="topic-section" id="why">
+          <h2>Why Do We Need an Algorithm?</h2>
+          <p>Imagine writing a C program without knowing the solution first. You may:</p>
           <ul>
-            <li>Steps are numbered in order: Step 1, Step 2, Step 3&hellip;</li>
-            <li>Every algorithm begins with a <strong>Start</strong> marker and ends with an <strong>End</strong> marker.</li>
-            <li>Each step describes exactly one action — never bundle two actions into one step.</li>
-            <li>Decisions are written as "If [condition], then&hellip; else&hellip;" so every branch is explicit — never leave an "else" implied.</li>
+            <li>Miss important steps.</li>
+            <li>Write incorrect code.</li>
+            <li>Spend more time debugging.</li>
+          </ul>
+          <p>An algorithm helps you:</p>
+          <ul>
+            <li>Plan the solution.</li>
+            <li>Reduce errors.</li>
+            <li>Write code faster.</li>
+            <li>Make programs easier to understand.</li>
           </ul>
         </section>
 
-        <section class="topic-section" id="steps">
-          <h2>Step-by-Step Code</h2>
+        <section class="topic-section" id="characteristics">
+          <h2>Characteristics of a Good Algorithm</h2>
+          <p>A good algorithm should have these 5 properties:</p>
+
+          <h3>1. Input</h3>
+          <p>It should accept zero or more inputs.</p>
           <div class="code-block">
             <div class="code-block-header">
-              <span>algorithm.txt</span>
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>Number = 10</pre>
+          </div>
+
+          <h3>2. Output</h3>
+          <p>It should produce at least one output.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>Square = 100</pre>
+          </div>
+
+          <h3>3. Definiteness</h3>
+          <p>Every step should be clear and unambiguous.</p>
+          <p>❌ Bad: <code>Calculate something.</code></p>
+          <p>✅ Good: <code>Multiply Length &times; Width.</code></p>
+
+          <h3>4. Finiteness</h3>
+          <p>The algorithm must end after a finite number of steps.</p>
+          <p>❌ Wrong: <code>Repeat forever.</code></p>
+          <p>✅ Correct: <code>Repeat 10 times.</code></p>
+
+          <h3>5. Effectiveness</h3>
+          <p>Each step should be simple and executable.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>Read a number.
+Add 5.
+Display the result.</pre>
+          </div>
+        </section>
+
+        <section class="topic-section" id="ipo">
+          <h2>General Structure of an Algorithm</h2>
+          <div class="flowchart">
+            <div class="flow-box flow-box-start">Start</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Input</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Process</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Output</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box flow-box-end">Stop</div>
+          </div>
+          <p>This is also called the <strong>IPO (Input&ndash;Process&ndash;Output) Model</strong>.</p>
+        </section>
+
+        <section class="topic-section" id="example-sum">
+          <h2>Example 1: Add Two Numbers</h2>
+          <p><strong>Problem:</strong> Find the sum of two numbers.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Algorithm</span>
               <button class="copy-btn">Copy</button>
             </div>
             <pre>Step 1: Start
-Step 2: Input two numbers, A and B
-Step 3: If A &gt; B, go to Step 4, else go to Step 5
-Step 4: Display A as the largest, go to Step 6
-Step 5: Display B as the largest
-Step 6: End</pre>
+Step 2: Read A
+Step 3: Read B
+Step 4: Sum = A + B
+Step 5: Display Sum
+Step 6: Stop</pre>
           </div>
-          <p><strong>Step 1</strong> and <strong>Step 6</strong> mark where the algorithm begins and ends — every algorithm needs both, so it's never left "hanging" with an undefined finish. <strong>Step 2</strong> gathers the raw inputs before any decision is made. <strong>Step 3</strong> is the one decision in this algorithm, written with both an explicit "yes" path (Step 4) and "no" path (Step 5) — leaving either branch out would make the algorithm incomplete. <strong>Steps 4 and 5</strong> each display exactly one result, and Step 4 explicitly jumps past Step 5 so both outcomes can never run together.</p>
+          <p><strong>Example</strong></p>
+          <p>Input:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Input</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>A = 10
+B = 20</pre>
+          </div>
+          <p>Output:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Output</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>Sum = 30</pre>
+          </div>
         </section>
 
-        <section class="topic-section" id="dryrun">
-          <h2>Dry Run</h2>
-          <p>A dry run traces an algorithm by hand, step by step, using real numbers — the fastest way to catch a logic mistake before it becomes a bug in real code.</p>
+        <section class="topic-section" id="example-area">
+          <h2>Example 2: Area of a Rectangle</h2>
+          <p>Formula:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Formula</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>Area = Length &times; Width</pre>
+          </div>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Algorithm</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>Step 1: Start
+Step 2: Read Length
+Step 3: Read Width
+Step 4: Area = Length &times; Width
+Step 5: Display Area
+Step 6: Stop</pre>
+          </div>
+          <p>Example:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Input</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>Length = 8
+Width = 5</pre>
+          </div>
+          <p>Output:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Output</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>40</pre>
+          </div>
+        </section>
+
+        <section class="topic-section" id="example-evenodd">
+          <h2>Example 3: Even or Odd Number</h2>
+          <p><strong>Problem:</strong> Check whether a number is even or odd.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Algorithm</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>Step 1: Start
+Step 2: Read Number
+Step 3: Divide Number by 2
+Step 4: If remainder is 0
+            Display "Even"
+        Else
+            Display "Odd"
+Step 5: Stop</pre>
+          </div>
+        </section>
+
+        <section class="topic-section" id="example-largest">
+          <h2>Example 4: Largest of Two Numbers</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Algorithm</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>Step 1: Start
+Step 2: Read A
+Step 3: Read B
+Step 4: If A &gt; B
+            Display A
+        Else
+            Display B
+Step 5: Stop</pre>
+          </div>
+        </section>
+
+        <section class="topic-section" id="advantages">
+          <h2>Advantages of Algorithms</h2>
+          <ul>
+            <li>Easy to understand.</li>
+            <li>Independent of any programming language.</li>
+            <li>Helps find mistakes before coding.</li>
+            <li>Makes debugging easier.</li>
+            <li>Saves development time.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="disadvantages">
+          <h2>Disadvantages</h2>
+          <ul>
+            <li>Writing algorithms for very large systems can be time-consuming.</li>
+            <li>Complex problems may require lengthy algorithms.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="algorithm-vs-program">
+          <h2>Algorithm vs Program</h2>
           <table>
             <thead>
-              <tr><th>Step</th><th>Action</th><th>Result / Notes</th></tr>
+              <tr><th>Algorithm</th><th>Program</th></tr>
             </thead>
             <tbody>
-              <tr><td colspan="3"><strong>Run 1: A = 8, B = 3</strong></td></tr>
-              <tr><td>1</td><td>Start</td><td>Algorithm begins</td></tr>
-              <tr><td>2</td><td>Input A = 8, B = 3</td><td>Values stored</td></tr>
-              <tr><td>3</td><td>Is A &gt; B? (8 &gt; 3)</td><td>True &rarr; go to Step 4</td></tr>
-              <tr><td>4</td><td>Display A as largest</td><td>Output: 8 &rarr; go to Step 6</td></tr>
-              <tr><td>6</td><td>End</td><td>Algorithm finishes</td></tr>
-              <tr><td colspan="3"><strong>Run 2: A = 2, B = 9</strong></td></tr>
-              <tr><td>1</td><td>Start</td><td>Algorithm begins</td></tr>
-              <tr><td>2</td><td>Input A = 2, B = 9</td><td>Values stored</td></tr>
-              <tr><td>3</td><td>Is A &gt; B? (2 &gt; 9)</td><td>False &rarr; go to Step 5</td></tr>
-              <tr><td>5</td><td>Display B as largest</td><td>Output: 9</td></tr>
-              <tr><td>6</td><td>End</td><td>Algorithm finishes</td></tr>
+              <tr><td>Step-by-step solution</td><td>Actual code</td></tr>
+              <tr><td>Language-independent</td><td>Written in C, Java, Python, etc.</td></tr>
+              <tr><td>Easy to modify</td><td>Requires code changes</td></tr>
+              <tr><td>Used before coding</td><td>Executed by the computer</td></tr>
             </tbody>
           </table>
         </section>
 
-        <section class="topic-section" id="mistakes">
-          <h2>Common Mistakes</h2>
-          <ul class="mistake-list">
-            <li>Writing vague, unmeasurable steps like "make it work" instead of a precise, checkable action.</li>
-            <li>Missing an end condition, leaving the algorithm infinite or undefined about when it should stop.</li>
-            <li>Skipping the decision's "else" branch, so one possible outcome is never accounted for.</li>
+        <section class="topic-section" id="real-life-examples">
+          <h2>Real-Life Examples</h2>
+          <p><strong>Making Maggi</strong></p>
+          <div class="flowchart">
+            <div class="flow-box flow-box-start">Start</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Boil Water</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Add Noodles</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Add Tastemaker</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Cook 2 Minutes</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Serve</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box flow-box-end">Stop</div>
+          </div>
+          <p><strong>Withdraw Money from ATM</strong></p>
+          <div class="flowchart">
+            <div class="flow-box flow-box-start">Start</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Insert Card</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Enter PIN</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Choose Amount</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Collect Cash</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Take Card</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box flow-box-end">Stop</div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="facts">
+          <h2>Interesting Facts 💡</h2>
+          <ul>
+            <li>The word Algorithm comes from the name of the Persian mathematician Muhammad ibn Musa al-Khwarizmi.</li>
+            <li>Every software project begins with planning, and algorithms are a key part of that planning.</li>
+            <li>Search engines, GPS navigation, online shopping recommendations, and social media feeds all rely on algorithms.</li>
           </ul>
         </section>
 
-        <section class="topic-section" id="debugging">
-          <h2>Debugging Tips</h2>
-          <p>If an algorithm gives the wrong answer, dry-run it by hand with a simple example first, exactly like the table above. Most "logic bugs" — decisions with a missing branch, a step in the wrong order, a comparison flipped the wrong way — are visible without ever writing a single line of real code.</p>
-        </section>
-
-        <section class="topic-section" id="best-practices">
-          <h2>Best Practices</h2>
-          <ul class="best-practice-list">
-            <li>Keep each step small and singular — one action per step.</li>
-            <li>Always account for every branch of a decision, including the "else" case.</li>
-            <li>Test your algorithm by hand with at least 2 different inputs before trusting it.</li>
+        <section class="topic-section" id="revision">
+          <h2>Quick Revision</h2>
+          <ul>
+            <li>An algorithm is a step-by-step method to solve a problem.</li>
+            <li>A good algorithm has Input, Output, Definiteness, Finiteness, and Effectiveness.</li>
+            <li>Algorithms are written before writing code.</li>
+            <li>They are language-independent.</li>
           </ul>
-        </section>
-
-        <section class="topic-section" id="interview">
-          <h2>Interview Questions</h2>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Easy:</strong> What is an algorithm?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>A finite, precise, ordered set of steps that solves a specific problem or completes a specific task — rigorous enough that a computer, not just a person, could follow it exactly.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Medium:</strong> What's the difference between an algorithm and a program?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>An algorithm is the language-independent plan for solving a problem. A program is that plan implemented in a specific programming language's exact syntax — the same algorithm could become many different programs across many languages.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Hard:</strong> Why must an algorithm be finite?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>Because an algorithm must guarantee it eventually stops and produces a result — a process with no defined end condition can run forever and never actually solve anything, which disqualifies it as a valid algorithm.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>HR:</strong> Describe an everyday process you could turn into an algorithm.</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>There's no fixed answer — a strong response picks something concrete (like making coffee or checking out a library book) and shows it can be broken into precise, ordered, finite steps with clear inputs and a clear output.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Conceptual:</strong> Can two different algorithms solve the same problem?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>Yes — multiple valid algorithms can solve the same problem, sometimes taking different approaches or with different efficiency. There is rarely only one "correct" algorithm for a given task.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Scenario-based:</strong> Design (in plain steps) an algorithm to check if a number is even or odd.</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>Step 1: Start. Step 2: Input a number, N. Step 3: If N divided by 2 has a remainder of 0, go to Step 4, else go to Step 5. Step 4: Display "Even," go to Step 6. Step 5: Display "Odd." Step 6: End.</p>
-            </div>
-          </div>
         </section>
 
         <section class="topic-section" id="mcq">
@@ -332,31 +466,110 @@ Step 6: End</pre>
           <div class="quiz" data-quiz-source="algorithmsQuiz"></div>
         </section>
 
-        <section class="topic-section" id="exercises">
-          <h2>Programming Exercises</h2>
-          <p><strong>Easy:</strong> Write an algorithm (plain steps) to check if a number is even or odd.</p>
-          <p><strong>Medium:</strong> Write an algorithm to find the largest of THREE numbers.</p>
-          <p><strong>Hard:</strong> Write an algorithm to check whether a given year is a leap year. Use the real divisibility rule: a year is a leap year if it is divisible by 4, but not by 100 &mdash; unless it is also divisible by 400.</p>
+        <section class="topic-section" id="interview">
+          <h2>Interview Questions</h2>
+
+          <h3>Beginner</h3>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What is an algorithm?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>An algorithm is a finite sequence of well-defined steps used to solve a problem or perform a task.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Why are algorithms important in programming?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>They help plan the solution, reduce errors, make coding faster, and make programs easier to understand — without one, you risk missing steps, writing incorrect code, and spending more time debugging.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What are the five characteristics of a good algorithm?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Input, Output, Definiteness, Finiteness, and Effectiveness.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What is the difference between an algorithm and a program?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>An algorithm is a language-independent, step-by-step solution used before coding and is easy to modify. A program is the actual code, written in a specific language like C, Java, or Python, and is what the computer executes.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Explain the IPO model.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>IPO stands for Input &ndash; Process &ndash; Output: an algorithm starts by taking input, then processes it according to defined steps, and finally produces output — the general structure most algorithms follow.</p>
+            </div>
+          </div>
+
+          <h3>Intermediate</h3>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Why is an algorithm language-independent?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>An algorithm describes the logic and steps of a solution in plain terms, not in any specific syntax — the same algorithm can be implemented in C, Java, Python, or any other language without changing its underlying logic.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Can an algorithm have no input? Explain with an example.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Yes — the Input characteristic requires zero or more inputs, so zero is valid. For example, an algorithm that simply displays "Hello World" needs no input at all, only an output step.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What problems can occur if you start coding without an algorithm?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>You may miss important steps, write incorrect code, and spend far more time debugging, since the logic was never worked out and verified before being translated into syntax.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>How does an algorithm improve software development?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>It lets you plan the solution and catch logical mistakes before writing any code, which reduces errors, speeds up development, and makes the resulting program easier to understand and maintain.</p>
+            </div>
+          </div>
         </section>
 
-        <section class="topic-section" id="assignments">
-          <h2>Assignments</h2>
-          <p>Write and hand-dry-run (with 2 sample inputs) an algorithm for "calculate the average of 5 numbers."</p>
-        </section>
-
-        <section class="topic-section" id="faq">
-          <h2>FAQs</h2>
-          <p><strong>Q: Is an algorithm the same as code?</strong><br>A: No &mdash; code is one specific implementation of an algorithm in a specific language.</p>
-          <p><strong>Q: Can one problem have multiple correct algorithms?</strong><br>A: Yes.</p>
-        </section>
-
-        <section class="topic-section" id="takeaways">
-          <h2>Key Takeaways</h2>
-          <ul>
-            <li>Algorithms are precise, finite, and ordered.</li>
-            <li>Dry-running by hand catches logic errors early.</li>
-            <li>An algorithm is language-independent; code is the C-specific implementation of it.</li>
-          </ul>
+        <section class="topic-section" id="practice">
+          <h2>Practice Questions</h2>
+          <p><strong>Q1.</strong> Write an algorithm to calculate the area of a circle. Formula: <code>Area = &pi; &times; r &times; r</code></p>
+          <p><strong>Q2.</strong> Write an algorithm to find the average of three numbers.</p>
+          <p><strong>Q3.</strong> Write an algorithm to swap two numbers (using a temporary variable).</p>
+          <p><strong>Q4.</strong> Write an algorithm to determine whether a given year is a leap year.</p>
         </section>
 
         <div class="topic-nav-footer">
@@ -387,11 +600,11 @@ Step 6: End</pre>
 
 <script>
 window.algorithmsQuiz = [
-  { question: "What is an algorithm?", options: ["A programming language", "A finite, precise, ordered set of steps to solve a problem", "A type of computer hardware", "A syntax error"], correctIndex: 1, explanation: "An algorithm is a finite, precise, ordered set of steps to solve a problem or complete a task." },
-  { question: "What is the difference between an algorithm and a program?", options: ["There is no difference", "An algorithm is the plan; a program is that plan implemented in a specific language", "A program comes before the algorithm", "An algorithm can only be written in C"], correctIndex: 1, explanation: "An algorithm is the language-independent plan; a program is that plan implemented in a specific programming language." },
-  { question: "Why must an algorithm be finite?", options: ["So it fits on one page", "So it is guaranteed to eventually stop with a result, not run forever", "So it uses less memory", "Finiteness is not actually required"], correctIndex: 1, explanation: "An algorithm must terminate after a finite number of steps and actually produce a result — an endless process isn't a valid algorithm." },
-  { question: "What is a 'dry run' of an algorithm?", options: ["Running the compiled program with no input", "Tracing the algorithm by hand, step by step, using real example values", "Deleting unused steps", "Running the algorithm on real hardware only"], correctIndex: 1, explanation: "A dry run traces an algorithm manually with real sample values to verify its logic before any code is written." },
-  { question: "In the dry run example with A = 8 and B = 3, what is displayed?", options: ["3", "8", "Both 8 and 3", "Nothing"], correctIndex: 1, explanation: "Since A (8) is greater than B (3), the algorithm displays A, which is 8, as the largest." }
+  { question: "What is an algorithm?", options: ["A programming language", "A step-by-step solution to a problem", "A compiler", "A computer program"], correctIndex: 1, explanation: "An algorithm is a finite sequence of well-defined steps used to solve a problem or perform a task." },
+  { question: "Which property ensures an algorithm eventually ends?", options: ["Input", "Output", "Finiteness", "Effectiveness"], correctIndex: 2, explanation: "Finiteness requires an algorithm to end after a finite number of steps." },
+  { question: "An algorithm is:", options: ["Language-dependent", "Language-independent", "Only written in C", "Executable by the CPU directly"], correctIndex: 1, explanation: "An algorithm is language-independent — it describes the logic, not any specific language's syntax." },
+  { question: "Which of the following is the correct IPO order?", options: ["Output → Input → Process", "Input → Process → Output", "Process → Input → Output", "Input → Output → Process"], correctIndex: 1, explanation: "The IPO model runs Input, then Process, then Output, in that order." },
+  { question: "Before writing a C program, we generally prepare:", options: ["Object Code", "Algorithm", "Executable File", "Machine Code"], correctIndex: 1, explanation: "An algorithm is prepared before coding, as a language-independent plan for the solution." }
 ];
 </script>
 <script src="../../js/theme.js"></script>
