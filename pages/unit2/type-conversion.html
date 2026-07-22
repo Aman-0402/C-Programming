@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Type Conversion — Unit 2 — C Programming eBook</title>
+<meta name="description" content="Learn the difference between implicit and explicit type conversion in C, how the (type) casting syntax works, and why integer division silently truncates.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="../../css/variables.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/diagrams.css">
+<link rel="stylesheet" href="../../css/quiz.css">
+
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<style>
+  .topic-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-6); align-items: start; }
+  .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
+  .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
+  .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
+</style>
+</head>
+<body>
+
+<button class="icon-btn theme-toggle-float" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+  <i class="fa-solid fa-sun icon-sun"></i>
+  <i class="fa-solid fa-moon icon-moon"></i>
+</button>
+
+<div class="social-float">
+  <a class="icon-btn" href="https://github.com/Aman-0402" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+    <i class="fa-brands fa-github"></i>
+  </a>
+  <a class="icon-btn" href="https://www.linkedin.com/in/aman-raj-081905211/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+</div>
+
+<div class="shell" id="shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo" style="margin-bottom: var(--space-5);">
+      <a href="../../index.html" class="logo">
+        <i class="fa-solid fa-code" style="color: var(--color-primary);"></i><span class="sidebar-label"> C Programming eBook</span>
+      </a>
+    </div>
+
+    <button class="icon-btn" id="sidebar-collapse" aria-label="Collapse sidebar" style="margin-bottom: var(--space-4);">
+      <i class="fa-solid fa-angles-left"></i>
+    </button>
+
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 1</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit1-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">Unit 1</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit1-submenu">
+      <a class="sidebar-link" href="../unit1/evolution-of-programming.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="sidebar-label">Evolution of Programming</span></a>
+      <a class="sidebar-link" href="../unit1/programming-languages.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Programming Languages</span></a>
+      <a class="sidebar-link" href="../unit1/problem-solving.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Problem Solving</span></a>
+      <a class="sidebar-link" href="../unit1/sequential-logic.html"><i class="fa-solid fa-list-ol"></i><span class="sidebar-label">Sequential Logic</span></a>
+      <a class="sidebar-link" href="../unit1/algorithms.html"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-label">Algorithms</span></a>
+      <a class="sidebar-link" href="../unit1/pseudocode.html"><i class="fa-solid fa-file-lines"></i><span class="sidebar-label">Pseudocode</span></a>
+      <a class="sidebar-link" href="../unit1/flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
+      <a class="sidebar-link" href="../unit1/introduction-to-c.html"><i class="fa-solid fa-c"></i><span class="sidebar-label">Introduction to C</span></a>
+      <a class="sidebar-link" href="../unit1/history-of-c.html"><i class="fa-solid fa-scroll"></i><span class="sidebar-label">History of C</span></a>
+      <a class="sidebar-link" href="../unit1/features-of-c.html"><i class="fa-solid fa-star"></i><span class="sidebar-label">Features of C</span></a>
+      <a class="sidebar-link" href="../unit1/applications-of-c.html"><i class="fa-solid fa-industry"></i><span class="sidebar-label">Applications</span></a>
+      <a class="sidebar-link" href="../unit1/structure-of-c-program.html"><i class="fa-solid fa-code"></i><span class="sidebar-label">Structure of C Program</span></a>
+      <a class="sidebar-link" href="../unit1/c-compiler.html"><i class="fa-solid fa-gears"></i><span class="sidebar-label">C Compiler</span></a>
+      <a class="sidebar-link" href="../unit1/compilation-process.html"><i class="fa-solid fa-arrows-turn-right"></i><span class="sidebar-label">Compilation Process</span></a>
+      <a class="sidebar-link" href="../unit1/source-code.html"><i class="fa-solid fa-file-code"></i><span class="sidebar-label">Source Code</span></a>
+      <a class="sidebar-link" href="../unit1/object-code.html"><i class="fa-solid fa-cube"></i><span class="sidebar-label">Object Code</span></a>
+      <a class="sidebar-link" href="../unit1/executable-code.html"><i class="fa-solid fa-play"></i><span class="sidebar-label">Executable Code</span></a>
+      <a class="sidebar-link" href="../unit1/execution-process.html"><i class="fa-solid fa-microchip"></i><span class="sidebar-label">Execution Process</span></a>
+      <a class="sidebar-link" href="../unit1/assembler.html"><i class="fa-solid fa-wrench"></i><span class="sidebar-label">Assembler</span></a>
+      <a class="sidebar-link" href="../unit1/linker.html"><i class="fa-solid fa-link"></i><span class="sidebar-label">Linker</span></a>
+      <a class="sidebar-link" href="../unit1/loader.html"><i class="fa-solid fa-upload"></i><span class="sidebar-label">Loader</span></a>
+      <a class="sidebar-link" href="../unit1/interpreter.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Interpreter</span></a>
+      <a class="sidebar-link" href="../unit1/compilers-and-interpreters.html"><i class="fa-solid fa-code-compare"></i><span class="sidebar-label">Compilers &amp; Interpreters</span></a>
+      <a class="sidebar-link" href="../unit1/operating-systems.html"><i class="fa-solid fa-desktop"></i><span class="sidebar-label">Operating Systems</span></a>
+      <a class="sidebar-link" href="../unit1/debugging.html"><i class="fa-solid fa-bug"></i><span class="sidebar-label">Debugging</span></a>
+      <a class="sidebar-link" href="../unit1/comments.html"><i class="fa-solid fa-comment"></i><span class="sidebar-label">Comments</span></a>
+      <a class="sidebar-link" href="../unit1/single-line-comments.html"><i class="fa-solid fa-slash"></i><span class="sidebar-label">Single Line Comments</span></a>
+      <a class="sidebar-link" href="../unit1/multi-line-comments.html"><i class="fa-solid fa-quote-right"></i><span class="sidebar-label">Multi Line Comments</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 2</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit2-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">C Building Blocks &amp; Data Types</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit2-submenu">
+      <a class="sidebar-link" href="tokens.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Tokens</span></a>
+      <a class="sidebar-link" href="keywords.html"><i class="fa-solid fa-key"></i><span class="sidebar-label">Keywords</span></a>
+      <a class="sidebar-link" href="identifiers.html"><i class="fa-solid fa-tag"></i><span class="sidebar-label">Identifiers</span></a>
+      <a class="sidebar-link" href="naming-rules.html"><i class="fa-solid fa-spell-check"></i><span class="sidebar-label">Naming Rules</span></a>
+      <a class="sidebar-link" href="variables.html"><i class="fa-solid fa-box"></i><span class="sidebar-label">Variables</span></a>
+      <a class="sidebar-link" href="constants.html"><i class="fa-solid fa-lock"></i><span class="sidebar-label">Constants</span></a>
+      <a class="sidebar-link" href="values.html"><i class="fa-solid fa-hashtag"></i><span class="sidebar-label">Values</span></a>
+      <a class="sidebar-link" href="scope.html"><i class="fa-solid fa-eye"></i><span class="sidebar-label">Scope</span></a>
+      <a class="sidebar-link" href="binding.html"><i class="fa-solid fa-link"></i><span class="sidebar-label">Binding</span></a>
+      <a class="sidebar-link" href="storage-classes.html"><i class="fa-solid fa-warehouse"></i><span class="sidebar-label">Storage Classes</span></a>
+      <a class="sidebar-link" href="integer-types.html"><i class="fa-solid fa-1"></i><span class="sidebar-label">Integer Types</span></a>
+      <a class="sidebar-link" href="floating-point-types.html"><i class="fa-solid fa-percent"></i><span class="sidebar-label">Floating Point Types</span></a>
+      <a class="sidebar-link" href="character-type.html"><i class="fa-solid fa-font"></i><span class="sidebar-label">Character Type</span></a>
+      <a class="sidebar-link" href="strings.html"><i class="fa-solid fa-quote-left"></i><span class="sidebar-label">Strings</span></a>
+      <a class="sidebar-link" href="l-value.html"><i class="fa-solid fa-arrow-left-long"></i><span class="sidebar-label">L-value</span></a>
+      <a class="sidebar-link" href="r-value.html"><i class="fa-solid fa-arrow-right-long"></i><span class="sidebar-label">R-value</span></a>
+      <a class="sidebar-link active" href="type-conversion.html"><i class="fa-solid fa-arrows-rotate"></i><span class="sidebar-label">Type Conversion</span></a>
+      <a class="sidebar-link" href="operators.html"><i class="fa-solid fa-calculator"></i><span class="sidebar-label">Operators</span></a>
+      <a class="sidebar-link" href="arithmetic-operators.html"><i class="fa-solid fa-plus-minus"></i><span class="sidebar-label">Arithmetic Operators</span></a>
+      <a class="sidebar-link" href="relational-operators.html"><i class="fa-solid fa-equals"></i><span class="sidebar-label">Relational Operators</span></a>
+      <a class="sidebar-link" href="logical-operators.html"><i class="fa-solid fa-code-branch"></i><span class="sidebar-label">Logical Operators</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 3</span></div>
+      <a class="sidebar-link" href="../unit3/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Control Statements</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 4</span></div>
+      <a class="sidebar-link" href="../unit4/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Strings, Functions &amp; Pointers</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 5</span></div>
+      <a class="sidebar-link" href="../unit5/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Structures, Files &amp; Memory Management</span></a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="topic-layout">
+      <div>
+        <h1>Type Conversion</h1>
+        <p class="lead">C changes a value from one data type to another in two ways — one automatic, one deliberate — and knowing the difference prevents surprising, silent data loss.</p>
+
+        <section class="topic-section" id="introduction">
+          <h2>1. What Is It?</h2>
+          <p><strong>Type conversion</strong> is changing a value from one data type to another. C does this in two ways: <strong>implicit conversion</strong>, where the compiler converts a value automatically — sometimes losing data in the process, as previewed on the Integer Types page when a <code>float</code> got truncated by assigning it to an <code>int</code> — and <strong>explicit conversion</strong>, better known as <strong>casting</strong>, where the programmer deliberately requests a conversion using <code>(type)</code> syntax.</p>
+        </section>
+
+        <section class="topic-section" id="why">
+          <h2>2. Why Do We Need to Know This?</h2>
+          <p>Understanding both kinds of conversion prevents two common problems: accidentally losing data through unintended implicit conversion, and not knowing exactly how to force a conversion on purpose when you actually need one. Casting is one of the most useful tools for writing arithmetic that behaves the way you actually expect.</p>
+        </section>
+
+        <section class="topic-section" id="real-life">
+          <h2>3. Real-Life Example</h2>
+          <p>Think of converting currency. Sometimes a machine automatically rounds to the nearest whole unit without asking — that's implicit conversion, and it can quietly lose the fractional amount. Other times, you deliberately request an exact, specific conversion rate on purpose — that's explicit conversion, a choice you make intentionally.</p>
+        </section>
+
+        <section class="topic-section" id="visual">
+          <h2>4. Visual Explanation</h2>
+          <p>Here are both kinds of conversion side by side, using the same value:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>implicit vs. explicit</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>int a = 5.9;          // implicit — silently truncates to 5
+int b = (int)5.9;     // explicit — the (int) cast makes the truncation obvious</pre>
+          </div>
+          <p>Both lines end up storing <code>5</code>. The first does it silently, as a side effect of assigning a <code>float</code> value to an <code>int</code> variable. The second does the exact same truncation, but the <code>(int)</code> cast makes it an obvious, deliberate choice to anyone reading the code.</p>
+        </section>
+
+        <section class="topic-section" id="syntax">
+          <h2>5. Syntax</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>syntax</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>(targetType)expression
+
+// examples:
+(int)height
+(float)age</pre>
+          </div>
+          <p>The cast — the target type in parentheses — goes immediately before the value or expression being converted. It doesn't change the original variable at all; it only changes how that one expression's value is treated at that moment.</p>
+        </section>
+
+        <section class="topic-section" id="stepbystep">
+          <h2>6. Step-by-Step Code</h2>
+          <p>Using explicit casting with variables in the same spirit as <code>add.c</code> from earlier in this course:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>divide.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>#include &lt;stdio.h&gt;
+
+int main() {
+    int a = 5;
+    int b = 3;
+    float result = (float)a / b;
+
+    printf("Result: %.2f\n", result);
+
+    return 0;
+}</pre>
+          </div>
+          <ul>
+            <li><code>int a = 5;</code> and <code>int b = 3;</code> declare two whole-number variables.</li>
+            <li>Without the <code>(float)</code> cast, <code>a / b</code> would perform <strong>integer division</strong> — <code>5 / 3</code> would evaluate to <code>1</code>, truncated, losing the decimal part entirely.</li>
+            <li><code>(float)a</code> casts <code>a</code> to a floating-point value <em>before</em> the division happens, which forces the whole expression <code>(float)a / b</code> to be evaluated as floating-point division.</li>
+            <li>The result is the more precise <code>1.67</code>, stored in <code>result</code> and printed with <code>%.2f</code> to show two decimal places.</li>
+          </ul>
+          <p>This connects directly to a common real beginner mistake: expecting division between two <code>int</code> variables to automatically give a decimal answer, when C actually performs integer division unless you explicitly cast at least one operand first.</p>
+        </section>
+
+        <section class="topic-section" id="mistakes">
+          <h2>7. Common Mistakes</h2>
+          <ul class="mistake-list">
+            <li>Expecting <code>a / b</code>, where both <code>a</code> and <code>b</code> are <code>int</code>, to give a decimal result without any casting — it won't; integer division truncates the result to a whole number.</li>
+            <li>Forgetting how many operands actually need casting — a single cast on just <em>one</em> operand, as shown above, is enough to force the whole expression into floating-point division, but it's easy to forget which one needs it (or to mistakenly think both do).</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="debugging">
+          <h2>8. Debugging Tips</h2>
+          <p>If a division result looks unexpectedly like a whole number when you expected a decimal, check whether both operands are <code>int</code> — if so, you likely need an explicit <code>(float)</code> or <code>(double)</code> cast on at least one of them before the division happens.</p>
+        </section>
+
+        <section class="topic-section" id="best-practices">
+          <h2>9. Best Practices</h2>
+          <ul class="best-practice-list">
+            <li>Be explicit about conversions you intend, using casts, rather than relying on implicit conversion — this makes your intent clear to future readers (including yourself) and avoids silent, surprising data loss.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="interview">
+          <h2>10. Interview Questions</h2>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Easy:</strong> What is type conversion?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Type conversion is changing a value from one data type to another, either automatically (implicit conversion) or deliberately (explicit conversion, also known as casting).</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Medium:</strong> What's the difference between implicit and explicit conversion?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Implicit conversion happens automatically via the compiler, sometimes losing data silently. Explicit conversion is a deliberate cast the programmer writes using <code>(type)</code> syntax, making the conversion obvious and intentional.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Hard:</strong> Why does <code>5 / 3</code> in C give <code>1</code> instead of <code>1.67</code>?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Because both operands are <code>int</code>, so C performs integer division, truncating the decimal part. Getting <code>1.67</code> requires casting at least one operand to a floating-point type first, before the division happens.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>HR:</strong> Have you encountered unexpected integer division behavior before, in C or another language?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>This is open-ended — a strong answer might describe a real bug or surprising result caused by dividing two integers and expecting a decimal, and how casting (or an equivalent fix in another language) resolved it.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Conceptual:</strong> Does casting change the original variable's actual type?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>No — a cast only affects how that specific expression's value is treated at that moment; the original variable's declared type is unchanged.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Scenario-based:</strong> You write <code>float result = a / b;</code> where <code>a</code> and <code>b</code> are both <code>int</code>, and get a whole-number result instead of a decimal — why?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>The division <code>a / b</code> happens as integer division first, since both operands are <code>int</code>, producing a truncated whole number that is then simply stored into the <code>float</code> variable. The cast needs to happen <em>before</em> the division, on one of the operands, not after the result is already computed.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mcq">
+          <h2>11. MCQs</h2>
+          <div class="quiz" data-quiz-source="typeConversionQuiz"></div>
+        </section>
+
+        <section class="topic-section" id="exercises">
+          <h2>12. Programming Exercises</h2>
+          <p><strong>Easy:</strong> What happens if you assign <code>7.8</code> to an <code>int</code> variable, without any casting?</p>
+          <p><strong>Medium:</strong> Write the corrected version of <code>float result = a / b;</code> (with <code>a</code> and <code>b</code> as <code>int</code>) so it actually produces a decimal result.</p>
+          <p><strong>Hard:</strong> Explain, in your own words, why casting only ONE of the two operands in a division is enough to force floating-point division.</p>
+        </section>
+
+        <section class="topic-section" id="assignments">
+          <h2>13. Assignments</h2>
+          <p>Take this page's <code>divide.c</code> example and modify it to divide two different numbers of your choosing, using an explicit cast to get an accurate decimal result.</p>
+        </section>
+
+        <section class="topic-section" id="faq">
+          <h2>14. FAQs</h2>
+          <p><strong>Q: Is casting the same as changing a variable's actual declared type?</strong><br>A: No — a cast only affects how one specific expression's value is treated in that moment; the variable itself keeps its originally declared type.</p>
+          <p><strong>Q: Can you cast in the other direction, e.g. float to int?</strong><br>A: Yes — <code>(int)someFloatValue</code> truncates the decimal part, the same underlying truncation behavior covered on the Integer Types page.</p>
+        </section>
+
+        <section class="topic-section" id="takeaways">
+          <h2>15. Key Takeaways</h2>
+          <ul>
+            <li>C converts values two ways: implicit conversion (automatic, sometimes lossy) and explicit conversion/casting (deliberate, using <code>(type)</code> syntax).</li>
+            <li>The casting syntax is <code>(targetType)expression</code>, placed immediately before the value being converted — it doesn't change the original variable's declared type.</li>
+            <li>The most important practical case to recognize: dividing two <code>int</code> variables performs integer division and truncates the result, unless at least one operand is cast to <code>float</code> or <code>double</code> first.</li>
+          </ul>
+        </section>
+
+        <div class="topic-nav-footer">
+          <a href="r-value.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Previous: R-value</a>
+          <a href="operators.html" class="btn btn-primary">Next: Operators <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for absolute beginners. &copy; 2026 C Programming eBook.</p>
+  </footer>
+
+</div>
+
+<div class="search-panel" id="search-panel" data-open="false">
+  <div class="search-panel-inner">
+    <div class="search-input-row">
+      <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+      <input type="text" id="search-input" placeholder="Search topics... (Ctrl+K)">
+      <button class="icon-btn" id="search-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="search-results" id="search-results"></ul>
+  </div>
+</div>
+
+<script>
+window.typeConversionQuiz = [
+  { question: "What is type conversion in C?", options: ["Renaming a variable", "Changing a value from one data type to another, implicitly or explicitly", "Deleting a variable's value", "Declaring a new function"], correctIndex: 1, explanation: "Type conversion is changing a value from one data type to another, either automatically (implicit) or deliberately (explicit/casting)." },
+  { question: "Which of these is an example of explicit conversion (casting)?", options: ["int a = 5.9;", "float b = 5;", "int b = (int)5.9;", "char c = 65;"], correctIndex: 2, explanation: "(int)5.9 uses the (type) casting syntax, making the conversion a deliberate, explicit choice by the programmer." },
+  { question: "What does `int a = 5.9;` do, and what kind of conversion is it?", options: ["Compile error; not a valid conversion", "Implicit conversion; a truncates to 5", "Explicit conversion; a becomes 5.9", "Implicit conversion; a becomes 6 by rounding"], correctIndex: 1, explanation: "Assigning a float to an int is implicit conversion, and it truncates (not rounds) the decimal part, giving 5." },
+  { question: "In `(float)a / b`, where does the cast need to be placed to affect the division?", options: ["After the division is computed", "On the result variable only", "On at least one operand, before the division happens", "It doesn't matter — casting is only cosmetic"], correctIndex: 2, explanation: "The cast must be applied to one of the operands before the division executes, so the whole expression is evaluated in floating-point." },
+  { question: "Given `int a = 5; int b = 3;`, what does `a / b` evaluate to (with no casting)?", options: ["1.67", "1", "2", "1.0"], correctIndex: 1, explanation: "Since both a and b are int, C performs integer division, truncating 5/3 down to 1." }
+];
+</script>
+<script src="../../js/theme.js"></script>
+<script src="../../js/sidebar.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/quiz.js"></script>
+<script src="../../js/copy-code.js"></script>
+<script src="../../js/accordion.js"></script>
+</body>
+</html>
