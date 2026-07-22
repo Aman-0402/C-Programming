@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Floating Point Types — Unit 2 — C Programming eBook</title>
+<meta name="description" content="Learn how float and double store decimal values in C, extending this unit's student profile example with a height variable.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="../../css/variables.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/diagrams.css">
+<link rel="stylesheet" href="../../css/quiz.css">
+
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<style>
+  .topic-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-6); align-items: start; }
+  .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
+  .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
+  .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
+</style>
+</head>
+<body>
+
+<button class="icon-btn theme-toggle-float" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+  <i class="fa-solid fa-sun icon-sun"></i>
+  <i class="fa-solid fa-moon icon-moon"></i>
+</button>
+
+<div class="social-float">
+  <a class="icon-btn" href="https://github.com/Aman-0402" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+    <i class="fa-brands fa-github"></i>
+  </a>
+  <a class="icon-btn" href="https://www.linkedin.com/in/aman-raj-081905211/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+</div>
+
+<div class="shell" id="shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo" style="margin-bottom: var(--space-5);">
+      <a href="../../index.html" class="logo">
+        <i class="fa-solid fa-code" style="color: var(--color-primary);"></i><span class="sidebar-label"> C Programming eBook</span>
+      </a>
+    </div>
+
+    <button class="icon-btn" id="sidebar-collapse" aria-label="Collapse sidebar" style="margin-bottom: var(--space-4);">
+      <i class="fa-solid fa-angles-left"></i>
+    </button>
+
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 1</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit1-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">Unit 1</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit1-submenu">
+      <a class="sidebar-link" href="../unit1/evolution-of-programming.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="sidebar-label">Evolution of Programming</span></a>
+      <a class="sidebar-link" href="../unit1/programming-languages.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Programming Languages</span></a>
+      <a class="sidebar-link" href="../unit1/problem-solving.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Problem Solving</span></a>
+      <a class="sidebar-link" href="../unit1/sequential-logic.html"><i class="fa-solid fa-list-ol"></i><span class="sidebar-label">Sequential Logic</span></a>
+      <a class="sidebar-link" href="../unit1/algorithms.html"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-label">Algorithms</span></a>
+      <a class="sidebar-link" href="../unit1/pseudocode.html"><i class="fa-solid fa-file-lines"></i><span class="sidebar-label">Pseudocode</span></a>
+      <a class="sidebar-link" href="../unit1/flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
+      <a class="sidebar-link" href="../unit1/introduction-to-c.html"><i class="fa-solid fa-c"></i><span class="sidebar-label">Introduction to C</span></a>
+      <a class="sidebar-link" href="../unit1/history-of-c.html"><i class="fa-solid fa-scroll"></i><span class="sidebar-label">History of C</span></a>
+      <a class="sidebar-link" href="../unit1/features-of-c.html"><i class="fa-solid fa-star"></i><span class="sidebar-label">Features of C</span></a>
+      <a class="sidebar-link" href="../unit1/applications-of-c.html"><i class="fa-solid fa-industry"></i><span class="sidebar-label">Applications</span></a>
+      <a class="sidebar-link" href="../unit1/structure-of-c-program.html"><i class="fa-solid fa-code"></i><span class="sidebar-label">Structure of C Program</span></a>
+      <a class="sidebar-link" href="../unit1/c-compiler.html"><i class="fa-solid fa-gears"></i><span class="sidebar-label">C Compiler</span></a>
+      <a class="sidebar-link" href="../unit1/compilation-process.html"><i class="fa-solid fa-arrows-turn-right"></i><span class="sidebar-label">Compilation Process</span></a>
+      <a class="sidebar-link" href="../unit1/source-code.html"><i class="fa-solid fa-file-code"></i><span class="sidebar-label">Source Code</span></a>
+      <a class="sidebar-link" href="../unit1/object-code.html"><i class="fa-solid fa-cube"></i><span class="sidebar-label">Object Code</span></a>
+      <a class="sidebar-link" href="../unit1/executable-code.html"><i class="fa-solid fa-play"></i><span class="sidebar-label">Executable Code</span></a>
+      <a class="sidebar-link" href="../unit1/execution-process.html"><i class="fa-solid fa-microchip"></i><span class="sidebar-label">Execution Process</span></a>
+      <a class="sidebar-link" href="../unit1/assembler.html"><i class="fa-solid fa-wrench"></i><span class="sidebar-label">Assembler</span></a>
+      <a class="sidebar-link" href="../unit1/linker.html"><i class="fa-solid fa-link"></i><span class="sidebar-label">Linker</span></a>
+      <a class="sidebar-link" href="../unit1/loader.html"><i class="fa-solid fa-upload"></i><span class="sidebar-label">Loader</span></a>
+      <a class="sidebar-link" href="../unit1/interpreter.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Interpreter</span></a>
+      <a class="sidebar-link" href="../unit1/compilers-and-interpreters.html"><i class="fa-solid fa-code-compare"></i><span class="sidebar-label">Compilers &amp; Interpreters</span></a>
+      <a class="sidebar-link" href="../unit1/operating-systems.html"><i class="fa-solid fa-desktop"></i><span class="sidebar-label">Operating Systems</span></a>
+      <a class="sidebar-link" href="../unit1/debugging.html"><i class="fa-solid fa-bug"></i><span class="sidebar-label">Debugging</span></a>
+      <a class="sidebar-link" href="../unit1/comments.html"><i class="fa-solid fa-comment"></i><span class="sidebar-label">Comments</span></a>
+      <a class="sidebar-link" href="../unit1/single-line-comments.html"><i class="fa-solid fa-slash"></i><span class="sidebar-label">Single Line Comments</span></a>
+      <a class="sidebar-link" href="../unit1/multi-line-comments.html"><i class="fa-solid fa-quote-right"></i><span class="sidebar-label">Multi Line Comments</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 2</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit2-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">C Building Blocks &amp; Data Types</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit2-submenu">
+      <a class="sidebar-link" href="tokens.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Tokens</span></a>
+      <a class="sidebar-link" href="keywords.html"><i class="fa-solid fa-key"></i><span class="sidebar-label">Keywords</span></a>
+      <a class="sidebar-link" href="identifiers.html"><i class="fa-solid fa-tag"></i><span class="sidebar-label">Identifiers</span></a>
+      <a class="sidebar-link" href="naming-rules.html"><i class="fa-solid fa-spell-check"></i><span class="sidebar-label">Naming Rules</span></a>
+      <a class="sidebar-link" href="variables.html"><i class="fa-solid fa-box"></i><span class="sidebar-label">Variables</span></a>
+      <a class="sidebar-link" href="constants.html"><i class="fa-solid fa-lock"></i><span class="sidebar-label">Constants</span></a>
+      <a class="sidebar-link" href="values.html"><i class="fa-solid fa-hashtag"></i><span class="sidebar-label">Values</span></a>
+      <a class="sidebar-link" href="scope.html"><i class="fa-solid fa-eye"></i><span class="sidebar-label">Scope</span></a>
+      <a class="sidebar-link" href="binding.html"><i class="fa-solid fa-link"></i><span class="sidebar-label">Binding</span></a>
+      <a class="sidebar-link" href="storage-classes.html"><i class="fa-solid fa-warehouse"></i><span class="sidebar-label">Storage Classes</span></a>
+      <a class="sidebar-link" href="integer-types.html"><i class="fa-solid fa-1"></i><span class="sidebar-label">Integer Types</span></a>
+      <a class="sidebar-link active" href="floating-point-types.html"><i class="fa-solid fa-percent"></i><span class="sidebar-label">Floating Point Types</span></a>
+      <a class="sidebar-link" href="character-type.html"><i class="fa-solid fa-font"></i><span class="sidebar-label">Character Type</span></a>
+      <a class="sidebar-link" href="strings.html"><i class="fa-solid fa-quote-left"></i><span class="sidebar-label">Strings</span></a>
+            </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 3</span></div>
+      <a class="sidebar-link" href="../unit3/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Control Statements</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 4</span></div>
+      <a class="sidebar-link" href="../unit4/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Strings, Functions &amp; Pointers</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 5</span></div>
+      <a class="sidebar-link" href="../unit5/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Structures, Files &amp; Memory Management</span></a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="topic-layout">
+      <div>
+        <h1>Floating Point Types</h1>
+        <p class="lead">Not everything is a whole number — this page adds a decimal-valued <code>height</code> to the growing student profile example, and introduces <code>float</code> (and its more precise cousin, <code>double</code>).</p>
+
+        <section class="topic-section" id="introduction">
+          <h2>1. What Is It?</h2>
+          <p>A <strong>floating-point type</strong> (<code>float</code> or the more precise <code>double</code>) stores numbers that can have a decimal point, like <code>5.9</code> or <code>3.14</code>. Unlike <code>int</code>, floating-point types can represent fractional values, not just whole numbers.</p>
+        </section>
+
+        <section class="topic-section" id="why">
+          <h2>2. Why Do We Need to Know This?</h2>
+          <p>Many real-world quantities — height, price, temperature — naturally have decimal precision. Using the right type for these values avoids the truncation problem introduced on the previous page, where forcing a decimal value into an <code>int</code> silently drops everything after the decimal point.</p>
+        </section>
+
+        <section class="topic-section" id="real-life">
+          <h2>3. Real-Life Example</h2>
+          <p>Think of the difference between a container that only counts whole items and a measuring tape marked in fine increments (fractions of an inch). A floating-point type is the fine-grained measuring tool — built for values that aren't naturally whole numbers.</p>
+        </section>
+
+        <section class="topic-section" id="visual">
+          <h2>4. Visual Explanation</h2>
+          <p>Extending the previous page's memory diagram, here's the student profile with its new <code>height</code> variable sitting alongside <code>age</code>:</p>
+          <div class="memory-diagram">
+            <div class="memory-cell">
+              <div class="memory-cell-label">variable name: age (int)</div>
+              <div class="memory-cell-value">value: 20 — whole number</div>
+            </div>
+            <div class="memory-cell">
+              <div class="memory-cell-label">variable name: height (float)</div>
+              <div class="memory-cell-value">value: 5.9 — decimal value</div>
+            </div>
+          </div>
+          <p><code>age</code> holds a whole number and is declared as <code>int</code>. <code>height</code> holds a decimal value and needs a floating-point type — that's exactly what <code>float</code> is for.</p>
+        </section>
+
+        <section class="topic-section" id="syntax">
+          <h2>5. Syntax</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>syntax</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>float variableName = decimalValue;
+
+// example:
+float height = 5.9;</pre>
+          </div>
+          <p><code>double</code> also exists in C, for higher precision — it stores more decimal digits accurately than <code>float</code>, and is common when precision matters more. For many everyday cases, though, <code>float</code> is perfectly sufficient.</p>
+        </section>
+
+        <section class="topic-section" id="stepbystep">
+          <h2>6. Step-by-Step Code</h2>
+          <p>Extending this unit's <code>profile.c</code> example with the new <code>height</code> variable:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>profile.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>#include &lt;stdio.h&gt;
+
+int main() {
+    int age = 20;
+    float height = 5.9;
+
+    printf("Age: %d\n", age);
+    printf("Height: %.1f\n", height);
+
+    return 0;
+}</pre>
+          </div>
+          <p><code>height</code> is declared as <code>float</code> since it needs to hold a decimal value, unlike <code>age</code>. The <code>printf</code> format specifier for a float is <code>%f</code> — here, <code>%.1f</code> is used to show exactly 1 decimal place. Compare this with <code>%d</code>, used for the whole-number <code>age</code>: the format specifier always has to match the variable's actual type.</p>
+        </section>
+
+        <section class="topic-section" id="mistakes">
+          <h2>7. Common Mistakes</h2>
+          <ul class="mistake-list">
+            <li>Using <code>%d</code> to print a float value. This produces garbage or incorrect output — the format specifier must match the variable's actual type.</li>
+            <li>Assuming <code>float</code> is perfectly precise for all decimal values. Floating-point representation actually has subtle precision limitations — a deeper topic beyond this course's current scope, but worth knowing exists.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="debugging">
+          <h2>8. Debugging Tips</h2>
+          <p>If your <code>printf</code> output for a decimal variable looks like garbage or completely wrong, double-check that you used <code>%f</code> (or <code>%.Nf</code>) rather than <code>%d</code> — mismatched format specifiers are a very common source of confusing output.</p>
+        </section>
+
+        <section class="topic-section" id="best-practices">
+          <h2>9. Best Practices</h2>
+          <ul class="best-practice-list">
+            <li>Always match your <code>printf</code> format specifier to the variable's actual type: <code>%d</code> for <code>int</code>, <code>%f</code>/<code>%.Nf</code> for <code>float</code>/<code>double</code>.</li>
+            <li>Use <code>%.Nf</code> to control exactly how many decimal places are displayed, for cleaner, more predictable output.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="interview">
+          <h2>10. Interview Questions</h2>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Easy:</strong> What kind of values does a <code>float</code> store?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>A <code>float</code> stores numbers with a decimal point — fractional, non-whole values, unlike <code>int</code>.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Medium:</strong> What <code>printf</code> format specifier is used for a <code>float</code>?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p><code>%f</code> — or <code>%.Nf</code> to control exactly how many decimal places are shown.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Hard:</strong> What happens if you use <code>%d</code> to print a <code>float</code> variable?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>It produces garbage or incorrect output, since <code>%d</code> expects an <code>int</code>'s binary representation, not a <code>float</code>'s — the format specifier must match the actual variable type.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>HR:</strong> Can you think of a real value that would naturally be a <code>float</code> rather than an <code>int</code>?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>This is open-ended — good examples include height, price, or temperature, all of which naturally have decimal precision.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Conceptual:</strong> Is <code>float</code> the only decimal type in C?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>No — <code>double</code> also stores decimal values, typically with more precision. <code>float</code> and <code>double</code> serve the same broad purpose with different precision/size trade-offs.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Scenario-based:</strong> You print a height value and get strange, nonsensical output — what's the most likely cause?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Using the wrong format specifier — most likely <code>%d</code> instead of <code>%f</code> — for the float variable.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mcq">
+          <h2>11. MCQs</h2>
+          <div class="quiz" data-quiz-source="floatingPointTypesQuiz"></div>
+        </section>
+
+        <section class="topic-section" id="exercises">
+          <h2>12. Programming Exercises</h2>
+          <p><strong>Easy:</strong> Declare a <code>float</code> variable named <code>price</code> with the value <code>9.99</code>.</p>
+          <p><strong>Medium:</strong> Write the correct <code>printf</code> line to print a <code>float</code> variable named <code>temperature</code> with 2 decimal places.</p>
+          <p><strong>Hard:</strong> Explain, in your own words, why using <code>%d</code> on a <code>float</code> variable produces incorrect output.</p>
+        </section>
+
+        <section class="topic-section" id="assignments">
+          <h2>13. Assignments</h2>
+          <p>Extend your own <code>profile.c</code>-style program (or this page's example) with one more <code>float</code> value of your choosing — for example a weight or a score — printing it with an appropriate format specifier.</p>
+        </section>
+
+        <section class="topic-section" id="faq">
+          <h2>14. FAQs</h2>
+          <p><strong>Q: Should I always use <code>double</code> instead of <code>float</code>?</strong><br>A: Not necessarily — <code>float</code> suffices for many everyday needs; <code>double</code> is preferred when higher precision genuinely matters, a nuance covered more in later material.</p>
+          <p><strong>Q: Can I print a float without any decimal places?</strong><br>A: Yes, technically, but it's more common and useful to control the exact number of decimal places shown with <code>%.Nf</code>.</p>
+        </section>
+
+        <section class="topic-section" id="takeaways">
+          <h2>15. Key Takeaways</h2>
+          <ul>
+            <li>A floating-point type (<code>float</code> or <code>double</code>) stores numbers with a decimal point, unlike <code>int</code>.</li>
+            <li>Always match your <code>printf</code> format specifier to the variable's actual type — <code>%d</code> for <code>int</code>, <code>%f</code>/<code>%.Nf</code> for <code>float</code>/<code>double</code>.</li>
+            <li>This page grows the profile.c example by adding <code>height</code> alongside <code>age</code>, showing an int and a float living side by side.</li>
+          </ul>
+        </section>
+
+        <div class="topic-nav-footer">
+          <a href="integer-types.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Previous: Integer Types</a>
+          <a href="character-type.html" class="btn btn-primary">Next: Character Type <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for absolute beginners. &copy; 2026 C Programming eBook.</p>
+  </footer>
+
+</div>
+
+<div class="search-panel" id="search-panel" data-open="false">
+  <div class="search-panel-inner">
+    <div class="search-input-row">
+      <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+      <input type="text" id="search-input" placeholder="Search topics... (Ctrl+K)">
+      <button class="icon-btn" id="search-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="search-results" id="search-results"></ul>
+  </div>
+</div>
+
+<script>
+window.floatingPointTypesQuiz = [
+  { question: "What does a float variable in C store?", options: ["Only whole numbers", "Numbers with a decimal point (fractional values)", "Only text characters", "Only true/false values"], correctIndex: 1, explanation: "A float stores numbers that can have a decimal point, like 5.9 or 3.14 — fractional, non-whole values." },
+  { question: "Which printf format specifier is correct for printing a float?", options: ["%d", "%c", "%f", "%s"], correctIndex: 2, explanation: "%f (or %.Nf to control decimal places) is the correct format specifier for a float, unlike %d which is for int." },
+  { question: "What happens if you print a float variable using %d?", options: ["It works perfectly", "It produces garbage or incorrect output", "It automatically converts to %f", "The program refuses to compile"], correctIndex: 1, explanation: "%d expects an int's binary representation, not a float's, so using it on a float produces garbage or incorrect output." },
+  { question: "In `printf(\"Height: %.1f\\n\", height);`, what does the `.1` control?", options: ["The variable's memory size", "The number of decimal places displayed", "The number of times it prints", "The column width"], correctIndex: 1, explanation: "%.1f tells printf to display exactly 1 decimal place when printing the float value." },
+  { question: "Besides float, what other C type stores decimal values with typically more precision?", options: ["long", "double", "short", "unsigned"], correctIndex: 1, explanation: "double also stores decimal values, typically with more precision than float; the two serve the same broad purpose with different precision/size trade-offs." }
+];
+</script>
+<script src="../../js/theme.js"></script>
+<script src="../../js/sidebar.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/quiz.js"></script>
+<script src="../../js/copy-code.js"></script>
+<script src="../../js/accordion.js"></script>
+</body>
+</html>
