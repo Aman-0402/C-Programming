@@ -1,0 +1,97 @@
+/* css/homepage.css — hero, stats strip, unit cards */
+
+.hero {
+  text-align: center;
+  padding: var(--space-8) var(--space-5);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-badge {
+  margin-bottom: var(--space-4);
+}
+
+.hero p.lead {
+  font-size: 1.15rem;
+  max-width: 600px;
+  margin: 0 auto var(--space-6);
+}
+
+.hero-actions {
+  display: flex;
+  gap: var(--space-4);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-actions .btn-primary {
+  animation: pulse-glow 2.4s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: var(--shadow-md); }
+  50% { box-shadow: 0 0 0 8px color-mix(in srgb, var(--color-primary) 12%, transparent); }
+}
+
+.stats-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--space-5);
+  max-width: 900px;
+  margin: var(--space-7) auto;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.section {
+  max-width: 1100px;
+  margin: var(--space-8) auto;
+  padding: 0 var(--space-5);
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+
+.unit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-5);
+}
+
+.unit-card-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: var(--space-3);
+}
+
+.unit-card h3 {
+  margin-bottom: var(--space-2);
+}
+
+.unit-card .topic-count {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: var(--space-4);
+}
