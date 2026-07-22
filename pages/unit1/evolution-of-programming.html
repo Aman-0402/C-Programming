@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evolution of Programming — Unit 1 — C Programming eBook</title>
+<meta name="description" content="How programming evolved from punch cards and machine code to the high-level languages we use today.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="../../css/variables.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/diagrams.css">
+<link rel="stylesheet" href="../../css/quiz.css">
+
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<style>
+  .topic-layout { display: grid; grid-template-columns: 1fr 220px; gap: var(--space-6); align-items: start; }
+  .topic-toc { position: sticky; top: calc(var(--topnav-height) + var(--space-4)); border: 1px solid var(--border); border-radius: var(--radius-md); padding: var(--space-4); font-size: 0.85rem; }
+  .topic-toc a { display: block; padding: var(--space-1) 0; color: var(--text-muted); }
+  .topic-toc a:hover { color: var(--color-primary); text-decoration: none; }
+  .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
+  .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
+  .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
+  @media (max-width: 1000px) { .topic-layout { grid-template-columns: 1fr; } .topic-toc { position: static; } }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progress-bar"></div>
+
+<div class="shell" id="shell">
+
+  <nav class="topnav">
+    <div class="topnav-left">
+      <button class="icon-btn mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <a href="../../index.html" class="logo">
+        <i class="fa-solid fa-code" style="color: var(--color-primary);"></i>
+        C Programming eBook
+      </a>
+      <div class="breadcrumbs">
+        <a href="../../index.html">Home</a>
+        <span>/</span>
+        <a href="index.html">Unit 1</a>
+        <span>/</span>
+        <span>Evolution of Programming</span>
+      </div>
+    </div>
+    <div class="topnav-right">
+      <button class="icon-btn" id="search-open" aria-label="Search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+      <button class="icon-btn" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+        <i class="fa-solid fa-sun icon-sun"></i>
+        <i class="fa-solid fa-moon icon-moon"></i>
+      </button>
+    </div>
+  </nav>
+
+  <aside class="sidebar">
+    <button class="icon-btn" id="sidebar-collapse" aria-label="Collapse sidebar" style="margin-bottom: var(--space-4);">
+      <i class="fa-solid fa-angles-left"></i>
+    </button>
+
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 1</span></div>
+      <a class="sidebar-link" href="index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Unit 1 Overview</span></a>
+      <a class="sidebar-link active" href="evolution-of-programming.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="sidebar-label">Evolution of Programming</span></a>
+      <a class="sidebar-link" href="programming-languages.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Programming Languages</span></a>
+      <a class="sidebar-link" href="problem-solving.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Problem Solving</span></a>
+      <a class="sidebar-link" href="sequential-logic.html"><i class="fa-solid fa-list-ol"></i><span class="sidebar-label">Sequential Logic</span></a>
+      <a class="sidebar-link" href="algorithms.html"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-label">Algorithms</span></a>
+      <a class="sidebar-link" href="pseudocode.html"><i class="fa-solid fa-file-lines"></i><span class="sidebar-label">Pseudocode</span></a>
+      <a class="sidebar-link" href="flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 2</span></div>
+      <a class="sidebar-link" href="../unit2/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">C Building Blocks &amp; Data Types</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 3</span></div>
+      <a class="sidebar-link" href="../unit3/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Control Statements</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 4</span></div>
+      <a class="sidebar-link" href="../unit4/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Strings, Functions &amp; Pointers</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 5</span></div>
+      <a class="sidebar-link" href="../unit5/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Structures, Files &amp; Memory Management</span></a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="topic-layout">
+      <div>
+        <h1>Evolution of Programming</h1>
+        <p class="lead">Before you write your first line of C, it helps to know why programming languages exist at all — and why they had to evolve.</p>
+
+        <section class="topic-section" id="introduction">
+          <h2>1. What Is It?</h2>
+          <p>"Programming" means giving a computer step-by-step instructions to do a task. But computers only understand electrical signals — patterns of on and off (1s and 0s). Every programming language, from the very first to C to modern languages, exists to close the gap between "what a human can easily write" and "what a machine can actually run."</p>
+          <p>The evolution of programming is the story of that gap slowly closing.</p>
+        </section>
+
+        <section class="topic-section" id="why">
+          <h2>2. Why Do We Need to Know This?</h2>
+          <p>Understanding where programming came from explains <em>why C looks the way it does.</em> C was designed in the 1970s as a bridge between low-level machine efficiency and human-readable structure. Knowing the "before" makes the "why" of C's design click into place instead of feeling arbitrary.</p>
+        </section>
+
+        <section class="topic-section" id="real-life">
+          <h2>3. Real-Life Example</h2>
+          <p>Think about how humans gave instructions over time: cave paintings → written language → the printing press → typewriters → word processors. Each step made communicating ideas faster and less error-prone. Programming followed the exact same pattern — from physically wiring circuits, to punching holes in cards, to typing readable words like <code>if</code> and <code>while</code>.</p>
+        </section>
+
+        <section class="topic-section" id="visual">
+          <h2>4. Visual Explanation</h2>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-item-year">1940s</div>
+              <h4>Machine Code</h4>
+              <p>Programmers flipped physical switches or wired plugboards to represent raw binary instructions. Extremely slow and error-prone — one wrong wire meant starting over.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-item-year">1950s</div>
+              <h4>Assembly Language</h4>
+              <p>Short human-readable codes (like <code>MOV</code>, <code>ADD</code>) replaced raw binary. Still tied directly to one specific machine's hardware.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-item-year">1957</div>
+              <h4>FORTRAN</h4>
+              <p>One of the first "high-level" languages — closer to math notation than hardware instructions.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-item-year">1972</div>
+              <h4>C is Born</h4>
+              <p>Dennis Ritchie creates C at Bell Labs — fast like assembly, but readable and portable like a high-level language.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-item-year">Today</div>
+              <h4>Modern Languages</h4>
+              <p>Python, JavaScript, and others build on ideas C introduced, trading some speed for even more readability.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mistakes">
+          <h2>10. Common Mistakes</h2>
+          <ul class="mistake-list">
+            <li>Thinking older languages were "worse" rather than suited to the hardware constraints of their time.</li>
+            <li>Assuming a computer understands English or math notation directly — it only ever runs binary machine code; every language is translated down to that.</li>
+            <li>Confusing "high-level" (closer to human language) with "better" — high-level languages trade some raw speed for readability.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="debugging">
+          <h2>11. Debugging Tips</h2>
+          <p>Not applicable in the classic sense yet — there's no code to run in this topic. The habit to build now: whenever you hit unfamiliar terminology later in the course, ask "what problem did this solve, and what came before it?" That question resolves most confusion about language design choices.</p>
+        </section>
+
+        <section class="topic-section" id="best-practices">
+          <h2>12. Best Practices</h2>
+          <ul class="best-practice-list">
+            <li>Learn the "why" behind a language feature, not just the syntax — it sticks longer and transfers to other languages.</li>
+            <li>When learning C, remember it was designed for control and speed close to the hardware — that explains many of its quirks later in the course (manual memory management, pointers, no built-in string type).</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="interview">
+          <h2>13. Interview Questions</h2>
+          <p><strong>Easy:</strong> What is machine code?</p>
+          <p><strong>Easy:</strong> Name one language that came before C.</p>
+          <p><strong>Medium:</strong> Why did assembly language replace raw machine code?</p>
+          <p><strong>Medium:</strong> What problem was C designed to solve?</p>
+          <p><strong>Hard:</strong> Why do modern high-level languages still ultimately get translated to machine code?</p>
+          <p><strong>HR:</strong> Why are you interested in learning a 50-year-old language like C in a modern industry?</p>
+          <p><strong>Conceptual:</strong> What does "closer to the hardware" mean?</p>
+          <p><strong>Scenario-based:</strong> You need to write firmware for a tiny embedded sensor with almost no memory. Would you reach for C or a very high-level language, and why?</p>
+        </section>
+
+        <section class="topic-section" id="mcq">
+          <h2>14. MCQs</h2>
+          <div class="quiz" data-quiz-source="evolutionQuiz"></div>
+        </section>
+
+        <section class="topic-section" id="exercises">
+          <h2>15. Programming Exercises</h2>
+          <p><strong>Easy:</strong> Write (in your own words, no code) a one-paragraph timeline of programming from machine code to today.</p>
+          <p><strong>Medium:</strong> Research and name two programming languages created after C, and one idea each borrowed from C.</p>
+          <p><strong>Hard:</strong> Explain, in plain English, why a language "close to the hardware" like C is still used today for operating systems, despite dozens of newer languages existing.</p>
+        </section>
+
+        <section class="topic-section" id="assignments">
+          <h2>16. Assignments</h2>
+          <p>Create a simple hand-drawn or digital timeline (5+ entries) of programming's evolution, including at least one entry before 1950 and one after 2000.</p>
+        </section>
+
+        <section class="topic-section" id="summary">
+          <h2>18. Chapter Summary</h2>
+          <p>Programming evolved from physically wiring machines, to punch cards and raw binary, to assembly, to high-level languages like C — each step closing the gap between human thinking and machine execution. C sits at a unique point in that history: readable enough for humans, close enough to hardware to stay fast.</p>
+        </section>
+
+        <section class="topic-section" id="cheatsheet">
+          <h2>19. Cheat Sheet</h2>
+          <ul>
+            <li><strong>Machine code</strong> — raw binary instructions, one specific CPU.</li>
+            <li><strong>Assembly</strong> — short human-readable mnemonics for machine code.</li>
+            <li><strong>High-level language</strong> — human-readable code translated down to machine code (e.g. C, Python).</li>
+            <li><strong>C (1972)</strong> — bridges low-level speed and high-level readability.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="faq">
+          <h2>20. FAQs</h2>
+          <p><strong>Q: Is C outdated?</strong><br>A: No — it's still the backbone of operating systems, embedded devices, and other performance-critical software.</p>
+          <p><strong>Q: Do I need to learn assembly before C?</strong><br>A: No. Knowing it exists is enough context to understand why C was designed the way it was.</p>
+        </section>
+
+        <section class="topic-section" id="takeaways">
+          <h2>21. Key Takeaways</h2>
+          <ul>
+            <li>Every programming language exists to close the gap between human thinking and machine binary.</li>
+            <li>C was designed in 1972 to be fast like assembly, but readable and portable like a high-level language.</li>
+            <li>Understanding this history explains many of C's later design choices.</li>
+          </ul>
+        </section>
+
+        <div class="topic-nav-footer">
+          <span></span>
+          <a href="programming-languages.html" class="btn btn-primary">Next: Programming Languages <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <nav class="topic-toc" aria-label="On this page">
+        <strong>On This Page</strong>
+        <a href="#introduction">What Is It?</a>
+        <a href="#why">Why Learn This?</a>
+        <a href="#real-life">Real-Life Example</a>
+        <a href="#visual">Timeline</a>
+        <a href="#mistakes">Common Mistakes</a>
+        <a href="#debugging">Debugging Tips</a>
+        <a href="#best-practices">Best Practices</a>
+        <a href="#interview">Interview Questions</a>
+        <a href="#mcq">MCQs</a>
+        <a href="#exercises">Exercises</a>
+        <a href="#assignments">Assignments</a>
+        <a href="#summary">Summary</a>
+        <a href="#cheatsheet">Cheat Sheet</a>
+        <a href="#faq">FAQs</a>
+        <a href="#takeaways">Key Takeaways</a>
+      </nav>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for absolute beginners. &copy; 2026 C Programming eBook.</p>
+  </footer>
+
+</div>
+
+<div class="search-panel" id="search-panel" data-open="false">
+  <div class="search-panel-inner">
+    <div class="search-input-row">
+      <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+      <input type="text" id="search-input" placeholder="Search topics... (Ctrl+K)">
+      <button class="icon-btn" id="search-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="search-results" id="search-results"></ul>
+  </div>
+</div>
+
+<script>
+window.evolutionQuiz = [
+  { question: "What does 'machine code' consist of?", options: ["English words", "Raw binary instructions", "Mathematical formulas", "Pictures"], correctIndex: 1, explanation: "Machine code is the raw sequence of 1s and 0s a specific CPU can execute directly." },
+  { question: "What was the main limitation of programming with plugboards/switches?", options: ["Too fast", "Too readable", "Extremely slow and error-prone", "Used too much memory"], correctIndex: 2, explanation: "Physically wiring or switching circuits for every instruction was slow, tedious, and easy to get wrong." },
+  { question: "What replaced raw binary machine code with short readable mnemonics?", options: ["Assembly language", "Python", "Flowcharts", "Pseudocode"], correctIndex: 0, explanation: "Assembly language introduced mnemonics like MOV and ADD in place of raw binary opcodes." },
+  { question: "Assembly language is tied to:", options: ["No hardware at all", "One specific machine's hardware", "Only web browsers", "Only mobile phones"], correctIndex: 1, explanation: "Assembly instructions map directly to one CPU architecture's instruction set." },
+  { question: "Which language, released in 1957, was one of the first high-level languages?", options: ["C", "FORTRAN", "Java", "Assembly"], correctIndex: 1, explanation: "FORTRAN (1957) was among the first languages to read more like math notation than raw hardware instructions." },
+  { question: "In what year was C created?", options: ["1957", "1965", "1972", "1991"], correctIndex: 2, explanation: "Dennis Ritchie created C in 1972 at Bell Labs." },
+  { question: "Who created the C programming language?", options: ["Dennis Ritchie", "James Gosling", "Guido van Rossum", "Ada Lovelace"], correctIndex: 0, explanation: "Dennis Ritchie designed C at Bell Labs in the early 1970s." },
+  { question: "What made C different from earlier high-level languages?", options: ["It was slower than assembly", "It combined hardware-level speed with human readability", "It had no syntax rules", "It could only run on one computer"], correctIndex: 1, explanation: "C was designed to be nearly as fast as assembly while staying readable and portable across machines." },
+  { question: "A 'high-level' programming language is best described as:", options: ["Harder to read than machine code", "Closer to human language, translated down to machine code", "A language with no rules", "The fastest possible code"], correctIndex: 1, explanation: "High-level languages read closer to human language and are translated (compiled/interpreted) down to machine code." },
+  { question: "Why do modern languages like Python still eventually run as machine code?", options: ["They don't; computers understand Python directly", "Because every program must ultimately be translated to instructions the CPU understands", "Because Python is a type of machine code", "This is false, only C becomes machine code"], correctIndex: 1, explanation: "No matter how high-level a language is, it must be translated down to the binary machine code the physical CPU can execute." },
+  { question: "What is the biggest practical benefit of high-level languages over assembly?", options: ["They run without any translation", "Readability and portability across different hardware", "They use less memory than machine code", "They eliminate the need for logic"], correctIndex: 1, explanation: "High-level languages are easier to read/write and can often run on multiple hardware platforms with little or no change." },
+  { question: "Which of these is closest in age to C (created around the same era)?", options: ["JavaScript (1995)", "Python (1991)", "FORTRAN (1957)", "Java (1995)"], correctIndex: 2, explanation: "FORTRAN (1957) predates C but both are from an earlier generation than Python, Java, or JavaScript." },
+  { question: "Why is C still used today for operating systems?", options: ["It's the newest language available", "It offers a strong balance of speed and low-level hardware control", "It's easier than Python", "It has built-in web support"], correctIndex: 1, explanation: "C's closeness to hardware and performance make it well suited for OS-level and embedded programming." },
+  { question: "What best describes the overall trend in programming's evolution?", options: ["Languages became less readable over time", "Languages became closer to human thinking while staying translatable to machine code", "Languages stopped needing translation to run", "Hardware became irrelevant to programming"], correctIndex: 1, explanation: "The trend has been toward more human-readable languages, while a compiler/interpreter still bridges to the hardware." },
+  { question: "What is a plugboard, in the context of early computing?", options: ["A modern keyboard", "A physical panel wired by hand to configure a computer's operations", "A software debugging tool", "An early programming language"], correctIndex: 1, explanation: "Early computers like ENIAC were programmed by physically wiring plugboards to configure operations." },
+  { question: "Which statement about assembly language is true?", options: ["It has no relationship to machine code", "It is a direct, readable stand-in for machine code instructions", "It is identical across all CPU types", "It was invented after C"], correctIndex: 1, explanation: "Assembly gives each machine code instruction a short readable name (mnemonic), tied to a specific CPU architecture." },
+  { question: "Understanding programming's history mainly helps you:", options: ["Memorize dates for a test only", "Understand why C's design choices exist", "Avoid ever learning new languages", "Skip learning syntax entirely"], correctIndex: 1, explanation: "Knowing what problem each generation of languages solved makes C's specific design choices make sense rather than feel arbitrary." },
+  { question: "What does 'portable' mean when describing a language like C?", options: ["It can be carried in a bag", "Code can run on different machines/hardware with little or no change", "It only works on portable devices", "It has no rules"], correctIndex: 1, explanation: "Portability means the same source code can be compiled and run on different hardware/operating systems." },
+  { question: "Before high-level languages, why was writing software so slow?", options: ["Programmers had to think in terms of raw hardware instructions or wiring", "There were too many high-level languages to choose from", "Computers were too fast to keep up with", "Software didn't exist yet"], correctIndex: 0, explanation: "Working directly in machine code or physical wiring required painstaking, error-prone, hardware-specific work." },
+  { question: "Which best completes: 'Every programming language, no matter how modern, ultimately...'", options: ["avoids using the CPU", "gets translated down to machine code the CPU can run", "is written directly in English", "removes the need for a compiler or interpreter"], correctIndex: 1, explanation: "All programming languages, high or low level, are eventually translated into the machine code their target CPU executes." }
+];
+</script>
+<script src="../../js/theme.js"></script>
+<script src="../../js/sidebar.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/quiz.js"></script>
+<script src="../../js/copy-code.js"></script>
+</body>
+</html>
