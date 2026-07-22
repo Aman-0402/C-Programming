@@ -65,9 +65,15 @@ history and `docs/superpowers/plans/` for implementation plans.
   stays the reference for int-only topics like Scope/Binding/Storage
   Classes — two parallel running examples now exist in Unit 2, don't
   conflate them.
-- **Next up: Unit 2 / G3 — Values & Basic Operators** (L-value,
-  R-value, Type Conversion, Operators overview, Arithmetic, Relational,
-  Logical).
+- **Unit 2 / G3 — Values & Basic Operators — done.** 7 topic pages in
+  `pages/unit2/` (`l-value.html` through `logical-operators.html`),
+  Unit 2's sidebar now has 21 links. Extended `add.c` (a=5, b=3) with
+  arithmetic (`diff`/`product`/`remainder`), relational (`isGreater`),
+  and logical (`bothPositive`) operator demos, plus a `divide.c`-style
+  cast example on Type Conversion — all built on the same base without
+  altering it. `profile.c` (G2's example) wasn't touched here.
+- **Next up: Unit 2 / G4 — Advanced Operators** (Conditional, Bitwise,
+  Assignment, Comma, Arrow, `sizeof`, Precedence, Associativity).
 
 ## Folder structure
 
