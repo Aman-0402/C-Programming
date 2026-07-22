@@ -19,16 +19,24 @@ history and `docs/superpowers/plans/` for implementation plans.
 
 - **Foundation** — done. Design system, shell (sidebar/floating
   controls/search), homepage.
-- **Unit 1 / Group 1 — Programming Fundamentals** — done. 7 topic pages
-  (`pages/unit1/evolution-of-programming.html` through
-  `flowcharts.html`). No real C syntax yet — pseudocode/plain-English
-  only, per design.
-- **Next up: Unit 1 / Group 2 — Getting to Know C** (Intro to C,
-  History, Features, Applications, Structure of C Program — 5 topics,
-  first real C syntax). Then Groups 3-4 (compilation pipeline,
-  comments) finish Unit 1 before Unit 2 starts. Unit 2 assumes the
-  reader has already seen a basic C program's structure — don't build
-  it before Unit 1 is complete.
+- **Unit 1 — fully complete.** All 28 topics across `pages/unit1/`, from
+  `evolution-of-programming.html` through `multi-line-comments.html`.
+  Built in 5 sub-projects: Group 1 (Programming Fundamentals, 7 topics,
+  pseudocode/plain-English only), Group 2 (Getting to Know C, 5 topics,
+  first real C syntax — Hello World), Group 3a (The Pipeline Itself, 6
+  topics, the `add.c` example traced through real `gcc` compilation),
+  Group 3b (Translators & Support Concepts, 7 topics — Assembler,
+  Linker, Loader, Interpreter, Compilers & Interpreters, Operating
+  Systems, Debugging), Group 4 (Comments, 3 topics, Unit 1's closing
+  capstone). Sidebar's Unit 1 accordion holds all 28 links; prev/next
+  chain runs unbroken end to end.
+- **Next up: Unit 2 — C Building Blocks & Data Types** (tokens,
+  variables, data types, operators — the first sub-project that can
+  finally assume the reader has seen a basic C program's structure).
+  No content exists there yet — `pages/unit2/` is still a placeholder
+  directory. Decompose Unit 2 into topic-groups the same way Unit 1
+  was before starting (36 raw syllabus topics is too large for one
+  sub-project).
 
 ## Folder structure
 
