@@ -42,7 +42,20 @@ history and `docs/superpowers/plans/` for implementation plans.
   Increment/Decrement/Notation + I/O (Increment, Decrement, Hungarian
   Notation, Input, Output, `printf()`, `scanf()`). Build one group at a
   time, same spec→plan→execute→review cycle as every Unit 1 group.
-  `pages/unit2/` is still a placeholder directory until G1 ships.
+- **Unit 2 / G1 — Tokens & Naming — done.** 7 topic pages in
+  `pages/unit2/` (`tokens.html` through `values.html`). Evolved the
+  recurring `add.c` example from Unit 1's hardcoded string into real
+  variables (`int a = 5; int b = 3; int sum = a + b;`), then a `const`
+  variant on the Constants page — same output throughout ("The sum of
+  5 and 3 is 8"), keep it consistent when G2+ reference this example.
+  Unit 2's sidebar entry is now an accordion (`#unit2-toggle`/
+  `#unit2-submenu`) exactly like Unit 1's, wired into all 36 existing
+  pages (homepage + 28 Unit 1 pages + these 7). Unit 1's finale
+  (`multi-line-comments.html`) now links forward into
+  `pages/unit2/tokens.html`, continuing the single unbroken prev/next
+  chain across both units.
+- **Next up: Unit 2 / G2 — Scope & Data Types** (Scope, Binding,
+  Storage Classes, Integer/Float/Char Types, Strings).
 
 ## Folder structure
 
