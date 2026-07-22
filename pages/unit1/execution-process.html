@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Execution Process — Unit 1 — C Programming eBook</title>
+<meta name="description" content="Learn what happens when a compiled C program is actually run, trace add.c's complete journey from source code to output, and complete this chapter's capstone mini project.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="../../css/variables.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/diagrams.css">
+<link rel="stylesheet" href="../../css/quiz.css">
+
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<style>
+  .topic-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-6); align-items: start; }
+  .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
+  .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
+  .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
+</style>
+</head>
+<body>
+
+<button class="icon-btn theme-toggle-float" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+  <i class="fa-solid fa-sun icon-sun"></i>
+  <i class="fa-solid fa-moon icon-moon"></i>
+</button>
+
+<div class="social-float">
+  <a class="icon-btn" href="https://github.com/Aman-0402" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+    <i class="fa-brands fa-github"></i>
+  </a>
+  <a class="icon-btn" href="https://www.linkedin.com/in/aman-raj-081905211/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+</div>
+
+<div class="shell" id="shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo" style="margin-bottom: var(--space-5);">
+      <a href="../../index.html" class="logo">
+        <i class="fa-solid fa-code" style="color: var(--color-primary);"></i><span class="sidebar-label"> C Programming eBook</span>
+      </a>
+    </div>
+
+    <button class="icon-btn" id="sidebar-collapse" aria-label="Collapse sidebar" style="margin-bottom: var(--space-4);">
+      <i class="fa-solid fa-angles-left"></i>
+    </button>
+
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 1</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit1-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">Unit 1</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit1-submenu">
+      <a class="sidebar-link" href="evolution-of-programming.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="sidebar-label">Evolution of Programming</span></a>
+      <a class="sidebar-link" href="programming-languages.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Programming Languages</span></a>
+      <a class="sidebar-link" href="problem-solving.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Problem Solving</span></a>
+      <a class="sidebar-link" href="sequential-logic.html"><i class="fa-solid fa-list-ol"></i><span class="sidebar-label">Sequential Logic</span></a>
+      <a class="sidebar-link" href="algorithms.html"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-label">Algorithms</span></a>
+      <a class="sidebar-link" href="pseudocode.html"><i class="fa-solid fa-file-lines"></i><span class="sidebar-label">Pseudocode</span></a>
+      <a class="sidebar-link" href="flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
+      <a class="sidebar-link" href="introduction-to-c.html"><i class="fa-solid fa-c"></i><span class="sidebar-label">Introduction to C</span></a>
+      <a class="sidebar-link" href="history-of-c.html"><i class="fa-solid fa-scroll"></i><span class="sidebar-label">History of C</span></a>
+      <a class="sidebar-link" href="features-of-c.html"><i class="fa-solid fa-star"></i><span class="sidebar-label">Features of C</span></a>
+      <a class="sidebar-link" href="applications-of-c.html"><i class="fa-solid fa-industry"></i><span class="sidebar-label">Applications</span></a>
+      <a class="sidebar-link" href="structure-of-c-program.html"><i class="fa-solid fa-code"></i><span class="sidebar-label">Structure of C Program</span></a>
+      <a class="sidebar-link" href="c-compiler.html"><i class="fa-solid fa-gears"></i><span class="sidebar-label">C Compiler</span></a>
+      <a class="sidebar-link" href="compilation-process.html"><i class="fa-solid fa-arrows-turn-right"></i><span class="sidebar-label">Compilation Process</span></a>
+      <a class="sidebar-link" href="source-code.html"><i class="fa-solid fa-file-code"></i><span class="sidebar-label">Source Code</span></a>
+      <a class="sidebar-link" href="object-code.html"><i class="fa-solid fa-cube"></i><span class="sidebar-label">Object Code</span></a>
+      <a class="sidebar-link" href="executable-code.html"><i class="fa-solid fa-play"></i><span class="sidebar-label">Executable Code</span></a>
+      <a class="sidebar-link active" href="execution-process.html"><i class="fa-solid fa-microchip"></i><span class="sidebar-label">Execution Process</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 2</span></div>
+      <a class="sidebar-link" href="../unit2/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">C Building Blocks &amp; Data Types</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 3</span></div>
+      <a class="sidebar-link" href="../unit3/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Control Statements</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 4</span></div>
+      <a class="sidebar-link" href="../unit4/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Strings, Functions &amp; Pointers</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 5</span></div>
+      <a class="sidebar-link" href="../unit5/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Structures, Files &amp; Memory Management</span></a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="topic-layout">
+      <div>
+        <h1>Execution Process</h1>
+        <p class="lead">The final step of the entire pipeline — where the executable finally runs and <code>add.c</code> becomes real, visible output on the screen.</p>
+
+        <section class="topic-section" id="introduction">
+          <h2>1. What Is It?</h2>
+          <p>Execution is what happens when you actually run the compiled executable. The operating system loads it into memory, and the CPU begins carrying out its instructions one by one, producing whatever output the program is designed to produce.</p>
+        </section>
+
+        <section class="topic-section" id="why">
+          <h2>2. Why Do We Need to Know This?</h2>
+          <p>This is the final step of the entire journey <code>add.c</code> has taken across this chapter — from readable text, through several transformation stages, to actually appearing as output on a screen. Understanding execution closes the loop on everything you've learned so far.</p>
+        </section>
+
+        <section class="topic-section" id="real-life">
+          <h2>3. Real-Life Example</h2>
+          <p>Like finally starting the finished, assembled car's engine and driving it — every earlier step (building, assembling, testing) existed to make this moment possible. All the effort of design, manufacturing, and inspection only pays off the moment the engine turns over and the car actually moves.</p>
+        </section>
+
+        <section class="topic-section" id="visual">
+          <h2>4. Visual Explanation</h2>
+          <p>Here is the entire pipeline this chapter has followed, from start to finish, in one diagram:</p>
+          <div class="flowchart">
+            <div class="flow-box flow-box-start"><span>Source Code</span></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box"><span>Preprocessing</span></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box"><span>Compilation</span></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box"><span>Assembly</span></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box"><span>Linking</span></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box"><span>Executable</span></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box"><span>Execution (Running)</span></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box flow-box-end"><span>Output: The sum of 5 and 3 is 8</span></div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="dryrun">
+          <h2>5. Dry Run</h2>
+          <p>Tracing what happens when you run <code>./add</code> (or <code>add.exe</code>):</p>
+          <table>
+            <thead>
+              <tr><th>Order</th><th>Step</th><th>What Happens</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>Load</td><td>The operating system loads the executable into memory.</td></tr>
+              <tr><td>2</td><td>Start</td><td>The CPU begins executing its instructions, starting at <code>main()</code>.</td></tr>
+              <tr><td>3</td><td>Run</td><td>The <code>printf</code> statement runs, sending "The sum of 5 and 3 is 8" to the screen.</td></tr>
+              <tr><td>4</td><td>Finish</td><td><code>return 0;</code> signals successful completion.</td></tr>
+              <tr><td>5</td><td>Reclaim</td><td>The operating system reclaims the program's memory.</td></tr>
+            </tbody>
+          </table>
+          <p>The exact final output produced is:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>output</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>The sum of 5 and 3 is 8</pre>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mistakes">
+          <h2>6. Common Mistakes</h2>
+          <ul class="mistake-list">
+            <li>Assuming "execution" and "compilation" are the same step — compilation happens once, ahead of time; execution happens every time you run the program.</li>
+            <li>Forgetting that a program must finish compiling successfully before it can ever be executed.</li>
+            <li>Assuming a program automatically re-reads its own source code while running — it doesn't. It runs whatever was compiled, regardless of any later source changes.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="debugging">
+          <h2>7. Debugging Tips</h2>
+          <p>If a program compiles successfully but behaves unexpectedly when run, the bug is a logic issue happening during execution, not a compilation problem, since compilation already succeeded. In that situation, re-check the program's logic — the values it computes, the order its statements run in, and what it actually prints — rather than looking for syntax mistakes, because the compiler has already confirmed the syntax is valid.</p>
+        </section>
+
+        <section class="topic-section" id="best-practices">
+          <h2>8. Best Practices</h2>
+          <ul class="best-practice-list">
+            <li>Always test-run your program after compiling, not just check that it compiled without errors.</li>
+            <li>A successful compile only means the syntax was valid, not that the program behaves correctly.</li>
+            <li>Compare the actual output against what you expected before assuming the program is correct.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="interview">
+          <h2>9. Interview Questions</h2>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Easy:</strong> What happens during the execution process?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>The operating system loads the executable into memory, and the CPU runs its instructions, producing output.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Medium:</strong> What's the difference between compilation and execution?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Compilation happens once ahead of time, translating source code into an executable; execution happens every time you actually run that executable.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Hard:</strong> Why can a program that compiles successfully still misbehave when executed?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Compilation only verifies the code translates correctly (valid syntax); it doesn't verify the program's logic is correct, which only shows up when the program actually runs.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>HR:</strong> Describe, step by step, what happens when you run a compiled program.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>There's no fixed right answer — a strong response walks through loading the executable into memory, the CPU executing its instructions starting at <code>main()</code>, and the resulting output, in the candidate's own words.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Conceptual:</strong> Does a running program re-read its original source code file?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>No — it runs entirely from the compiled executable; changes to the source file have no effect until the program is recompiled.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Scenario-based:</strong> Your program compiles with no errors, but prints the wrong output — what stage does this problem belong to?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Execution (a logic error), not compilation, since compilation already succeeded.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mcq">
+          <h2>10. MCQs</h2>
+          <div class="quiz" data-quiz-source="executionProcessQuiz"></div>
+        </section>
+
+        <section class="topic-section" id="exercises">
+          <h2>11. Programming Exercises</h2>
+          <p><strong>Easy:</strong> From memory, state what the operating system does at the start of execution.</p>
+          <p><strong>Medium:</strong> Explain, in your own words, why a program can compile successfully but still have bugs.</p>
+          <p><strong>Hard:</strong> Trace, in writing, what you'd expect to happen if <code>add.c</code>'s <code>printf</code> line were changed to print a different sentence, from source code all the way through to final output.</p>
+        </section>
+
+        <section class="topic-section" id="assignments">
+          <h2>12. Assignments</h2>
+          <p>Write a complete, step-by-step trace of <code>add.c</code>'s entire journey, from source code through every pipeline stage in this chapter, ending in its final printed output.</p>
+          <p>When you're comfortable with this, move on to the chapter's capstone <a href="#miniproject">Mini Project</a> below.</p>
+        </section>
+
+        <section class="topic-section" id="miniproject">
+          <h2>13. Mini Project</h2>
+          <p><strong>Trace Your Own Program.</strong></p>
+          <p>Pick any short C program idea of your own (or simply reuse <code>add.c</code>), and write out — in plain English, stage by stage — what happens to it through the full pipeline: source code, preprocessing, compilation, assembly, linking, executable, and finally execution. Before "running" it mentally, predict its exact console output.</p>
+          <p>Completing this project capstones the "Pipeline" chapter — you now understand the complete journey a program takes from writing its code to actually seeing it run.</p>
+        </section>
+
+        <section class="topic-section" id="faq">
+          <h2>14. FAQs</h2>
+          <p><strong>Q: Does a program need to be recompiled every time it's run?</strong><br>A: No — only when the source code changes. The same compiled executable can be run many times without recompiling.</p>
+          <p><strong>Q: What happens to a program's memory after it finishes running?</strong><br>A: The operating system reclaims it, making it available for other programs.</p>
+        </section>
+
+        <section class="topic-section" id="takeaways">
+          <h2>15. Key Takeaways</h2>
+          <ul>
+            <li>Execution is the final stage where the operating system loads and the CPU runs the compiled executable.</li>
+            <li>Compiling successfully doesn't guarantee correct behavior at runtime.</li>
+            <li>You've now traced a program's complete journey from source code to running output.</li>
+          </ul>
+        </section>
+
+        <div class="topic-nav-footer">
+          <a href="executable-code.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Previous: Executable Code</a>
+          <span></span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for absolute beginners. &copy; 2026 C Programming eBook.</p>
+  </footer>
+
+</div>
+
+<div class="search-panel" id="search-panel" data-open="false">
+  <div class="search-panel-inner">
+    <div class="search-input-row">
+      <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+      <input type="text" id="search-input" placeholder="Search topics... (Ctrl+K)">
+      <button class="icon-btn" id="search-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="search-results" id="search-results"></ul>
+  </div>
+</div>
+
+<script>
+window.executionProcessQuiz = [
+  { question: "What happens during the execution process?", options: ["The source code is rewritten by hand", "The operating system loads the executable into memory and the CPU runs its instructions", "The linker combines object files", "The preprocessor expands macros"], correctIndex: 1, explanation: "Execution is when the operating system loads the compiled executable into memory and the CPU carries out its instructions, producing output." },
+  { question: "Which best describes the timing difference between compilation and execution?", options: ["They always happen at the exact same time", "Compilation happens once ahead of time; execution happens every time you run the program", "Execution happens before compilation", "Compilation happens every time you run the program"], correctIndex: 1, explanation: "Compilation translates source code into an executable once; execution happens every single time that executable is run afterward." },
+  { question: "Why doesn't compiling successfully guarantee correct behavior at runtime?", options: ["Compilation only checks that the syntax translates correctly, not that the program's logic is correct", "Compilers always contain bugs", "Compilation runs the program automatically", "Successful compilation means the program can never crash"], correctIndex: 0, explanation: "Compilation verifies valid syntax and structure, but logic errors only reveal themselves once the program actually executes." },
+  { question: "In add.c, what is the exact final output printed when the program is executed?", options: ["Hello, World!", "The sum of 5 and 3 is 8", "add.c compiled successfully", "5 + 3"], correctIndex: 1, explanation: "Running the compiled add.c executable produces the line: The sum of 5 and 3 is 8." },
+  { question: "What does the operating system do once a program finishes executing?", options: ["It recompiles the source code automatically", "It reclaims the program's memory", "It deletes the executable file", "It restarts the program automatically"], correctIndex: 1, explanation: "After execution completes, the operating system reclaims the memory that was used by the program so it becomes available for other programs." }
+];
+</script>
+<script src="../../js/theme.js"></script>
+<script src="../../js/sidebar.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/quiz.js"></script>
+<script src="../../js/copy-code.js"></script>
+<script src="../../js/accordion.js"></script>
+</body>
+</html>
