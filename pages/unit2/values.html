@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Values — Unit 2 — C Programming eBook</title>
+<meta name="description" content="Learn what a value is in C, how it differs from a variable, and complete this chapter's capstone mini project by declaring your own variables and constants.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="../../css/variables.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/diagrams.css">
+<link rel="stylesheet" href="../../css/quiz.css">
+
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<style>
+  .topic-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-6); align-items: start; }
+  .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
+  .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
+  .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
+</style>
+</head>
+<body>
+
+<button class="icon-btn theme-toggle-float" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+  <i class="fa-solid fa-sun icon-sun"></i>
+  <i class="fa-solid fa-moon icon-moon"></i>
+</button>
+
+<div class="social-float">
+  <a class="icon-btn" href="https://github.com/Aman-0402" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+    <i class="fa-brands fa-github"></i>
+  </a>
+  <a class="icon-btn" href="https://www.linkedin.com/in/aman-raj-081905211/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+</div>
+
+<div class="shell" id="shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo" style="margin-bottom: var(--space-5);">
+      <a href="../../index.html" class="logo">
+        <i class="fa-solid fa-code" style="color: var(--color-primary);"></i><span class="sidebar-label"> C Programming eBook</span>
+      </a>
+    </div>
+
+    <button class="icon-btn" id="sidebar-collapse" aria-label="Collapse sidebar" style="margin-bottom: var(--space-4);">
+      <i class="fa-solid fa-angles-left"></i>
+    </button>
+
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 1</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit1-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">Unit 1</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit1-submenu">
+      <a class="sidebar-link" href="../unit1/evolution-of-programming.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="sidebar-label">Evolution of Programming</span></a>
+      <a class="sidebar-link" href="../unit1/programming-languages.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Programming Languages</span></a>
+      <a class="sidebar-link" href="../unit1/problem-solving.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Problem Solving</span></a>
+      <a class="sidebar-link" href="../unit1/sequential-logic.html"><i class="fa-solid fa-list-ol"></i><span class="sidebar-label">Sequential Logic</span></a>
+      <a class="sidebar-link" href="../unit1/algorithms.html"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-label">Algorithms</span></a>
+      <a class="sidebar-link" href="../unit1/pseudocode.html"><i class="fa-solid fa-file-lines"></i><span class="sidebar-label">Pseudocode</span></a>
+      <a class="sidebar-link" href="../unit1/flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
+      <a class="sidebar-link" href="../unit1/introduction-to-c.html"><i class="fa-solid fa-c"></i><span class="sidebar-label">Introduction to C</span></a>
+      <a class="sidebar-link" href="../unit1/history-of-c.html"><i class="fa-solid fa-scroll"></i><span class="sidebar-label">History of C</span></a>
+      <a class="sidebar-link" href="../unit1/features-of-c.html"><i class="fa-solid fa-star"></i><span class="sidebar-label">Features of C</span></a>
+      <a class="sidebar-link" href="../unit1/applications-of-c.html"><i class="fa-solid fa-industry"></i><span class="sidebar-label">Applications</span></a>
+      <a class="sidebar-link" href="../unit1/structure-of-c-program.html"><i class="fa-solid fa-code"></i><span class="sidebar-label">Structure of C Program</span></a>
+      <a class="sidebar-link" href="../unit1/c-compiler.html"><i class="fa-solid fa-gears"></i><span class="sidebar-label">C Compiler</span></a>
+      <a class="sidebar-link" href="../unit1/compilation-process.html"><i class="fa-solid fa-arrows-turn-right"></i><span class="sidebar-label">Compilation Process</span></a>
+      <a class="sidebar-link" href="../unit1/source-code.html"><i class="fa-solid fa-file-code"></i><span class="sidebar-label">Source Code</span></a>
+      <a class="sidebar-link" href="../unit1/object-code.html"><i class="fa-solid fa-cube"></i><span class="sidebar-label">Object Code</span></a>
+      <a class="sidebar-link" href="../unit1/executable-code.html"><i class="fa-solid fa-play"></i><span class="sidebar-label">Executable Code</span></a>
+      <a class="sidebar-link" href="../unit1/execution-process.html"><i class="fa-solid fa-microchip"></i><span class="sidebar-label">Execution Process</span></a>
+      <a class="sidebar-link" href="../unit1/assembler.html"><i class="fa-solid fa-wrench"></i><span class="sidebar-label">Assembler</span></a>
+      <a class="sidebar-link" href="../unit1/linker.html"><i class="fa-solid fa-link"></i><span class="sidebar-label">Linker</span></a>
+      <a class="sidebar-link" href="../unit1/loader.html"><i class="fa-solid fa-upload"></i><span class="sidebar-label">Loader</span></a>
+      <a class="sidebar-link" href="../unit1/interpreter.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Interpreter</span></a>
+      <a class="sidebar-link" href="../unit1/compilers-and-interpreters.html"><i class="fa-solid fa-code-compare"></i><span class="sidebar-label">Compilers &amp; Interpreters</span></a>
+      <a class="sidebar-link" href="../unit1/operating-systems.html"><i class="fa-solid fa-desktop"></i><span class="sidebar-label">Operating Systems</span></a>
+      <a class="sidebar-link" href="../unit1/debugging.html"><i class="fa-solid fa-bug"></i><span class="sidebar-label">Debugging</span></a>
+      <a class="sidebar-link" href="../unit1/comments.html"><i class="fa-solid fa-comment"></i><span class="sidebar-label">Comments</span></a>
+      <a class="sidebar-link" href="../unit1/single-line-comments.html"><i class="fa-solid fa-slash"></i><span class="sidebar-label">Single Line Comments</span></a>
+      <a class="sidebar-link" href="../unit1/multi-line-comments.html"><i class="fa-solid fa-quote-right"></i><span class="sidebar-label">Multi Line Comments</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 2</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit2-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">C Building Blocks &amp; Data Types</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit2-submenu">
+      <a class="sidebar-link" href="tokens.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Tokens</span></a>
+      <a class="sidebar-link" href="keywords.html"><i class="fa-solid fa-key"></i><span class="sidebar-label">Keywords</span></a>
+      <a class="sidebar-link" href="identifiers.html"><i class="fa-solid fa-tag"></i><span class="sidebar-label">Identifiers</span></a>
+      <a class="sidebar-link" href="naming-rules.html"><i class="fa-solid fa-spell-check"></i><span class="sidebar-label">Naming Rules</span></a>
+      <a class="sidebar-link" href="variables.html"><i class="fa-solid fa-box"></i><span class="sidebar-label">Variables</span></a>
+      <a class="sidebar-link" href="constants.html"><i class="fa-solid fa-lock"></i><span class="sidebar-label">Constants</span></a>
+      <a class="sidebar-link active" href="values.html"><i class="fa-solid fa-hashtag"></i><span class="sidebar-label">Values</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 3</span></div>
+      <a class="sidebar-link" href="../unit3/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Control Statements</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 4</span></div>
+      <a class="sidebar-link" href="../unit4/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Strings, Functions &amp; Pointers</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 5</span></div>
+      <a class="sidebar-link" href="../unit5/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Structures, Files &amp; Memory Management</span></a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="topic-layout">
+      <div>
+        <h1>Values</h1>
+        <p class="lead">The last stop of this chapter — the actual data that variables and constants hold, and why "variable" and "value" are not the same thing.</p>
+
+        <section class="topic-section" id="introduction">
+          <h2>1. What Is It?</h2>
+          <p>A <strong>value</strong> is the actual data stored at a given moment — the concrete number, character, or other piece of data that a variable or constant currently holds. In <code>int a = 5;</code>, <code>a</code> is the variable (the named storage location), and <code>5</code> is the value currently stored inside it.</p>
+        </section>
+
+        <section class="topic-section" id="why">
+          <h2>2. Why Do We Need to Know This?</h2>
+          <p>Distinguishing "variable" (the named container) from "value" (the actual data inside it) makes it much clearer exactly what changes and what stays fixed as a program runs. It also sets up more precise vocabulary you'll need later in this course, for concepts like <strong>l-value</strong> and <strong>r-value</strong>.</p>
+        </section>
+
+        <section class="topic-section" id="real-life">
+          <h2>3. Real-Life Example</h2>
+          <p>Think of a labeled storage box named <code>a</code> — that label is the variable. Whatever happens to be inside the box right now, say <code>5</code>, is the value. The box's label stays the same even as its contents change over time.</p>
+        </section>
+
+        <section class="topic-section" id="visual">
+          <h2>4. Visual Explanation</h2>
+          <p>Here is the final memory state of this chapter's <code>add.c</code> example, with each cell explicitly labeled by its variable name (the label) and the value (the number currently inside it):</p>
+          <div class="memory-diagram">
+            <div class="memory-cell">
+              <div class="memory-cell-label">variable name: a</div>
+              <div class="memory-cell-value">value: 5</div>
+            </div>
+            <div class="memory-cell">
+              <div class="memory-cell-label">variable name: b</div>
+              <div class="memory-cell-value">value: 3</div>
+            </div>
+            <div class="memory-cell">
+              <div class="memory-cell-label">variable name: sum</div>
+              <div class="memory-cell-value">value: 8</div>
+            </div>
+          </div>
+          <p><code>a</code>, <code>b</code>, and <code>sum</code> are the variables — the named boxes. <code>5</code>, <code>3</code>, and <code>8</code> are their values — what's actually sitting inside each box right now.</p>
+        </section>
+
+        <section class="topic-section" id="dryrun">
+          <h2>5. Dry Run</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>add.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>#include &lt;stdio.h&gt;
+
+int main() {
+    const int a = 5;
+    const int b = 3;
+    int sum = a + b;
+    printf("The sum of %d and %d is %d\n", a, b, sum);
+    return 0;
+}</pre>
+          </div>
+          <p>Tracing through this one more time, in terms of values:</p>
+          <ul>
+            <li>The value <code>5</code> is stored in <code>a</code>.</li>
+            <li>The value <code>3</code> is stored in <code>b</code>.</li>
+            <li>The value of <code>a + b</code>, which is <code>8</code>, is stored in <code>sum</code>.</li>
+            <li>The values of <code>a</code>, <code>b</code>, and <code>sum</code> — <code>5</code>, <code>3</code>, and <code>8</code> — are substituted into the <code>printf</code> output, producing "The sum of 5 and 3 is 8".</li>
+          </ul>
+          <p>Every variable and constant in this program ultimately just holds a value — that's the idea this whole chapter has been building toward.</p>
+        </section>
+
+        <section class="topic-section" id="mistakes">
+          <h2>6. Common Mistakes</h2>
+          <ul class="mistake-list">
+            <li>Using "variable" and "value" interchangeably, as if they mean the same thing. They don't — one is the named container, the other is what's currently inside it.</li>
+            <li>Assuming a value can never change just because it happens to be correct right now. A regular (non-const) variable's value absolutely can change later in the program — only a <code>const</code> locks it in place.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="debugging">
+          <h2>7. Debugging Tips</h2>
+          <p>When debugging by printing variables, remember you're printing their current <em>values</em> at that specific moment in execution — the very same variable printed earlier or later in the program could hold a completely different value.</p>
+        </section>
+
+        <section class="topic-section" id="best-practices">
+          <h2>8. Best Practices</h2>
+          <ul class="best-practice-list">
+            <li>Be precise with vocabulary when discussing code with others: saying "the value of <code>a</code>" versus "the variable <code>a</code>" communicates something specific and different.</li>
+            <li>Using these terms carefully avoids confusion, especially when working with a team or explaining a bug.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="interview">
+          <h2>9. Interview Questions</h2>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Easy:</strong> What is a value, as distinct from a variable?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>A value is the actual data (like a number) currently stored in a variable, whereas the variable itself is the named container that holds it.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Medium:</strong> In <code>int a = 5;</code>, what is the value, and what is the variable?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p><code>a</code> is the variable — the name of the storage location. <code>5</code> is the value — the actual data stored inside it.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Hard:</strong> Can the same variable hold different values at different points during a program's execution?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Yes, for a regular (non-const) variable — its value can be reassigned as the program runs, so the same variable name can legitimately hold different values at different times.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>HR:</strong> Why might precise vocabulary (variable vs. value) matter when discussing code with a team?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>This is open-ended — a strong answer would note that precise terms avoid ambiguity and miscommunication, so that everyone on the team understands exactly whether you mean the container or its current contents.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Conceptual:</strong> Does a constant have a value?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Yes — a constant absolutely has a value, just like any variable. The difference is that a constant's value can never be changed to a different one after it's declared.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Scenario-based:</strong> You print a variable early in a program and again later, and get two different numbers — is this necessarily a bug?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Not necessarily — if it's a regular (non-const) variable that was legitimately reassigned somewhere in between, holding different values at different times is expected behavior, not a bug.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mcq">
+          <h2>10. MCQs</h2>
+          <div class="quiz" data-quiz-source="valuesQuiz"></div>
+        </section>
+
+        <section class="topic-section" id="exercises">
+          <h2>11. Programming Exercises</h2>
+          <p><strong>Easy:</strong> In <code>int b = 3;</code>, identify the variable and the value.</p>
+          <p><strong>Medium:</strong> Explain, in your own words, why a constant still has a "value" despite never being able to change.</p>
+          <p><strong>Hard:</strong> Trace, in writing, the values held by <code>a</code>, <code>b</code>, and <code>sum</code> at each line of this chapter's <code>add.c</code> example.</p>
+        </section>
+
+        <section class="topic-section" id="assignments">
+          <h2>12. Assignments</h2>
+          <p>Write a short paragraph explaining, in your own words, the difference between a variable and a value, using an example that hasn't already appeared on this page.</p>
+          <p>When you're comfortable with this, move on to this chapter's closing <a href="#miniproject">Mini Project</a> below.</p>
+        </section>
+
+        <section class="topic-section" id="miniproject">
+          <h2>13. Mini Project</h2>
+          <p><strong>Declare Your Own Variables and Constants.</strong></p>
+          <p>Pick a small program idea of your own — for example, calculating the area of a rectangle, converting a temperature, or tracking a simple score. Then, following everything you've learned in this chapter, write out appropriate variable and constant declarations for it:</p>
+          <ul>
+            <li>Correct identifier names, following the naming rules from earlier in this chapter.</li>
+            <li>Sensible use of <code>const</code> wherever a value shouldn't change once set.</li>
+            <li>A brief note next to each declaration describing what value it holds.</li>
+          </ul>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>rectangle.c (example sketch)</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>#include &lt;stdio.h&gt;
+
+int main() {
+    const float pi = 3.14f;   // fixed constant, never changes
+    int length = 10;          // variable, holds the rectangle's length
+    int width = 4;            // variable, holds the rectangle's width
+    int area = length * width; // variable, holds the computed area
+
+    printf("Area = %d\n", area);
+    return 0;
+}</pre>
+          </div>
+          <p>This mini project capstones the "Tokens &amp; Naming" chapter. You now understand tokens, keywords, identifiers, naming rules, variables, constants, and values — a genuinely complete foundation for reading and writing basic C declarations. You're ready to build on it with data types in the next chapter.</p>
+        </section>
+
+        <section class="topic-section" id="faq">
+          <h2>14. FAQs</h2>
+          <p><strong>Q: Is "value" a C-specific term, or a general programming concept?</strong><br>A: It's general — every programming language has this same variable/value distinction, just with different specific syntax.</p>
+          <p><strong>Q: Will there be more precise value-related terms later in this course?</strong><br>A: Yes — concepts like l-value and r-value refine this idea further, and are covered in a later Unit 2 sub-project.</p>
+        </section>
+
+        <section class="topic-section" id="takeaways">
+          <h2>15. Key Takeaways</h2>
+          <ul>
+            <li>A variable is the named container; a value is the actual data currently stored inside it — the two are related but not the same thing.</li>
+            <li>A regular variable's value can change over the course of a program's execution, while a <code>const</code>'s value is locked in at declaration and can never change afterward.</li>
+            <li>This closes out the "Tokens &amp; Naming" chapter — tokens, keywords, identifiers, naming rules, variables, constants, and now values.</li>
+          </ul>
+        </section>
+
+        <div class="topic-nav-footer">
+          <a href="constants.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Previous: Constants</a>
+          <span></span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for absolute beginners. &copy; 2026 C Programming eBook.</p>
+  </footer>
+
+</div>
+
+<div class="search-panel" id="search-panel" data-open="false">
+  <div class="search-panel-inner">
+    <div class="search-input-row">
+      <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+      <input type="text" id="search-input" placeholder="Search topics... (Ctrl+K)">
+      <button class="icon-btn" id="search-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="search-results" id="search-results"></ul>
+  </div>
+</div>
+
+<script>
+window.valuesQuiz = [
+  { question: "What is a 'value' in C, as distinct from a variable?", options: ["Another name for a variable", "The actual data currently stored inside a variable or constant", "A type keyword like int or float", "The name given to a function"], correctIndex: 1, explanation: "A value is the concrete data (a number, character, etc.) currently held by a variable or constant, while the variable is the named container holding it." },
+  { question: "In `int a = 5;`, which part is the value?", options: ["a", "int", "=", "5"], correctIndex: 3, explanation: "`a` is the variable name; `5` is the value stored in it." },
+  { question: "Can a regular (non-const) variable's value change during a program's execution?", options: ["No, never", "Yes, it can be reassigned as the program runs", "Only once, at declaration", "Only if it's declared with const"], correctIndex: 1, explanation: "A regular variable can be reassigned any number of times, so its value can change throughout execution — unlike a const, whose value is fixed at declaration." },
+  { question: "Does a constant, like `const int MAX = 100;`, have a value?", options: ["No, constants don't hold values", "Yes — its value is 100, and it simply can never be changed afterward", "Only if it's also a variable", "Only inside main()"], correctIndex: 1, explanation: "A constant absolutely has a value; the defining feature of const is just that this value cannot be changed after declaration." },
+  { question: "In this chapter's memory diagram, what do the memory cells for a, b, and sum represent?", options: ["Three separate functions", "The variable names (labels) and the values currently stored inside each", "Three different data types", "Three lines of a comment"], correctIndex: 1, explanation: "Each memory cell shows a variable name as its label and the value currently stored in it — for example, a holds 5, b holds 3, and sum holds 8." }
+];
+</script>
+<script src="../../js/theme.js"></script>
+<script src="../../js/sidebar.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/quiz.js"></script>
+<script src="../../js/copy-code.js"></script>
+<script src="../../js/accordion.js"></script>
+</body>
+</html>
