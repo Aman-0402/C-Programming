@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tokens — Unit 2 — C Programming eBook</title>
+<meta name="description" content="Learn what a token is in C — the smallest meaningful unit the compiler recognizes — and the categories keywords, identifiers, constants, strings, operators, and punctuation fall into.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="../../css/variables.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/diagrams.css">
+<link rel="stylesheet" href="../../css/quiz.css">
+
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<style>
+  .topic-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-6); align-items: start; }
+  .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
+  .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
+  .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
+  .token-breakdown { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: var(--space-3); margin-top: var(--space-4); }
+  .token-breakdown .card { padding: var(--space-3); text-align: center; }
+  .token-breakdown .card code { display: block; font-size: 1.05rem; margin-bottom: var(--space-2); }
+  .token-breakdown .card span { color: var(--text-muted); font-size: 0.85rem; }
+</style>
+</head>
+<body>
+
+<button class="icon-btn theme-toggle-float" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+  <i class="fa-solid fa-sun icon-sun"></i>
+  <i class="fa-solid fa-moon icon-moon"></i>
+</button>
+
+<div class="social-float">
+  <a class="icon-btn" href="https://github.com/Aman-0402" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+    <i class="fa-brands fa-github"></i>
+  </a>
+  <a class="icon-btn" href="https://www.linkedin.com/in/aman-raj-081905211/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+</div>
+
+<div class="shell" id="shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo" style="margin-bottom: var(--space-5);">
+      <a href="../../index.html" class="logo">
+        <i class="fa-solid fa-code" style="color: var(--color-primary);"></i><span class="sidebar-label"> C Programming eBook</span>
+      </a>
+    </div>
+
+    <button class="icon-btn" id="sidebar-collapse" aria-label="Collapse sidebar" style="margin-bottom: var(--space-4);">
+      <i class="fa-solid fa-angles-left"></i>
+    </button>
+
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 1</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit1-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">Unit 1</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit1-submenu">
+      <a class="sidebar-link" href="../unit1/evolution-of-programming.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="sidebar-label">Evolution of Programming</span></a>
+      <a class="sidebar-link" href="../unit1/programming-languages.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Programming Languages</span></a>
+      <a class="sidebar-link" href="../unit1/problem-solving.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Problem Solving</span></a>
+      <a class="sidebar-link" href="../unit1/sequential-logic.html"><i class="fa-solid fa-list-ol"></i><span class="sidebar-label">Sequential Logic</span></a>
+      <a class="sidebar-link" href="../unit1/algorithms.html"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-label">Algorithms</span></a>
+      <a class="sidebar-link" href="../unit1/pseudocode.html"><i class="fa-solid fa-file-lines"></i><span class="sidebar-label">Pseudocode</span></a>
+      <a class="sidebar-link" href="../unit1/flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
+      <a class="sidebar-link" href="../unit1/introduction-to-c.html"><i class="fa-solid fa-c"></i><span class="sidebar-label">Introduction to C</span></a>
+      <a class="sidebar-link" href="../unit1/history-of-c.html"><i class="fa-solid fa-scroll"></i><span class="sidebar-label">History of C</span></a>
+      <a class="sidebar-link" href="../unit1/features-of-c.html"><i class="fa-solid fa-star"></i><span class="sidebar-label">Features of C</span></a>
+      <a class="sidebar-link" href="../unit1/applications-of-c.html"><i class="fa-solid fa-industry"></i><span class="sidebar-label">Applications</span></a>
+      <a class="sidebar-link" href="../unit1/structure-of-c-program.html"><i class="fa-solid fa-code"></i><span class="sidebar-label">Structure of C Program</span></a>
+      <a class="sidebar-link" href="../unit1/c-compiler.html"><i class="fa-solid fa-gears"></i><span class="sidebar-label">C Compiler</span></a>
+      <a class="sidebar-link" href="../unit1/compilation-process.html"><i class="fa-solid fa-arrows-turn-right"></i><span class="sidebar-label">Compilation Process</span></a>
+      <a class="sidebar-link" href="../unit1/source-code.html"><i class="fa-solid fa-file-code"></i><span class="sidebar-label">Source Code</span></a>
+      <a class="sidebar-link" href="../unit1/object-code.html"><i class="fa-solid fa-cube"></i><span class="sidebar-label">Object Code</span></a>
+      <a class="sidebar-link" href="../unit1/executable-code.html"><i class="fa-solid fa-play"></i><span class="sidebar-label">Executable Code</span></a>
+      <a class="sidebar-link" href="../unit1/execution-process.html"><i class="fa-solid fa-microchip"></i><span class="sidebar-label">Execution Process</span></a>
+      <a class="sidebar-link" href="../unit1/assembler.html"><i class="fa-solid fa-wrench"></i><span class="sidebar-label">Assembler</span></a>
+      <a class="sidebar-link" href="../unit1/linker.html"><i class="fa-solid fa-link"></i><span class="sidebar-label">Linker</span></a>
+      <a class="sidebar-link" href="../unit1/loader.html"><i class="fa-solid fa-upload"></i><span class="sidebar-label">Loader</span></a>
+      <a class="sidebar-link" href="../unit1/interpreter.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Interpreter</span></a>
+      <a class="sidebar-link" href="../unit1/compilers-and-interpreters.html"><i class="fa-solid fa-code-compare"></i><span class="sidebar-label">Compilers &amp; Interpreters</span></a>
+      <a class="sidebar-link" href="../unit1/operating-systems.html"><i class="fa-solid fa-desktop"></i><span class="sidebar-label">Operating Systems</span></a>
+      <a class="sidebar-link" href="../unit1/debugging.html"><i class="fa-solid fa-bug"></i><span class="sidebar-label">Debugging</span></a>
+      <a class="sidebar-link" href="../unit1/comments.html"><i class="fa-solid fa-comment"></i><span class="sidebar-label">Comments</span></a>
+      <a class="sidebar-link" href="../unit1/single-line-comments.html"><i class="fa-solid fa-slash"></i><span class="sidebar-label">Single Line Comments</span></a>
+      <a class="sidebar-link" href="../unit1/multi-line-comments.html"><i class="fa-solid fa-quote-right"></i><span class="sidebar-label">Multi Line Comments</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 2</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit2-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">C Building Blocks &amp; Data Types</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit2-submenu">
+      <a class="sidebar-link active" href="tokens.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Tokens</span></a>
+      <a class="sidebar-link" href="keywords.html"><i class="fa-solid fa-key"></i><span class="sidebar-label">Keywords</span></a>
+      <a class="sidebar-link" href="identifiers.html"><i class="fa-solid fa-tag"></i><span class="sidebar-label">Identifiers</span></a>
+      <a class="sidebar-link" href="naming-rules.html"><i class="fa-solid fa-spell-check"></i><span class="sidebar-label">Naming Rules</span></a>
+      <a class="sidebar-link" href="variables.html"><i class="fa-solid fa-box"></i><span class="sidebar-label">Variables</span></a>
+      <a class="sidebar-link" href="constants.html"><i class="fa-solid fa-lock"></i><span class="sidebar-label">Constants</span></a>
+      <a class="sidebar-link" href="values.html"><i class="fa-solid fa-hashtag"></i><span class="sidebar-label">Values</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 3</span></div>
+      <a class="sidebar-link" href="../unit3/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Control Statements</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 4</span></div>
+      <a class="sidebar-link" href="../unit4/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Strings, Functions &amp; Pointers</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 5</span></div>
+      <a class="sidebar-link" href="../unit5/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Structures, Files &amp; Memory Management</span></a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="topic-layout">
+      <div>
+        <h1>Tokens</h1>
+        <p class="lead">Welcome to Unit 2 — before you can talk about variables, data types, or operators, you need to understand the smallest meaningful pieces the compiler actually sees: tokens.</p>
+
+        <section class="topic-section" id="introduction">
+          <h2>1. What Is It?</h2>
+          <p>A <strong>token</strong> is the smallest individual meaningful unit in a C program. Before the compiler does anything else with your source code, it breaks it down into a stream of tokens — this is the very first step of compilation.</p>
+          <p>C has several categories of tokens:</p>
+          <ul>
+            <li><strong>Keywords</strong> — reserved words like <code>int</code>, <code>return</code>, <code>if</code>.</li>
+            <li><strong>Identifiers</strong> — names given to variables, functions, etc., like <code>sum</code> or <code>main</code>.</li>
+            <li><strong>Constants</strong> — fixed values like <code>5</code> or <code>3.14</code>.</li>
+            <li><strong>Strings</strong> — text enclosed in double quotes, like <code>"Hello"</code>.</li>
+            <li><strong>Operators</strong> — symbols that perform operations, like <code>+</code> or <code>=</code>.</li>
+            <li><strong>Punctuation / special symbols</strong> — things like <code>;</code>, <code>{</code>, <code>}</code>, and <code>(</code> <code>)</code>.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="why">
+          <h2>2. Why Do We Need to Know This?</h2>
+          <p>Tokens are the foundation for everything else in this unit. Keywords, identifiers, variables, and operators are all specific <em>kinds</em> of tokens — so understanding this umbrella concept first makes each individual topic click faster as you meet it.</p>
+        </section>
+
+        <section class="topic-section" id="real-life">
+          <h2>3. Real-Life Example</h2>
+          <p>Think of breaking a sentence down into its individual words and punctuation marks before analyzing its grammar. You can't understand a sentence's structure without first recognizing its smallest meaningful pieces — a C compiler works the same way with your code.</p>
+        </section>
+
+        <section class="topic-section" id="visual">
+          <h2>4. Visual Explanation</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>example.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>int sum = a + b;</pre>
+          </div>
+          <p>The compiler sees this single line as seven separate tokens:</p>
+          <div class="token-breakdown">
+            <div class="card"><code>int</code><span>keyword</span></div>
+            <div class="card"><code>sum</code><span>identifier</span></div>
+            <div class="card"><code>=</code><span>operator</span></div>
+            <div class="card"><code>a</code><span>identifier</span></div>
+            <div class="card"><code>+</code><span>operator</span></div>
+            <div class="card"><code>b</code><span>identifier</span></div>
+            <div class="card"><code>;</code><span>punctuation</span></div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mistakes">
+          <h2>5. Common Mistakes</h2>
+          <ul class="mistake-list">
+            <li>Assuming a token must be a single character — many tokens, like keywords (<code>int</code>) and identifiers (<code>sum</code>), are multi-character.</li>
+            <li>Confusing "token" with "line of code" — a single line typically contains many tokens, not just one.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="debugging">
+          <h2>6. Debugging Tips</h2>
+          <p>The compiler's very first job is breaking your source code into tokens. So when you see a "tokenizing" or "unexpected token" error, it usually points to something like a stray symbol or an unclosed string — the compiler couldn't even recognize a valid token at that spot, let alone check its meaning.</p>
+        </section>
+
+        <section class="topic-section" id="best-practices">
+          <h2>7. Best Practices</h2>
+          <ul class="best-practice-list">
+            <li>Keep code readable by spacing tokens clearly, even though C itself is flexible about whitespace between tokens.</li>
+            <li>Remember that clarity for human readers still matters, even when the compiler doesn't strictly require it.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="interview">
+          <h2>8. Interview Questions</h2>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Easy:</strong> What is a token in C?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>A token is the smallest individual meaningful unit that the compiler recognizes in source code.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Medium:</strong> Name three categories of tokens in C.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Any three of: keywords, identifiers, constants, strings, operators, or punctuation/special symbols.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Hard:</strong> Why does the compiler need to identify tokens before doing anything else?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Because all later processing — parsing the code's structure and checking its meaning — depends on first recognizing the basic building-block pieces of the code. Without tokens, the compiler has nothing to work with.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>HR:</strong> How would you explain "tokens" to someone brand new to programming?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>This is open-ended — a strong answer might use an analogy, like comparing tokens to the individual words and punctuation marks in a sentence, which must be recognized before the sentence's grammar can be understood.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Conceptual:</strong> Is a single line of code usually one token or many?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Many — most lines contain several tokens, such as keywords, identifiers, operators, and punctuation, all combined together.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Scenario-based:</strong> You get a compiler error mentioning an "unexpected token" — what does this suggest?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>It suggests the compiler encountered something it couldn't recognize as a valid token at that point in the code — often caused by a typo or a stray symbol.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mcq">
+          <h2>9. MCQs</h2>
+          <div class="quiz" data-quiz-source="tokensQuiz"></div>
+        </section>
+
+        <section class="topic-section" id="exercises">
+          <h2>10. Programming Exercises</h2>
+          <p><strong>Easy:</strong> Define "token" in your own words.</p>
+          <p><strong>Medium:</strong> Count the tokens in <code>int a = 5;</code> (hint: there are 5 — <code>int</code>, <code>a</code>, <code>=</code>, <code>5</code>, <code>;</code>).</p>
+          <p><strong>Hard:</strong> Break down <code>printf("Hello\n");</code> into its individual tokens.</p>
+        </section>
+
+        <section class="topic-section" id="assignments">
+          <h2>11. Assignments</h2>
+          <p>Pick any line from <code>add.c</code>, such as <code>int sum = a + b;</code>, and list every token in it along with its category (keyword, identifier, operator, or punctuation).</p>
+        </section>
+
+        <section class="topic-section" id="faq">
+          <h2>12. FAQs</h2>
+          <p><strong>Q: Does whitespace count as a token?</strong><br>A: No — whitespace generally separates tokens, but it isn't a token itself.</p>
+          <p><strong>Q: Are comments tokens?</strong><br>A: No — comments are stripped out before tokenizing; they're there for human readers only, not for the compiler.</p>
+        </section>
+
+        <section class="topic-section" id="takeaways">
+          <h2>13. Key Takeaways</h2>
+          <ul>
+            <li>A token is the smallest individual meaningful unit the compiler recognizes in your source code.</li>
+            <li>C's main token categories are keywords, identifiers, constants, strings, operators, and punctuation/special symbols.</li>
+            <li>Tokens are the foundation this whole unit builds on — every topic ahead, from keywords to variables to operators, is really just a deeper look at a specific kind of token.</li>
+          </ul>
+        </section>
+
+        <div class="topic-nav-footer">
+          <a href="../unit1/multi-line-comments.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Previous: Multi Line Comments</a>
+          <a href="keywords.html" class="btn btn-primary">Next: Keywords <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for absolute beginners. &copy; 2026 C Programming eBook.</p>
+  </footer>
+
+</div>
+
+<div class="search-panel" id="search-panel" data-open="false">
+  <div class="search-panel-inner">
+    <div class="search-input-row">
+      <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+      <input type="text" id="search-input" placeholder="Search topics... (Ctrl+K)">
+      <button class="icon-btn" id="search-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="search-results" id="search-results"></ul>
+  </div>
+</div>
+
+<script>
+window.tokensQuiz = [
+  { question: "What is a token in C?", options: ["A line of code", "The smallest individual meaningful unit the compiler recognizes", "A type of variable", "A comment"], correctIndex: 1, explanation: "A token is the smallest individual meaningful unit in a C program — the compiler breaks source code into tokens before doing anything else with it." },
+  { question: "Which of these is NOT a category of token in C?", options: ["Keyword", "Identifier", "Operator", "Whitespace"], correctIndex: 3, explanation: "Whitespace is not a token — it generally separates tokens but is not itself a meaningful unit the compiler acts on." },
+  { question: "How many tokens does a typical single line of C code usually contain?", options: ["Always exactly one", "Usually several — keywords, identifiers, operators, and punctuation", "Zero, unless it has a comment", "Exactly two"], correctIndex: 1, explanation: "Most lines of C contain several tokens combined together, not just one." },
+  { question: "What does an 'unexpected token' compiler error usually suggest?", options: ["The program ran out of memory", "The compiler encountered something it couldn't recognize as a valid token, often a typo or stray symbol", "The program compiled successfully", "A logic error in the output"], correctIndex: 1, explanation: "An 'unexpected token' error means the compiler's tokenizing stage couldn't recognize a valid token at that spot in the code." },
+  { question: "Are comments treated as tokens in C?", options: ["Yes, always", "No — comments are stripped out before tokenizing", "Only multi-line comments", "Only if they contain code"], correctIndex: 1, explanation: "Comments are removed before the tokenizing stage; they exist for human readers only and are not passed on as tokens." }
+];
+</script>
+<script src="../../js/theme.js"></script>
+<script src="../../js/sidebar.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/quiz.js"></script>
+<script src="../../js/copy-code.js"></script>
+<script src="../../js/accordion.js"></script>
+</body>
+</html>
