@@ -72,8 +72,19 @@ history and `docs/superpowers/plans/` for implementation plans.
   and logical (`bothPositive`) operator demos, plus a `divide.c`-style
   cast example on Type Conversion — all built on the same base without
   altering it. `profile.c` (G2's example) wasn't touched here.
-- **Next up: Unit 2 / G4 — Advanced Operators** (Conditional, Bitwise,
-  Assignment, Comma, Arrow, `sizeof`, Precedence, Associativity).
+- **Unit 2 / G4 — Advanced Operators — done.** 8 topic pages in
+  `pages/unit2/` (`assignment-operators.html` through
+  `arrow-operator.html`), Unit 2's sidebar now has 29 links. Extended
+  `add.c` further with compound assignment (`total += a/b`), a comma
+  declaration (`i=0, j=5`), `sizeof(int)`/`sizeof(a)`, the ternary
+  operator (`max = (a>b)?a:b`), bitwise AND (`a & b` = 1), precedence
+  (`a + b*2` = 11), and associativity (`a - b - 1` = 1, left-to-right).
+  **`arrow-operator.html` is deliberately code-free** — a conceptual
+  preview only, since it needs pointers/structs not taught until Unit
+  4/5; don't add real `->` code to it before those units exist.
+- **Next up: Unit 2 / G5 — Increment/Decrement/Notation + I/O**
+  (Increment, Decrement, Hungarian Notation, Input, Output, `printf()`,
+  `scanf()`) — the final Unit 2 group.
 
 ## Folder structure
 
