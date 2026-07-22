@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 1: Programming Fundamentals &amp; C Basics — C Programming eBook</title>
+<meta name="description" content="Unit 1 of the interactive C Programming eBook: programming fundamentals, algorithms, pseudocode, flowcharts, and the basics of C.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="../../css/variables.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+</head>
+<body>
+
+<div class="progress-bar" id="progress-bar"></div>
+
+<div class="shell" id="shell">
+
+  <nav class="topnav">
+    <div class="topnav-left">
+      <button class="icon-btn mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <a href="../../index.html" class="logo">
+        <i class="fa-solid fa-code" style="color: var(--color-primary);"></i>
+        C Programming eBook
+      </a>
+      <div class="breadcrumbs">
+        <a href="../../index.html">Home</a>
+        <span>/</span>
+        <span>Unit 1</span>
+      </div>
+    </div>
+    <div class="topnav-right">
+      <button class="icon-btn" id="search-open" aria-label="Search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+      <button class="icon-btn" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+        <i class="fa-solid fa-sun icon-sun"></i>
+        <i class="fa-solid fa-moon icon-moon"></i>
+      </button>
+    </div>
+  </nav>
+
+  <aside class="sidebar">
+    <button class="icon-btn" id="sidebar-collapse" aria-label="Collapse sidebar" style="margin-bottom: var(--space-4);">
+      <i class="fa-solid fa-angles-left"></i>
+    </button>
+
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 1</span></div>
+      <a class="sidebar-link active" href="index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Unit 1 Overview</span></a>
+      <a class="sidebar-link" href="evolution-of-programming.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="sidebar-label">Evolution of Programming</span></a>
+      <a class="sidebar-link" href="programming-languages.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Programming Languages</span></a>
+      <a class="sidebar-link" href="problem-solving.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Problem Solving</span></a>
+      <a class="sidebar-link" href="sequential-logic.html"><i class="fa-solid fa-list-ol"></i><span class="sidebar-label">Sequential Logic</span></a>
+      <a class="sidebar-link" href="algorithms.html"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-label">Algorithms</span></a>
+      <a class="sidebar-link" href="pseudocode.html"><i class="fa-solid fa-file-lines"></i><span class="sidebar-label">Pseudocode</span></a>
+      <a class="sidebar-link" href="flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 2</span></div>
+      <a class="sidebar-link" href="../unit2/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">C Building Blocks &amp; Data Types</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 3</span></div>
+      <a class="sidebar-link" href="../unit3/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Control Statements</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 4</span></div>
+      <a class="sidebar-link" href="../unit4/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Strings, Functions &amp; Pointers</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 5</span></div>
+      <a class="sidebar-link" href="../unit5/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Structures, Files &amp; Memory Management</span></a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <section class="hero" style="padding-top: var(--space-6);">
+      <span class="badge hero-badge"><i class="fa-solid fa-layer-group"></i> Unit 1 of 5</span>
+      <h1>Programming Fundamentals &amp; C Basics</h1>
+      <p class="lead">Before writing a single line of C, you need to think like a programmer. This unit covers how programming works, how to break problems down, and how to plan a solution before touching code.</p>
+    </section>
+
+    <section class="section" style="margin-top: var(--space-6);">
+      <h2 class="section-title">Programming Fundamentals</h2>
+      <div class="unit-grid">
+        <div class="card unit-card">
+          <div class="unit-card-number"><i class="fa-solid fa-clock-rotate-left"></i></div>
+          <h3>Evolution of Programming</h3>
+          <p>How we went from wiring machines by hand to writing readable code.</p>
+          <a href="evolution-of-programming.html" class="btn btn-ghost">Start <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="card unit-card">
+          <div class="unit-card-number"><i class="fa-solid fa-language"></i></div>
+          <h3>Programming Languages</h3>
+          <p>What a programming language is, and why C sits between low-level and high-level.</p>
+          <a href="programming-languages.html" class="btn btn-ghost">Start <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="card unit-card">
+          <div class="unit-card-number"><i class="fa-solid fa-puzzle-piece"></i></div>
+          <h3>Problem Solving</h3>
+          <p>The mental habit every programmer needs before writing code.</p>
+          <a href="problem-solving.html" class="btn btn-ghost">Start <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="card unit-card">
+          <div class="unit-card-number"><i class="fa-solid fa-list-ol"></i></div>
+          <h3>Sequential Logic</h3>
+          <p>Why computers do exactly what you tell them, in exactly the order you tell them.</p>
+          <a href="sequential-logic.html" class="btn btn-ghost">Start <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="card unit-card">
+          <div class="unit-card-number"><i class="fa-solid fa-diagram-project"></i></div>
+          <h3>Algorithms</h3>
+          <p>Turning a plan into precise, ordered steps a computer can follow.</p>
+          <a href="algorithms.html" class="btn btn-ghost">Start <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="card unit-card">
+          <div class="unit-card-number"><i class="fa-solid fa-file-lines"></i></div>
+          <h3>Pseudocode</h3>
+          <p>Writing an algorithm in plain English before writing real code.</p>
+          <a href="pseudocode.html" class="btn btn-ghost">Start <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="card unit-card">
+          <div class="unit-card-number"><i class="fa-solid fa-sitemap"></i></div>
+          <h3>Flowcharts</h3>
+          <p>Drawing a plan as a picture, so anyone can follow the logic at a glance.</p>
+          <a href="flowcharts.html" class="btn btn-ghost">Start <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for absolute beginners. &copy; 2026 C Programming eBook.</p>
+  </footer>
+
+</div>
+
+<div class="search-panel" id="search-panel" data-open="false">
+  <div class="search-panel-inner">
+    <div class="search-input-row">
+      <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+      <input type="text" id="search-input" placeholder="Search topics... (Ctrl+K)">
+      <button class="icon-btn" id="search-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="search-results" id="search-results"></ul>
+  </div>
+</div>
+
+<script src="../../js/theme.js"></script>
+<script src="../../js/sidebar.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/main.js"></script>
+</body>
+</html>
