@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Problem Solving — Unit 1 — C Programming eBook</title>
+<meta name="description" content="Why coding is the last step, not the first — learn the Understand, Plan, Divide, Solve framework used before writing any C program.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="../../css/variables.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/diagrams.css">
+<link rel="stylesheet" href="../../css/quiz.css">
+
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<style>
+  .topic-layout { display: grid; grid-template-columns: 1fr 220px; gap: var(--space-6); align-items: start; }
+  .topic-toc { position: sticky; top: calc(var(--topnav-height) + var(--space-4)); border: 1px solid var(--border); border-radius: var(--radius-md); padding: var(--space-4); font-size: 0.85rem; }
+  .topic-toc a { display: block; padding: var(--space-1) 0; color: var(--text-muted); }
+  .topic-toc a:hover { color: var(--color-primary); text-decoration: none; }
+  .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
+  .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
+  .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
+  @media (max-width: 1000px) { .topic-layout { grid-template-columns: 1fr; } .topic-toc { position: static; } }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progress-bar"></div>
+
+<div class="shell" id="shell">
+
+  <nav class="topnav">
+    <div class="topnav-left">
+      <button class="icon-btn mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <a href="../../index.html" class="logo">
+        <i class="fa-solid fa-code" style="color: var(--color-primary);"></i>
+        C Programming eBook
+      </a>
+      <div class="breadcrumbs">
+        <a href="../../index.html">Home</a>
+        <span>/</span>
+        <a href="index.html">Unit 1</a>
+        <span>/</span>
+        <span>Problem Solving</span>
+      </div>
+    </div>
+    <div class="topnav-right">
+      <button class="icon-btn" id="search-open" aria-label="Search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+      <button class="icon-btn" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+        <i class="fa-solid fa-sun icon-sun"></i>
+        <i class="fa-solid fa-moon icon-moon"></i>
+      </button>
+    </div>
+  </nav>
+
+  <aside class="sidebar">
+    <button class="icon-btn" id="sidebar-collapse" aria-label="Collapse sidebar" style="margin-bottom: var(--space-4);">
+      <i class="fa-solid fa-angles-left"></i>
+    </button>
+
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 1</span></div>
+      <a class="sidebar-link" href="index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Unit 1 Overview</span></a>
+      <a class="sidebar-link" href="evolution-of-programming.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="sidebar-label">Evolution of Programming</span></a>
+      <a class="sidebar-link" href="programming-languages.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Programming Languages</span></a>
+      <a class="sidebar-link active" href="problem-solving.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Problem Solving</span></a>
+      <a class="sidebar-link" href="sequential-logic.html"><i class="fa-solid fa-list-ol"></i><span class="sidebar-label">Sequential Logic</span></a>
+      <a class="sidebar-link" href="algorithms.html"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-label">Algorithms</span></a>
+      <a class="sidebar-link" href="pseudocode.html"><i class="fa-solid fa-file-lines"></i><span class="sidebar-label">Pseudocode</span></a>
+      <a class="sidebar-link" href="flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 2</span></div>
+      <a class="sidebar-link" href="../unit2/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">C Building Blocks &amp; Data Types</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 3</span></div>
+      <a class="sidebar-link" href="../unit3/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Control Statements</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 4</span></div>
+      <a class="sidebar-link" href="../unit4/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Strings, Functions &amp; Pointers</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 5</span></div>
+      <a class="sidebar-link" href="../unit5/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Structures, Files &amp; Memory Management</span></a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="topic-layout">
+      <div>
+        <h1>Problem Solving</h1>
+        <p class="lead">Before you write a single line of C, you need a plan. Coding is the <em>last</em> step of problem solving — not the first.</p>
+
+        <section class="topic-section" id="introduction">
+          <h2>1. What Is It?</h2>
+          <p>Problem solving in programming means figuring out <em>what</em> you need to do and <em>how</em> before you touch a keyboard to write code. It follows a repeatable four-stage framework:</p>
+          <ol>
+            <li><strong>Understand</strong> — read the problem carefully and be sure you know exactly what is being asked, what inputs you have, and what output is expected.</li>
+            <li><strong>Plan</strong> — decide on a general approach or strategy for solving it, without worrying about syntax yet.</li>
+            <li><strong>Divide</strong> — break the problem into smaller, more manageable sub-problems.</li>
+            <li><strong>Solve</strong> — work out a solution for each sub-problem, one at a time.</li>
+          </ol>
+          <p>Only after all four stages are done does writing actual code make sense. Coding is where you translate a plan into a language the computer understands — it is not where thinking happens.</p>
+        </section>
+
+        <section class="topic-section" id="why">
+          <h2>2. Why Do We Need to Know This?</h2>
+          <p>The single most common failure for beginners is not a syntax error — it's opening an editor and typing code before they actually understand the problem. This leads to programs that are half-built, contradict themselves, or solve the wrong problem entirely. Learning to pause and work through Understand → Plan → Divide → Solve <em>before</em> coding prevents the single biggest source of beginner frustration.</p>
+        </section>
+
+        <section class="topic-section" id="real-life">
+          <h2>3. Real-Life Example</h2>
+          <p>Think about planning a trip. You don't start packing a suitcase before you've decided where you're going. The natural order is: understand the goal (where and why you're traveling), plan the approach (budget, dates, mode of transport), then break the plan into smaller tasks — book transport, arrange accommodation, pack, plan a route for each day — and finally do each one. Skipping straight to "packing" without a destination or budget wastes time and often produces a trip that doesn't actually work.</p>
+        </section>
+
+        <section class="topic-section" id="visual">
+          <h2>4. Visual Explanation</h2>
+          <div class="flowchart">
+            <div class="flow-box flow-box-start">Understand</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Plan</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Divide</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box flow-box-end">Solve</div>
+          </div>
+          <p>This isn't strictly a one-way street. If the result you get doesn't match the goal you started with, re-check from <strong>Understand</strong> again — you may have misread the problem, planned the wrong approach, or split it into the wrong sub-problems.</p>
+        </section>
+
+        <section class="topic-section" id="mistakes">
+          <h2>10. Common Mistakes</h2>
+          <ul class="mistake-list">
+            <li>Jumping straight to writing code before understanding the problem.</li>
+            <li>Trying to solve a big problem all at once instead of breaking it into smaller ones.</li>
+            <li>Assuming the first idea that comes to mind is the only possible approach.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="debugging">
+          <h2>11. Debugging Tips</h2>
+          <p>When you get stuck, don't stare harder at code that doesn't exist yet. Go back one stage instead: re-read the problem statement first, not any code or notes you've already written. Most "stuck" moments are actually a sign that the <em>Understand</em> or <em>Divide</em> stage was rushed, not that the sub-problem itself is unsolvable.</p>
+        </section>
+
+        <section class="topic-section" id="best-practices">
+          <h2>12. Best Practices</h2>
+          <ul class="best-practice-list">
+            <li>Restate the problem in your own words before attempting to solve it — if you can't, you don't understand it yet.</li>
+            <li>Write down the inputs you're given and the exact output you expect before attempting a solution.</li>
+            <li>If a problem feels too big, solve a smaller or simpler version of it first, then build up from there.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="interview">
+          <h2>13. Interview Questions</h2>
+          <p><strong>Easy:</strong> What are the steps of problem solving in programming?</p>
+          <p><strong>Medium:</strong> Why is understanding the problem more important than writing code quickly?</p>
+          <p><strong>Hard:</strong> How would you break down "sort a list of names alphabetically" into smaller sub-problems?</p>
+          <p><strong>HR:</strong> Tell me about a time you solved a difficult problem — what was your approach?</p>
+          <p><strong>Conceptual:</strong> What does "decomposition" mean in problem solving?</p>
+          <p><strong>Scenario-based:</strong> A user reports your program gives the wrong output sometimes — what's your first step?</p>
+        </section>
+
+        <section class="topic-section" id="mcq">
+          <h2>14. MCQs</h2>
+          <div class="quiz" data-quiz-source="problemSolvingQuiz"></div>
+        </section>
+
+        <section class="topic-section" id="exercises">
+          <h2>15. Programming Exercises</h2>
+          <p><strong>Easy:</strong> Write out the four stages of problem solving (Understand, Plan, Divide, Solve) from memory, with a one-sentence description of each.</p>
+          <p><strong>Medium:</strong> Break "plan a birthday party" into at least 5 sub-problems.</p>
+          <p><strong>Hard:</strong> Take the problem "find the largest number in a list of 10 numbers" and write out Understand / Plan / Divide / Solve for it in plain English — no code needed. (You'll turn this into actual logic in the Sequential Logic and Algorithms topics.)</p>
+        </section>
+
+        <section class="topic-section" id="assignments">
+          <h2>16. Assignments</h2>
+          <p>Pick any everyday task — making a sandwich, doing laundry, packing a school bag — and write it out fully using the four-stage framework: Understand, Plan, Divide, Solve.</p>
+        </section>
+
+        <section class="topic-section" id="summary">
+          <h2>18. Chapter Summary</h2>
+          <p>Problem solving is a repeatable four-stage process — Understand, Plan, Divide, Solve — that should happen before any code is written. Building this habit early is what separates programmers who work through problems confidently from those who get stuck the moment they open an editor.</p>
+        </section>
+
+        <section class="topic-section" id="cheatsheet">
+          <h2>19. Cheat Sheet</h2>
+          <ul>
+            <li><strong>Understand</strong> — know exactly what's being asked, the inputs, and the expected output.</li>
+            <li><strong>Plan</strong> — decide on a general approach before worrying about syntax.</li>
+            <li><strong>Divide</strong> — break the problem into smaller, manageable sub-problems.</li>
+            <li><strong>Solve</strong> — work out each sub-problem one at a time.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="faq">
+          <h2>20. FAQs</h2>
+          <p><strong>Q: Do I have to follow these 4 stages formally every time?</strong><br>A: Not rigidly — but internalizing the habit prevents most beginner mistakes, even once it becomes automatic and you're not writing each stage down.</p>
+          <p><strong>Q: What if I can't break the problem down?</strong><br>A: Try solving a smaller or simpler version of the problem first, then build up from there.</p>
+        </section>
+
+        <section class="topic-section" id="takeaways">
+          <h2>21. Key Takeaways</h2>
+          <ul>
+            <li>Problem solving follows a repeatable four-stage framework: Understand, Plan, Divide, Solve.</li>
+            <li>Decomposition — breaking a big problem into smaller sub-problems — makes even large problems manageable.</li>
+            <li>Coding is the last step of problem solving, not the first.</li>
+          </ul>
+        </section>
+
+        <div class="topic-nav-footer">
+          <a href="programming-languages.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Previous: Programming Languages</a>
+          <a href="sequential-logic.html" class="btn btn-primary">Next: Sequential Logic <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <nav class="topic-toc" aria-label="On this page">
+        <strong>On This Page</strong>
+        <a href="#introduction">What Is It?</a>
+        <a href="#why">Why Do We Need to Know This?</a>
+        <a href="#real-life">Real-Life Example</a>
+        <a href="#visual">Visual Explanation</a>
+        <a href="#mistakes">Common Mistakes</a>
+        <a href="#debugging">Debugging Tips</a>
+        <a href="#best-practices">Best Practices</a>
+        <a href="#interview">Interview Questions</a>
+        <a href="#mcq">MCQs</a>
+        <a href="#exercises">Programming Exercises</a>
+        <a href="#assignments">Assignments</a>
+        <a href="#summary">Chapter Summary</a>
+        <a href="#cheatsheet">Cheat Sheet</a>
+        <a href="#faq">FAQs</a>
+        <a href="#takeaways">Key Takeaways</a>
+      </nav>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for absolute beginners. &copy; 2026 C Programming eBook.</p>
+  </footer>
+
+</div>
+
+<div class="search-panel" id="search-panel" data-open="false">
+  <div class="search-panel-inner">
+    <div class="search-input-row">
+      <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+      <input type="text" id="search-input" placeholder="Search topics... (Ctrl+K)">
+      <button class="icon-btn" id="search-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="search-results" id="search-results"></ul>
+  </div>
+</div>
+
+<script>
+window.problemSolvingQuiz = [
+  { question: "What is the first stage of the problem-solving framework?", options: ["Solve", "Understand", "Divide", "Plan"], correctIndex: 1, explanation: "Understand comes first — you must know exactly what's being asked before doing anything else." },
+  { question: "What are the four stages of the problem-solving framework, in order?", options: ["Plan, Understand, Solve, Divide", "Understand, Plan, Divide, Solve", "Divide, Solve, Understand, Plan", "Solve, Plan, Divide, Understand"], correctIndex: 1, explanation: "The correct order is Understand, Plan, Divide, Solve." },
+  { question: "According to this framework, when should you start writing code?", options: ["Before understanding the problem, to save time", "As the very first step", "Only after understanding, planning, and dividing the problem", "It doesn't matter when"], correctIndex: 2, explanation: "Coding is the last step — it happens only after the problem is understood, planned, and broken down." },
+  { question: "What is the most common failure for beginner programmers?", options: ["Using too many comments", "Writing code before understanding the problem", "Choosing the wrong programming language", "Typing too slowly"], correctIndex: 1, explanation: "Beginners most often struggle because they start coding before they understand what they're solving, not because of syntax." },
+  { question: "What does 'decomposition' mean in problem solving?", options: ["Deleting unnecessary code", "Breaking a big problem into smaller, manageable sub-problems", "Compiling a program", "Testing a program for bugs"], correctIndex: 1, explanation: "Decomposition is the process of splitting a large problem into smaller, easier-to-solve parts." },
+  { question: "In the 'Plan' stage, what should you focus on?", options: ["Writing exact C syntax", "Deciding on a general approach or strategy", "Compiling the program", "Naming variables"], correctIndex: 1, explanation: "Planning is about choosing a general strategy, without worrying about syntax details yet." },
+  { question: "Why is restating a problem in your own words a good practice?", options: ["It wastes time", "It proves you understand the problem before solving it", "It replaces the need to plan", "It is required by all compilers"], correctIndex: 1, explanation: "If you can restate a problem clearly in your own words, that's strong evidence you actually understand it." },
+  { question: "What should you write down before attempting a solution?", options: ["Nothing, just start coding", "The inputs you're given and the output you expect", "Only the final answer", "The compiler version"], correctIndex: 1, explanation: "Knowing your inputs and expected outputs clearly is part of the Understand stage and guides the rest of the process." },
+  { question: "If a problem feels too big to solve, what's a recommended strategy?", options: ["Give up and try a different problem", "Solve a smaller or simpler version of it first", "Write code randomly until something works", "Skip the Understand stage"], correctIndex: 1, explanation: "Solving a smaller or simpler version first often reveals the approach needed for the full problem." },
+  { question: "In the trip-planning analogy, what comes before deciding on transport and packing?", options: ["Nothing — you should pack first", "Understanding the goal, such as the destination and budget", "Buying souvenirs", "Writing a packing list only"], correctIndex: 1, explanation: "Just like in programming, you must understand the goal (destination, budget) before planning tasks like transport and packing." },
+  { question: "What is a 'sub-problem'?", options: ["A programming error", "A smaller, more manageable piece of a larger problem", "An entirely unrelated problem", "The final compiled program"], correctIndex: 1, explanation: "A sub-problem is one of the smaller pieces a larger problem is divided into during the Divide stage." },
+  { question: "If your program's output doesn't match your goal, what should you do first, according to this framework?", options: ["Immediately rewrite all the code", "Re-check from the Understand stage", "Give up on the problem", "Ignore the mismatch and move on"], correctIndex: 1, explanation: "The framework loops back to Understand when results don't match the goal, since the root cause is often a misunderstanding of the problem." },
+  { question: "What is the risk of assuming your first idea is the only possible approach?", options: ["There is no risk", "You may miss a simpler or more effective solution", "It guarantees the fastest code", "It skips the need to test the program"], correctIndex: 1, explanation: "The first idea that comes to mind isn't always the best one; considering alternatives can reveal simpler or more effective solutions." },
+  { question: "What is the main purpose of the 'Divide' stage?", options: ["To make the problem harder", "To break the problem into smaller, manageable sub-problems", "To compile the program", "To skip the planning stage"], correctIndex: 1, explanation: "Divide takes the overall plan and breaks it into smaller pieces that are each easier to solve individually." },
+  { question: "Why does coding come last in the framework?", options: ["Because code is unimportant", "Because it is the translation of an already-understood plan into a language the computer understands", "Because computers don't need instructions", "Because compilers write the plan automatically"], correctIndex: 1, explanation: "Code is simply the final translation step; the actual thinking happens in Understand, Plan, and Divide." },
+  { question: "A user reports your program gives the wrong output sometimes. What should you check first, according to this topic?", options: ["Immediately rewrite the entire program", "Whether you correctly understood the original problem and its expected behavior", "Delete the program and start over", "Ignore the report"], correctIndex: 1, explanation: "Re-checking your understanding of the problem is the recommended first step before diving into the code." },
+  { question: "Which of these best demonstrates 'understanding' a problem?", options: ["Being able to name the programming language you'll use", "Being able to restate the problem, inputs, and expected output in your own words", "Having already written some code", "Knowing how long the problem will take to solve"], correctIndex: 1, explanation: "True understanding means you can restate the problem and its inputs/outputs clearly, independent of any code." },
+  { question: "What mistake does 'trying to solve a big problem all at once' usually lead to?", options: ["Faster solutions", "Confusion and difficulty tracking what's been solved and what hasn't", "Automatically correct code", "No mistakes at all"], correctIndex: 1, explanation: "Without decomposition, large problems become overwhelming and hard to verify piece by piece." },
+  { question: "Which stage of the framework directly precedes 'Solve'?", options: ["Understand", "Plan", "Divide", "Debug"], correctIndex: 2, explanation: "The order is Understand, Plan, Divide, then Solve — Divide comes immediately before Solve." },
+  { question: "What is the overall benefit of internalizing the four-stage framework as a habit?", options: ["It replaces the need to ever write code", "It prevents most of the frustration and mistakes beginners face by encouraging thinking before coding", "It makes programs run faster at runtime", "It removes the need for testing"], correctIndex: 1, explanation: "Habitually understanding, planning, and dividing a problem before coding prevents the most common beginner mistakes and frustration." }
+];
+</script>
+<script src="../../js/theme.js"></script>
+<script src="../../js/sidebar.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/quiz.js"></script>
+<script src="../../js/copy-code.js"></script>
+</body>
+</html>
