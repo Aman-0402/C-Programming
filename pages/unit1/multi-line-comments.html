@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multi Line Comments — Unit 1 — C Programming eBook</title>
+<meta name="description" content="Learn how multi-line comments (/* ... */) work in C, how they differ from // comments, and complete Unit 1's closing capstone by fully documenting add.c.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="../../css/variables.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/diagrams.css">
+<link rel="stylesheet" href="../../css/quiz.css">
+
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<style>
+  .topic-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-6); align-items: start; }
+  .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
+  .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
+  .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
+</style>
+</head>
+<body>
+
+<button class="icon-btn theme-toggle-float" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+  <i class="fa-solid fa-sun icon-sun"></i>
+  <i class="fa-solid fa-moon icon-moon"></i>
+</button>
+
+<div class="social-float">
+  <a class="icon-btn" href="https://github.com/Aman-0402" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+    <i class="fa-brands fa-github"></i>
+  </a>
+  <a class="icon-btn" href="https://www.linkedin.com/in/aman-raj-081905211/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+</div>
+
+<div class="shell" id="shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo" style="margin-bottom: var(--space-5);">
+      <a href="../../index.html" class="logo">
+        <i class="fa-solid fa-code" style="color: var(--color-primary);"></i><span class="sidebar-label"> C Programming eBook</span>
+      </a>
+    </div>
+
+    <button class="icon-btn" id="sidebar-collapse" aria-label="Collapse sidebar" style="margin-bottom: var(--space-4);">
+      <i class="fa-solid fa-angles-left"></i>
+    </button>
+
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 1</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit1-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">Unit 1</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit1-submenu">
+      <a class="sidebar-link" href="evolution-of-programming.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="sidebar-label">Evolution of Programming</span></a>
+      <a class="sidebar-link" href="programming-languages.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Programming Languages</span></a>
+      <a class="sidebar-link" href="problem-solving.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Problem Solving</span></a>
+      <a class="sidebar-link" href="sequential-logic.html"><i class="fa-solid fa-list-ol"></i><span class="sidebar-label">Sequential Logic</span></a>
+      <a class="sidebar-link" href="algorithms.html"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-label">Algorithms</span></a>
+      <a class="sidebar-link" href="pseudocode.html"><i class="fa-solid fa-file-lines"></i><span class="sidebar-label">Pseudocode</span></a>
+      <a class="sidebar-link" href="flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
+      <a class="sidebar-link" href="introduction-to-c.html"><i class="fa-solid fa-c"></i><span class="sidebar-label">Introduction to C</span></a>
+      <a class="sidebar-link" href="history-of-c.html"><i class="fa-solid fa-scroll"></i><span class="sidebar-label">History of C</span></a>
+      <a class="sidebar-link" href="features-of-c.html"><i class="fa-solid fa-star"></i><span class="sidebar-label">Features of C</span></a>
+      <a class="sidebar-link" href="applications-of-c.html"><i class="fa-solid fa-industry"></i><span class="sidebar-label">Applications</span></a>
+      <a class="sidebar-link" href="structure-of-c-program.html"><i class="fa-solid fa-code"></i><span class="sidebar-label">Structure of C Program</span></a>
+      <a class="sidebar-link" href="c-compiler.html"><i class="fa-solid fa-gears"></i><span class="sidebar-label">C Compiler</span></a>
+      <a class="sidebar-link" href="compilation-process.html"><i class="fa-solid fa-arrows-turn-right"></i><span class="sidebar-label">Compilation Process</span></a>
+      <a class="sidebar-link" href="source-code.html"><i class="fa-solid fa-file-code"></i><span class="sidebar-label">Source Code</span></a>
+      <a class="sidebar-link" href="object-code.html"><i class="fa-solid fa-cube"></i><span class="sidebar-label">Object Code</span></a>
+      <a class="sidebar-link" href="executable-code.html"><i class="fa-solid fa-play"></i><span class="sidebar-label">Executable Code</span></a>
+      <a class="sidebar-link" href="execution-process.html"><i class="fa-solid fa-microchip"></i><span class="sidebar-label">Execution Process</span></a>
+      <a class="sidebar-link" href="assembler.html"><i class="fa-solid fa-wrench"></i><span class="sidebar-label">Assembler</span></a>
+      <a class="sidebar-link" href="linker.html"><i class="fa-solid fa-link"></i><span class="sidebar-label">Linker</span></a>
+      <a class="sidebar-link" href="loader.html"><i class="fa-solid fa-upload"></i><span class="sidebar-label">Loader</span></a>
+      <a class="sidebar-link" href="interpreter.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Interpreter</span></a>
+      <a class="sidebar-link" href="compilers-and-interpreters.html"><i class="fa-solid fa-code-compare"></i><span class="sidebar-label">Compilers &amp; Interpreters</span></a>
+      <a class="sidebar-link" href="operating-systems.html"><i class="fa-solid fa-desktop"></i><span class="sidebar-label">Operating Systems</span></a>
+      <a class="sidebar-link" href="debugging.html"><i class="fa-solid fa-bug"></i><span class="sidebar-label">Debugging</span></a>
+      <a class="sidebar-link" href="comments.html"><i class="fa-solid fa-comment"></i><span class="sidebar-label">Comments</span></a>
+      <a class="sidebar-link" href="single-line-comments.html"><i class="fa-solid fa-slash"></i><span class="sidebar-label">Single Line Comments</span></a>
+      <a class="sidebar-link active" href="multi-line-comments.html"><i class="fa-solid fa-quote-right"></i><span class="sidebar-label">Multi Line Comments</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 2</span></div>
+      <a class="sidebar-link" href="../unit2/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">C Building Blocks &amp; Data Types</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 3</span></div>
+      <a class="sidebar-link" href="../unit3/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Control Statements</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 4</span></div>
+      <a class="sidebar-link" href="../unit4/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Strings, Functions &amp; Pointers</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 5</span></div>
+      <a class="sidebar-link" href="../unit5/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Structures, Files &amp; Memory Management</span></a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="topic-layout">
+      <div>
+        <h1>Multi Line Comments</h1>
+        <p class="lead">The last building block of Unit 1 — a comment style that can stretch across as many lines as you need, bracketed off by <code>/*</code> and <code>*/</code>.</p>
+
+        <section class="topic-section" id="introduction">
+          <h2>1. What Is It?</h2>
+          <p>A multi-line comment starts with <code>/*</code> and ends with <code>*/</code>. Everything in between — even across several lines — is ignored by the compiler.</p>
+        </section>
+
+        <section class="topic-section" id="why">
+          <h2>2. Why Do We Need to Know This?</h2>
+          <p>Multi-line comments are useful for longer explanations, for temporarily disabling multiple lines of code at once, or for writing a header block that describes an entire file or function.</p>
+        </section>
+
+        <section class="topic-section" id="real-life">
+          <h2>3. Real-Life Example</h2>
+          <p>Like bracketing off an entire paragraph in a document with a note that says "skip this section" — everything inside the brackets is set aside, no matter how many lines it spans.</p>
+        </section>
+
+        <section class="topic-section" id="visual">
+          <h2>4. Visual Explanation</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>example.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>/*
+   This program demonstrates a simple
+   addition and prints the result.
+*/</pre>
+          </div>
+          <p>This comment spans 3 lines, all of which are ignored by the compiler. It only ends when the compiler reaches <code>*/</code> — not at the end of any individual line.</p>
+        </section>
+
+        <section class="topic-section" id="syntax">
+          <h2>5. Syntax</h2>
+          <ul>
+            <li><code>/*</code> marks the start of the comment.</li>
+            <li><code>*/</code> marks the end of the comment.</li>
+            <li>Everything between them — including line breaks — is part of the comment.</li>
+            <li>Unlike <code>//</code>, a multi-line comment does <strong>not</strong> end automatically at a line break; it only ends at <code>*/</code>, however many lines later that may be.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="stepbystep">
+          <h2>6. Step-by-Step Code</h2>
+          <p>Here is <code>add.c</code> again, this time with a multi-line header comment added on top of its existing single-line comments:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>add.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>/*
+   Program: add.c
+   Purpose: Prints the sum of two fixed numbers (5 and 3)
+   as part of this course's Unit 1 pipeline chapter.
+*/
+#include &lt;stdio.h&gt;  // Needed for printf
+
+int main() {
+    // Print the result of adding 5 and 3
+    printf("The sum of 5 and 3 is 8\n");
+    return 0;
+}</pre>
+          </div>
+          <p>The multi-line comment at the top acts as a file header, describing the whole program at a glance. Meanwhile, the <code>//</code> comments from before still work exactly as before — both comment styles can coexist happily in the same file.</p>
+        </section>
+
+        <section class="topic-section" id="mistakes">
+          <h2>7. Common Mistakes</h2>
+          <ul class="mistake-list">
+            <li>Forgetting the closing <code>*/</code> — this accidentally comments out all the rest of the file until the compiler finds a <code>*/</code> somewhere, which causes confusing errors that can be hard to trace back.</li>
+            <li>Trying to nest one multi-line comment inside another, like <code>/* outer /* inner */ still outer */</code>. This does not work as expected in C — the first <code>*/</code> closes the whole comment, leaving <code>still outer */</code> as stray code, which causes errors.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="debugging">
+          <h2>8. Debugging Tips</h2>
+          <p>Wrapping a whole block of code in <code>/* ... */</code> is a fast way to temporarily disable several lines at once during debugging, without deleting them or commenting out each line individually with <code>//</code>.</p>
+        </section>
+
+        <section class="topic-section" id="best-practices">
+          <h2>9. Best Practices</h2>
+          <ul class="best-practice-list">
+            <li>Always double-check that you've closed a multi-line comment with <code>*/</code> before moving on.</li>
+            <li>Use multi-line comments for file/function header blocks or for temporarily disabling multi-line blocks of code, and use <code>//</code> for short inline notes.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="interview">
+          <h2>10. Interview Questions</h2>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Easy:</strong> What symbols start and end a multi-line comment in C?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p><code>/*</code> starts a multi-line comment, and <code>*/</code> ends it.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Medium:</strong> Does a multi-line comment end automatically at a line break?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>No — only <code>*/</code> ends it, so a multi-line comment can span many lines until the compiler finds that closing marker.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Hard:</strong> What happens if you forget the closing <code>*/</code>?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Everything after the opening <code>/*</code> is treated as part of the comment until the compiler finds the next <code>*/</code>, which can silently comment out much more code than intended and cause confusing errors.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>HR:</strong> When would you choose a multi-line comment over several single-line ones?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>This is open-ended — a strong answer might mention writing a file or function header block, or temporarily disabling a large section of code at once during debugging, rather than commenting out each line individually.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Conceptual:</strong> Can multi-line comments be nested inside each other in C?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>No, not as one might expect — the first <code>*/</code> closes the entire comment, so attempting to nest one multi-line comment inside another causes errors.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Scenario-based:</strong> You want to temporarily disable an entire 10-line block of code for testing — which comment style is more convenient, and why?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Multi-line (<code>/* ... */</code>), since it wraps the whole block at once instead of requiring <code>//</code> to be added to every single line.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mcq">
+          <h2>11. MCQs</h2>
+          <div class="quiz" data-quiz-source="multiLineCommentsQuiz"></div>
+        </section>
+
+        <section class="topic-section" id="exercises">
+          <h2>12. Programming Exercises</h2>
+          <p><strong>Easy:</strong> Write the opening and closing symbols for a multi-line comment.</p>
+          <p><strong>Medium:</strong> Explain what happens if a closing <code>*/</code> is missing from a multi-line comment.</p>
+          <p><strong>Hard:</strong> Write a multi-line header comment describing the purpose of a hypothetical program.</p>
+        </section>
+
+        <section class="topic-section" id="assignments">
+          <h2>13. Assignments</h2>
+          <p>Add a multi-line header comment to <code>add.c</code> describing what the whole program does, while keeping its existing single-line comments intact.</p>
+          <p>When you're comfortable with this, move on to Unit 1's closing <a href="#miniproject">Mini Project</a> below.</p>
+        </section>
+
+        <section class="topic-section" id="miniproject">
+          <h2>14. Mini Project</h2>
+          <p><strong>Fully Document add.c.</strong></p>
+          <p>Take <code>add.c</code> and add a multi-line header comment at the top describing the program's overall purpose, plus single-line comments at each meaningful line: the <code>#include</code>, the <code>printf</code> call, and the <code>return</code> statement. When you're done, the whole file should read almost like a small, self-explaining document.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>add.c (fully documented)</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>/*
+   Program: add.c
+   Purpose: Prints the sum of two fixed numbers (5 and 3)
+   as part of this course's Unit 1 pipeline chapter.
+*/
+#include &lt;stdio.h&gt;  // Needed for printf
+
+int main() {
+    // Print the result of adding 5 and 3
+    printf("The sum of 5 and 3 is 8\n");
+    // End the program successfully
+    return 0;
+}</pre>
+          </div>
+          <p>This is the final exercise of Unit 1. Take a moment to look back at how far you've come: you started with "what is programming", moved through problem solving and algorithms, learned C's fundamentals and its full compilation pipeline, met the translators and operating system concepts that make a program actually run, picked up the discipline of debugging, and now you can comment your own code clearly with both <code>//</code> and <code>/* */</code>. That's a genuinely complete foundation — and it's exactly what you need to walk confidently into Unit 2, where you'll start working with variables, data types, and operators, the building blocks of every C program you'll ever write. Well done — see you in Unit 2.</p>
+        </section>
+
+        <section class="topic-section" id="faq">
+          <h2>15. FAQs</h2>
+          <p><strong>Q: Can I mix <code>//</code> and <code>/* */</code> comments in the same file?</strong><br>A: Yes, freely — both styles coexist normally in the same C file with no conflict.</p>
+          <p><strong>Q: Which comment style should I default to?</strong><br>A: Use <code>//</code> for short inline notes, and <code>/* */</code> for longer explanations or header blocks — both are equally valid C.</p>
+        </section>
+
+        <section class="topic-section" id="takeaways">
+          <h2>16. Key Takeaways</h2>
+          <ul>
+            <li>A multi-line comment starts with <code>/*</code> and ends with <code>*/</code>, with everything in between ignored by the compiler.</li>
+            <li>It does not end automatically at a line break — only <code>*/</code> ends it, so it can span as many lines as needed, and one cannot be nested inside another.</li>
+            <li>That completes Unit 1 — congratulations on building a solid foundation in programming concepts and C fundamentals; Unit 2's variables, data types, and operators are next.</li>
+          </ul>
+        </section>
+
+        <div class="topic-nav-footer">
+          <a href="single-line-comments.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Previous: Single Line Comments</a>
+          <span></span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for absolute beginners. &copy; 2026 C Programming eBook.</p>
+  </footer>
+
+</div>
+
+<div class="search-panel" id="search-panel" data-open="false">
+  <div class="search-panel-inner">
+    <div class="search-input-row">
+      <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+      <input type="text" id="search-input" placeholder="Search topics... (Ctrl+K)">
+      <button class="icon-btn" id="search-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="search-results" id="search-results"></ul>
+  </div>
+</div>
+
+<script>
+window.multiLineCommentsQuiz = [
+  { question: "What symbols mark the start and end of a multi-line comment in C?", options: ["// and //", "/* and */", "<!-- and -->", "# and #"], correctIndex: 1, explanation: "A multi-line comment starts with /* and ends with */; everything between them is ignored by the compiler." },
+  { question: "Does a multi-line comment end automatically at a line break?", options: ["Yes, always", "No — only */ ends it, so it can span many lines", "Only if the line is blank", "Only inside main()"], correctIndex: 1, explanation: "Unlike //, a multi-line comment does not end at a line break; it continues until the compiler finds the closing */, however many lines later that is." },
+  { question: "What happens if you forget the closing */ of a multi-line comment?", options: ["The compiler adds one automatically", "Everything after it is treated as part of the comment until the next */ is found, potentially hiding real code", "Nothing — the comment just ends at the next line", "The program crashes at run time"], correctIndex: 1, explanation: "A missing */ means the compiler keeps treating subsequent code as comment text until it finds the next */ anywhere in the file, which can silently disable much more code than intended." },
+  { question: "Can multi-line comments be nested inside each other in C, like /* outer /* inner */ still outer */?", options: ["Yes, C supports arbitrary nesting", "No — the first */ closes the whole comment, leaving stray code that causes errors", "Only with a special compiler flag", "Only in header files"], correctIndex: 1, explanation: "C does not support nested multi-line comments; the first */ encountered closes the comment entirely, so anything meant as an 'outer' close becomes invalid code." },
+  { question: "Which is more convenient for temporarily disabling an entire 10-line block of code during debugging?", options: ["Adding // to the start of every single line", "Wrapping the whole block in a single /* ... */ comment", "Deleting the block and retyping it later", "There is no way to disable multiple lines at once"], correctIndex: 1, explanation: "A single /* ... */ comment can wrap an entire block of code at once, which is faster and less error-prone than adding // to every individual line." }
+];
+</script>
+<script src="../../js/theme.js"></script>
+<script src="../../js/sidebar.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/quiz.js"></script>
+<script src="../../js/copy-code.js"></script>
+<script src="../../js/accordion.js"></script>
+</body>
+</html>
