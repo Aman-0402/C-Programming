@@ -94,7 +94,8 @@
 .badge-success { background: color-mix(in srgb, var(--color-success) 15%, transparent); color: var(--color-success); }
 .badge-warning { background: color-mix(in srgb, var(--color-warning) 15%, transparent); color: var(--color-warning); }
 
-/* Code block chrome */
+/* Code block chrome — deliberately always dark, regardless of page theme,
+   so raw hex is intentional here rather than the semantic --bg/--text tokens */
 .code-block {
   background: #0F172A;
   color: #E2E8F0;
