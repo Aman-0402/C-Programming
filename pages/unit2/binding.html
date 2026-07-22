@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Binding — Unit 2 — C Programming eBook</title>
+<meta name="description" content="Learn what binding means in C — the association between an identifier and the storage location it refers to — and how it relates to scope.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="../../css/variables.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/diagrams.css">
+<link rel="stylesheet" href="../../css/quiz.css">
+
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<style>
+  .topic-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-6); align-items: start; }
+  .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
+  .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
+  .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
+</style>
+</head>
+<body>
+
+<button class="icon-btn theme-toggle-float" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+  <i class="fa-solid fa-sun icon-sun"></i>
+  <i class="fa-solid fa-moon icon-moon"></i>
+</button>
+
+<div class="social-float">
+  <a class="icon-btn" href="https://github.com/Aman-0402" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+    <i class="fa-brands fa-github"></i>
+  </a>
+  <a class="icon-btn" href="https://www.linkedin.com/in/aman-raj-081905211/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+</div>
+
+<div class="shell" id="shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo" style="margin-bottom: var(--space-5);">
+      <a href="../../index.html" class="logo">
+        <i class="fa-solid fa-code" style="color: var(--color-primary);"></i><span class="sidebar-label"> C Programming eBook</span>
+      </a>
+    </div>
+
+    <button class="icon-btn" id="sidebar-collapse" aria-label="Collapse sidebar" style="margin-bottom: var(--space-4);">
+      <i class="fa-solid fa-angles-left"></i>
+    </button>
+
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 1</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit1-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">Unit 1</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit1-submenu">
+      <a class="sidebar-link" href="../unit1/evolution-of-programming.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="sidebar-label">Evolution of Programming</span></a>
+      <a class="sidebar-link" href="../unit1/programming-languages.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Programming Languages</span></a>
+      <a class="sidebar-link" href="../unit1/problem-solving.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Problem Solving</span></a>
+      <a class="sidebar-link" href="../unit1/sequential-logic.html"><i class="fa-solid fa-list-ol"></i><span class="sidebar-label">Sequential Logic</span></a>
+      <a class="sidebar-link" href="../unit1/algorithms.html"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-label">Algorithms</span></a>
+      <a class="sidebar-link" href="../unit1/pseudocode.html"><i class="fa-solid fa-file-lines"></i><span class="sidebar-label">Pseudocode</span></a>
+      <a class="sidebar-link" href="../unit1/flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
+      <a class="sidebar-link" href="../unit1/introduction-to-c.html"><i class="fa-solid fa-c"></i><span class="sidebar-label">Introduction to C</span></a>
+      <a class="sidebar-link" href="../unit1/history-of-c.html"><i class="fa-solid fa-scroll"></i><span class="sidebar-label">History of C</span></a>
+      <a class="sidebar-link" href="../unit1/features-of-c.html"><i class="fa-solid fa-star"></i><span class="sidebar-label">Features of C</span></a>
+      <a class="sidebar-link" href="../unit1/applications-of-c.html"><i class="fa-solid fa-industry"></i><span class="sidebar-label">Applications</span></a>
+      <a class="sidebar-link" href="../unit1/structure-of-c-program.html"><i class="fa-solid fa-code"></i><span class="sidebar-label">Structure of C Program</span></a>
+      <a class="sidebar-link" href="../unit1/c-compiler.html"><i class="fa-solid fa-gears"></i><span class="sidebar-label">C Compiler</span></a>
+      <a class="sidebar-link" href="../unit1/compilation-process.html"><i class="fa-solid fa-arrows-turn-right"></i><span class="sidebar-label">Compilation Process</span></a>
+      <a class="sidebar-link" href="../unit1/source-code.html"><i class="fa-solid fa-file-code"></i><span class="sidebar-label">Source Code</span></a>
+      <a class="sidebar-link" href="../unit1/object-code.html"><i class="fa-solid fa-cube"></i><span class="sidebar-label">Object Code</span></a>
+      <a class="sidebar-link" href="../unit1/executable-code.html"><i class="fa-solid fa-play"></i><span class="sidebar-label">Executable Code</span></a>
+      <a class="sidebar-link" href="../unit1/execution-process.html"><i class="fa-solid fa-microchip"></i><span class="sidebar-label">Execution Process</span></a>
+      <a class="sidebar-link" href="../unit1/assembler.html"><i class="fa-solid fa-wrench"></i><span class="sidebar-label">Assembler</span></a>
+      <a class="sidebar-link" href="../unit1/linker.html"><i class="fa-solid fa-link"></i><span class="sidebar-label">Linker</span></a>
+      <a class="sidebar-link" href="../unit1/loader.html"><i class="fa-solid fa-upload"></i><span class="sidebar-label">Loader</span></a>
+      <a class="sidebar-link" href="../unit1/interpreter.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Interpreter</span></a>
+      <a class="sidebar-link" href="../unit1/compilers-and-interpreters.html"><i class="fa-solid fa-code-compare"></i><span class="sidebar-label">Compilers &amp; Interpreters</span></a>
+      <a class="sidebar-link" href="../unit1/operating-systems.html"><i class="fa-solid fa-desktop"></i><span class="sidebar-label">Operating Systems</span></a>
+      <a class="sidebar-link" href="../unit1/debugging.html"><i class="fa-solid fa-bug"></i><span class="sidebar-label">Debugging</span></a>
+      <a class="sidebar-link" href="../unit1/comments.html"><i class="fa-solid fa-comment"></i><span class="sidebar-label">Comments</span></a>
+      <a class="sidebar-link" href="../unit1/single-line-comments.html"><i class="fa-solid fa-slash"></i><span class="sidebar-label">Single Line Comments</span></a>
+      <a class="sidebar-link" href="../unit1/multi-line-comments.html"><i class="fa-solid fa-quote-right"></i><span class="sidebar-label">Multi Line Comments</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 2</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit2-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">C Building Blocks &amp; Data Types</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit2-submenu">
+      <a class="sidebar-link" href="tokens.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Tokens</span></a>
+      <a class="sidebar-link" href="keywords.html"><i class="fa-solid fa-key"></i><span class="sidebar-label">Keywords</span></a>
+      <a class="sidebar-link" href="identifiers.html"><i class="fa-solid fa-tag"></i><span class="sidebar-label">Identifiers</span></a>
+      <a class="sidebar-link" href="naming-rules.html"><i class="fa-solid fa-spell-check"></i><span class="sidebar-label">Naming Rules</span></a>
+      <a class="sidebar-link" href="variables.html"><i class="fa-solid fa-box"></i><span class="sidebar-label">Variables</span></a>
+      <a class="sidebar-link" href="constants.html"><i class="fa-solid fa-lock"></i><span class="sidebar-label">Constants</span></a>
+      <a class="sidebar-link" href="values.html"><i class="fa-solid fa-hashtag"></i><span class="sidebar-label">Values</span></a>
+      <a class="sidebar-link" href="scope.html"><i class="fa-solid fa-eye"></i><span class="sidebar-label">Scope</span></a>
+      <a class="sidebar-link active" href="binding.html"><i class="fa-solid fa-link"></i><span class="sidebar-label">Binding</span></a>
+      <a class="sidebar-link" href="storage-classes.html"><i class="fa-solid fa-warehouse"></i><span class="sidebar-label">Storage Classes</span></a>
+      <a class="sidebar-link" href="integer-types.html"><i class="fa-solid fa-1"></i><span class="sidebar-label">Integer Types</span></a>
+      <a class="sidebar-link" href="floating-point-types.html"><i class="fa-solid fa-percent"></i><span class="sidebar-label">Floating Point Types</span></a>
+      <a class="sidebar-link" href="character-type.html"><i class="fa-solid fa-font"></i><span class="sidebar-label">Character Type</span></a>
+      <a class="sidebar-link" href="strings.html"><i class="fa-solid fa-quote-left"></i><span class="sidebar-label">Strings</span></a>
+            </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 3</span></div>
+      <a class="sidebar-link" href="../unit3/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Control Statements</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 4</span></div>
+      <a class="sidebar-link" href="../unit4/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Strings, Functions &amp; Pointers</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 5</span></div>
+      <a class="sidebar-link" href="../unit5/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Structures, Files &amp; Memory Management</span></a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="topic-layout">
+      <div>
+        <h1>Binding</h1>
+        <p class="lead">The association between a name and what it actually refers to — and how it's the missing piece that ties scope to a real storage location.</p>
+
+        <section class="topic-section" id="introduction">
+          <h2>1. What Is It?</h2>
+          <p><strong>Binding</strong> refers to the association between a name (an identifier) and what it actually refers to. A variable name is "bound" to a specific memory location, and that binding is established the moment the variable is declared. Before that point, the identifier has no binding at all — it simply doesn't refer to anything yet.</p>
+        </section>
+
+        <section class="topic-section" id="why">
+          <h2>2. Why Do We Need to Know This?</h2>
+          <p>Understanding binding clarifies exactly when and how an identifier starts referring to a real storage location. It ties directly into <a href="scope.html">scope</a> — scope is where a binding is visible, while binding is the association itself. This also explains why a variable's binding disappears once its scope ends: the association between the name and the storage location simply stops existing.</p>
+        </section>
+
+        <section class="topic-section" id="real-life">
+          <h2>3. Real-Life Example</h2>
+          <p>Think of assigning a nickname to a specific person at the start of a meeting. From that point on, using the nickname refers unambiguously to that one person — that's the binding. Once the meeting ends (the scope ends), that nickname no longer refers to anyone in particular; the binding is gone.</p>
+        </section>
+
+        <section class="topic-section" id="visual">
+          <h2>4. Visual Explanation</h2>
+          <p>Consider the moment this single line executes:</p>
+          <div class="memory-diagram">
+            <div class="memory-cell">
+              <div class="memory-cell-label">before: int a = 5;</div>
+              <div class="memory-cell-value">a has no binding yet</div>
+            </div>
+            <div class="memory-cell">
+              <div class="memory-cell-label">after: int a = 5;</div>
+              <div class="memory-cell-value">a is bound to a memory location holding 5</div>
+            </div>
+          </div>
+          <p>Before this line runs, the identifier <code>a</code> doesn't exist as far as the program is concerned — there is no binding. The instant <code>int a = 5;</code> executes, <code>a</code> becomes bound to a specific memory location holding the value <code>5</code>.</p>
+        </section>
+
+        <section class="topic-section" id="mistakes">
+          <h2>5. Common Mistakes</h2>
+          <ul class="mistake-list">
+            <li>Confusing "binding" with "scope." They're related but distinct — scope is <em>where</em> a binding is visible, while binding is the actual name-to-storage association itself.</li>
+            <li>Assuming a variable is bound to storage before it's actually declared. It isn't — there is no binding at all until the declaration executes.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="debugging">
+          <h2>6. Debugging Tips</h2>
+          <p>If you're unsure why an identifier "doesn't exist yet" at a certain point in your code, check whether its declaration — and therefore its binding — has actually been reached yet in the program's execution order.</p>
+        </section>
+
+        <section class="topic-section" id="best-practices">
+          <h2>7. Best Practices</h2>
+          <ul class="best-practice-list">
+            <li>Declare variables as close as possible to where they're first used, so their binding is established right before it's needed.</li>
+            <li>This reduces confusion about a variable's state early in a function, since you never have to wonder whether its binding has been established yet.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="interview">
+          <h2>8. Interview Questions</h2>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Easy:</strong> What is binding in C?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Binding is the association between an identifier and the actual storage location it refers to.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Medium:</strong> When does a variable's binding get established?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>At the point its declaration is executed.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Hard:</strong> How does binding relate to scope?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Scope defines where a binding is visible or valid; binding itself is the name-to-storage association. They're related but distinct concepts — one is the association, the other is its region of visibility.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>HR:</strong> How would you explain "binding" to a beginner using an analogy?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>This is open-ended — a strong answer might use the nickname-to-person example: assigning a nickname to a specific person at the start of a meeting is like binding, since from that point on the nickname refers unambiguously to that one person until the meeting ends.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Conceptual:</strong> Does an identifier have a binding before its declaration executes?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>No — there is no binding at all until the declaration actually runs.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Scenario-based:</strong> You try to use a variable's value before its declaration line has executed — what does this reveal about binding?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>It reveals the variable has no established binding yet at that point, since binding only happens once the declaration executes.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mcq">
+          <h2>9. MCQs</h2>
+          <div class="quiz" data-quiz-source="bindingQuiz"></div>
+        </section>
+
+        <section class="topic-section" id="exercises">
+          <h2>10. Programming Exercises</h2>
+          <p><strong>Easy:</strong> Define "binding" in your own words.</p>
+          <p><strong>Medium:</strong> Explain the difference between scope and binding.</p>
+          <p><strong>Hard:</strong> Describe, in writing, the exact moment <code>int sum = a + b;</code>'s binding for <code>sum</code> is established.</p>
+        </section>
+
+        <section class="topic-section" id="assignments">
+          <h2>11. Assignments</h2>
+          <p>Write a short paragraph distinguishing binding from scope, using an example that hasn't already appeared on this page.</p>
+        </section>
+
+        <section class="topic-section" id="faq">
+          <h2>12. FAQs</h2>
+          <p><strong>Q: Is binding a C-specific concept?</strong><br>A: No — it's a general programming-language concept, though this course covers it in the context of C.</p>
+          <p><strong>Q: Can a binding change during a program's execution?</strong><br>A: The value bound to a variable can change via reassignment, but the binding itself — the identifier-to-storage-location link — stays fixed for a local variable's lifetime.</p>
+        </section>
+
+        <section class="topic-section" id="takeaways">
+          <h2>13. Key Takeaways</h2>
+          <ul>
+            <li>Binding is the association between an identifier and the actual storage location it refers to.</li>
+            <li>A variable's binding is established at the point its declaration executes — not before.</li>
+            <li>Binding and scope are related but distinct: binding is the name-to-storage association, while scope is where that binding is visible.</li>
+          </ul>
+        </section>
+
+        <div class="topic-nav-footer">
+          <a href="scope.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Previous: Scope</a>
+          <a href="storage-classes.html" class="btn btn-primary">Next: Storage Classes <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for absolute beginners. &copy; 2026 C Programming eBook.</p>
+  </footer>
+
+</div>
+
+<div class="search-panel" id="search-panel" data-open="false">
+  <div class="search-panel-inner">
+    <div class="search-input-row">
+      <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+      <input type="text" id="search-input" placeholder="Search topics... (Ctrl+K)">
+      <button class="icon-btn" id="search-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="search-results" id="search-results"></ul>
+  </div>
+</div>
+
+<script>
+window.bindingQuiz = [
+  { question: "What is binding in C?", options: ["The process of compiling a program", "The association between an identifier and the storage location it refers to", "Another name for a data type", "The process of linking object files"], correctIndex: 1, explanation: "Binding is the association between a name (identifier) and what it actually refers to — a variable name bound to a specific memory location." },
+  { question: "When is a variable's binding established?", options: ["At the moment its declaration is executed", "Before the program starts running", "Only when the program ends", "Whenever the variable is printed"], correctIndex: 0, explanation: "A variable's binding is established at the point its declaration actually executes — not before." },
+  { question: "How does binding relate to scope?", options: ["They are exactly the same thing", "Scope is where a binding is visible; binding is the name-to-storage association itself", "Binding only applies to constants, scope only to variables", "Scope determines a variable's binding after the program ends"], correctIndex: 1, explanation: "Scope and binding are related but distinct: binding is the identifier-to-storage association, while scope defines where that binding is visible." },
+  { question: "Before a variable's declaration line executes, does the identifier have a binding?", options: ["Yes, always", "No — there is no binding until the declaration executes", "Only if it's a constant", "Only if it's declared with static"], correctIndex: 1, explanation: "There is no binding at all until the declaration actually runs — before that, the identifier simply doesn't refer to anything." },
+  { question: "What happens to a local variable's binding once its scope ends?", options: ["It becomes a global binding", "It disappears, since the association only exists within that scope", "It is automatically saved for later reuse", "Nothing changes"], correctIndex: 1, explanation: "Once a variable's scope ends, its binding disappears — the name-to-storage association only exists while the scope containing the declaration is active." }
+];
+</script>
+<script src="../../js/theme.js"></script>
+<script src="../../js/sidebar.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/quiz.js"></script>
+<script src="../../js/copy-code.js"></script>
+<script src="../../js/accordion.js"></script>
+</body>
+</html>
