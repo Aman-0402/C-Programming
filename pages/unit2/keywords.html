@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keywords — Unit 2 — C Programming eBook</title>
+<meta name="description" content="Learn what keywords are in C, why they can't be reused as identifiers, and the common beginner misconception that main is a reserved keyword.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="../../css/variables.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/diagrams.css">
+<link rel="stylesheet" href="../../css/quiz.css">
+
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<style>
+  .topic-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-6); align-items: start; }
+  .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
+  .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
+  .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
+</style>
+</head>
+<body>
+
+<button class="icon-btn theme-toggle-float" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+  <i class="fa-solid fa-sun icon-sun"></i>
+  <i class="fa-solid fa-moon icon-moon"></i>
+</button>
+
+<div class="social-float">
+  <a class="icon-btn" href="https://github.com/Aman-0402" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+    <i class="fa-brands fa-github"></i>
+  </a>
+  <a class="icon-btn" href="https://www.linkedin.com/in/aman-raj-081905211/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+</div>
+
+<div class="shell" id="shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo" style="margin-bottom: var(--space-5);">
+      <a href="../../index.html" class="logo">
+        <i class="fa-solid fa-code" style="color: var(--color-primary);"></i><span class="sidebar-label"> C Programming eBook</span>
+      </a>
+    </div>
+
+    <button class="icon-btn" id="sidebar-collapse" aria-label="Collapse sidebar" style="margin-bottom: var(--space-4);">
+      <i class="fa-solid fa-angles-left"></i>
+    </button>
+
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 1</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit1-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">Unit 1</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit1-submenu">
+      <a class="sidebar-link" href="../unit1/evolution-of-programming.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="sidebar-label">Evolution of Programming</span></a>
+      <a class="sidebar-link" href="../unit1/programming-languages.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Programming Languages</span></a>
+      <a class="sidebar-link" href="../unit1/problem-solving.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Problem Solving</span></a>
+      <a class="sidebar-link" href="../unit1/sequential-logic.html"><i class="fa-solid fa-list-ol"></i><span class="sidebar-label">Sequential Logic</span></a>
+      <a class="sidebar-link" href="../unit1/algorithms.html"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-label">Algorithms</span></a>
+      <a class="sidebar-link" href="../unit1/pseudocode.html"><i class="fa-solid fa-file-lines"></i><span class="sidebar-label">Pseudocode</span></a>
+      <a class="sidebar-link" href="../unit1/flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
+      <a class="sidebar-link" href="../unit1/introduction-to-c.html"><i class="fa-solid fa-c"></i><span class="sidebar-label">Introduction to C</span></a>
+      <a class="sidebar-link" href="../unit1/history-of-c.html"><i class="fa-solid fa-scroll"></i><span class="sidebar-label">History of C</span></a>
+      <a class="sidebar-link" href="../unit1/features-of-c.html"><i class="fa-solid fa-star"></i><span class="sidebar-label">Features of C</span></a>
+      <a class="sidebar-link" href="../unit1/applications-of-c.html"><i class="fa-solid fa-industry"></i><span class="sidebar-label">Applications</span></a>
+      <a class="sidebar-link" href="../unit1/structure-of-c-program.html"><i class="fa-solid fa-code"></i><span class="sidebar-label">Structure of C Program</span></a>
+      <a class="sidebar-link" href="../unit1/c-compiler.html"><i class="fa-solid fa-gears"></i><span class="sidebar-label">C Compiler</span></a>
+      <a class="sidebar-link" href="../unit1/compilation-process.html"><i class="fa-solid fa-arrows-turn-right"></i><span class="sidebar-label">Compilation Process</span></a>
+      <a class="sidebar-link" href="../unit1/source-code.html"><i class="fa-solid fa-file-code"></i><span class="sidebar-label">Source Code</span></a>
+      <a class="sidebar-link" href="../unit1/object-code.html"><i class="fa-solid fa-cube"></i><span class="sidebar-label">Object Code</span></a>
+      <a class="sidebar-link" href="../unit1/executable-code.html"><i class="fa-solid fa-play"></i><span class="sidebar-label">Executable Code</span></a>
+      <a class="sidebar-link" href="../unit1/execution-process.html"><i class="fa-solid fa-microchip"></i><span class="sidebar-label">Execution Process</span></a>
+      <a class="sidebar-link" href="../unit1/assembler.html"><i class="fa-solid fa-wrench"></i><span class="sidebar-label">Assembler</span></a>
+      <a class="sidebar-link" href="../unit1/linker.html"><i class="fa-solid fa-link"></i><span class="sidebar-label">Linker</span></a>
+      <a class="sidebar-link" href="../unit1/loader.html"><i class="fa-solid fa-upload"></i><span class="sidebar-label">Loader</span></a>
+      <a class="sidebar-link" href="../unit1/interpreter.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Interpreter</span></a>
+      <a class="sidebar-link" href="../unit1/compilers-and-interpreters.html"><i class="fa-solid fa-code-compare"></i><span class="sidebar-label">Compilers &amp; Interpreters</span></a>
+      <a class="sidebar-link" href="../unit1/operating-systems.html"><i class="fa-solid fa-desktop"></i><span class="sidebar-label">Operating Systems</span></a>
+      <a class="sidebar-link" href="../unit1/debugging.html"><i class="fa-solid fa-bug"></i><span class="sidebar-label">Debugging</span></a>
+      <a class="sidebar-link" href="../unit1/comments.html"><i class="fa-solid fa-comment"></i><span class="sidebar-label">Comments</span></a>
+      <a class="sidebar-link" href="../unit1/single-line-comments.html"><i class="fa-solid fa-slash"></i><span class="sidebar-label">Single Line Comments</span></a>
+      <a class="sidebar-link" href="../unit1/multi-line-comments.html"><i class="fa-solid fa-quote-right"></i><span class="sidebar-label">Multi Line Comments</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 2</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit2-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">C Building Blocks &amp; Data Types</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit2-submenu">
+      <a class="sidebar-link" href="tokens.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Tokens</span></a>
+      <a class="sidebar-link active" href="keywords.html"><i class="fa-solid fa-key"></i><span class="sidebar-label">Keywords</span></a>
+      <a class="sidebar-link" href="identifiers.html"><i class="fa-solid fa-tag"></i><span class="sidebar-label">Identifiers</span></a>
+      <a class="sidebar-link" href="naming-rules.html"><i class="fa-solid fa-spell-check"></i><span class="sidebar-label">Naming Rules</span></a>
+      <a class="sidebar-link" href="variables.html"><i class="fa-solid fa-box"></i><span class="sidebar-label">Variables</span></a>
+      <a class="sidebar-link" href="constants.html"><i class="fa-solid fa-lock"></i><span class="sidebar-label">Constants</span></a>
+      <a class="sidebar-link" href="values.html"><i class="fa-solid fa-hashtag"></i><span class="sidebar-label">Values</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 3</span></div>
+      <a class="sidebar-link" href="../unit3/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Control Statements</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 4</span></div>
+      <a class="sidebar-link" href="../unit4/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Strings, Functions &amp; Pointers</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 5</span></div>
+      <a class="sidebar-link" href="../unit5/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Structures, Files &amp; Memory Management</span></a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="topic-layout">
+      <div>
+        <h1>Keywords</h1>
+        <p class="lead">Words the C language has already claimed for itself — like <code>int</code>, <code>if</code>, and <code>return</code> — that you can never borrow for your own variable or function names.</p>
+
+        <section class="topic-section" id="introduction">
+          <h2>1. What Is It?</h2>
+          <p>A <strong>keyword</strong> is a word reserved by the C language itself for a specific, fixed purpose — words like <code>int</code>, <code>if</code>, <code>return</code>, <code>for</code>, and <code>while</code>. Keywords cannot be used as identifiers (names you choose for your own variables, functions, and so on) because the compiler always interprets them as their reserved meaning, never as something you defined.</p>
+        </section>
+
+        <section class="topic-section" id="why">
+          <h2>2. Why Do We Need to Know This?</h2>
+          <p>Recognizing keywords by sight — and knowing up front that you can't reuse them as your own names — prevents a whole category of confusing beginner naming errors before they ever happen.</p>
+        </section>
+
+        <section class="topic-section" id="real-life">
+          <h2>3. Real-Life Example</h2>
+          <p>Think of reserved words in a legal contract template, like "Party" or "Agreement" — they always mean one specific thing in that context. You can't casually redefine what "Agreement" means partway through the same document; the word is locked to its fixed meaning. C's keywords work the same way.</p>
+        </section>
+
+        <section class="topic-section" id="visual">
+          <h2>4. Visual Explanation</h2>
+          <div class="feature-grid">
+            <div class="card">
+              <i class="fa-solid fa-hashtag" style="color: var(--color-primary); font-size: 1.5rem;"></i>
+              <h3><code>int</code></h3>
+              <p>A data type keyword — it tells the compiler that a variable will hold a whole number.</p>
+            </div>
+            <div class="card">
+              <i class="fa-solid fa-arrow-turn-up" style="color: var(--color-secondary); font-size: 1.5rem;"></i>
+              <h3><code>return</code></h3>
+              <p>A keyword that ends a function, optionally sending a value back to whoever called it.</p>
+            </div>
+            <div class="card">
+              <i class="fa-solid fa-circle-exclamation" style="color: var(--color-warning); font-size: 1.5rem;"></i>
+              <h3><code>main</code> is <strong>NOT</strong> a keyword</h3>
+              <p>Surprising but true: <code>main</code> is just a conventionally-named identifier that the operating system/runtime looks for as the program's entry point. It is not reserved by C's grammar at all.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mistakes">
+          <h2>5. Common Mistakes</h2>
+          <ul class="mistake-list">
+            <li>Trying to name a variable the same as a keyword, e.g. <code>int int = 5;</code> — this is invalid, since <code>int</code> is reserved and the compiler will never treat it as a variable name.</li>
+            <li>Assuming <code>main</code> is a keyword. It isn't — it's just a specially-recognized identifier by convention, not a reserved word in C's grammar.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="debugging">
+          <h2>6. Debugging Tips</h2>
+          <p>If the compiler reports an error pointing at what looks like a perfectly normal word you tried to use as a variable name, check whether that word happens to be a reserved keyword — that mismatch is a very common source of confusing beginner errors.</p>
+        </section>
+
+        <section class="topic-section" id="best-practices">
+          <h2>7. Best Practices</h2>
+          <ul class="best-practice-list">
+            <li>Avoid keyword-adjacent names that could confuse readers. Naming a variable <code>printf_result</code> is perfectly fine, but don't get creative trying to almost-reuse a keyword itself.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="interview">
+          <h2>8. Interview Questions</h2>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Easy:</strong> What is a keyword in C?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>A keyword is a word reserved by the C language for a specific, fixed purpose, like <code>int</code> or <code>return</code>.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Medium:</strong> Can you name a variable the same as a keyword?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>No, this causes a compiler error since keywords are reserved and always carry their fixed, built-in meaning.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Hard:</strong> Is <code>main</code> a C keyword?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>No — it's just a conventionally-named identifier that the OS/runtime looks for as the program's entry point, not a reserved word in C's grammar.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>HR:</strong> Can you name a few C keywords you've already seen in this course?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>This is open-ended — a strong answer might mention <code>int</code>, <code>return</code>, or others seen so far in the course's examples.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Conceptual:</strong> Why can't keywords be reused as variable names?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Because the compiler always interprets them with their fixed, built-in meaning, so reusing one would create an unresolvable conflict between the reserved meaning and your intended use.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Scenario-based:</strong> You get a compiler error trying to declare <code>int for = 5;</code> — why does this fail?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p><code>for</code> is a reserved keyword (used for loops), so it can't be used as a variable name.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mcq">
+          <h2>9. MCQs</h2>
+          <div class="quiz" data-quiz-source="keywordsQuiz"></div>
+        </section>
+
+        <section class="topic-section" id="exercises">
+          <h2>10. Programming Exercises</h2>
+          <p><strong>Easy:</strong> Name 3 keywords you've seen so far in this course.</p>
+          <p><strong>Medium:</strong> Explain why <code>int</code> can't be used as a variable name.</p>
+          <p><strong>Hard:</strong> Research whether <code>main</code> is officially a C keyword or just a convention.</p>
+        </section>
+
+        <section class="topic-section" id="assignments">
+          <h2>11. Assignments</h2>
+          <p>Write a short paragraph explaining why keywords exist and what would go wrong without them.</p>
+        </section>
+
+        <section class="topic-section" id="faq">
+          <h2>12. FAQs</h2>
+          <p><strong>Q: How many keywords does C have?</strong><br>A: A relatively small, fixed set — roughly 32 in standard C, though this course doesn't require memorizing the full list up front.</p>
+          <p><strong>Q: Are keywords case-sensitive?</strong><br>A: Yes — <code>int</code> is a keyword, but <code>Int</code> or <code>INT</code> are not, since C is case-sensitive throughout.</p>
+        </section>
+
+        <section class="topic-section" id="takeaways">
+          <h2>13. Key Takeaways</h2>
+          <ul>
+            <li>A keyword is a word reserved by the C language itself for a specific, fixed purpose, like <code>int</code> or <code>return</code>.</li>
+            <li>Keywords can never be reused as identifiers — the compiler always interprets them with their fixed, built-in meaning, so reusing one causes a compiler error.</li>
+            <li><code>main</code> is not a keyword; it's just a conventionally-named identifier the OS looks for as the program's entry point, not a reserved word in C's grammar.</li>
+          </ul>
+        </section>
+
+        <div class="topic-nav-footer">
+          <a href="tokens.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Previous: Tokens</a>
+          <a href="identifiers.html" class="btn btn-primary">Next: Identifiers <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for absolute beginners. &copy; 2026 C Programming eBook.</p>
+  </footer>
+
+</div>
+
+<div class="search-panel" id="search-panel" data-open="false">
+  <div class="search-panel-inner">
+    <div class="search-input-row">
+      <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+      <input type="text" id="search-input" placeholder="Search topics... (Ctrl+K)">
+      <button class="icon-btn" id="search-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="search-results" id="search-results"></ul>
+  </div>
+</div>
+
+<script>
+window.keywordsQuiz = [
+  { question: "What is a keyword in C?", options: ["Any word used inside main()", "A word reserved by the C language for a specific, fixed purpose", "A comment marker", "Any identifier declared with int"], correctIndex: 1, explanation: "A keyword is a word reserved by C for a specific, fixed purpose, like int, if, or return — it cannot be redefined by the programmer." },
+  { question: "Which of these is invalid in C?", options: ["int total = 5;", "int int = 5;", "int Int = 5;", "int _count = 5;"], correctIndex: 1, explanation: "int int = 5; is invalid because int is a reserved keyword and cannot be used as a variable name." },
+  { question: "Is main a keyword in C?", options: ["Yes, it is reserved by C's grammar", "No, it is just a conventionally-named identifier the OS looks for as the entry point", "Yes, but only in older C standards", "Only when used with return 0;"], correctIndex: 1, explanation: "main is not a reserved keyword — it's a conventionally-named identifier that the operating system/runtime looks for as the program's entry point." },
+  { question: "Why can't a keyword be used as a variable name?", options: ["Because it's too short", "Because the compiler always interprets it with its fixed, built-in meaning", "Because keywords are stored in a separate file", "Keywords actually can be used as variable names"], correctIndex: 1, explanation: "The compiler always interprets a keyword using its reserved meaning, so reusing it as a variable name creates an unresolvable conflict." },
+  { question: "Are C keywords case-sensitive?", options: ["No, int and INT are the same", "Yes, int is a keyword but Int or INT are not", "Only for loop keywords like for and while", "Case sensitivity depends on the compiler"], correctIndex: 1, explanation: "C is case-sensitive throughout, so int is a keyword while Int or INT are treated as ordinary, unreserved identifiers." }
+];
+</script>
+<script src="../../js/theme.js"></script>
+<script src="../../js/sidebar.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/quiz.js"></script>
+<script src="../../js/copy-code.js"></script>
+<script src="../../js/accordion.js"></script>
+</body>
+</html>
