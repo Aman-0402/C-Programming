@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operators — Unit 2 — C Programming eBook</title>
+<meta name="description" content="An overview of C's operator categories — arithmetic, relational, and logical — before diving deep into each one over the next three pages.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="../../css/variables.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/diagrams.css">
+<link rel="stylesheet" href="../../css/quiz.css">
+
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<style>
+  .topic-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-6); align-items: start; }
+  .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
+  .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
+  .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
+</style>
+</head>
+<body>
+
+<button class="icon-btn theme-toggle-float" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+  <i class="fa-solid fa-sun icon-sun"></i>
+  <i class="fa-solid fa-moon icon-moon"></i>
+</button>
+
+<div class="social-float">
+  <a class="icon-btn" href="https://github.com/Aman-0402" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+    <i class="fa-brands fa-github"></i>
+  </a>
+  <a class="icon-btn" href="https://www.linkedin.com/in/aman-raj-081905211/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+</div>
+
+<div class="shell" id="shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo" style="margin-bottom: var(--space-5);">
+      <a href="../../index.html" class="logo">
+        <i class="fa-solid fa-code" style="color: var(--color-primary);"></i><span class="sidebar-label"> C Programming eBook</span>
+      </a>
+    </div>
+
+    <button class="icon-btn" id="sidebar-collapse" aria-label="Collapse sidebar" style="margin-bottom: var(--space-4);">
+      <i class="fa-solid fa-angles-left"></i>
+    </button>
+
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 1</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit1-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">Unit 1</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit1-submenu">
+      <a class="sidebar-link" href="../unit1/evolution-of-programming.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="sidebar-label">Evolution of Programming</span></a>
+      <a class="sidebar-link" href="../unit1/programming-languages.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Programming Languages</span></a>
+      <a class="sidebar-link" href="../unit1/problem-solving.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Problem Solving</span></a>
+      <a class="sidebar-link" href="../unit1/sequential-logic.html"><i class="fa-solid fa-list-ol"></i><span class="sidebar-label">Sequential Logic</span></a>
+      <a class="sidebar-link" href="../unit1/algorithms.html"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-label">Algorithms</span></a>
+      <a class="sidebar-link" href="../unit1/pseudocode.html"><i class="fa-solid fa-file-lines"></i><span class="sidebar-label">Pseudocode</span></a>
+      <a class="sidebar-link" href="../unit1/flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
+      <a class="sidebar-link" href="../unit1/introduction-to-c.html"><i class="fa-solid fa-c"></i><span class="sidebar-label">Introduction to C</span></a>
+      <a class="sidebar-link" href="../unit1/history-of-c.html"><i class="fa-solid fa-scroll"></i><span class="sidebar-label">History of C</span></a>
+      <a class="sidebar-link" href="../unit1/features-of-c.html"><i class="fa-solid fa-star"></i><span class="sidebar-label">Features of C</span></a>
+      <a class="sidebar-link" href="../unit1/applications-of-c.html"><i class="fa-solid fa-industry"></i><span class="sidebar-label">Applications</span></a>
+      <a class="sidebar-link" href="../unit1/structure-of-c-program.html"><i class="fa-solid fa-code"></i><span class="sidebar-label">Structure of C Program</span></a>
+      <a class="sidebar-link" href="../unit1/c-compiler.html"><i class="fa-solid fa-gears"></i><span class="sidebar-label">C Compiler</span></a>
+      <a class="sidebar-link" href="../unit1/compilation-process.html"><i class="fa-solid fa-arrows-turn-right"></i><span class="sidebar-label">Compilation Process</span></a>
+      <a class="sidebar-link" href="../unit1/source-code.html"><i class="fa-solid fa-file-code"></i><span class="sidebar-label">Source Code</span></a>
+      <a class="sidebar-link" href="../unit1/object-code.html"><i class="fa-solid fa-cube"></i><span class="sidebar-label">Object Code</span></a>
+      <a class="sidebar-link" href="../unit1/executable-code.html"><i class="fa-solid fa-play"></i><span class="sidebar-label">Executable Code</span></a>
+      <a class="sidebar-link" href="../unit1/execution-process.html"><i class="fa-solid fa-microchip"></i><span class="sidebar-label">Execution Process</span></a>
+      <a class="sidebar-link" href="../unit1/assembler.html"><i class="fa-solid fa-wrench"></i><span class="sidebar-label">Assembler</span></a>
+      <a class="sidebar-link" href="../unit1/linker.html"><i class="fa-solid fa-link"></i><span class="sidebar-label">Linker</span></a>
+      <a class="sidebar-link" href="../unit1/loader.html"><i class="fa-solid fa-upload"></i><span class="sidebar-label">Loader</span></a>
+      <a class="sidebar-link" href="../unit1/interpreter.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Interpreter</span></a>
+      <a class="sidebar-link" href="../unit1/compilers-and-interpreters.html"><i class="fa-solid fa-code-compare"></i><span class="sidebar-label">Compilers &amp; Interpreters</span></a>
+      <a class="sidebar-link" href="../unit1/operating-systems.html"><i class="fa-solid fa-desktop"></i><span class="sidebar-label">Operating Systems</span></a>
+      <a class="sidebar-link" href="../unit1/debugging.html"><i class="fa-solid fa-bug"></i><span class="sidebar-label">Debugging</span></a>
+      <a class="sidebar-link" href="../unit1/comments.html"><i class="fa-solid fa-comment"></i><span class="sidebar-label">Comments</span></a>
+      <a class="sidebar-link" href="../unit1/single-line-comments.html"><i class="fa-solid fa-slash"></i><span class="sidebar-label">Single Line Comments</span></a>
+      <a class="sidebar-link" href="../unit1/multi-line-comments.html"><i class="fa-solid fa-quote-right"></i><span class="sidebar-label">Multi Line Comments</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 2</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit2-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">C Building Blocks &amp; Data Types</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit2-submenu">
+      <a class="sidebar-link" href="tokens.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Tokens</span></a>
+      <a class="sidebar-link" href="keywords.html"><i class="fa-solid fa-key"></i><span class="sidebar-label">Keywords</span></a>
+      <a class="sidebar-link" href="identifiers.html"><i class="fa-solid fa-tag"></i><span class="sidebar-label">Identifiers</span></a>
+      <a class="sidebar-link" href="naming-rules.html"><i class="fa-solid fa-spell-check"></i><span class="sidebar-label">Naming Rules</span></a>
+      <a class="sidebar-link" href="variables.html"><i class="fa-solid fa-box"></i><span class="sidebar-label">Variables</span></a>
+      <a class="sidebar-link" href="constants.html"><i class="fa-solid fa-lock"></i><span class="sidebar-label">Constants</span></a>
+      <a class="sidebar-link" href="values.html"><i class="fa-solid fa-hashtag"></i><span class="sidebar-label">Values</span></a>
+      <a class="sidebar-link" href="scope.html"><i class="fa-solid fa-eye"></i><span class="sidebar-label">Scope</span></a>
+      <a class="sidebar-link" href="binding.html"><i class="fa-solid fa-link"></i><span class="sidebar-label">Binding</span></a>
+      <a class="sidebar-link" href="storage-classes.html"><i class="fa-solid fa-warehouse"></i><span class="sidebar-label">Storage Classes</span></a>
+      <a class="sidebar-link" href="integer-types.html"><i class="fa-solid fa-1"></i><span class="sidebar-label">Integer Types</span></a>
+      <a class="sidebar-link" href="floating-point-types.html"><i class="fa-solid fa-percent"></i><span class="sidebar-label">Floating Point Types</span></a>
+      <a class="sidebar-link" href="character-type.html"><i class="fa-solid fa-font"></i><span class="sidebar-label">Character Type</span></a>
+      <a class="sidebar-link" href="strings.html"><i class="fa-solid fa-quote-left"></i><span class="sidebar-label">Strings</span></a>
+      <a class="sidebar-link" href="l-value.html"><i class="fa-solid fa-arrow-left-long"></i><span class="sidebar-label">L-value</span></a>
+      <a class="sidebar-link" href="r-value.html"><i class="fa-solid fa-arrow-right-long"></i><span class="sidebar-label">R-value</span></a>
+      <a class="sidebar-link" href="type-conversion.html"><i class="fa-solid fa-arrows-rotate"></i><span class="sidebar-label">Type Conversion</span></a>
+      <a class="sidebar-link active" href="operators.html"><i class="fa-solid fa-calculator"></i><span class="sidebar-label">Operators</span></a>
+      <a class="sidebar-link" href="arithmetic-operators.html"><i class="fa-solid fa-plus-minus"></i><span class="sidebar-label">Arithmetic Operators</span></a>
+      <a class="sidebar-link" href="relational-operators.html"><i class="fa-solid fa-equals"></i><span class="sidebar-label">Relational Operators</span></a>
+      <a class="sidebar-link" href="logical-operators.html"><i class="fa-solid fa-code-branch"></i><span class="sidebar-label">Logical Operators</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 3</span></div>
+      <a class="sidebar-link" href="../unit3/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Control Statements</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 4</span></div>
+      <a class="sidebar-link" href="../unit4/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Strings, Functions &amp; Pointers</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 5</span></div>
+      <a class="sidebar-link" href="../unit5/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Structures, Files &amp; Memory Management</span></a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="topic-layout">
+      <div>
+        <h1>Operators</h1>
+        <p class="lead">A symbol that tells the compiler to perform a specific operation — this page maps out the categories of operators you're about to meet, before the next three pages go deep on each one.</p>
+
+        <section class="topic-section" id="introduction">
+          <h2>1. What Is It?</h2>
+          <p>An <strong>operator</strong> is a symbol that tells the compiler to perform a specific operation on one or more values, called <strong>operands</strong> — like <code>+</code> for addition or <code>&gt;</code> for "greater than." C groups its operators into several categories: <strong>arithmetic</strong> operators (for math), <strong>relational</strong> operators (for comparison), <strong>logical</strong> operators (for combining true/false conditions), and others — such as assignment, bitwise, and conditional operators — covered in a later chapter of this course.</p>
+        </section>
+
+        <section class="topic-section" id="why">
+          <h2>2. Why Do We Need to Know This?</h2>
+          <p>Seeing the operator categories laid out together, before diving into each one individually, gives you a clear map of what's coming and how the categories relate to each other. Instead of meeting dozens of symbols with no context, you'll know upfront that arithmetic operators calculate, relational operators compare, and logical operators combine conditions.</p>
+        </section>
+
+        <section class="topic-section" id="real-life">
+          <h2>3. Real-Life Example</h2>
+          <p>Think of different tool categories in a toolbox: measuring tools (arithmetic, for calculating totals and quantities), comparison tools (relational, for checking which of two things is bigger, smaller, or equal), and decision tools (logical, for combining multiple yes/no conditions into a single answer). Each category solves a fundamentally different kind of problem, just like each toolbox category serves a different job.</p>
+        </section>
+
+        <section class="topic-section" id="visual">
+          <h2>4. Visual Explanation</h2>
+          <p>Here's a map of the operator categories covered over the next three pages of this course, plus a preview of what's still ahead:</p>
+          <div class="feature-grid">
+            <div class="card">
+              <i class="fa-solid fa-plus-minus" style="color: var(--color-primary); font-size: 1.5rem;"></i>
+              <h3>Arithmetic Operators</h3>
+              <p><code>+ - * / %</code> — perform calculations on numeric operands. Covered on the very next page.</p>
+            </div>
+            <div class="card">
+              <i class="fa-solid fa-equals" style="color: var(--color-primary); font-size: 1.5rem;"></i>
+              <h3>Relational Operators</h3>
+              <p><code>&gt; &lt; &gt;= &lt;= == !=</code> — compare two values, producing a true/false-style result. Covered two pages ahead.</p>
+            </div>
+            <div class="card">
+              <i class="fa-solid fa-code-branch" style="color: var(--color-primary); font-size: 1.5rem;"></i>
+              <h3>Logical Operators</h3>
+              <p><code>&amp;&amp; || !</code> — combine multiple true/false conditions together. Covered three pages ahead.</p>
+            </div>
+          </div>
+          <p>Beyond these three, C also has assignment, bitwise, and conditional operators (among others) — these exist and are useful, but they're covered in a later chapter of this course rather than here.</p>
+        </section>
+
+        <section class="topic-section" id="mistakes">
+          <h2>5. Common Mistakes</h2>
+          <ul class="mistake-list">
+            <li>Assuming all operators work the same way regardless of category — arithmetic operators return calculated numeric values, while relational and logical operators are fundamentally about true/false-style results, a different kind of outcome entirely.</li>
+            <li>Trying to memorize every operator's symbol without first understanding its category's underlying purpose — this makes the symbols harder to recall and easy to mix up.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="debugging">
+          <h2>6. Debugging Tips</h2>
+          <p>When an expression's result doesn't make sense, first identify which operator category is involved. Arithmetic bugs are usually about wrong calculations (a miscalculated total, an unexpected result from division). Relational and logical bugs are usually about faulty true/false logic (a condition that's true when it shouldn't be, or vice versa). Narrowing down the category first makes the actual bug much faster to spot.</p>
+        </section>
+
+        <section class="topic-section" id="best-practices">
+          <h2>7. Best Practices</h2>
+          <ul class="best-practice-list">
+            <li>Learn operators by category, understanding what kind of question or task each category answers — calculating, comparing, or combining conditions — rather than memorizing symbols in isolation.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="interview">
+          <h2>8. Interview Questions</h2>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Easy:</strong> What is an operator in C?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>An operator is a symbol that tells the compiler to perform a specific operation on one or more values, called operands.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Medium:</strong> Name the three main operator categories covered in the next few pages of this course.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Arithmetic, relational, and logical operators.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Hard:</strong> What's the fundamental difference between what arithmetic operators produce versus what relational/logical operators produce?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Arithmetic operators produce calculated numeric values, while relational and logical operators produce true/false-style results used for comparisons and decisions.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>HR:</strong> Which category of operator do you expect to use most often in real programs?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>This is open-ended — a reasonable answer is arithmetic, since calculations show up constantly, though relational and logical operators are just as central once conditions and decisions enter a program.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Conceptual:</strong> Are all C operators covered in this single page?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>No. This page introduces arithmetic, relational, and logical operators, which are covered in depth over the next three pages. Other categories, like assignment and bitwise operators, are covered in a later chapter.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Scenario-based:</strong> You need to check if a user's age is 18 or older before allowing something — which operator category would you reach for?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Relational — specifically the <code>&gt;=</code> operator, since this is a comparison between the user's age and 18.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mcq">
+          <h2>9. MCQs</h2>
+          <div class="quiz" data-quiz-source="operatorsQuiz"></div>
+        </section>
+
+        <section class="topic-section" id="exercises">
+          <h2>10. Programming Exercises</h2>
+          <p><strong>Easy:</strong> Name the three operator categories covered in this chapter.</p>
+          <p><strong>Medium:</strong> For each of <code>+</code>, <code>&gt;</code>, and <code>&amp;&amp;</code>, identify which category it belongs to.</p>
+          <p><strong>Hard:</strong> Think of one real-world decision (not from this page) and identify which operator category would help express it.</p>
+        </section>
+
+        <section class="topic-section" id="assignments">
+          <h2>11. Assignments</h2>
+          <p>Write a short paragraph, in your own words, explaining why grouping operators into categories (arithmetic/relational/logical) is a helpful way to learn them.</p>
+        </section>
+
+        <section class="topic-section" id="faq">
+          <h2>12. FAQs</h2>
+          <p><strong>Q: Are there more operator categories than just these three?</strong><br>A: Yes — assignment, bitwise, conditional, and others exist, covered in a later chapter of this course.</p>
+          <p><strong>Q: Do all operators in C use symbols, or are some written as words?</strong><br>A: The operators covered in this course's next few pages are symbol-based. C does have some keyword-based constructs, but they aren't classified as operators in the same sense.</p>
+        </section>
+
+        <section class="topic-section" id="takeaways">
+          <h2>13. Key Takeaways</h2>
+          <ul>
+            <li>An operator is a symbol that tells the compiler to perform a specific operation on one or more operands.</li>
+            <li>The next three pages cover arithmetic operators (calculations), relational operators (comparisons), and logical operators (combining true/false conditions).</li>
+            <li>Other categories — assignment, bitwise, conditional, and more — exist too, and are covered in a later chapter of this course.</li>
+          </ul>
+        </section>
+
+        <div class="topic-nav-footer">
+          <a href="type-conversion.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Previous: Type Conversion</a>
+          <a href="arithmetic-operators.html" class="btn btn-primary">Next: Arithmetic Operators <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for absolute beginners. &copy; 2026 C Programming eBook.</p>
+  </footer>
+
+</div>
+
+<div class="search-panel" id="search-panel" data-open="false">
+  <div class="search-panel-inner">
+    <div class="search-input-row">
+      <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+      <input type="text" id="search-input" placeholder="Search topics... (Ctrl+K)">
+      <button class="icon-btn" id="search-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="search-results" id="search-results"></ul>
+  </div>
+</div>
+
+<script>
+window.operatorsQuiz = [
+  { question: "What is an operator in C?", options: ["A variable that stores a value", "A symbol that tells the compiler to perform a specific operation on one or more operands", "A keyword that declares a data type", "A function that returns void"], correctIndex: 1, explanation: "An operator is a symbol that tells the compiler to perform a specific operation on one or more values (operands)." },
+  { question: "Which three operator categories are covered in depth over the next three pages of this course?", options: ["Assignment, bitwise, conditional", "Arithmetic, relational, logical", "Unary, binary, ternary", "Increment, decrement, modulus"], correctIndex: 1, explanation: "This page introduces arithmetic, relational, and logical operators, each covered on its own dedicated page next." },
+  { question: "What kind of result do arithmetic operators produce?", options: ["A true/false-style result", "A calculated numeric value", "A memory address", "A new data type"], correctIndex: 1, explanation: "Arithmetic operators like + - * / % perform calculations and produce calculated numeric values." },
+  { question: "What kind of result do relational and logical operators fundamentally produce?", options: ["A calculated numeric total", "A true/false-style result used for comparisons and decisions", "A formatted string", "A memory allocation"], correctIndex: 1, explanation: "Relational and logical operators are about true/false-style outcomes, a different kind of result than arithmetic's calculated values." },
+  { question: "Which operator category would you use to check if a user's age is 18 or older?", options: ["Arithmetic", "Relational", "Logical", "Bitwise"], correctIndex: 1, explanation: "Comparing a value against a threshold, like checking age >= 18, is a relational operation." }
+];
+</script>
+<script src="../../js/theme.js"></script>
+<script src="../../js/sidebar.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/quiz.js"></script>
+<script src="../../js/copy-code.js"></script>
+<script src="../../js/accordion.js"></script>
+</body>
+</html>
