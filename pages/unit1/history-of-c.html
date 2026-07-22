@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>History of C — Unit 1 — C Programming eBook</title>
+<meta name="description" content="Learn the story of how C was created at Bell Labs to rewrite Unix, and how it has evolved through ANSI/ISO standards ever since.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="../../css/variables.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/diagrams.css">
+<link rel="stylesheet" href="../../css/quiz.css">
+
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<style>
+  .topic-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-6); align-items: start; }
+  .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
+  .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
+  .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
+</style>
+</head>
+<body>
+
+<button class="icon-btn theme-toggle-float" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+  <i class="fa-solid fa-sun icon-sun"></i>
+  <i class="fa-solid fa-moon icon-moon"></i>
+</button>
+
+<div class="social-float">
+  <a class="icon-btn" href="https://github.com/Aman-0402" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+    <i class="fa-brands fa-github"></i>
+  </a>
+  <a class="icon-btn" href="https://www.linkedin.com/in/aman-raj-081905211/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+</div>
+
+<div class="shell" id="shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo" style="margin-bottom: var(--space-5);">
+      <a href="../../index.html" class="logo">
+        <i class="fa-solid fa-code" style="color: var(--color-primary);"></i><span class="sidebar-label"> C Programming eBook</span>
+      </a>
+    </div>
+
+    <button class="icon-btn" id="sidebar-collapse" aria-label="Collapse sidebar" style="margin-bottom: var(--space-4);">
+      <i class="fa-solid fa-angles-left"></i>
+    </button>
+
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 1</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit1-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">Unit 1</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit1-submenu">
+      <a class="sidebar-link" href="evolution-of-programming.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="sidebar-label">Evolution of Programming</span></a>
+      <a class="sidebar-link" href="programming-languages.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Programming Languages</span></a>
+      <a class="sidebar-link" href="problem-solving.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Problem Solving</span></a>
+      <a class="sidebar-link" href="sequential-logic.html"><i class="fa-solid fa-list-ol"></i><span class="sidebar-label">Sequential Logic</span></a>
+      <a class="sidebar-link" href="algorithms.html"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-label">Algorithms</span></a>
+      <a class="sidebar-link" href="pseudocode.html"><i class="fa-solid fa-file-lines"></i><span class="sidebar-label">Pseudocode</span></a>
+      <a class="sidebar-link" href="flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
+      <a class="sidebar-link" href="introduction-to-c.html"><i class="fa-solid fa-c"></i><span class="sidebar-label">Introduction to C</span></a>
+      <a class="sidebar-link active" href="history-of-c.html"><i class="fa-solid fa-scroll"></i><span class="sidebar-label">History of C</span></a>
+      <a class="sidebar-link" href="features-of-c.html"><i class="fa-solid fa-star"></i><span class="sidebar-label">Features of C</span></a>
+      <a class="sidebar-link" href="applications-of-c.html"><i class="fa-solid fa-industry"></i><span class="sidebar-label">Applications</span></a>
+      <a class="sidebar-link" href="structure-of-c-program.html"><i class="fa-solid fa-code"></i><span class="sidebar-label">Structure of C Program</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 2</span></div>
+      <a class="sidebar-link" href="../unit2/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">C Building Blocks &amp; Data Types</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 3</span></div>
+      <a class="sidebar-link" href="../unit3/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Control Statements</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 4</span></div>
+      <a class="sidebar-link" href="../unit4/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Strings, Functions &amp; Pointers</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 5</span></div>
+      <a class="sidebar-link" href="../unit5/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Structures, Files &amp; Memory Management</span></a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="topic-layout">
+      <div>
+        <h1>History of C</h1>
+        <p class="lead">C wasn't dreamed up in a classroom — it was built to solve a real, practical problem, and it has kept evolving ever since.</p>
+
+        <section class="topic-section" id="introduction">
+          <h2>1. What Is It?</h2>
+          <p>The history of C is the story of how the language came to be: created to solve a real, practical engineering problem — rewriting the Unix operating system in a language more portable than assembly — rather than invented as an academic exercise or theoretical exploration.</p>
+        </section>
+
+        <section class="topic-section" id="why">
+          <h2>2. Why Do We Need to Know This?</h2>
+          <p>Knowing where C came from explains many of its design choices. It was built by systems programmers, for systems programming, which is exactly why it prioritizes speed and direct hardware access over built-in safety nets — those weren't oversights, they were deliberate tradeoffs suited to the job C was originally built to do.</p>
+        </section>
+
+        <section class="topic-section" id="real-life">
+          <h2>3. Real-Life Example</h2>
+          <p>This is comparable to knowing a tool's origin story. A chef's knife was designed for precision and control in skilled hands, not to prevent every possible cut — it trusts the user. Understanding why C was built the way it was explains why the language, too, expects care and discipline from the programmer rather than stopping every mistake for you.</p>
+        </section>
+
+        <section class="topic-section" id="visual">
+          <h2>4. Visual Explanation</h2>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-item-year">1969-1970</div>
+              <h4>B is Created</h4>
+              <p>Ken Thompson creates B, a predecessor language, at Bell Labs — a stepping stone toward what would become C.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-item-year">1972</div>
+              <h4>C is Born</h4>
+              <p>Dennis Ritchie develops C at Bell Labs, evolving from B, specifically to rewrite the Unix operating system in a portable language.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-item-year">1978</div>
+              <h4>K&amp;R Published</h4>
+              <p>"The C Programming Language" by Kernighan and Ritchie is published, becoming the de facto standard description of the language for years.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-item-year">1989/1990</div>
+              <h4>ANSI C / ISO C</h4>
+              <p>ANSI C (C89) and its ISO equivalent (C90) become the first formal, standardized specification of the language.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-item-year">1999</div>
+              <h4>C99</h4>
+              <p>C99 adds new features, such as <code>//</code> single-line comments and more flexible variable declarations.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-item-year">2011 onward</div>
+              <h4>C11, C17, C23</h4>
+              <p>C11, then C17 and C23, continue modernizing the standard — better Unicode and threading support, and ongoing refinements.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mistakes">
+          <h2>5. Common Mistakes</h2>
+          <ul class="mistake-list">
+            <li>Assuming C hasn't changed since 1972 — it has, through several ANSI/ISO standard revisions (C89, C99, C11, C17, C23).</li>
+            <li>Confusing "C" with "C++," as if C++ were simply a newer version of C, rather than a related but distinct language.</li>
+            <li>Assuming Unix and C's history are unrelated — in reality, they're deeply intertwined; C exists because of Unix.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="debugging">
+          <h2>6. Debugging Tips</h2>
+          <p>Not directly applicable yet — there's no code to debug here. But the habit to build now: when a C feature seems inconsistent with something you read elsewhere, check which C standard (C89, C99, C11...) is being discussed. Behavior and available features can genuinely differ by standard, and that's often the real explanation, not a mistake in either source.</p>
+        </section>
+
+        <section class="topic-section" id="best-practices">
+          <h2>7. Best Practices</h2>
+          <ul class="best-practice-list">
+            <li>When learning or reading C code and tutorials, note which standard they assume.</li>
+            <li>This course teaches modern, standard C — but older resources may show slightly different conventions, and that's expected, not a contradiction.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="interview">
+          <h2>8. Interview Questions</h2>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Easy:</strong> Who created C, and where?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Dennis Ritchie created C at Bell Labs in 1972.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Medium:</strong> What operating system was C originally created to help rewrite?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Unix. C was developed specifically to make it practical to rewrite the Unix operating system in a portable, higher-level language instead of assembly.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Hard:</strong> Why does C's design favor speed and hardware access over built-in safety?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Because it was built by and for systems programmers writing an operating system, where performance and direct hardware control mattered far more than guardrails. That systems-programming origin is baked into the language's design philosophy to this day.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>HR:</strong> Why do you think understanding a language's history is useful?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>There's no fixed right answer — a strong response connects history to understanding present-day design choices (why a language behaves the way it does) rather than treating it as trivia to memorize.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Conceptual:</strong> What is a "standard" (like C99 or C11) in the context of a programming language?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>A standard is a formally agreed-upon specification of the language's exact rules and features, so that different compilers on different systems behave consistently rather than each implementing their own variant of the language.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Scenario-based:</strong> You read two tutorials that show slightly different C syntax — what's the most likely explanation?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>They're most likely written for different C standards — for example, one older tutorial predating C99, and another using newer C99/C11 features — rather than either one being simply wrong.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mcq">
+          <h2>9. MCQs</h2>
+          <div class="quiz" data-quiz-source="historyOfCQuiz"></div>
+        </section>
+
+        <section class="topic-section" id="exercises">
+          <h2>10. Programming Exercises</h2>
+          <p><strong>Easy:</strong> Write, from memory, the year C was created and the name of its creator.</p>
+          <p><strong>Medium:</strong> Research what "B" (C's predecessor language) was, and describe one way it differed from C.</p>
+          <p><strong>Hard:</strong> Research one feature added in C99 or C11, and explain in your own words what problem it solved.</p>
+        </section>
+
+        <section class="topic-section" id="assignments">
+          <h2>11. Assignments</h2>
+          <p>Create your own simple timeline (at least 4 entries) of C's history, from its creation through at least one modern standard revision (C89, C99, C11, C17, or C23).</p>
+        </section>
+
+        <section class="topic-section" id="faq">
+          <h2>12. FAQs</h2>
+          <p><strong>Q: Is C still being updated?</strong><br>A: Yes — the most recent standard is C23. C continues to evolve, just slowly and conservatively compared to many newer languages.</p>
+          <p><strong>Q: Was C the first programming language?</strong><br>A: No — many languages, including B, FORTRAN, and assembly, came before it. C was hugely influential, but it was not first.</p>
+        </section>
+
+        <section class="topic-section" id="takeaways">
+          <h2>13. Key Takeaways</h2>
+          <ul>
+            <li>C was created in 1972 by Dennis Ritchie at Bell Labs to help rewrite the Unix operating system.</li>
+            <li>Its design priorities — speed and direct hardware access — come directly from that systems-programming origin.</li>
+            <li>C has continued to evolve through ANSI/ISO standards (C89, C99, C11, C17, C23); it isn't frozen in 1972.</li>
+          </ul>
+        </section>
+
+        <div class="topic-nav-footer">
+          <a href="introduction-to-c.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Previous: Introduction to C</a>
+          <a href="features-of-c.html" class="btn btn-primary">Next: Features of C <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for absolute beginners. &copy; 2026 C Programming eBook.</p>
+  </footer>
+
+</div>
+
+<div class="search-panel" id="search-panel" data-open="false">
+  <div class="search-panel-inner">
+    <div class="search-input-row">
+      <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+      <input type="text" id="search-input" placeholder="Search topics... (Ctrl+K)">
+      <button class="icon-btn" id="search-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="search-results" id="search-results"></ul>
+  </div>
+</div>
+
+<script>
+window.historyOfCQuiz = [
+  { question: "Who created the C programming language?", options: ["Ken Thompson", "Dennis Ritchie", "Bjarne Stroustrup", "Linus Torvalds"], correctIndex: 1, explanation: "Dennis Ritchie created C at Bell Labs in 1972." },
+  { question: "Where was C created?", options: ["Microsoft Research", "Bell Labs", "MIT", "Stanford University"], correctIndex: 1, explanation: "C was developed at Bell Labs, the same research organization behind Unix." },
+  { question: "What operating system was C created to help rewrite?", options: ["Windows", "Unix", "Linux", "MS-DOS"], correctIndex: 1, explanation: "C was built specifically to make it practical to rewrite the Unix operating system in a portable language instead of assembly." },
+  { question: "What was B, in relation to C?", options: ["A later version of C", "C's predecessor language, created by Ken Thompson", "An unrelated language", "A C compiler"], correctIndex: 1, explanation: "B, created by Ken Thompson at Bell Labs around 1969-1970, was the predecessor language C evolved from." },
+  { question: "What does a 'standard' like C89, C99, or C11 represent?", options: ["A separate programming language", "A formally agreed-upon specification of the language's rules and features", "A specific compiler brand", "An operating system"], correctIndex: 1, explanation: "A standard is a formal specification ensuring different compilers implement the language's rules and features consistently." }
+];
+</script>
+<script src="../../js/theme.js"></script>
+<script src="../../js/sidebar.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/quiz.js"></script>
+<script src="../../js/copy-code.js"></script>
+<script src="../../js/accordion.js"></script>
+</body>
+</html>
