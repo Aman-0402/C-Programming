@@ -32,12 +32,11 @@
 /* Floating social links */
 .social-float {
   position: fixed;
-  top: 50%;
-  right: var(--space-4);
-  transform: translateY(-50%);
+  top: var(--space-4);
+  right: calc(40px + var(--space-4) + var(--space-3));
   z-index: 50;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: var(--space-3);
 }
 
