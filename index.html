@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learn C Programming — Interactive eBook</title>
+<meta name="description" content="A free, beginner-friendly, interactive C Programming eBook. Learn from absolute basics to advanced topics with real-life analogies, dry runs, and practice.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/homepage.css">
+
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+</head>
+<body>
+
+<div class="progress-bar" id="progress-bar"></div>
+
+<div class="shell" id="shell">
+
+  <nav class="topnav">
+    <div class="topnav-left">
+      <button class="icon-btn mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <a href="index.html" class="logo">
+        <i class="fa-solid fa-code" style="color: var(--color-primary);"></i>
+        C Programming eBook
+      </a>
+      <div class="breadcrumbs">
+        <a href="index.html">Home</a>
+      </div>
+    </div>
+    <div class="topnav-right">
+      <button class="icon-btn" id="search-open" aria-label="Search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+      <button class="icon-btn" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+        <i class="fa-solid fa-sun icon-sun"></i>
+        <i class="fa-solid fa-moon icon-moon"></i>
+      </button>
+    </div>
+  </nav>
+
+  <aside class="sidebar">
+    <button class="icon-btn" id="sidebar-collapse" aria-label="Collapse sidebar" style="margin-bottom: var(--space-4);">
+      <i class="fa-solid fa-angles-left"></i>
+    </button>
+
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 1</span></div>
+      <a class="sidebar-link" href="pages/unit1/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Programming Fundamentals &amp; C Basics</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 2</span></div>
+      <a class="sidebar-link" href="pages/unit2/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">C Building Blocks &amp; Data Types</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 3</span></div>
+      <a class="sidebar-link" href="pages/unit3/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Control Statements</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 4</span></div>
+      <a class="sidebar-link" href="pages/unit4/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Strings, Functions &amp; Pointers</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 5</span></div>
+      <a class="sidebar-link" href="pages/unit5/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Structures, Files &amp; Memory Management</span></a>
+    </div>
+  </aside>
+
+  <main class="content">
+
+    <section class="hero">
+      <span class="badge hero-badge"><i class="fa-solid fa-star"></i> 100% Free &middot; Beginner Friendly</span>
+      <h1>Learn C Programming, From Zero to Advanced</h1>
+      <p class="lead">An interactive eBook that explains every concept with real-life analogies, visual diagrams, dry runs, and hands-on practice — built for people who have never written a single line of code.</p>
+      <div class="hero-actions">
+        <a href="pages/unit1/index.html" class="btn btn-primary"><i class="fa-solid fa-play"></i> Start Learning</a>
+        <a href="#units" class="btn btn-ghost">Browse Units</a>
+      </div>
+    </section>
+
+    <div class="stats-strip">
+      <div class="stat"><div class="stat-value">5</div><div class="stat-label">Units</div></div>
+      <div class="stat"><div class="stat-value">140+</div><div class="stat-label">Topics Planned</div></div>
+      <div class="stat"><div class="stat-value">Coming Soon</div><div class="stat-label">Practice MCQs</div></div>
+      <div class="stat"><div class="stat-value">Coming Soon</div><div class="stat-label">Code Playground</div></div>
+    </div>
+
+    <section class="section">
+      <h2 class="section-title">Why Learn Here?</h2>
+      <div class="feature-grid">
+        <div class="card">
+          <i class="fa-solid fa-lightbulb" style="color: var(--color-primary); font-size: 1.5rem;"></i>
+          <h3>Real-Life Analogies</h3>
+          <p>Every hard concept starts with an everyday example before any code appears.</p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-diagram-project" style="color: var(--color-secondary); font-size: 1.5rem;"></i>
+          <h3>Visual Diagrams</h3>
+          <p>Memory, flow, and structure diagrams built with plain HTML and CSS — no static images to go stale.</p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-shoe-prints" style="color: var(--color-success); font-size: 1.5rem;"></i>
+          <h3>Step-by-Step Dry Runs</h3>
+          <p>Watch variable values and memory change line by line, not just the final output.</p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-list-check" style="color: var(--color-warning); font-size: 1.5rem;"></i>
+          <h3>Practice That Sticks</h3>
+          <p>MCQs, interview questions, and mini projects reinforce every unit as it's added.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="units">
+      <h2 class="section-title">Course Units</h2>
+      <div class="unit-grid">
+        <div class="card unit-card">
+          <div class="unit-card-number">1</div>
+          <h3>Programming Fundamentals &amp; C Basics</h3>
+          <div class="topic-count">28 topics</div>
+          <p>Algorithms, pseudocode, flowcharts, and how C source becomes a running program.</p>
+          <a href="pages/unit1/index.html" class="btn btn-ghost">Start Unit <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="card unit-card">
+          <div class="unit-card-number">2</div>
+          <h3>C Building Blocks &amp; Data Types</h3>
+          <div class="topic-count">36 topics</div>
+          <p>Tokens, variables, data types, operators, and your first input/output programs.</p>
+          <a href="pages/unit2/index.html" class="btn btn-ghost">Start Unit <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="card unit-card">
+          <div class="unit-card-number">3</div>
+          <h3>Control Statements</h3>
+          <div class="topic-count">15 topics</div>
+          <p>Decisions, loops, nested logic, and arrays — the building blocks of real programs.</p>
+          <a href="pages/unit3/index.html" class="btn btn-ghost">Start Unit <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="card unit-card">
+          <div class="unit-card-number">4</div>
+          <h3>Strings, Functions &amp; Pointers</h3>
+          <div class="topic-count">34 topics</div>
+          <p>String handling, reusable functions, recursion, and your first pointers.</p>
+          <a href="pages/unit4/index.html" class="btn btn-ghost">Start Unit <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="card unit-card">
+          <div class="unit-card-number">5</div>
+          <h3>Structures, Files &amp; Memory Management</h3>
+          <div class="topic-count">30 topics</div>
+          <p>Structures, unions, file handling, and dynamic memory allocation.</p>
+          <a href="pages/unit5/index.html" class="btn btn-ghost">Start Unit <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for absolute beginners. &copy; 2026 C Programming eBook.</p>
+  </footer>
+
+</div>
+
+<div class="search-panel" id="search-panel" data-open="false">
+  <div class="search-panel-inner">
+    <div class="search-input-row">
+      <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+      <input type="text" id="search-input" placeholder="Search topics... (Ctrl+K)">
+      <button class="icon-btn" id="search-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="search-results" id="search-results"></ul>
+  </div>
+</div>
+
+<script src="js/theme.js"></script>
+<script src="js/sidebar.js"></script>
+<script src="js/search.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
