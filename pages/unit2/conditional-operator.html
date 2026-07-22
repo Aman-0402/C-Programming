@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conditional Operator — Unit 2 — C Programming eBook</title>
+<meta name="description" content="Learn C's conditional (ternary) operator — condition ? valueIfTrue : valueIfFalse — and extend add.c to pick the larger of two values in a single expression.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="../../css/variables.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/diagrams.css">
+<link rel="stylesheet" href="../../css/quiz.css">
+
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<style>
+  .topic-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-6); align-items: start; }
+  .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
+  .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
+  .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
+</style>
+</head>
+<body>
+
+<button class="icon-btn theme-toggle-float" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+  <i class="fa-solid fa-sun icon-sun"></i>
+  <i class="fa-solid fa-moon icon-moon"></i>
+</button>
+
+<div class="social-float">
+  <a class="icon-btn" href="https://github.com/Aman-0402" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+    <i class="fa-brands fa-github"></i>
+  </a>
+  <a class="icon-btn" href="https://www.linkedin.com/in/aman-raj-081905211/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+</div>
+
+<div class="shell" id="shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo" style="margin-bottom: var(--space-5);">
+      <a href="../../index.html" class="logo">
+        <i class="fa-solid fa-code" style="color: var(--color-primary);"></i><span class="sidebar-label"> C Programming eBook</span>
+      </a>
+    </div>
+
+    <button class="icon-btn" id="sidebar-collapse" aria-label="Collapse sidebar" style="margin-bottom: var(--space-4);">
+      <i class="fa-solid fa-angles-left"></i>
+    </button>
+
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 1</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit1-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">Unit 1</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit1-submenu">
+      <a class="sidebar-link" href="../unit1/evolution-of-programming.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="sidebar-label">Evolution of Programming</span></a>
+      <a class="sidebar-link" href="../unit1/programming-languages.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Programming Languages</span></a>
+      <a class="sidebar-link" href="../unit1/problem-solving.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Problem Solving</span></a>
+      <a class="sidebar-link" href="../unit1/sequential-logic.html"><i class="fa-solid fa-list-ol"></i><span class="sidebar-label">Sequential Logic</span></a>
+      <a class="sidebar-link" href="../unit1/algorithms.html"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-label">Algorithms</span></a>
+      <a class="sidebar-link" href="../unit1/pseudocode.html"><i class="fa-solid fa-file-lines"></i><span class="sidebar-label">Pseudocode</span></a>
+      <a class="sidebar-link" href="../unit1/flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
+      <a class="sidebar-link" href="../unit1/introduction-to-c.html"><i class="fa-solid fa-c"></i><span class="sidebar-label">Introduction to C</span></a>
+      <a class="sidebar-link" href="../unit1/history-of-c.html"><i class="fa-solid fa-scroll"></i><span class="sidebar-label">History of C</span></a>
+      <a class="sidebar-link" href="../unit1/features-of-c.html"><i class="fa-solid fa-star"></i><span class="sidebar-label">Features of C</span></a>
+      <a class="sidebar-link" href="../unit1/applications-of-c.html"><i class="fa-solid fa-industry"></i><span class="sidebar-label">Applications</span></a>
+      <a class="sidebar-link" href="../unit1/structure-of-c-program.html"><i class="fa-solid fa-code"></i><span class="sidebar-label">Structure of C Program</span></a>
+      <a class="sidebar-link" href="../unit1/c-compiler.html"><i class="fa-solid fa-gears"></i><span class="sidebar-label">C Compiler</span></a>
+      <a class="sidebar-link" href="../unit1/compilation-process.html"><i class="fa-solid fa-arrows-turn-right"></i><span class="sidebar-label">Compilation Process</span></a>
+      <a class="sidebar-link" href="../unit1/source-code.html"><i class="fa-solid fa-file-code"></i><span class="sidebar-label">Source Code</span></a>
+      <a class="sidebar-link" href="../unit1/object-code.html"><i class="fa-solid fa-cube"></i><span class="sidebar-label">Object Code</span></a>
+      <a class="sidebar-link" href="../unit1/executable-code.html"><i class="fa-solid fa-play"></i><span class="sidebar-label">Executable Code</span></a>
+      <a class="sidebar-link" href="../unit1/execution-process.html"><i class="fa-solid fa-microchip"></i><span class="sidebar-label">Execution Process</span></a>
+      <a class="sidebar-link" href="../unit1/assembler.html"><i class="fa-solid fa-wrench"></i><span class="sidebar-label">Assembler</span></a>
+      <a class="sidebar-link" href="../unit1/linker.html"><i class="fa-solid fa-link"></i><span class="sidebar-label">Linker</span></a>
+      <a class="sidebar-link" href="../unit1/loader.html"><i class="fa-solid fa-upload"></i><span class="sidebar-label">Loader</span></a>
+      <a class="sidebar-link" href="../unit1/interpreter.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Interpreter</span></a>
+      <a class="sidebar-link" href="../unit1/compilers-and-interpreters.html"><i class="fa-solid fa-code-compare"></i><span class="sidebar-label">Compilers &amp; Interpreters</span></a>
+      <a class="sidebar-link" href="../unit1/operating-systems.html"><i class="fa-solid fa-desktop"></i><span class="sidebar-label">Operating Systems</span></a>
+      <a class="sidebar-link" href="../unit1/debugging.html"><i class="fa-solid fa-bug"></i><span class="sidebar-label">Debugging</span></a>
+      <a class="sidebar-link" href="../unit1/comments.html"><i class="fa-solid fa-comment"></i><span class="sidebar-label">Comments</span></a>
+      <a class="sidebar-link" href="../unit1/single-line-comments.html"><i class="fa-solid fa-slash"></i><span class="sidebar-label">Single Line Comments</span></a>
+      <a class="sidebar-link" href="../unit1/multi-line-comments.html"><i class="fa-solid fa-quote-right"></i><span class="sidebar-label">Multi Line Comments</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 2</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit2-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">C Building Blocks &amp; Data Types</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit2-submenu">
+      <a class="sidebar-link" href="tokens.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Tokens</span></a>
+      <a class="sidebar-link" href="keywords.html"><i class="fa-solid fa-key"></i><span class="sidebar-label">Keywords</span></a>
+      <a class="sidebar-link" href="identifiers.html"><i class="fa-solid fa-tag"></i><span class="sidebar-label">Identifiers</span></a>
+      <a class="sidebar-link" href="naming-rules.html"><i class="fa-solid fa-spell-check"></i><span class="sidebar-label">Naming Rules</span></a>
+      <a class="sidebar-link" href="variables.html"><i class="fa-solid fa-box"></i><span class="sidebar-label">Variables</span></a>
+      <a class="sidebar-link" href="constants.html"><i class="fa-solid fa-lock"></i><span class="sidebar-label">Constants</span></a>
+      <a class="sidebar-link" href="values.html"><i class="fa-solid fa-hashtag"></i><span class="sidebar-label">Values</span></a>
+      <a class="sidebar-link" href="scope.html"><i class="fa-solid fa-eye"></i><span class="sidebar-label">Scope</span></a>
+      <a class="sidebar-link" href="binding.html"><i class="fa-solid fa-link"></i><span class="sidebar-label">Binding</span></a>
+      <a class="sidebar-link" href="storage-classes.html"><i class="fa-solid fa-warehouse"></i><span class="sidebar-label">Storage Classes</span></a>
+      <a class="sidebar-link" href="integer-types.html"><i class="fa-solid fa-1"></i><span class="sidebar-label">Integer Types</span></a>
+      <a class="sidebar-link" href="floating-point-types.html"><i class="fa-solid fa-percent"></i><span class="sidebar-label">Floating Point Types</span></a>
+      <a class="sidebar-link" href="character-type.html"><i class="fa-solid fa-font"></i><span class="sidebar-label">Character Type</span></a>
+      <a class="sidebar-link" href="strings.html"><i class="fa-solid fa-quote-left"></i><span class="sidebar-label">Strings</span></a>
+      <a class="sidebar-link" href="l-value.html"><i class="fa-solid fa-arrow-left-long"></i><span class="sidebar-label">L-value</span></a>
+      <a class="sidebar-link" href="r-value.html"><i class="fa-solid fa-arrow-right-long"></i><span class="sidebar-label">R-value</span></a>
+      <a class="sidebar-link" href="type-conversion.html"><i class="fa-solid fa-arrows-rotate"></i><span class="sidebar-label">Type Conversion</span></a>
+      <a class="sidebar-link" href="operators.html"><i class="fa-solid fa-calculator"></i><span class="sidebar-label">Operators</span></a>
+      <a class="sidebar-link" href="arithmetic-operators.html"><i class="fa-solid fa-plus-minus"></i><span class="sidebar-label">Arithmetic Operators</span></a>
+      <a class="sidebar-link" href="relational-operators.html"><i class="fa-solid fa-equals"></i><span class="sidebar-label">Relational Operators</span></a>
+      <a class="sidebar-link" href="logical-operators.html"><i class="fa-solid fa-code-branch"></i><span class="sidebar-label">Logical Operators</span></a>
+      <a class="sidebar-link" href="assignment-operators.html"><i class="fa-solid fa-right-left"></i><span class="sidebar-label">Assignment Operators</span></a>
+      <a class="sidebar-link" href="comma-operator.html"><i class="fa-solid fa-comma"></i><span class="sidebar-label">Comma Operator</span></a>
+      <a class="sidebar-link" href="sizeof-operator.html"><i class="fa-solid fa-ruler"></i><span class="sidebar-label">sizeof Operator</span></a>
+      <a class="sidebar-link active" href="conditional-operator.html"><i class="fa-solid fa-question"></i><span class="sidebar-label">Conditional Operator</span></a>
+      <a class="sidebar-link" href="bitwise-operators.html"><i class="fa-solid fa-microchip"></i><span class="sidebar-label">Bitwise Operators</span></a>
+      <a class="sidebar-link" href="operator-precedence.html"><i class="fa-solid fa-sort"></i><span class="sidebar-label">Operator Precedence</span></a>
+      <a class="sidebar-link" href="associativity.html"><i class="fa-solid fa-arrows-left-right"></i><span class="sidebar-label">Associativity</span></a>
+      <a class="sidebar-link" href="arrow-operator.html"><i class="fa-solid fa-arrow-right-to-bracket"></i><span class="sidebar-label">Arrow Operator</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 3</span></div>
+      <a class="sidebar-link" href="../unit3/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Control Statements</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 4</span></div>
+      <a class="sidebar-link" href="../unit4/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Strings, Functions &amp; Pointers</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 5</span></div>
+      <a class="sidebar-link" href="../unit5/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Structures, Files &amp; Memory Management</span></a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="topic-layout">
+      <div>
+        <h1>Conditional Operator</h1>
+        <p class="lead">C's <strong>ternary operator</strong> — the only operator in C that takes three operands — packs a simple two-way decision into a single compact expression: <code>condition ? valueIfTrue : valueIfFalse</code>.</p>
+
+        <section class="topic-section" id="introduction">
+          <h2>1. What Is It?</h2>
+          <p>The <strong>conditional operator</strong> — also called the <strong>ternary operator</strong>, since it's the only operator in C that takes three operands — provides a compact way to write a simple if/else-style decision in a single expression: <code>condition ? valueIfTrue : valueIfFalse</code>. The condition is evaluated first; if it's true, the whole expression takes the value before the colon, otherwise it takes the value after the colon.</p>
+        </section>
+
+        <section class="topic-section" id="why">
+          <h2>2. Why Do We Need to Know This?</h2>
+          <p>The ternary operator is a common, concise shorthand for simple two-way decisions, and it appears frequently in real C code you'll read from other programmers. Recognizing it now — even before formal <code>if</code>/<code>else</code> statements are covered in a later unit — prevents confusion when you come across it in existing code.</p>
+        </section>
+
+        <section class="topic-section" id="real-life">
+          <h2>3. Real-Life Example</h2>
+          <p>Think of answering "if it's raining, bring an umbrella, otherwise bring sunglasses" in one breath, rather than as two separate sentences. The ternary operator packs a full decision — condition, true-result, and false-result — into one compact expression, the same way that one-breath answer packs a whole decision into a single statement.</p>
+        </section>
+
+        <section class="topic-section" id="syntax">
+          <h2>4. Syntax</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>syntax</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>result = condition ? valueIfTrue : valueIfFalse;
+
+// example
+int max = (a > b) ? a : b;</pre>
+          </div>
+          <p>The <code>?</code> separates the condition from the two possible results; the <code>:</code> separates the true-result from the false-result. Both the true-result and the false-result are required — neither part is optional.</p>
+        </section>
+
+        <section class="topic-section" id="stepbystep">
+          <h2>5. Step-by-Step Code</h2>
+          <p>Extending <code>add.c</code> with the conditional operator to find the larger of <code>a</code> and <code>b</code>:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>add.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>#include &lt;stdio.h&gt;
+
+int main() {
+    int a = 5;
+    int b = 3;
+    int max = (a &gt; b) ? a : b;
+
+    printf("Max: %d\n", max);
+
+    return 0;
+}</pre>
+          </div>
+          <ul>
+            <li><code>(a > b)</code> evaluates to true, since <code>5 > 3</code>.</li>
+            <li>Because the condition is true, the ternary expression evaluates to the value before the colon — <code>a</code>'s value, which is <code>5</code>.</li>
+            <li><code>max</code> is set to <code>5</code>.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="dryrun">
+          <h2>6. Dry Run</h2>
+          <p>Tracing through execution with <code>a = 5</code>, <code>b = 3</code>:</p>
+          <ul>
+            <li><code>(a > b)</code> is evaluated first: <code>5 > 3</code> is true.</li>
+            <li>Since the condition is true, the expression takes the value before the colon: <code>a</code>, which is <code>5</code>.</li>
+            <li><code>max</code> is set to <code>5</code>.</li>
+          </ul>
+          <p>The exact output is:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>output</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>Max: 5</pre>
+          </div>
+          <p>If <code>a</code> and <code>b</code> were swapped (<code>a = 3</code>, <code>b = 5</code>), the condition <code>(a > b)</code> would now be false, so <code>max</code> would instead take the value after the colon — <code>b</code>, which is <code>5</code>. Either way, the result is the same "biggest number" — <code>5</code> — since the operator correctly picks whichever value is larger, regardless of which variable holds it.</p>
+        </section>
+
+        <section class="topic-section" id="mistakes">
+          <h2>7. Common Mistakes</h2>
+          <ul class="mistake-list">
+            <li>Forgetting the colon <code>:</code> — both parts, the true-result and the false-result, are required in C's ternary operator; this isn't optional like some other languages' conditional constructs.</li>
+            <li>Nesting too many ternary operators together, making an expression hard to read. It's legal C, but often discouraged since it hurts clarity.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="debugging">
+          <h2>8. Debugging Tips</h2>
+          <p>If a ternary expression's result seems wrong, break it apart mentally: first evaluate just the condition on its own (is it true or false?), then trace which of the two result values — before or after the colon — that maps to.</p>
+        </section>
+
+        <section class="topic-section" id="best-practices">
+          <h2>9. Best Practices</h2>
+          <ul class="best-practice-list">
+            <li>Reserve the ternary operator for genuinely simple, quick decisions. For more complex logic, a full <code>if</code>/<code>else</code> statement (covered in a later unit) is usually clearer to read.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="interview">
+          <h2>10. Interview Questions</h2>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Easy:</strong> What is the conditional (ternary) operator's syntax?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p><code>condition ? valueIfTrue : valueIfFalse</code> — if the condition is true, the expression evaluates to <code>valueIfTrue</code>; otherwise it evaluates to <code>valueIfFalse</code>.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Medium:</strong> Why is it called the "ternary" operator?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Because it's the only operator in C that takes three operands — the condition, the true-result, and the false-result.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Hard:</strong> What does <code>int max = (a > b) ? a : b;</code> do?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>It evaluates whether <code>a</code> is greater than <code>b</code>. If true, <code>max</code> is set to <code>a</code>; if false, <code>max</code> is set to <code>b</code> — effectively finding the larger of the two values.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>HR:</strong> Have you seen the ternary operator used in real code before?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>This is open-ended — a strong answer would point to a specific example seen while reading code, such as a compact "pick the default value if this one is missing" check, and explain why the ternary form was chosen over a full <code>if</code>/<code>else</code>.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Conceptual:</strong> Are both the true-result and false-result parts of a ternary expression required?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Yes — both the <code>?</code> value and the <code>:</code> value must be present in C; neither part is optional.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Scenario-based:</strong> You swap <code>a</code> and <code>b</code>'s initial values (making <code>a = 3</code>, <code>b = 5</code>) in this page's example — what would <code>max</code> become, and why?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p><code>max</code> would still become <code>5</code> — the actual larger value — since the condition <code>(a > b)</code> would now be false and the expression would evaluate to <code>b</code> instead. The operator correctly identifies whichever value is larger, regardless of which variable holds it.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mcq">
+          <h2>11. MCQs</h2>
+          <div class="quiz" data-quiz-source="conditionalOperatorQuiz"></div>
+        </section>
+
+        <section class="topic-section" id="exercises">
+          <h2>12. Programming Exercises</h2>
+          <p><strong>Easy:</strong> Write the ternary expression that picks the larger of two variables <code>x</code> and <code>y</code>.</p>
+          <p><strong>Medium:</strong> Predict the output of this page's example program if <code>a</code> were <code>10</code> and <code>b</code> were <code>2</code>.</p>
+          <p><strong>Hard:</strong> Rewrite a simple ternary expression as an equivalent plain-English description of the same decision (no formal <code>if</code>/<code>else</code> syntax needed yet).</p>
+        </section>
+
+        <section class="topic-section" id="assignments">
+          <h2>13. Assignments</h2>
+          <p>Extend this page's program with a new ternary expression checking something else about <code>a</code> and <code>b</code> — for example, finding the <em>smaller</em> value instead of the larger — and print the result with <code>printf</code>.</p>
+        </section>
+
+        <section class="topic-section" id="faq">
+          <h2>14. FAQs</h2>
+          <p><strong>Q: Is the ternary operator the same thing as a full <code>if</code>/<code>else</code> statement?</strong><br>A: Conceptually similar for simple two-way decisions, but the ternary operator is an expression that produces a value, not a full control statement. Formal <code>if</code>/<code>else</code> is covered in a later unit.</p>
+          <p><strong>Q: Can I nest ternary operators inside each other?</strong><br>A: Technically yes, but it quickly becomes hard to read — generally discouraged beyond very simple cases.</p>
+        </section>
+
+        <section class="topic-section" id="takeaways">
+          <h2>15. Key Takeaways</h2>
+          <ul>
+            <li>The conditional operator's syntax is <code>condition ? valueIfTrue : valueIfFalse</code>, where <code>?</code> separates the condition from the results, and <code>:</code> separates the true-result from the false-result.</li>
+            <li>It's called the "ternary" operator because it's the only operator in C that takes three operands.</li>
+            <li>It's commonly used for simple, compact two-way decisions — such as this page's <code>(a > b) ? a : b</code> to find the larger of two values.</li>
+          </ul>
+        </section>
+
+        <div class="topic-nav-footer">
+          <a href="sizeof-operator.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Previous: sizeof Operator</a>
+          <a href="bitwise-operators.html" class="btn btn-primary">Next: Bitwise Operators <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for absolute beginners. &copy; 2026 C Programming eBook.</p>
+  </footer>
+
+</div>
+
+<div class="search-panel" id="search-panel" data-open="false">
+  <div class="search-panel-inner">
+    <div class="search-input-row">
+      <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+      <input type="text" id="search-input" placeholder="Search topics... (Ctrl+K)">
+      <button class="icon-btn" id="search-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="search-results" id="search-results"></ul>
+  </div>
+</div>
+
+<script>
+window.conditionalOperatorQuiz = [
+  { question: "What is the syntax of C's conditional (ternary) operator?", options: ["condition && valueIfTrue || valueIfFalse", "condition ? valueIfTrue : valueIfFalse", "if condition then valueIfTrue else valueIfFalse", "condition : valueIfTrue ? valueIfFalse"], correctIndex: 1, explanation: "The ternary operator's syntax is condition ? valueIfTrue : valueIfFalse." },
+  { question: "Why is C's conditional operator called the 'ternary' operator?", options: ["Because it always returns 0, 1, or 2", "Because it can only be used three times per program", "Because it takes three operands: the condition, the true-result, and the false-result", "Because it was the third operator added to C"], correctIndex: 2, explanation: "It's the only operator in C that takes three operands, hence 'ternary.'" },
+  { question: "Given `int a = 5, b = 3; int max = (a > b) ? a : b;`, what value does max hold?", options: ["3", "5", "0", "1"], correctIndex: 1, explanation: "(a > b) is true since 5 > 3, so the expression evaluates to a, which is 5." },
+  { question: "In `condition ? valueIfTrue : valueIfFalse`, is the valueIfFalse part optional?", options: ["Yes, it can be omitted if not needed", "No, both valueIfTrue and valueIfFalse are required", "Only in newer versions of C", "Only when using integers"], correctIndex: 1, explanation: "Unlike some other languages, C requires both the true-result and the false-result parts of a ternary expression." },
+  { question: "If a and b were swapped (a = 3, b = 5) in `int max = (a > b) ? a : b;`, what would max become?", options: ["3", "5", "0", "It would cause an error"], correctIndex: 1, explanation: "(a > b) would now be false, so the expression evaluates to b, which is 5 — still the larger value." }
+];
+</script>
+<script src="../../js/theme.js"></script>
+<script src="../../js/sidebar.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/quiz.js"></script>
+<script src="../../js/copy-code.js"></script>
+<script src="../../js/accordion.js"></script>
+</body>
+</html>
