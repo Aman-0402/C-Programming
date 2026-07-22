@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comma Operator — Unit 2 — C Programming eBook</title>
+<meta name="description" content="Learn the two roles of the comma in C: separating multiple variable declarations in one statement, and the true comma operator that evaluates expressions in sequence.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="../../css/variables.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/diagrams.css">
+<link rel="stylesheet" href="../../css/quiz.css">
+
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<style>
+  .topic-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-6); align-items: start; }
+  .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
+  .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
+  .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
+</style>
+</head>
+<body>
+
+<button class="icon-btn theme-toggle-float" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+  <i class="fa-solid fa-sun icon-sun"></i>
+  <i class="fa-solid fa-moon icon-moon"></i>
+</button>
+
+<div class="social-float">
+  <a class="icon-btn" href="https://github.com/Aman-0402" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+    <i class="fa-brands fa-github"></i>
+  </a>
+  <a class="icon-btn" href="https://www.linkedin.com/in/aman-raj-081905211/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+</div>
+
+<div class="shell" id="shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo" style="margin-bottom: var(--space-5);">
+      <a href="../../index.html" class="logo">
+        <i class="fa-solid fa-code" style="color: var(--color-primary);"></i><span class="sidebar-label"> C Programming eBook</span>
+      </a>
+    </div>
+
+    <button class="icon-btn" id="sidebar-collapse" aria-label="Collapse sidebar" style="margin-bottom: var(--space-4);">
+      <i class="fa-solid fa-angles-left"></i>
+    </button>
+
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 1</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit1-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">Unit 1</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit1-submenu">
+      <a class="sidebar-link" href="../unit1/evolution-of-programming.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="sidebar-label">Evolution of Programming</span></a>
+      <a class="sidebar-link" href="../unit1/programming-languages.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Programming Languages</span></a>
+      <a class="sidebar-link" href="../unit1/problem-solving.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Problem Solving</span></a>
+      <a class="sidebar-link" href="../unit1/sequential-logic.html"><i class="fa-solid fa-list-ol"></i><span class="sidebar-label">Sequential Logic</span></a>
+      <a class="sidebar-link" href="../unit1/algorithms.html"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-label">Algorithms</span></a>
+      <a class="sidebar-link" href="../unit1/pseudocode.html"><i class="fa-solid fa-file-lines"></i><span class="sidebar-label">Pseudocode</span></a>
+      <a class="sidebar-link" href="../unit1/flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
+      <a class="sidebar-link" href="../unit1/introduction-to-c.html"><i class="fa-solid fa-c"></i><span class="sidebar-label">Introduction to C</span></a>
+      <a class="sidebar-link" href="../unit1/history-of-c.html"><i class="fa-solid fa-scroll"></i><span class="sidebar-label">History of C</span></a>
+      <a class="sidebar-link" href="../unit1/features-of-c.html"><i class="fa-solid fa-star"></i><span class="sidebar-label">Features of C</span></a>
+      <a class="sidebar-link" href="../unit1/applications-of-c.html"><i class="fa-solid fa-industry"></i><span class="sidebar-label">Applications</span></a>
+      <a class="sidebar-link" href="../unit1/structure-of-c-program.html"><i class="fa-solid fa-code"></i><span class="sidebar-label">Structure of C Program</span></a>
+      <a class="sidebar-link" href="../unit1/c-compiler.html"><i class="fa-solid fa-gears"></i><span class="sidebar-label">C Compiler</span></a>
+      <a class="sidebar-link" href="../unit1/compilation-process.html"><i class="fa-solid fa-arrows-turn-right"></i><span class="sidebar-label">Compilation Process</span></a>
+      <a class="sidebar-link" href="../unit1/source-code.html"><i class="fa-solid fa-file-code"></i><span class="sidebar-label">Source Code</span></a>
+      <a class="sidebar-link" href="../unit1/object-code.html"><i class="fa-solid fa-cube"></i><span class="sidebar-label">Object Code</span></a>
+      <a class="sidebar-link" href="../unit1/executable-code.html"><i class="fa-solid fa-play"></i><span class="sidebar-label">Executable Code</span></a>
+      <a class="sidebar-link" href="../unit1/execution-process.html"><i class="fa-solid fa-microchip"></i><span class="sidebar-label">Execution Process</span></a>
+      <a class="sidebar-link" href="../unit1/assembler.html"><i class="fa-solid fa-wrench"></i><span class="sidebar-label">Assembler</span></a>
+      <a class="sidebar-link" href="../unit1/linker.html"><i class="fa-solid fa-link"></i><span class="sidebar-label">Linker</span></a>
+      <a class="sidebar-link" href="../unit1/loader.html"><i class="fa-solid fa-upload"></i><span class="sidebar-label">Loader</span></a>
+      <a class="sidebar-link" href="../unit1/interpreter.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Interpreter</span></a>
+      <a class="sidebar-link" href="../unit1/compilers-and-interpreters.html"><i class="fa-solid fa-code-compare"></i><span class="sidebar-label">Compilers &amp; Interpreters</span></a>
+      <a class="sidebar-link" href="../unit1/operating-systems.html"><i class="fa-solid fa-desktop"></i><span class="sidebar-label">Operating Systems</span></a>
+      <a class="sidebar-link" href="../unit1/debugging.html"><i class="fa-solid fa-bug"></i><span class="sidebar-label">Debugging</span></a>
+      <a class="sidebar-link" href="../unit1/comments.html"><i class="fa-solid fa-comment"></i><span class="sidebar-label">Comments</span></a>
+      <a class="sidebar-link" href="../unit1/single-line-comments.html"><i class="fa-solid fa-slash"></i><span class="sidebar-label">Single Line Comments</span></a>
+      <a class="sidebar-link" href="../unit1/multi-line-comments.html"><i class="fa-solid fa-quote-right"></i><span class="sidebar-label">Multi Line Comments</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 2</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit2-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">C Building Blocks &amp; Data Types</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit2-submenu">
+      <a class="sidebar-link" href="tokens.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Tokens</span></a>
+      <a class="sidebar-link" href="keywords.html"><i class="fa-solid fa-key"></i><span class="sidebar-label">Keywords</span></a>
+      <a class="sidebar-link" href="identifiers.html"><i class="fa-solid fa-tag"></i><span class="sidebar-label">Identifiers</span></a>
+      <a class="sidebar-link" href="naming-rules.html"><i class="fa-solid fa-spell-check"></i><span class="sidebar-label">Naming Rules</span></a>
+      <a class="sidebar-link" href="variables.html"><i class="fa-solid fa-box"></i><span class="sidebar-label">Variables</span></a>
+      <a class="sidebar-link" href="constants.html"><i class="fa-solid fa-lock"></i><span class="sidebar-label">Constants</span></a>
+      <a class="sidebar-link" href="values.html"><i class="fa-solid fa-hashtag"></i><span class="sidebar-label">Values</span></a>
+      <a class="sidebar-link" href="scope.html"><i class="fa-solid fa-eye"></i><span class="sidebar-label">Scope</span></a>
+      <a class="sidebar-link" href="binding.html"><i class="fa-solid fa-link"></i><span class="sidebar-label">Binding</span></a>
+      <a class="sidebar-link" href="storage-classes.html"><i class="fa-solid fa-warehouse"></i><span class="sidebar-label">Storage Classes</span></a>
+      <a class="sidebar-link" href="integer-types.html"><i class="fa-solid fa-1"></i><span class="sidebar-label">Integer Types</span></a>
+      <a class="sidebar-link" href="floating-point-types.html"><i class="fa-solid fa-percent"></i><span class="sidebar-label">Floating Point Types</span></a>
+      <a class="sidebar-link" href="character-type.html"><i class="fa-solid fa-font"></i><span class="sidebar-label">Character Type</span></a>
+      <a class="sidebar-link" href="strings.html"><i class="fa-solid fa-quote-left"></i><span class="sidebar-label">Strings</span></a>
+      <a class="sidebar-link" href="l-value.html"><i class="fa-solid fa-arrow-left-long"></i><span class="sidebar-label">L-value</span></a>
+      <a class="sidebar-link" href="r-value.html"><i class="fa-solid fa-arrow-right-long"></i><span class="sidebar-label">R-value</span></a>
+      <a class="sidebar-link" href="type-conversion.html"><i class="fa-solid fa-arrows-rotate"></i><span class="sidebar-label">Type Conversion</span></a>
+      <a class="sidebar-link" href="operators.html"><i class="fa-solid fa-calculator"></i><span class="sidebar-label">Operators</span></a>
+      <a class="sidebar-link" href="arithmetic-operators.html"><i class="fa-solid fa-plus-minus"></i><span class="sidebar-label">Arithmetic Operators</span></a>
+      <a class="sidebar-link" href="relational-operators.html"><i class="fa-solid fa-equals"></i><span class="sidebar-label">Relational Operators</span></a>
+      <a class="sidebar-link" href="logical-operators.html"><i class="fa-solid fa-code-branch"></i><span class="sidebar-label">Logical Operators</span></a>
+      <a class="sidebar-link" href="assignment-operators.html"><i class="fa-solid fa-right-left"></i><span class="sidebar-label">Assignment Operators</span></a>
+      <a class="sidebar-link active" href="comma-operator.html"><i class="fa-solid fa-comma"></i><span class="sidebar-label">Comma Operator</span></a>
+      <a class="sidebar-link" href="sizeof-operator.html"><i class="fa-solid fa-ruler"></i><span class="sidebar-label">sizeof Operator</span></a>
+      <a class="sidebar-link" href="conditional-operator.html"><i class="fa-solid fa-question"></i><span class="sidebar-label">Conditional Operator</span></a>
+      <a class="sidebar-link" href="bitwise-operators.html"><i class="fa-solid fa-microchip"></i><span class="sidebar-label">Bitwise Operators</span></a>
+      <a class="sidebar-link" href="operator-precedence.html"><i class="fa-solid fa-sort"></i><span class="sidebar-label">Operator Precedence</span></a>
+      <a class="sidebar-link" href="associativity.html"><i class="fa-solid fa-arrows-left-right"></i><span class="sidebar-label">Associativity</span></a>
+      <a class="sidebar-link" href="arrow-operator.html"><i class="fa-solid fa-arrow-right-to-bracket"></i><span class="sidebar-label">Arrow Operator</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 3</span></div>
+      <a class="sidebar-link" href="../unit3/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Control Statements</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 4</span></div>
+      <a class="sidebar-link" href="../unit4/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Strings, Functions &amp; Pointers</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 5</span></div>
+      <a class="sidebar-link" href="../unit5/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Structures, Files &amp; Memory Management</span></a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="topic-layout">
+      <div>
+        <h1>Comma Operator</h1>
+        <p class="lead">A short, focused look at the comma's two roles in C — the everyday habit of declaring multiple variables in one statement, and the less common comma <strong>operator</strong> that evaluates expressions in sequence.</p>
+
+        <section class="topic-section" id="introduction">
+          <h2>1. What Is It?</h2>
+          <p>The comma is used in C for two related purposes. First, and by far the most common, it <strong>separates multiple variable declarations in one statement</strong> — for example <code>int i = 0, j = 5;</code>, a pattern you've already seen implicitly in earlier examples, including function argument lists. Second, C also has a true comma <strong>operator</strong>, which evaluates multiple expressions in sequence and produces the value of only the last one. This second usage is more advanced and rarely needed directly.</p>
+        </section>
+
+        <section class="topic-section" id="why">
+          <h2>2. Why Do We Need to Know This?</h2>
+          <p>Recognizing the comma's role in multi-variable declarations is an everyday practical skill — it saves lines and groups related variables together. Knowing that the comma <strong>operator</strong> also exists, even if you rarely use it yourself, prevents confusion when you encounter it in code written by others.</p>
+        </section>
+
+        <section class="topic-section" id="real-life">
+          <h2>3. Real-Life Example</h2>
+          <p>Think of a shopping list with multiple items separated by commas — "eggs, milk, bread" lists three related items in one line. That's similar to how <code>int i = 0, j = 5;</code> declares two related variables in one line, instead of writing two separate lines.</p>
+        </section>
+
+        <section class="topic-section" id="syntax">
+          <h2>4. Syntax</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>syntax</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>type name1 = value1, name2 = value2;   // declaration usage (common)
+
+result = (expr1, expr2);               // comma OPERATOR usage (less common)
+                                        // expr1 is evaluated first, its result discarded
+                                        // expr2 is evaluated next, its result becomes the overall value</pre>
+          </div>
+          <p>In the declaration form, the comma simply separates two variable declarations sharing the same <code>type</code>. In the operator form, the comma sequences two expressions and keeps only the last one's result.</p>
+        </section>
+
+        <section class="topic-section" id="stepbystep">
+          <h2>5. Step-by-Step Code</h2>
+          <p>The practical, everyday case — declaring two variables in a single statement:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>comma.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>#include &lt;stdio.h&gt;
+
+int main() {
+    int i = 0, j = 5;
+
+    printf("i: %d\n", i);
+    printf("j: %d\n", j);
+
+    return 0;
+}</pre>
+          </div>
+          <ul>
+            <li>This single line declares <strong>two separate</strong> <code>int</code> variables, <code>i</code> and <code>j</code>, using one shared <code>int</code> type.</li>
+            <li><code>i</code> is set to <code>0</code> and <code>j</code> is set to <code>5</code> — each gets its own initializer.</li>
+            <li>Writing them together this way saves a line compared to two separate statements, <code>int i = 0;</code> and <code>int j = 5;</code>.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="mistakes">
+          <h2>6. Common Mistakes</h2>
+          <ul class="mistake-list">
+            <li>Assuming that <code>int i = 0, j = 5;</code> makes <code>i</code> and <code>j</code> somehow linked or equal to each other — they're completely independent variables, just declared together on one line for convenience.</li>
+            <li>Confusing the comma used in declarations or function-argument lists with the true comma <strong>operator</strong> — they look identical but behave differently depending on context.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="debugging">
+          <h2>7. Debugging Tips</h2>
+          <p>If you see a comma being used in an unfamiliar way inside an expression — not just a declaration or a function call — it might be the comma operator. Remember that it discards all but the last value, so only the final expression's result actually matters to the surrounding code.</p>
+        </section>
+
+        <section class="topic-section" id="best-practices">
+          <h2>8. Best Practices</h2>
+          <ul class="best-practice-list">
+            <li>Use comma-separated declarations for closely related variables declared together, such as loop counters.</li>
+            <li>Avoid the comma <strong>operator</strong> in everyday code, since it can make logic harder to read — prefer separate statements for clarity, even though the operator exists and is valid C.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="interview">
+          <h2>9. Interview Questions</h2>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Easy:</strong> What is the most common everyday use of the comma in C?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Separating multiple variable declarations in one statement, like <code>int i = 0, j = 5;</code>.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Medium:</strong> Does <code>int i = 0, j = 5;</code> make <code>i</code> and <code>j</code> related to each other?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>No — they're two completely independent variables, just declared together on one line for convenience.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Hard:</strong> What does the comma OPERATOR do, as distinct from comma-separated declarations?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>It evaluates multiple expressions in sequence, discarding all but the last one's value, which becomes the overall expression's result.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>HR:</strong> Have you seen comma-separated declarations before, in C or another language?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>This is open-ended — a strong answer might mention seeing it in C, or a similar declaration pattern in another language you've used.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Conceptual:</strong> Is the comma in a function call argument list, like <code>printf("%d", x);</code>, the same thing as the comma operator?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>No — that's a comma used as an argument separator, a different (and more common) usage than the true comma operator.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Scenario-based:</strong> You see <code>x = (a++, b++);</code> in someone else's code — what would <code>x</code> end up holding?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>The value of <code>b++</code> (after its own increment), since the comma operator discards the first expression's result and keeps only the last one.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mcq">
+          <h2>10. MCQs</h2>
+          <div class="quiz" data-quiz-source="commaOperatorQuiz"></div>
+        </section>
+
+        <section class="topic-section" id="exercises">
+          <h2>11. Programming Exercises</h2>
+          <p><strong>Easy:</strong> Declare two int variables, <code>x</code> and <code>y</code>, with values <code>1</code> and <code>2</code>, in a single statement.</p>
+          <p><strong>Medium:</strong> Explain why <code>int i = 0, j = 5;</code> doesn't link <code>i</code> and <code>j</code> together.</p>
+          <p><strong>Hard:</strong> Predict the value of <code>result</code> in <code>int result = (1 + 1, 2 + 2);</code> (hint: the comma operator keeps only the last expression's value).</p>
+        </section>
+
+        <section class="topic-section" id="assignments">
+          <h2>12. Assignments</h2>
+          <p>Write your own single-line declaration of 3 <code>int</code> variables with different values, and explain in words what each one holds.</p>
+        </section>
+
+        <section class="topic-section" id="faq">
+          <h2>13. FAQs</h2>
+          <p><strong>Q: Is the comma operator commonly used in everyday C code?</strong><br>A: Not really — it's rarely needed directly; multi-variable declarations are the far more common comma usage.</p>
+          <p><strong>Q: Does the comma operator work the same way in for-loops?</strong><br>A: For-loops do have a related, commonly-seen comma usage in their update section, but that's covered more fully in a later unit on loops.</p>
+        </section>
+
+        <section class="topic-section" id="takeaways">
+          <h2>14. Key Takeaways</h2>
+          <ul>
+            <li>The everyday, common comma usage separates multiple variable declarations in one statement, like <code>int i = 0, j = 5;</code> — the variables it declares remain completely independent of each other.</li>
+            <li>The true comma OPERATOR evaluates multiple expressions in sequence and discards all but the last one's value, which becomes the overall expression's result.</li>
+            <li>The operator form is rare in everyday code, but useful to recognize when reading code written by others.</li>
+          </ul>
+        </section>
+
+        <div class="topic-nav-footer">
+          <a href="assignment-operators.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Previous: Assignment Operators</a>
+          <a href="sizeof-operator.html" class="btn btn-primary">Next: sizeof Operator <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for absolute beginners. &copy; 2026 C Programming eBook.</p>
+  </footer>
+
+</div>
+
+<div class="search-panel" id="search-panel" data-open="false">
+  <div class="search-panel-inner">
+    <div class="search-input-row">
+      <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+      <input type="text" id="search-input" placeholder="Search topics... (Ctrl+K)">
+      <button class="icon-btn" id="search-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="search-results" id="search-results"></ul>
+  </div>
+</div>
+
+<script>
+window.commaOperatorQuiz = [
+  { question: "What is the most common everyday use of the comma in C?", options: ["The true comma operator", "Separating multiple variable declarations in one statement", "Ending a statement", "Marking a comment"], correctIndex: 1, explanation: "The comma is most commonly used to declare multiple variables in one statement, like `int i = 0, j = 5;`." },
+  { question: "In `int i = 0, j = 5;`, what is the relationship between i and j?", options: ["They are equal to each other", "They are linked so changing one changes the other", "They are completely independent variables", "j is a copy of i"], correctIndex: 2, explanation: "They are two completely independent variables, just declared together on one line for convenience." },
+  { question: "What does the comma OPERATOR do?", options: ["It adds its two operands together", "It evaluates multiple expressions in sequence, keeping only the last one's value", "It compares two expressions for equality", "It declares a new variable"], correctIndex: 1, explanation: "The comma operator evaluates expressions in sequence and discards all but the last one's value." },
+  { question: "Is the comma inside `printf(\"%d\", x);` the same as the true comma operator?", options: ["Yes, identical behavior", "No, it's an argument separator, a different usage", "No, it's a syntax error", "Yes, but only for printf"], correctIndex: 1, explanation: "That comma separates function arguments, which is a different (and more common) usage than the true comma operator." },
+  { question: "What value would `x` hold after `x = (a++, b++);`?", options: ["The value of a++", "The sum of a++ and b++", "The value of b++ (after its own increment)", "Undefined behavior"], correctIndex: 2, explanation: "The comma operator discards the first expression's result and keeps only the last one, so x holds b++'s value." }
+];
+</script>
+<script src="../../js/theme.js"></script>
+<script src="../../js/sidebar.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/quiz.js"></script>
+<script src="../../js/copy-code.js"></script>
+<script src="../../js/accordion.js"></script>
+</body>
+</html>
