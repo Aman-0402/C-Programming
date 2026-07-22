@@ -30,13 +30,19 @@ history and `docs/superpowers/plans/` for implementation plans.
   Systems, Debugging), Group 4 (Comments, 3 topics, Unit 1's closing
   capstone). Sidebar's Unit 1 accordion holds all 28 links; prev/next
   chain runs unbroken end to end.
-- **Next up: Unit 2 — C Building Blocks & Data Types** (tokens,
-  variables, data types, operators — the first sub-project that can
-  finally assume the reader has seen a basic C program's structure).
-  No content exists there yet — `pages/unit2/` is still a placeholder
-  directory. Decompose Unit 2 into topic-groups the same way Unit 1
-  was before starting (36 raw syllabus topics is too large for one
-  sub-project).
+- **Unit 2 — C Building Blocks & Data Types, in progress.** 36 raw
+  syllabus topics, decomposed into 5 groups (~7 topics each, same
+  rhythm as Unit 1): **G1** Tokens & Naming (Tokens, Keywords,
+  Identifiers, Naming Rules, Variables, Constants, Values). **G2**
+  Scope & Data Types (Scope, Binding, Storage Classes, Integer/Float/
+  Char Types, Strings). **G3** Values & Basic Operators (L-value,
+  R-value, Type Conversion, Operators overview, Arithmetic, Relational,
+  Logical). **G4** Advanced Operators (Conditional, Bitwise, Assignment,
+  Comma, Arrow, `sizeof`, Precedence, Associativity). **G5**
+  Increment/Decrement/Notation + I/O (Increment, Decrement, Hungarian
+  Notation, Input, Output, `printf()`, `scanf()`). Build one group at a
+  time, same spec→plan→execute→review cycle as every Unit 1 group.
+  `pages/unit2/` is still a placeholder directory until G1 ships.
 
 ## Folder structure
 
