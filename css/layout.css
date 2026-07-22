@@ -29,6 +29,22 @@
   box-shadow: var(--shadow-md);
 }
 
+/* Floating social links */
+.social-float {
+  position: fixed;
+  top: 50%;
+  right: var(--space-4);
+  transform: translateY(-50%);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.social-float .icon-btn {
+  box-shadow: var(--shadow-md);
+}
+
 /* Sidebar */
 .sidebar {
   grid-row: 1;
