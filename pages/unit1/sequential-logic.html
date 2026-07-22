@@ -139,7 +139,7 @@
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>10. Common Mistakes</h2>
+          <h2>5. Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Writing steps in the wrong order and expecting the "obvious" intended order to run anyway.</li>
             <li>Assuming a computer can infer a missing step because a human reader "would just know" it belongs there.</li>
@@ -148,12 +148,12 @@
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>11. Debugging Tips</h2>
+          <h2>6. Debugging Tips</h2>
           <p>When a program's output looks wrong, resist the urge to assume a step was skipped or silently reordered by the computer — it wasn't. Instead, trace execution top-to-bottom exactly as written, one instruction at a time, and mentally track the state of every value along the way. Almost always, the "bug" turns out to be a step written in the wrong place, or a step you assumed existed but never actually wrote.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>12. Best Practices</h2>
+          <h2>7. Best Practices</h2>
           <ul class="best-practice-list">
             <li>Write steps in the exact order they must actually happen — plan the order before you write anything.</li>
             <li>Double-check ordering dependencies: you must obtain or calculate a value before you can use it anywhere later.</li>
@@ -161,7 +161,7 @@
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>13. Interview Questions</h2>
+          <h2>8. Interview Questions</h2>
           <p><strong>Easy:</strong> What does "sequential execution" mean?</p>
           <p><strong>Medium:</strong> Why can't a computer run steps out of order on its own?</p>
           <p><strong>Hard:</strong> What has to change in a program's logic to make it NOT purely sequential?</p>
@@ -171,30 +171,30 @@
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>14. MCQs</h2>
+          <h2>9. MCQs</h2>
           <div class="quiz" data-quiz-source="sequentialLogicQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>15. Programming Exercises</h2>
+          <h2>10. Programming Exercises</h2>
           <p><strong>Easy:</strong> Here are the same 4 recipe steps from earlier, scrambled: (A) Bake the cake, (B) Preheat the oven, (C) Mix the batter, (D) Pour the batter into a pan. Write out the correct order they must run in, and explain why each step depends on the one before it.</p>
           <p><strong>Medium:</strong> Here is a 5-step plain-English "algorithm" with an ordering bug: (1) Divide the total by the number of people, (2) Ask the group how many people are splitting the bill, (3) Get the total bill amount, (4) Tell each person their share, (5) Everyone pays their share. Identify exactly which step is out of place and explain what goes wrong if it runs as written.</p>
           <p><strong>Hard:</strong> Write a strictly ordered, 6-step plain-English procedure for "make a phone call." Make sure every step's required inputs (e.g. having the phone in hand, knowing the number) are already available by the time that step runs.</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>16. Assignments</h2>
+          <h2>11. Assignments</h2>
           <p>Write out any 5-step daily routine (for example, getting ready for school or work) as strictly ordered steps, in the exact order they must happen. Then identify one step in your routine that would break the whole routine if it ran too early, and explain why.</p>
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>20. FAQs</h2>
+          <h2>12. FAQs</h2>
           <p><strong>Q: Can a computer ever run steps out of order?</strong><br>A: Only if the program's logic explicitly tells it to — through conditionals, loops, or jumps, which you'll learn in a later unit. It never reorders anything on its own.</p>
           <p><strong>Q: Is sequential logic still relevant once I learn loops/conditionals?</strong><br>A: Yes — it's still the default. Loops and conditionals are controlled, deliberate deviations from the normal top-to-bottom order, not a replacement for it.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>21. Key Takeaways</h2>
+          <h2>13. Key Takeaways</h2>
           <ul>
             <li>A computer executes instructions strictly top-to-bottom, one at a time.</li>
             <li>There is no automatic reordering, skipping, or guessing of intent — only what's written runs.</li>
