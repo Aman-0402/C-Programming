@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assignment Operators — Unit 2 — C Programming eBook</title>
+<meta name="description" content="Learn how compound assignment operators (+=, -=, *=, /=, %=) shorten C's basic assignment operator, and extend add.c with an accumulating total.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="../../css/variables.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/diagrams.css">
+<link rel="stylesheet" href="../../css/quiz.css">
+
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<style>
+  .topic-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-6); align-items: start; }
+  .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
+  .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
+  .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
+</style>
+</head>
+<body>
+
+<button class="icon-btn theme-toggle-float" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+  <i class="fa-solid fa-sun icon-sun"></i>
+  <i class="fa-solid fa-moon icon-moon"></i>
+</button>
+
+<div class="social-float">
+  <a class="icon-btn" href="https://github.com/Aman-0402" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+    <i class="fa-brands fa-github"></i>
+  </a>
+  <a class="icon-btn" href="https://www.linkedin.com/in/aman-raj-081905211/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+</div>
+
+<div class="shell" id="shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo" style="margin-bottom: var(--space-5);">
+      <a href="../../index.html" class="logo">
+        <i class="fa-solid fa-code" style="color: var(--color-primary);"></i><span class="sidebar-label"> C Programming eBook</span>
+      </a>
+    </div>
+
+    <button class="icon-btn" id="sidebar-collapse" aria-label="Collapse sidebar" style="margin-bottom: var(--space-4);">
+      <i class="fa-solid fa-angles-left"></i>
+    </button>
+
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 1</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit1-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">Unit 1</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit1-submenu">
+      <a class="sidebar-link" href="../unit1/evolution-of-programming.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="sidebar-label">Evolution of Programming</span></a>
+      <a class="sidebar-link" href="../unit1/programming-languages.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Programming Languages</span></a>
+      <a class="sidebar-link" href="../unit1/problem-solving.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Problem Solving</span></a>
+      <a class="sidebar-link" href="../unit1/sequential-logic.html"><i class="fa-solid fa-list-ol"></i><span class="sidebar-label">Sequential Logic</span></a>
+      <a class="sidebar-link" href="../unit1/algorithms.html"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-label">Algorithms</span></a>
+      <a class="sidebar-link" href="../unit1/pseudocode.html"><i class="fa-solid fa-file-lines"></i><span class="sidebar-label">Pseudocode</span></a>
+      <a class="sidebar-link" href="../unit1/flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
+      <a class="sidebar-link" href="../unit1/introduction-to-c.html"><i class="fa-solid fa-c"></i><span class="sidebar-label">Introduction to C</span></a>
+      <a class="sidebar-link" href="../unit1/history-of-c.html"><i class="fa-solid fa-scroll"></i><span class="sidebar-label">History of C</span></a>
+      <a class="sidebar-link" href="../unit1/features-of-c.html"><i class="fa-solid fa-star"></i><span class="sidebar-label">Features of C</span></a>
+      <a class="sidebar-link" href="../unit1/applications-of-c.html"><i class="fa-solid fa-industry"></i><span class="sidebar-label">Applications</span></a>
+      <a class="sidebar-link" href="../unit1/structure-of-c-program.html"><i class="fa-solid fa-code"></i><span class="sidebar-label">Structure of C Program</span></a>
+      <a class="sidebar-link" href="../unit1/c-compiler.html"><i class="fa-solid fa-gears"></i><span class="sidebar-label">C Compiler</span></a>
+      <a class="sidebar-link" href="../unit1/compilation-process.html"><i class="fa-solid fa-arrows-turn-right"></i><span class="sidebar-label">Compilation Process</span></a>
+      <a class="sidebar-link" href="../unit1/source-code.html"><i class="fa-solid fa-file-code"></i><span class="sidebar-label">Source Code</span></a>
+      <a class="sidebar-link" href="../unit1/object-code.html"><i class="fa-solid fa-cube"></i><span class="sidebar-label">Object Code</span></a>
+      <a class="sidebar-link" href="../unit1/executable-code.html"><i class="fa-solid fa-play"></i><span class="sidebar-label">Executable Code</span></a>
+      <a class="sidebar-link" href="../unit1/execution-process.html"><i class="fa-solid fa-microchip"></i><span class="sidebar-label">Execution Process</span></a>
+      <a class="sidebar-link" href="../unit1/assembler.html"><i class="fa-solid fa-wrench"></i><span class="sidebar-label">Assembler</span></a>
+      <a class="sidebar-link" href="../unit1/linker.html"><i class="fa-solid fa-link"></i><span class="sidebar-label">Linker</span></a>
+      <a class="sidebar-link" href="../unit1/loader.html"><i class="fa-solid fa-upload"></i><span class="sidebar-label">Loader</span></a>
+      <a class="sidebar-link" href="../unit1/interpreter.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Interpreter</span></a>
+      <a class="sidebar-link" href="../unit1/compilers-and-interpreters.html"><i class="fa-solid fa-code-compare"></i><span class="sidebar-label">Compilers &amp; Interpreters</span></a>
+      <a class="sidebar-link" href="../unit1/operating-systems.html"><i class="fa-solid fa-desktop"></i><span class="sidebar-label">Operating Systems</span></a>
+      <a class="sidebar-link" href="../unit1/debugging.html"><i class="fa-solid fa-bug"></i><span class="sidebar-label">Debugging</span></a>
+      <a class="sidebar-link" href="../unit1/comments.html"><i class="fa-solid fa-comment"></i><span class="sidebar-label">Comments</span></a>
+      <a class="sidebar-link" href="../unit1/single-line-comments.html"><i class="fa-solid fa-slash"></i><span class="sidebar-label">Single Line Comments</span></a>
+      <a class="sidebar-link" href="../unit1/multi-line-comments.html"><i class="fa-solid fa-quote-right"></i><span class="sidebar-label">Multi Line Comments</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 2</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit2-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">C Building Blocks &amp; Data Types</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit2-submenu">
+      <a class="sidebar-link" href="tokens.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Tokens</span></a>
+      <a class="sidebar-link" href="keywords.html"><i class="fa-solid fa-key"></i><span class="sidebar-label">Keywords</span></a>
+      <a class="sidebar-link" href="identifiers.html"><i class="fa-solid fa-tag"></i><span class="sidebar-label">Identifiers</span></a>
+      <a class="sidebar-link" href="naming-rules.html"><i class="fa-solid fa-spell-check"></i><span class="sidebar-label">Naming Rules</span></a>
+      <a class="sidebar-link" href="variables.html"><i class="fa-solid fa-box"></i><span class="sidebar-label">Variables</span></a>
+      <a class="sidebar-link" href="constants.html"><i class="fa-solid fa-lock"></i><span class="sidebar-label">Constants</span></a>
+      <a class="sidebar-link" href="values.html"><i class="fa-solid fa-hashtag"></i><span class="sidebar-label">Values</span></a>
+      <a class="sidebar-link" href="scope.html"><i class="fa-solid fa-eye"></i><span class="sidebar-label">Scope</span></a>
+      <a class="sidebar-link" href="binding.html"><i class="fa-solid fa-link"></i><span class="sidebar-label">Binding</span></a>
+      <a class="sidebar-link" href="storage-classes.html"><i class="fa-solid fa-warehouse"></i><span class="sidebar-label">Storage Classes</span></a>
+      <a class="sidebar-link" href="integer-types.html"><i class="fa-solid fa-1"></i><span class="sidebar-label">Integer Types</span></a>
+      <a class="sidebar-link" href="floating-point-types.html"><i class="fa-solid fa-percent"></i><span class="sidebar-label">Floating Point Types</span></a>
+      <a class="sidebar-link" href="character-type.html"><i class="fa-solid fa-font"></i><span class="sidebar-label">Character Type</span></a>
+      <a class="sidebar-link" href="strings.html"><i class="fa-solid fa-quote-left"></i><span class="sidebar-label">Strings</span></a>
+      <a class="sidebar-link" href="l-value.html"><i class="fa-solid fa-arrow-left-long"></i><span class="sidebar-label">L-value</span></a>
+      <a class="sidebar-link" href="r-value.html"><i class="fa-solid fa-arrow-right-long"></i><span class="sidebar-label">R-value</span></a>
+      <a class="sidebar-link" href="type-conversion.html"><i class="fa-solid fa-arrows-rotate"></i><span class="sidebar-label">Type Conversion</span></a>
+      <a class="sidebar-link" href="operators.html"><i class="fa-solid fa-calculator"></i><span class="sidebar-label">Operators</span></a>
+      <a class="sidebar-link" href="arithmetic-operators.html"><i class="fa-solid fa-plus-minus"></i><span class="sidebar-label">Arithmetic Operators</span></a>
+      <a class="sidebar-link" href="relational-operators.html"><i class="fa-solid fa-equals"></i><span class="sidebar-label">Relational Operators</span></a>
+      <a class="sidebar-link" href="logical-operators.html"><i class="fa-solid fa-code-branch"></i><span class="sidebar-label">Logical Operators</span></a>
+      <a class="sidebar-link active" href="assignment-operators.html"><i class="fa-solid fa-right-left"></i><span class="sidebar-label">Assignment Operators</span></a>
+      <a class="sidebar-link" href="comma-operator.html"><i class="fa-solid fa-comma"></i><span class="sidebar-label">Comma Operator</span></a>
+      <a class="sidebar-link" href="sizeof-operator.html"><i class="fa-solid fa-ruler"></i><span class="sidebar-label">sizeof Operator</span></a>
+      <a class="sidebar-link" href="conditional-operator.html"><i class="fa-solid fa-question"></i><span class="sidebar-label">Conditional Operator</span></a>
+      <a class="sidebar-link" href="bitwise-operators.html"><i class="fa-solid fa-microchip"></i><span class="sidebar-label">Bitwise Operators</span></a>
+      <a class="sidebar-link" href="operator-precedence.html"><i class="fa-solid fa-sort"></i><span class="sidebar-label">Operator Precedence</span></a>
+      <a class="sidebar-link" href="associativity.html"><i class="fa-solid fa-arrows-left-right"></i><span class="sidebar-label">Associativity</span></a>
+      <a class="sidebar-link" href="arrow-operator.html"><i class="fa-solid fa-arrow-right-to-bracket"></i><span class="sidebar-label">Arrow Operator</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 3</span></div>
+      <a class="sidebar-link" href="../unit3/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Control Statements</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 4</span></div>
+      <a class="sidebar-link" href="../unit4/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Strings, Functions &amp; Pointers</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 5</span></div>
+      <a class="sidebar-link" href="../unit5/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Structures, Files &amp; Memory Management</span></a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="topic-layout">
+      <div>
+        <h1>Assignment Operators</h1>
+        <p class="lead">Beyond the basic <code>=</code> assignment operator you've used throughout this course, C provides compound assignment operators — <code>+=</code>, <code>-=</code>, <code>*=</code>, <code>/=</code>, <code>%=</code> — that combine an operation with assignment in one concise step.</p>
+
+        <section class="topic-section" id="introduction">
+          <h2>1. What Is It?</h2>
+          <p>You've already been using the basic <strong>assignment operator</strong> (<code>=</code>) throughout this course to store values in variables. C also provides <strong>compound assignment operators</strong> that combine an operation with assignment in a single step: <code>+=</code>, <code>-=</code>, <code>*=</code>, <code>/=</code>, and <code>%=</code>. For example, <code>total += a;</code> is shorthand for <code>total = total + a;</code>.</p>
+        </section>
+
+        <section class="topic-section" id="why">
+          <h2>2. Why Do We Need to Know This?</h2>
+          <p>Compound assignment operators are extremely common in real-world C code — especially for accumulating totals or counters. Recognizing this shorthand is essential for reading typical C programs, since experienced programmers use it by default rather than writing out the longhand form every time.</p>
+        </section>
+
+        <section class="topic-section" id="real-life">
+          <h2>3. Real-Life Example</h2>
+          <p>Think of saying "add $5 to my account" instead of "my account balance is now my old balance plus $5." Both mean exactly the same thing, but the first is shorter and gets straight to the point — that's exactly what the compound assignment form does compared to writing out the full longhand assignment.</p>
+        </section>
+
+        <section class="topic-section" id="syntax">
+          <h2>4. Syntax</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>syntax</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>variable += value;   // shorthand for: variable = variable + value;
+variable -= value;   // shorthand for: variable = variable - value;
+variable *= value;   // shorthand for: variable = variable * value;
+variable /= value;   // shorthand for: variable = variable / value;
+variable %= value;   // shorthand for: variable = variable % value;</pre>
+          </div>
+          <p>Each compound assignment operator takes the variable's current value, applies the operation with the right-hand value, and stores the result back into that same variable.</p>
+        </section>
+
+        <section class="topic-section" id="stepbystep">
+          <h2>5. Step-by-Step Code</h2>
+          <p>Extending <code>add.c</code> with compound assignment operators:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>add.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>#include &lt;stdio.h&gt;
+
+int main() {
+    int a = 5;
+    int b = 3;
+    int total = 0;
+
+    total += a;
+    total += b;
+
+    printf("Total: %d\n", total);
+
+    return 0;
+}</pre>
+          </div>
+          <ul>
+            <li><code>total</code> starts at <code>0</code>.</li>
+            <li><code>total += a;</code> is shorthand for <code>total = total + a;</code>, making <code>total</code> equal to <code>5</code>.</li>
+            <li><code>total += b;</code> is shorthand for <code>total = total + b;</code>, making <code>total</code> equal to <code>8</code> (<code>5 + 3</code>).</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="dryrun">
+          <h2>6. Dry Run</h2>
+          <p>Tracing through execution with <code>a = 5</code>, <code>b = 3</code>:</p>
+          <ul>
+            <li><code>total</code> is initialized to <code>0</code>.</li>
+            <li><code>total += a;</code> runs: <code>total = 0 + 5</code>, so <code>total</code> becomes <code>5</code>.</li>
+            <li><code>total += b;</code> runs: <code>total = 5 + 3</code>, so <code>total</code> becomes <code>8</code>.</li>
+          </ul>
+          <p>The exact output is:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>output</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>Total: 8</pre>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mistakes">
+          <h2>7. Common Mistakes</h2>
+          <ul class="mistake-list">
+            <li>Forgetting that compound assignment operators still perform the <strong>full</strong> operation before assigning — for example, <code>total -= a;</code> fully subtracts <code>a</code> from <code>total</code>, not the reverse.</li>
+            <li>Confusing <code>+=</code> with <code>=+</code>. These are not the same: <code>=+</code> is actually just a plain <code>=</code> followed by the unary <code>+</code> operator (<code>total = (+a);</code>) — a legal but completely different and confusing thing to accidentally write. It's a classic old-school C gotcha worth remembering.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="debugging">
+          <h2>8. Debugging Tips</h2>
+          <p>If a running total seems to only be growing by the last value added instead of accumulating across every step, check that you're actually using <code>+=</code> (which accumulates onto the existing value) rather than accidentally resetting it with a plain <code>=</code> each time.</p>
+        </section>
+
+        <section class="topic-section" id="best-practices">
+          <h2>9. Best Practices</h2>
+          <ul class="best-practice-list">
+            <li>Use compound assignment operators whenever you're accumulating or updating a variable based on its own previous value — it's more concise, and it immediately signals "update in place" to anyone reading your code.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="interview">
+          <h2>10. Interview Questions</h2>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Easy:</strong> What does <code>+=</code> do in C?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p><code>+=</code> adds the right-hand value to the variable and stores the result back in that variable — it's shorthand for <code>variable = variable + value;</code>.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Medium:</strong> What is <code>total += a;</code> shorthand for?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>It's shorthand for <code>total = total + a;</code>.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Hard:</strong> What's the difference between <code>total += a;</code> and accidentally writing <code>total =+ a;</code>?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p><code>+=</code> is the compound assignment operator — it adds <code>a</code> to <code>total</code> and stores the result. <code>=+</code> is actually just a plain assignment of a unary-positive value: <code>total = (+a);</code>. That's a legal but very different construction, and it's an easy typo to make accidentally.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>HR:</strong> Where have you seen accumulator-style patterns (adding to a running total) in real life?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>This is open-ended — a strong answer might describe a running shopping cart total, a bank balance updating with each transaction, or a step counter accumulating throughout a day.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Conceptual:</strong> Does <code>total += a;</code> change the value of <code>a</code>?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>No — it only updates <code>total</code>. <code>a</code> remains unchanged.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Scenario-based:</strong> You expect a total to accumulate across a loop but it only ever holds the most recent value — what compound-assignment mistake might explain this?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>You're likely using plain <code>=</code> instead of <code>+=</code>, which overwrites the total each time instead of accumulating onto it.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mcq">
+          <h2>11. MCQs</h2>
+          <div class="quiz" data-quiz-source="assignmentOperatorsQuiz"></div>
+        </section>
+
+        <section class="topic-section" id="exercises">
+          <h2>12. Programming Exercises</h2>
+          <p><strong>Easy:</strong> Write out what <code>total += 5;</code> is shorthand for.</p>
+          <p><strong>Medium:</strong> Predict the value of <code>x</code> after <code>int x = 10; x -= 3;</code>.</p>
+          <p><strong>Hard:</strong> Explain, in your own words, the difference between <code>total += a;</code> and <code>total =+ a;</code>.</p>
+        </section>
+
+        <section class="topic-section" id="assignments">
+          <h2>13. Assignments</h2>
+          <p>Extend this page's program with one more compound assignment of your choosing (for example, <code>total *= 2;</code>). Predict the new value of <code>total</code> first, then run the program and explain why the value came out the way it did.</p>
+        </section>
+
+        <section class="topic-section" id="faq">
+          <h2>14. FAQs</h2>
+          <p><strong>Q: Are compound assignment operators required, or just convenient shorthand?</strong><br>A: Just convenient shorthand — <code>total = total + a;</code> works identically, but <code>+=</code> is more concise and idiomatic.</p>
+          <p><strong>Q: Does every arithmetic operator have a compound assignment version?</strong><br>A: The 5 covered here — <code>+=</code>, <code>-=</code>, <code>*=</code>, <code>/=</code>, <code>%=</code> — cover the arithmetic operators from the previous chapter. Other compound assignment operators exist for bitwise operators too, covered later in this group.</p>
+        </section>
+
+        <section class="topic-section" id="takeaways">
+          <h2>15. Key Takeaways</h2>
+          <ul>
+            <li>C provides 5 compound assignment operators: <code>+=</code>, <code>-=</code>, <code>*=</code>, <code>/=</code>, and <code>%=</code>.</li>
+            <li>Each one is shorthand for the longhand form — <code>total += a;</code> means exactly <code>total = total + a;</code>.</li>
+            <li>Compound assignment operators are especially common for accumulator-style patterns, where a variable is updated based on its own previous value.</li>
+          </ul>
+        </section>
+
+        <div class="topic-nav-footer">
+          <a href="logical-operators.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Previous: Logical Operators</a>
+          <a href="comma-operator.html" class="btn btn-primary">Next: Comma Operator <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for absolute beginners. &copy; 2026 C Programming eBook.</p>
+  </footer>
+
+</div>
+
+<div class="search-panel" id="search-panel" data-open="false">
+  <div class="search-panel-inner">
+    <div class="search-input-row">
+      <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+      <input type="text" id="search-input" placeholder="Search topics... (Ctrl+K)">
+      <button class="icon-btn" id="search-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="search-results" id="search-results"></ul>
+  </div>
+</div>
+
+<script>
+window.assignmentOperatorsQuiz = [
+  { question: "What is `total += a;` shorthand for?", options: ["total = a;", "total = total + a;", "total = total - a;", "a = total + a;"], correctIndex: 1, explanation: "+= is shorthand for adding the right-hand value to the variable and storing the result back in that same variable." },
+  { question: "Which operator is the compound assignment version of subtraction?", options: ["-=", "=-", "--", "%="], correctIndex: 0, explanation: "-= subtracts the right-hand value from the variable and stores the result back in it." },
+  { question: "Given `int a = 5, b = 3, total = 0;` followed by `total += a; total += b;`, what does `printf(\"Total: %d\\n\", total);` print?", options: ["Total: 3", "Total: 5", "Total: 8", "Total: 15"], correctIndex: 2, explanation: "total starts at 0, becomes 5 after total += a, then becomes 8 after total += b (5 + 3)." },
+  { question: "Which of these is NOT one of the 5 compound assignment operators covered on this page?", options: ["+=", "*=", "^=", "%="], correctIndex: 2, explanation: "^= is a bitwise compound assignment operator, covered later in this group — this page covers +=, -=, *=, /=, and %=." },
+  { question: "What is the key difference between `total += a;` and `total =+ a;`?", options: ["They are identical in every way", "=+ is the compound assignment operator and += is not", "+= adds a to total, while =+ is just plain assignment of a unary-positive a", "=+ is not valid C syntax"], correctIndex: 2, explanation: "+= is the compound assignment (add then assign). =+ is actually just = followed by unary +, meaning total = (+a); — a legal but very different construction." }
+];
+</script>
+<script src="../../js/theme.js"></script>
+<script src="../../js/sidebar.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/quiz.js"></script>
+<script src="../../js/copy-code.js"></script>
+<script src="../../js/accordion.js"></script>
+</body>
+</html>
