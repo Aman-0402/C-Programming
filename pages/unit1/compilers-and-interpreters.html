@@ -156,22 +156,22 @@
         <p class="lead">A direct, side-by-side comparison that ties together everything you've learned about the C Compiler, the Compilation Process, and the Interpreter into one decision-relevant summary.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p>Both compilers and interpreters are translators — they exist to let source code, which humans can read, actually run on hardware, which only understands machine instructions. What separates them is not the goal but the strategy: <em>when</em> that translation happens and <em>how</em> it's carried out.</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>You've already met C's compiler, walked through the full compilation process, and studied how an interpreter works on its own page. This topic pulls all of that together into a single, clear comparison — the kind of summary that's genuinely useful when you're deciding how to reason about a new language or explaining the tradeoff to someone else.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>It's like the difference between subtitling an entire movie in advance versus a live simultaneous interpreter translating a speech as it's being given. Subtitling happens once, ahead of time, and then the finished film just plays — that's a compiler. A simultaneous interpreter processes and delivers each sentence the moment it's spoken, with no chance to prepare the whole speech beforehand — that's an interpreter. Same underlying goal (letting the audience understand), completely different timing strategy.</p>
         </section>
 
         <section class="topic-section" id="visual">
-          <h2>4. Visual Explanation</h2>
+          <h2>Visual Explanation</h2>
           <p>Here's the core distinction laid out side by side:</p>
           <div class="feature-grid">
             <div class="card">
@@ -198,7 +198,7 @@
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>5. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Assuming every language is strictly one or the other with no nuance — some real-world systems blend both approaches, though the details of that are beyond this course.</li>
             <li>Assuming "interpreted" automatically means "worse" — it's a different tradeoff, not an inferior one.</li>
@@ -206,12 +206,12 @@
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>6. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>When learning any new language, one of the first useful questions to ask is: "is this compiled or interpreted?" The answer immediately tells you when you'll actually see your errors — before running, or while running — and how a "build" step (or the lack of one) is going to work for that language.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>7. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>Match the tool to the job. Compiled languages like C suit performance-critical, hardware-close work.</li>
             <li>Interpreted languages often suit rapid prototyping and scripting, where iteration speed matters more than raw execution speed.</li>
@@ -219,7 +219,7 @@
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>8. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -283,30 +283,30 @@
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>9. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="compilersAndInterpretersQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>10. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> State which category — compiled or interpreted — C falls into.</p>
           <p><strong>Medium:</strong> List one advantage of the compiled approach and one advantage of the interpreted approach.</p>
           <p><strong>Hard:</strong> Research one language that blends both approaches (for example, Java's bytecode compilation combined with JVM interpretation/JIT) and summarize, at a high level, how it works.</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>11. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Write a short comparison table, in words, contrasting compiled versus interpreted approaches across three dimensions: execution speed, when errors show up, and iteration speed (how quickly you can test a change).</p>
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>12. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Is Python compiled or interpreted?</strong><br>A: Primarily interpreted, though it has some internal compilation steps — the details are beyond this course's scope.</p>
           <p><strong>Q: Will this course ever build an interpreter?</strong><br>A: No — this course focuses on C, a compiled language.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>13. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li>Compilers translate an entire program ahead of time into a standalone executable; interpreters translate and run code line by line at run time.</li>
             <li>C is a compiled language.</li>

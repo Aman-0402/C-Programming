@@ -156,22 +156,22 @@
         <p class="lead">A single-line comment starts with <code>//</code> and extends to the end of that one line — the most common way to add a quick note right next to the code it describes.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p>A single-line comment starts with <code>//</code> and extends to the end of that line only — everything after <code>//</code> on that line is ignored by the compiler. It has no effect on the code that runs; it exists purely for human readers.</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>It's the most common comment style for short, quick explanations placed right next to the specific line they describe. Instead of scrolling to a separate note, the explanation sits exactly where it's needed.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Like a margin note scribbled next to one specific sentence in a book — it applies only to that one line, not the whole page. You wouldn't expect a note next to line 3 to also explain line 4.</p>
         </section>
 
         <section class="topic-section" id="visual">
-          <h2>4. Visual Explanation</h2>
+          <h2>Visual Explanation</h2>
           <div class="code-block">
             <div class="code-block-header">
               <span>example.c</span>
@@ -183,12 +183,12 @@
         </section>
 
         <section class="topic-section" id="syntax">
-          <h2>5. Syntax</h2>
+          <h2>Syntax</h2>
           <p><code>//</code> marks the start of a comment. Everything after it, on that same line, is ignored by the compiler. The comment automatically ends at the line break — there is no closing symbol needed, unlike multi-line comments.</p>
         </section>
 
         <section class="topic-section" id="stepbystep">
-          <h2>6. Step-by-Step Code</h2>
+          <h2>Step-by-Step Code</h2>
           <p>Here is <code>add.c</code> with single-line comments added at two points:</p>
           <div class="code-block">
             <div class="code-block-header">
@@ -207,7 +207,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>7. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Forgetting that <code>//</code> comments only extend to the end of that one line — accidentally assuming it comments out multiple lines below it, when it does not.</li>
             <li>Putting code after <code>//</code> on the same line, expecting it to still run — it won't. Everything after <code>//</code> on that line is ignored, including any code you put there.</li>
@@ -215,7 +215,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>8. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <ul>
             <li>You can quickly disable one specific line by placing <code>//</code> at its start.</li>
             <li>If a program starts behaving correctly after doing this, that line is worth investigating further — it's a fast way to narrow down which line is causing a problem.</li>
@@ -223,7 +223,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>9. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>Keep single-line comments short and placed close to the code they describe.</li>
             <li>Prefer a comment on its own line above complex code, and a short trailing comment for simple clarifications.</li>
@@ -231,7 +231,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>10. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -295,30 +295,30 @@ int main() {
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>11. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="singleLineCommentsQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>12. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> Write a single-line comment explaining what a variable is for.</p>
           <p><strong>Medium:</strong> Given <code>int x = 5; // int y = 10;</code>, explain why only one variable is actually declared.</p>
           <p><strong>Hard:</strong> Comment out one specific line of a short program and explain what changes as a result.</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>13. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Take <code>add.c</code> and add a single-line comment to every logical section: the <code>#include</code> line, the <code>main</code> declaration, the <code>printf</code> call, and the <code>return</code> statement.</p>
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>14. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Can I put a single-line comment at the very start of a file?</strong><br>A: Yes — a single-line comment can go anywhere a comment could go, including as the very first line of a file.</p>
           <p><strong>Q: Is <code>//</code> the same in all programming languages?</strong><br>A: No — some languages use different symbols for single-line comments, like <code>#</code> in Python.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>15. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li><code>//</code> marks the start of a single-line comment in C.</li>
             <li>A single-line comment only extends to the end of that one line — it automatically ends at the line break with no closing symbol needed.</li>

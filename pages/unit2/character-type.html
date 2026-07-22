@@ -156,22 +156,22 @@
         <p class="lead">C's type for storing a single character — and the next piece of profile.c, right before strings tie it all together.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p><code>char</code> is C's type for storing a single character — a letter, digit, symbol, or punctuation mark. Character literals are written in source code with single quotes, for example <code>'A'</code>. Internally, a <code>char</code> is actually stored as a small integer (its character code), but it's used and displayed as a character.</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>Understanding <code>char</code> sets up <strong>Strings</strong>, the next page in this chapter — a string in C is fundamentally built from a sequence of individual characters, so getting comfortable with a single <code>char</code> first makes strings much easier to understand.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Think of a single printed letter tile in a board game — one letter per tile. A <code>char</code> holds exactly one character, no more, just like one tile holds exactly one letter.</p>
         </section>
 
         <section class="topic-section" id="visual">
-          <h2>4. Visual Explanation</h2>
+          <h2>Visual Explanation</h2>
           <div class="memory-diagram">
             <div class="memory-cell">
               <div class="memory-cell-label">char grade</div>
@@ -182,7 +182,7 @@
         </section>
 
         <section class="topic-section" id="syntax">
-          <h2>5. Syntax</h2>
+          <h2>Syntax</h2>
           <div class="code-block">
             <div class="code-block-header">
               <span>syntax</span>
@@ -194,7 +194,7 @@
         </section>
 
         <section class="topic-section" id="code">
-          <h2>6. Step-by-Step Code</h2>
+          <h2>Step-by-Step Code</h2>
           <p>Continuing this chapter's <code>profile.c</code> example, we now add a <code>grade</code> variable:</p>
           <div class="code-block">
             <div class="code-block-header">
@@ -223,7 +223,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>7. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Using double quotes instead of single quotes for a char literal — <code>"A"</code> is actually a string, not a char, causing a type mismatch.</li>
             <li>Trying to put more than one character in a char literal — <code>'AB'</code> is invalid, since a <code>char</code> holds exactly one character.</li>
@@ -232,19 +232,19 @@ int main() {
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>8. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>If a <code>char</code> variable prints as a number instead of the expected letter, check whether you accidentally used <code>%d</code> instead of <code>%c</code> in the <code>printf</code> call — that's the most common cause of this exact symptom.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>9. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>Always use single quotes for char literals and double quotes for strings — keeping this distinction clear from the start avoids a very common beginner mixup.</li>
           </ul>
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>10. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -308,30 +308,30 @@ int main() {
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>11. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="characterTypeQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>12. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> Declare a char variable named <code>initial</code> with value <code>'J'</code>.</p>
           <p><strong>Medium:</strong> Explain why <code>"A"</code> and <code>'A'</code> are different in C.</p>
           <p><strong>Hard:</strong> Research what actually gets printed if you use <code>%d</code> to print a char holding the letter <code>'A'</code> (hint: its ASCII code, 65).</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>13. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Extend your own <code>profile.c</code>-style program (or this page's example) with one more <code>char</code> value of your choosing — for example, a first-initial or a status flag — printing it correctly with <code>%c</code>.</p>
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>14. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Can a char hold something other than letters, like a digit or symbol?</strong><br>A: Yes — any single character, including digits like <code>'5'</code> or symbols like <code>'!'</code>, can be stored in a char.</p>
           <p><strong>Q: Is char the same as a 1-character string?</strong><br>A: No — they're different types in C; a string (covered next) is a different construct entirely, even a 1-character one.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>15. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li>A <code>char</code> stores exactly one character, written in single quotes, like <code>'A'</code>.</li>
             <li>Single quotes are for a <code>char</code>, double quotes are for a string — a distinction worth keeping straight from the start.</li>

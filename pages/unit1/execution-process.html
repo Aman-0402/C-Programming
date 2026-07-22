@@ -156,22 +156,22 @@
         <p class="lead">The final step of the entire pipeline — where the executable finally runs and <code>add.c</code> becomes real, visible output on the screen.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p>Execution is what happens when you actually run the compiled executable. The operating system loads it into memory, and the CPU begins carrying out its instructions one by one, producing whatever output the program is designed to produce.</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>This is the final step of the entire journey <code>add.c</code> has taken across this chapter — from readable text, through several transformation stages, to actually appearing as output on a screen. Understanding execution closes the loop on everything you've learned so far.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Like finally starting the finished, assembled car's engine and driving it — every earlier step (building, assembling, testing) existed to make this moment possible. All the effort of design, manufacturing, and inspection only pays off the moment the engine turns over and the car actually moves.</p>
         </section>
 
         <section class="topic-section" id="visual">
-          <h2>4. Visual Explanation</h2>
+          <h2>Visual Explanation</h2>
           <p>Here is the entire pipeline this chapter has followed, from start to finish, in one diagram:</p>
           <div class="flowchart">
             <div class="flow-box flow-box-start"><span>Source Code</span></div>
@@ -193,7 +193,7 @@
         </section>
 
         <section class="topic-section" id="dryrun">
-          <h2>5. Dry Run</h2>
+          <h2>Dry Run</h2>
           <p>Tracing what happens when you run <code>./add</code> (or <code>add.exe</code>):</p>
           <table>
             <thead>
@@ -218,7 +218,7 @@
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>6. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Assuming "execution" and "compilation" are the same step — compilation happens once, ahead of time; execution happens every time you run the program.</li>
             <li>Forgetting that a program must finish compiling successfully before it can ever be executed.</li>
@@ -227,12 +227,12 @@
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>7. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>If a program compiles successfully but behaves unexpectedly when run, the bug is a logic issue happening during execution, not a compilation problem, since compilation already succeeded. In that situation, re-check the program's logic — the values it computes, the order its statements run in, and what it actually prints — rather than looking for syntax mistakes, because the compiler has already confirmed the syntax is valid.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>8. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>Always test-run your program after compiling, not just check that it compiled without errors.</li>
             <li>A successful compile only means the syntax was valid, not that the program behaves correctly.</li>
@@ -241,7 +241,7 @@
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>9. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -305,38 +305,38 @@
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>10. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="executionProcessQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>11. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> From memory, state what the operating system does at the start of execution.</p>
           <p><strong>Medium:</strong> Explain, in your own words, why a program can compile successfully but still have bugs.</p>
           <p><strong>Hard:</strong> Trace, in writing, what you'd expect to happen if <code>add.c</code>'s <code>printf</code> line were changed to print a different sentence, from source code all the way through to final output.</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>12. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Write a complete, step-by-step trace of <code>add.c</code>'s entire journey, from source code through every pipeline stage in this chapter, ending in its final printed output.</p>
           <p>When you're comfortable with this, move on to the chapter's capstone <a href="#miniproject">Mini Project</a> below.</p>
         </section>
 
         <section class="topic-section" id="miniproject">
-          <h2>13. Mini Project</h2>
+          <h2>Mini Project</h2>
           <p><strong>Trace Your Own Program.</strong></p>
           <p>Pick any short C program idea of your own (or simply reuse <code>add.c</code>), and write out — in plain English, stage by stage — what happens to it through the full pipeline: source code, preprocessing, compilation, assembly, linking, executable, and finally execution. Before "running" it mentally, predict its exact console output.</p>
           <p>Completing this project capstones the "Pipeline" chapter — you now understand the complete journey a program takes from writing its code to actually seeing it run.</p>
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>14. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Does a program need to be recompiled every time it's run?</strong><br>A: No — only when the source code changes. The same compiled executable can be run many times without recompiling.</p>
           <p><strong>Q: What happens to a program's memory after it finishes running?</strong><br>A: The operating system reclaims it, making it available for other programs.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>15. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li>Execution is the final stage where the operating system loads and the CPU runs the compiled executable.</li>
             <li>Compiling successfully doesn't guarantee correct behavior at runtime.</li>

@@ -159,22 +159,22 @@
         <p class="lead">Not every value in a program should be free to change — the <code>const</code> keyword lets you declare a value that, once set, is sealed for the rest of the program.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p>A constant is a value that cannot be changed after it's set. In C, you declare a variable as constant using the <code>const</code> keyword, which tells the compiler to reject any later attempt to modify it.</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>Some values genuinely shouldn't change during a program's execution — a fixed conversion rate, a fixed limit, and so on. Marking them <code>const</code> lets the compiler catch accidental modification for you, instead of relying on the programmer to remember not to change it.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Like a sealed, tamper-proof container versus a regular reusable one. A regular variable can be refilled or changed anytime, but a <code>const</code> variable is sealed after its initial value is set — there's no reopening it.</p>
         </section>
 
         <section class="topic-section" id="visual">
-          <h2>4. Visual Explanation</h2>
+          <h2>Visual Explanation</h2>
           <div class="compare-grid">
             <div class="code-block">
               <div class="code-block-header">
@@ -201,7 +201,7 @@ a = 10;   // compiler error — a is const</pre>
         </section>
 
         <section class="topic-section" id="syntax">
-          <h2>5. Syntax</h2>
+          <h2>Syntax</h2>
           <ul>
             <li><code>const type name = value;</code> — for example, <code>const int MAX = 100;</code>.</li>
             <li>The <code>const</code> keyword goes before the type.</li>
@@ -210,7 +210,7 @@ a = 10;   // compiler error — a is const</pre>
         </section>
 
         <section class="topic-section" id="stepbystep">
-          <h2>6. Step-by-Step Code</h2>
+          <h2>Step-by-Step Code</h2>
           <p>Here is <code>add.c</code> again, this time marking its two fixed inputs as <code>const</code>:</p>
           <div class="code-block">
             <div class="code-block-header">
@@ -231,7 +231,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>7. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Trying to declare a <code>const</code> without an initial value — <code>const int a;</code> is invalid, since a constant can never be assigned afterward and so must be given a value at declaration.</li>
             <li>Trying to reassign a <code>const</code> variable later in the code — this causes a compiler error, by design.</li>
@@ -239,19 +239,19 @@ int main() {
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>8. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>If the compiler reports an error like "assignment of read-only variable," check whether you're trying to modify something declared <code>const</code>.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>9. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>Use <code>const</code> for any value you know shouldn't change once set — it documents your intent clearly and lets the compiler help enforce it, rather than relying on memory or comments alone.</li>
           </ul>
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>10. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -315,30 +315,30 @@ int main() {
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>11. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="constantsQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>12. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> Declare a constant named <code>PI</code> with value <code>3</code> (as an int, for simplicity).</p>
           <p><strong>Medium:</strong> Explain why <code>const int a;</code> (without a value) is invalid.</p>
           <p><strong>Hard:</strong> Identify which of this page's <code>add.c</code> variables should logically be <code>const</code> and which shouldn't, and explain why.</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>13. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Take this page's <code>const</code>-using <code>add.c</code> and add one more <code>const</code> value to it — for example, a fixed multiplier — explaining your choice.</p>
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>14. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Does using <code>const</code> make a program run faster?</strong><br>A: Not typically a meaningful speed difference at this level — its main benefit is compiler-enforced safety and clearer intent, not performance.</p>
           <p><strong>Q: Can function parameters be <code>const</code> too?</strong><br>A: Yes, though that's beyond this course's current scope.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>15. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li><code>const</code> marks a variable as unchangeable after its initial declaration, letting the compiler enforce that a value stays fixed.</li>
             <li>A constant must be given an initial value at declaration, since it can never be assigned afterward.</li>

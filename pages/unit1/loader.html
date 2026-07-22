@@ -156,22 +156,22 @@
         <p class="lead">The operating system component that takes a finished executable and places it into memory, right before the CPU begins running it.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p>The loader is the operating system component that takes a compiled executable file and loads it into memory so the CPU can begin executing it. This is the very first thing that happens during the execution process covered earlier — before any instruction runs, the loader has to get the program into memory and ready to go.</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>This directly ties back to the execution process: "the OS loads the executable into memory" was described there as just one step in a bigger picture. Here, that step gets its own name and its own detail — the loader is the specific component responsible for doing exactly that.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Like a stage crew setting up all the props and actors in position before a play can begin. The audience never sees this preparation, but nothing can start until it's done. In the same way, the loader arranges a program in memory before the CPU ever runs its first instruction.</p>
         </section>
 
         <section class="topic-section" id="visual">
-          <h2>4. Visual Explanation</h2>
+          <h2>Visual Explanation</h2>
           <p>Here is how an executable becomes a running program:</p>
           <div class="flowchart">
             <div class="flow-box flow-box-start"><span>Executable (on disk)</span></div>
@@ -185,7 +185,7 @@
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>5. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Assuming loading and execution are the same step — loading prepares memory; execution is the CPU actually running instructions afterward.</li>
             <li>Assuming the loader is part of the compiler — it's actually part of the operating system, used at run time, not build time.</li>
@@ -193,12 +193,12 @@
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>6. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>If a program fails to even start — rather than misbehaving after starting — the issue is more likely a loading problem, such as a missing shared library it depends on, than a logic bug in your own code. A program that never produces any output at all, not even a partial one, is a strong hint to look at what the loader needed rather than at your program's logic.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>7. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>Understand loading as a run-time operating system responsibility, separate from the build-time compiler and linker steps.</li>
             <li>Remember that loading happens fresh every single time you run a program, not just once.</li>
@@ -206,7 +206,7 @@
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>8. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -270,30 +270,30 @@
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>9. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="loaderQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>10. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> From memory, state what the loader does.</p>
           <p><strong>Medium:</strong> Explain, in your own words, the difference between loading and execution.</p>
           <p><strong>Hard:</strong> Research what a "shared library" (<code>.dll</code> or <code>.so</code>) is and why a loader needs to find them at run time.</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>11. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Write a short paragraph explaining loading using the stage-crew analogy — describe what the "crew" sets up, and why the "play" (execution) cannot begin until that setup is complete.</p>
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>12. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Does loading happen every time I run a program?</strong><br>A: Yes — it happens fresh each time, not just once.</p>
           <p><strong>Q: Is the loader something I write code for?</strong><br>A: No — it's an operating system component you never call directly.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>13. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li>The loader is the OS component that takes an executable and places it into memory so it can run.</li>
             <li>Loading prepares memory; execution is the separate, later step where the CPU actually runs the instructions.</li>

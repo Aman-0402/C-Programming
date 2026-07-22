@@ -156,22 +156,22 @@
         <p class="lead">Why <code>a + b * 2</code> doesn't mean "add first, then multiply" — the order in which C evaluates mixed operators within a single expression.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p><strong>Operator precedence</strong> determines the order in which different operators are evaluated within a single expression when there's no explicit grouping. Just like standard math — "multiplication before addition" — C follows a defined precedence order: for example, <code>*</code> and <code>/</code> are evaluated before <code>+</code> and <code>-</code>.</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>Misunderstanding precedence is a very common source of subtly wrong calculations. A program can compile perfectly and still produce the wrong numeric result if you assumed a different evaluation order than C actually uses.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Think of the standard math classroom rule: "multiply and divide before you add and subtract." C follows a similar, well-defined set of rules for its own operators — just with more operator categories involved.</p>
         </section>
 
         <section class="topic-section" id="syntax">
-          <h2>4. Syntax</h2>
+          <h2>Syntax</h2>
           <p>Operator precedence has no special syntax of its own — it's a rule about evaluation <strong>order</strong>, not a symbol you write. Parentheses <code>()</code> can always be used to override the default precedence and force a specific evaluation order explicitly.</p>
           <div class="code-block">
             <div class="code-block-header">
@@ -184,7 +184,7 @@
         </section>
 
         <section class="topic-section" id="stepbystep">
-          <h2>5. Step-by-Step Code</h2>
+          <h2>Step-by-Step Code</h2>
           <p>Extending <code>add.c</code> with an expression that mixes multiplication and addition:</p>
           <div class="code-block">
             <div class="code-block-header">
@@ -211,7 +211,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="dryrun">
-          <h2>6. Dry Run</h2>
+          <h2>Dry Run</h2>
           <p>Tracing through execution with <code>a = 5</code>, <code>b = 3</code>:</p>
           <ul>
             <li><code>b * 2</code> is evaluated first, because <code>*</code> has higher precedence than <code>+</code>: <code>3 * 2 = 6</code>.</li>
@@ -230,7 +230,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>7. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Assuming expressions are always evaluated strictly left-to-right regardless of operator type — they're not. Precedence rules take priority over pure left-to-right reading.</li>
             <li>Forgetting that relational and logical operators also have their own precedence relative to arithmetic operators — arithmetic generally happens before relational comparisons, which happen before logical combinations. It's a nuance worth being aware of even without memorizing every rule.</li>
@@ -238,19 +238,19 @@ int main() {
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>8. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>If a calculated result doesn't match your expectation, mentally (or on paper) apply "multiplication/division before addition/subtraction" first, and consider adding explicit parentheses to test whether your assumed grouping was actually correct.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>9. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>Use parentheses liberally to make your intended evaluation order explicit and unambiguous, even in cases where the default precedence would technically already produce the correct result — it makes code easier for others (and future you) to read correctly at a glance.</li>
           </ul>
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>10. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -314,30 +314,30 @@ int main() {
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>11. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="operatorPrecedenceQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>12. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> Which operator has higher precedence, <code>*</code> or <code>+</code>?</p>
           <p><strong>Medium:</strong> Predict the result of <code>2 + 3 * 4</code> using proper precedence rules.</p>
           <p><strong>Hard:</strong> Rewrite <code>a + b * 2</code> using explicit parentheses to make the actual evaluation order visually clear, without changing its result.</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>13. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Write your own expression combining at least 2 different operator types (for example, <code>+</code> and <code>*</code>), predict its result using precedence rules, then verify by tracing it step by step.</p>
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>14. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Do I need to memorize the full precedence table for every operator in C?</strong><br>A: Not entirely — knowing the most common cases, like multiplication/division before addition/subtraction, and using parentheses when unsure, covers the vast majority of real situations.</p>
           <p><strong>Q: Is precedence the same thing as associativity?</strong><br>A: Related but distinct — precedence determines which operator type goes first; associativity (covered next) determines the order among operators of the same precedence level.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>15. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li>Operator precedence determines the order in which different operators are evaluated within an expression when there's no explicit grouping.</li>
             <li>The most important everyday case: multiplication and division are evaluated before addition and subtraction.</li>

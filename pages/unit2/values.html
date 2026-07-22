@@ -156,22 +156,22 @@
         <p class="lead">The last stop of this chapter — the actual data that variables and constants hold, and why "variable" and "value" are not the same thing.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p>A <strong>value</strong> is the actual data stored at a given moment — the concrete number, character, or other piece of data that a variable or constant currently holds. In <code>int a = 5;</code>, <code>a</code> is the variable (the named storage location), and <code>5</code> is the value currently stored inside it.</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>Distinguishing "variable" (the named container) from "value" (the actual data inside it) makes it much clearer exactly what changes and what stays fixed as a program runs. It also sets up more precise vocabulary you'll need later in this course, for concepts like <strong>l-value</strong> and <strong>r-value</strong>.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Think of a labeled storage box named <code>a</code> — that label is the variable. Whatever happens to be inside the box right now, say <code>5</code>, is the value. The box's label stays the same even as its contents change over time.</p>
         </section>
 
         <section class="topic-section" id="visual">
-          <h2>4. Visual Explanation</h2>
+          <h2>Visual Explanation</h2>
           <p>Here is the final memory state of this chapter's <code>add.c</code> example, with each cell explicitly labeled by its variable name (the label) and the value (the number currently inside it):</p>
           <div class="memory-diagram">
             <div class="memory-cell">
@@ -191,7 +191,7 @@
         </section>
 
         <section class="topic-section" id="dryrun">
-          <h2>5. Dry Run</h2>
+          <h2>Dry Run</h2>
           <div class="code-block">
             <div class="code-block-header">
               <span>add.c</span>
@@ -218,7 +218,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>6. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Using "variable" and "value" interchangeably, as if they mean the same thing. They don't — one is the named container, the other is what's currently inside it.</li>
             <li>Assuming a value can never change just because it happens to be correct right now. A regular (non-const) variable's value absolutely can change later in the program — only a <code>const</code> locks it in place.</li>
@@ -226,12 +226,12 @@ int main() {
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>7. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>When debugging by printing variables, remember you're printing their current <em>values</em> at that specific moment in execution — the very same variable printed earlier or later in the program could hold a completely different value.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>8. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>Be precise with vocabulary when discussing code with others: saying "the value of <code>a</code>" versus "the variable <code>a</code>" communicates something specific and different.</li>
             <li>Using these terms carefully avoids confusion, especially when working with a team or explaining a bug.</li>
@@ -239,7 +239,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>9. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -303,25 +303,25 @@ int main() {
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>10. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="valuesQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>11. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> In <code>int b = 3;</code>, identify the variable and the value.</p>
           <p><strong>Medium:</strong> Explain, in your own words, why a constant still has a "value" despite never being able to change.</p>
           <p><strong>Hard:</strong> Trace, in writing, the values held by <code>a</code>, <code>b</code>, and <code>sum</code> at each line of this chapter's <code>add.c</code> example.</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>12. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Write a short paragraph explaining, in your own words, the difference between a variable and a value, using an example that hasn't already appeared on this page.</p>
           <p>When you're comfortable with this, move on to this chapter's closing <a href="#miniproject">Mini Project</a> below.</p>
         </section>
 
         <section class="topic-section" id="miniproject">
-          <h2>13. Mini Project</h2>
+          <h2>Mini Project</h2>
           <p><strong>Declare Your Own Variables and Constants.</strong></p>
           <p>Pick a small program idea of your own — for example, calculating the area of a rectangle, converting a temperature, or tracking a simple score. Then, following everything you've learned in this chapter, write out appropriate variable and constant declarations for it:</p>
           <ul>
@@ -350,13 +350,13 @@ int main() {
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>14. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Is "value" a C-specific term, or a general programming concept?</strong><br>A: It's general — every programming language has this same variable/value distinction, just with different specific syntax.</p>
           <p><strong>Q: Will there be more precise value-related terms later in this course?</strong><br>A: Yes — concepts like l-value and r-value refine this idea further, and are covered in a later Unit 2 sub-project.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>15. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li>A variable is the named container; a value is the actual data currently stored inside it — the two are related but not the same thing.</li>
             <li>A regular variable's value can change over the course of a program's execution, while a <code>const</code>'s value is locked in at declaration and can never change afterward.</li>

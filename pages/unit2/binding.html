@@ -156,22 +156,22 @@
         <p class="lead">The association between a name and what it actually refers to — and how it's the missing piece that ties scope to a real storage location.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p><strong>Binding</strong> refers to the association between a name (an identifier) and what it actually refers to. A variable name is "bound" to a specific memory location, and that binding is established the moment the variable is declared. Before that point, the identifier has no binding at all — it simply doesn't refer to anything yet.</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>Understanding binding clarifies exactly when and how an identifier starts referring to a real storage location. It ties directly into <a href="scope.html">scope</a> — scope is where a binding is visible, while binding is the association itself. This also explains why a variable's binding disappears once its scope ends: the association between the name and the storage location simply stops existing.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Think of assigning a nickname to a specific person at the start of a meeting. From that point on, using the nickname refers unambiguously to that one person — that's the binding. Once the meeting ends (the scope ends), that nickname no longer refers to anyone in particular; the binding is gone.</p>
         </section>
 
         <section class="topic-section" id="visual">
-          <h2>4. Visual Explanation</h2>
+          <h2>Visual Explanation</h2>
           <p>Consider the moment this single line executes:</p>
           <div class="memory-diagram">
             <div class="memory-cell">
@@ -187,7 +187,7 @@
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>5. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Confusing "binding" with "scope." They're related but distinct — scope is <em>where</em> a binding is visible, while binding is the actual name-to-storage association itself.</li>
             <li>Assuming a variable is bound to storage before it's actually declared. It isn't — there is no binding at all until the declaration executes.</li>
@@ -195,12 +195,12 @@
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>6. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>If you're unsure why an identifier "doesn't exist yet" at a certain point in your code, check whether its declaration — and therefore its binding — has actually been reached yet in the program's execution order.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>7. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>Declare variables as close as possible to where they're first used, so their binding is established right before it's needed.</li>
             <li>This reduces confusion about a variable's state early in a function, since you never have to wonder whether its binding has been established yet.</li>
@@ -208,7 +208,7 @@
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>8. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -272,30 +272,30 @@
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>9. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="bindingQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>10. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> Define "binding" in your own words.</p>
           <p><strong>Medium:</strong> Explain the difference between scope and binding.</p>
           <p><strong>Hard:</strong> Describe, in writing, the exact moment <code>int sum = a + b;</code>'s binding for <code>sum</code> is established.</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>11. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Write a short paragraph distinguishing binding from scope, using an example that hasn't already appeared on this page.</p>
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>12. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Is binding a C-specific concept?</strong><br>A: No — it's a general programming-language concept, though this course covers it in the context of C.</p>
           <p><strong>Q: Can a binding change during a program's execution?</strong><br>A: The value bound to a variable can change via reassignment, but the binding itself — the identifier-to-storage-location link — stays fixed for a local variable's lifetime.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>13. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li>Binding is the association between an identifier and the actual storage location it refers to.</li>
             <li>A variable's binding is established at the point its declaration executes — not before.</li>

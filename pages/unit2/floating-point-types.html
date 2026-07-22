@@ -156,22 +156,22 @@
         <p class="lead">Not everything is a whole number — this page adds a decimal-valued <code>height</code> to the growing student profile example, and introduces <code>float</code> (and its more precise cousin, <code>double</code>).</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p>A <strong>floating-point type</strong> (<code>float</code> or the more precise <code>double</code>) stores numbers that can have a decimal point, like <code>5.9</code> or <code>3.14</code>. Unlike <code>int</code>, floating-point types can represent fractional values, not just whole numbers.</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>Many real-world quantities — height, price, temperature — naturally have decimal precision. Using the right type for these values avoids the truncation problem introduced on the previous page, where forcing a decimal value into an <code>int</code> silently drops everything after the decimal point.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Think of the difference between a container that only counts whole items and a measuring tape marked in fine increments (fractions of an inch). A floating-point type is the fine-grained measuring tool — built for values that aren't naturally whole numbers.</p>
         </section>
 
         <section class="topic-section" id="visual">
-          <h2>4. Visual Explanation</h2>
+          <h2>Visual Explanation</h2>
           <p>Extending the previous page's memory diagram, here's the student profile with its new <code>height</code> variable sitting alongside <code>age</code>:</p>
           <div class="memory-diagram">
             <div class="memory-cell">
@@ -187,7 +187,7 @@
         </section>
 
         <section class="topic-section" id="syntax">
-          <h2>5. Syntax</h2>
+          <h2>Syntax</h2>
           <div class="code-block">
             <div class="code-block-header">
               <span>syntax</span>
@@ -202,7 +202,7 @@ float height = 5.9;</pre>
         </section>
 
         <section class="topic-section" id="stepbystep">
-          <h2>6. Step-by-Step Code</h2>
+          <h2>Step-by-Step Code</h2>
           <p>Extending this unit's <code>profile.c</code> example with the new <code>height</code> variable:</p>
           <div class="code-block">
             <div class="code-block-header">
@@ -225,7 +225,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>7. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Using <code>%d</code> to print a float value. This produces garbage or incorrect output — the format specifier must match the variable's actual type.</li>
             <li>Assuming <code>float</code> is perfectly precise for all decimal values. Floating-point representation actually has subtle precision limitations — a deeper topic beyond this course's current scope, but worth knowing exists.</li>
@@ -233,12 +233,12 @@ int main() {
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>8. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>If your <code>printf</code> output for a decimal variable looks like garbage or completely wrong, double-check that you used <code>%f</code> (or <code>%.Nf</code>) rather than <code>%d</code> — mismatched format specifiers are a very common source of confusing output.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>9. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>Always match your <code>printf</code> format specifier to the variable's actual type: <code>%d</code> for <code>int</code>, <code>%f</code>/<code>%.Nf</code> for <code>float</code>/<code>double</code>.</li>
             <li>Use <code>%.Nf</code> to control exactly how many decimal places are displayed, for cleaner, more predictable output.</li>
@@ -246,7 +246,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>10. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -310,30 +310,30 @@ int main() {
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>11. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="floatingPointTypesQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>12. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> Declare a <code>float</code> variable named <code>price</code> with the value <code>9.99</code>.</p>
           <p><strong>Medium:</strong> Write the correct <code>printf</code> line to print a <code>float</code> variable named <code>temperature</code> with 2 decimal places.</p>
           <p><strong>Hard:</strong> Explain, in your own words, why using <code>%d</code> on a <code>float</code> variable produces incorrect output.</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>13. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Extend your own <code>profile.c</code>-style program (or this page's example) with one more <code>float</code> value of your choosing — for example a weight or a score — printing it with an appropriate format specifier.</p>
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>14. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Should I always use <code>double</code> instead of <code>float</code>?</strong><br>A: Not necessarily — <code>float</code> suffices for many everyday needs; <code>double</code> is preferred when higher precision genuinely matters, a nuance covered more in later material.</p>
           <p><strong>Q: Can I print a float without any decimal places?</strong><br>A: Yes, technically, but it's more common and useful to control the exact number of decimal places shown with <code>%.Nf</code>.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>15. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li>A floating-point type (<code>float</code> or <code>double</code>) stores numbers with a decimal point, unlike <code>int</code>.</li>
             <li>Always match your <code>printf</code> format specifier to the variable's actual type — <code>%d</code> for <code>int</code>, <code>%f</code>/<code>%.Nf</code> for <code>float</code>/<code>double</code>.</li>

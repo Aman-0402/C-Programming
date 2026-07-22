@@ -156,22 +156,22 @@
         <p class="lead">Zooming out from the loader to the whole system that makes every C program's execution possible in the first place.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p>An operating system (OS) is the software that manages a computer's hardware and resources — memory, CPU time, files, and devices — and provides the environment every program actually runs within. That includes the loader that runs your compiled C executables: the loader itself is one part of the OS, not something separate from it.</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>Every C program you write ultimately depends on OS services: getting loaded into memory, being given CPU time to actually run, and being allowed to read or write files. Understanding the OS's role explains why the exact same compiled executable can behave differently on one machine than another — or fail to run at all on a different operating system.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Like a building manager who allocates rooms (memory) to different tenants, schedules meeting times (CPU time) so people don't collide, and manages shared facilities like the copier or mailroom (files/devices) for everyone in the building — the operating system does exactly this for every program running on a computer.</p>
         </section>
 
         <section class="topic-section" id="visual">
-          <h2>4. Visual Explanation</h2>
+          <h2>Visual Explanation</h2>
           <p>Four of the core responsibilities an operating system handles for every running program:</p>
           <div class="feature-grid">
             <div class="card">
@@ -198,7 +198,7 @@
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>5. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Assuming an executable is "universal" and will run on any operating system — it's typically built for one specific OS and architecture combination.</li>
             <li>Underestimating how much of a running C program's behavior actually depends on OS services, rather than just the program's own code.</li>
@@ -206,12 +206,12 @@
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>6. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>If a program behaves differently on two different machines, consider whether the operating system itself — not just your code — could be the source of the difference. File paths, available memory, and other OS-specific behaviors can all vary between systems, even when the source code is identical.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>7. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>When sharing a compiled program, be explicit about which operating system it was built for.</li>
             <li>Remember that executables are generally not portable across operating systems without rebuilding.</li>
@@ -219,7 +219,7 @@
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>8. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -283,30 +283,30 @@
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>9. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="operatingSystemsQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>10. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> Name the operating system you personally use most.</p>
           <p><strong>Medium:</strong> List two resources an operating system manages for running programs.</p>
           <p><strong>Hard:</strong> Research one major difference in how Windows and Linux handle executable file formats at a high level.</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>11. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Write a paragraph explaining the operating system's role using the building-manager analogy: how it allocates memory (rooms), schedules CPU time (meeting times), and manages files and devices (shared facilities) for every running program.</p>
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>12. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Do I need to understand OS internals to write C?</strong><br>A: No — deep knowledge isn't required for this course, but understanding the OS's conceptual role matters.</p>
           <p><strong>Q: Is the OS the same thing as the loader?</strong><br>A: No — the loader is one specific OS component; the OS is the whole system.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>13. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li>The operating system manages a computer's hardware and resources, and provides the environment every program runs within.</li>
             <li>It manages memory, CPU time, and files for running programs, including the loader that runs your compiled C executables.</li>

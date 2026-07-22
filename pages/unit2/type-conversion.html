@@ -156,22 +156,22 @@
         <p class="lead">C changes a value from one data type to another in two ways — one automatic, one deliberate — and knowing the difference prevents surprising, silent data loss.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p><strong>Type conversion</strong> is changing a value from one data type to another. C does this in two ways: <strong>implicit conversion</strong>, where the compiler converts a value automatically — sometimes losing data in the process, as previewed on the Integer Types page when a <code>float</code> got truncated by assigning it to an <code>int</code> — and <strong>explicit conversion</strong>, better known as <strong>casting</strong>, where the programmer deliberately requests a conversion using <code>(type)</code> syntax.</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>Understanding both kinds of conversion prevents two common problems: accidentally losing data through unintended implicit conversion, and not knowing exactly how to force a conversion on purpose when you actually need one. Casting is one of the most useful tools for writing arithmetic that behaves the way you actually expect.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Think of converting currency. Sometimes a machine automatically rounds to the nearest whole unit without asking — that's implicit conversion, and it can quietly lose the fractional amount. Other times, you deliberately request an exact, specific conversion rate on purpose — that's explicit conversion, a choice you make intentionally.</p>
         </section>
 
         <section class="topic-section" id="visual">
-          <h2>4. Visual Explanation</h2>
+          <h2>Visual Explanation</h2>
           <p>Here are both kinds of conversion side by side, using the same value:</p>
           <div class="code-block">
             <div class="code-block-header">
@@ -185,7 +185,7 @@ int b = (int)5.9;     // explicit — the (int) cast makes the truncation obviou
         </section>
 
         <section class="topic-section" id="syntax">
-          <h2>5. Syntax</h2>
+          <h2>Syntax</h2>
           <div class="code-block">
             <div class="code-block-header">
               <span>syntax</span>
@@ -201,7 +201,7 @@ int b = (int)5.9;     // explicit — the (int) cast makes the truncation obviou
         </section>
 
         <section class="topic-section" id="stepbystep">
-          <h2>6. Step-by-Step Code</h2>
+          <h2>Step-by-Step Code</h2>
           <p>Using explicit casting with variables in the same spirit as <code>add.c</code> from earlier in this course:</p>
           <div class="code-block">
             <div class="code-block-header">
@@ -230,7 +230,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>7. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Expecting <code>a / b</code>, where both <code>a</code> and <code>b</code> are <code>int</code>, to give a decimal result without any casting — it won't; integer division truncates the result to a whole number.</li>
             <li>Forgetting how many operands actually need casting — a single cast on just <em>one</em> operand, as shown above, is enough to force the whole expression into floating-point division, but it's easy to forget which one needs it (or to mistakenly think both do).</li>
@@ -238,19 +238,19 @@ int main() {
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>8. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>If a division result looks unexpectedly like a whole number when you expected a decimal, check whether both operands are <code>int</code> — if so, you likely need an explicit <code>(float)</code> or <code>(double)</code> cast on at least one of them before the division happens.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>9. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>Be explicit about conversions you intend, using casts, rather than relying on implicit conversion — this makes your intent clear to future readers (including yourself) and avoids silent, surprising data loss.</li>
           </ul>
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>10. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -314,30 +314,30 @@ int main() {
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>11. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="typeConversionQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>12. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> What happens if you assign <code>7.8</code> to an <code>int</code> variable, without any casting?</p>
           <p><strong>Medium:</strong> Write the corrected version of <code>float result = a / b;</code> (with <code>a</code> and <code>b</code> as <code>int</code>) so it actually produces a decimal result.</p>
           <p><strong>Hard:</strong> Explain, in your own words, why casting only ONE of the two operands in a division is enough to force floating-point division.</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>13. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Take this page's <code>divide.c</code> example and modify it to divide two different numbers of your choosing, using an explicit cast to get an accurate decimal result.</p>
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>14. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Is casting the same as changing a variable's actual declared type?</strong><br>A: No — a cast only affects how one specific expression's value is treated in that moment; the variable itself keeps its originally declared type.</p>
           <p><strong>Q: Can you cast in the other direction, e.g. float to int?</strong><br>A: Yes — <code>(int)someFloatValue</code> truncates the decimal part, the same underlying truncation behavior covered on the Integer Types page.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>15. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li>C converts values two ways: implicit conversion (automatic, sometimes lossy) and explicit conversion/casting (deliberate, using <code>(type)</code> syntax).</li>
             <li>The casting syntax is <code>(targetType)expression</code>, placed immediately before the value being converted — it doesn't change the original variable's declared type.</li>

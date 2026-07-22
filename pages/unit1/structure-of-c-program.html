@@ -159,22 +159,22 @@
         <p class="lead">The last topic in this chapter — and the first real C code in the entire course. Every C program you will ever write shares this same basic skeleton.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p>Every C program follows the same basic skeleton: a preprocessor directive (like <code>#include &lt;stdio.h&gt;</code>), a <code>main()</code> function (where execution starts), one or more statements inside it, and a <code>return</code> statement ending it. Learning this skeleton means you can read — and start writing — the basic shape of any C program.</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>Every single C program you will ever write or read follows this same structure. Understanding it once means you'll never be confused by "where does this program start, and where does it end" again — no matter how large or complex the program eventually gets.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Think of the standard structure of a formal letter: a heading, a greeting, a body, and a closing. Once you know the expected parts and the order they appear in, reading — or writing — any new letter becomes far less intimidating. A C program has the exact same reassurance built in: learn the 4 parts once, and every program you meet afterward is just a variation on the same shape.</p>
         </section>
 
         <section class="topic-section" id="visual">
-          <h2>4. Visual Explanation</h2>
+          <h2>Visual Explanation</h2>
           <p>Here is the classic "Hello, World!" program, broken down part by part:</p>
           <div class="part-cards">
             <div class="card">
@@ -201,7 +201,7 @@
         </section>
 
         <section class="topic-section" id="syntax">
-          <h2>5. Syntax</h2>
+          <h2>Syntax</h2>
           <p>Every C program is built from these 4 core parts, always in this order:</p>
           <ul>
             <li><strong>Preprocessor directive</strong> — <code>#include &lt;stdio.h&gt;</code> tells the compiler to bring in the standard input/output library, which is needed before you can use functions like <code>printf</code>.</li>
@@ -212,7 +212,7 @@
         </section>
 
         <section class="topic-section" id="steps">
-          <h2>6. Step-by-Step Code</h2>
+          <h2>Step-by-Step Code</h2>
           <div class="code-block">
             <div class="code-block-header">
               <span>hello.c</span>
@@ -229,7 +229,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="dryrun">
-          <h2>7. Dry Run</h2>
+          <h2>Dry Run</h2>
           <p>Tracing this program's execution top-to-bottom:</p>
           <table>
             <thead>
@@ -254,7 +254,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>8. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Forgetting the semicolon at the end of a statement.</li>
             <li>Forgetting <code>return 0;</code> at the end of <code>main()</code>.</li>
@@ -264,12 +264,12 @@ int main() {
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>9. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>If a program "does nothing," or the compiler produces a confusing error, check the basics first, in this order: is every statement's semicolon present; are the curly braces <code>{ }</code> balanced, with every opening brace matched by a closing one; is <code>main</code> spelled and cased correctly (lowercase, exactly); and are the <code>#include</code> lines needed for the functions you're using actually present at the top of the file. Most beginner errors trace back to one of these four checks.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>10. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>Always match every opening <code>{</code> with a closing <code>}</code>.</li>
             <li>Always end statements with a semicolon.</li>
@@ -278,7 +278,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>11. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -342,12 +342,12 @@ int main() {
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>12. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="structureOfCProgramQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>13. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> From memory, list the 4 parts of a C program's structure, in order.</p>
           <p><strong>Medium:</strong> Spot the bug in this broken version of Hello World:</p>
           <div class="code-block">
@@ -367,13 +367,13 @@ int main() {
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>14. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Write out, from memory, the full Hello World program structure. Then modify it to print two lines of text instead of one, using two separate <code>printf</code> calls.</p>
           <p>When you're comfortable with this, move on to the chapter's capstone <a href="#miniproject">Mini Project</a> below.</p>
         </section>
 
         <section class="topic-section" id="miniproject">
-          <h2>15. Mini Project</h2>
+          <h2>Mini Project</h2>
           <p><strong>Write Your First C Program.</strong></p>
           <p>You've now covered every idea in this chapter's title: "Getting to Know C." This mini project is where it becomes real — a complete C program, written by you, following the exact structure just taught.</p>
           <p>Write a complete C program that prints your name and one fact about yourself, each on its own line, using two separate <code>printf</code> statements. Make sure your program includes all 4 required parts: the <code>#include &lt;stdio.h&gt;</code> directive, the <code>main()</code> function, both <code>printf</code> statements (each ending in a semicolon), and <code>return 0;</code> to close things out.</p>
@@ -381,13 +381,13 @@ int main() {
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>16. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Do I need to memorize this exact structure?</strong><br>A: No — you'll internalize it naturally through practice. For now, being able to recognize the 4 parts when you see them is enough.</p>
           <p><strong>Q: What does the <code>\n</code> inside the <code>printf</code> string do?</strong><br>A: For now, just know it starts a new line. The full details of strings and escape sequences are covered in a later unit.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>17. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li>Every C program shares the same basic structure: a preprocessor directive, a <code>main()</code> function, statements, and a return statement.</li>
             <li>This structure is the foundation for everything else in the course — every future program builds on this same skeleton.</li>

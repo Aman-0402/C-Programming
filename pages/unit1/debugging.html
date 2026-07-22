@@ -156,22 +156,22 @@
         <p class="lead">The single most useful practical skill in this whole chapter — finding and fixing the bugs that stop a program from compiling, or from doing what you actually meant it to do.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p>Debugging is the process of finding and fixing errors — "bugs" — in a program. Bugs can happen at compile time, as syntax problems the compiler refuses to accept, or at run time, as logic problems that only show up once the program actually runs.</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>This is the single most useful practical skill from this entire chapter. Every programmer, at every level of experience, spends significant time debugging — it isn't an occasional inconvenience, it's a core part of writing software.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Like a mechanic diagnosing a car problem: start by observing the symptoms (what's actually wrong), form a hypothesis about the cause, test that hypothesis, and narrow down until you find the real issue. Debugging a program follows the same disciplined process, not random guessing.</p>
         </section>
 
         <section class="topic-section" id="visual">
-          <h2>4. Visual Explanation</h2>
+          <h2>Visual Explanation</h2>
           <p>Here is a deliberately broken variant of <code>add.c</code> — a missing semicolon after the <code>printf</code> call:</p>
           <div class="code-block">
             <div class="code-block-header">
@@ -189,7 +189,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="syntax">
-          <h2>5. Categories of Bugs</h2>
+          <h2>Categories of Bugs</h2>
           <p>Bugs generally fall into two broad categories:</p>
           <ul>
             <li><strong>Compile-time / syntax errors</strong> — caught by the compiler before the program ever runs (for example, a missing semicolon or mismatched braces).</li>
@@ -198,7 +198,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="stepbystep">
-          <h2>6. Step-by-Step Code</h2>
+          <h2>Step-by-Step Code</h2>
           <p>Now compare that with a logic-error variant, which compiles fine but is semantically wrong:</p>
           <div class="code-block">
             <div class="code-block-header">
@@ -216,7 +216,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="dryrun">
-          <h2>7. Dry Run</h2>
+          <h2>Dry Run</h2>
           <p>Tracing both broken examples above:</p>
           <table>
             <thead>
@@ -230,7 +230,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>8. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Assuming a "successful compile" means a correct program — as covered on the Execution Process page, it only means valid syntax, nothing more.</li>
             <li>Panicking at the first error message instead of reading it carefully.</li>
@@ -239,7 +239,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>9. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <ul>
             <li>Read error messages fully and in order — fix the first one first, since later errors are often just consequences of it.</li>
             <li>Test with simple, known inputs so you can predict exactly what the correct output should be.</li>
@@ -248,7 +248,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>10. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>Fix and re-test one issue at a time — don't try to fix everything at once.</li>
             <li>Use print statements (like <code>printf</code>) to check what a program is actually doing at a given point when something seems wrong.</li>
@@ -256,7 +256,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>11. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -320,25 +320,25 @@ int main() {
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>12. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="debuggingQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>13. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> Name the two categories of bugs covered on this page.</p>
           <p><strong>Medium:</strong> Which category does a missing closing brace <code>}</code> belong to?</p>
           <p><strong>Hard:</strong> Write out, in words, a debugging plan for a program that "does nothing" when run.</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>14. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Take the second broken <code>add.c</code> example from this page — the one that prints the wrong output, "The sum of 5 and 3 is 7" — and write out how you'd discover and confirm this bug if you didn't already know the answer.</p>
           <p>When you're comfortable with this, move on to the chapter's capstone <a href="#miniproject">Mini Project</a> below.</p>
         </section>
 
         <section class="topic-section" id="miniproject">
-          <h2>15. Mini Project</h2>
+          <h2>Mini Project</h2>
           <p><strong>Find and Fix Three Bugs.</strong></p>
           <p>Below are three short broken variants of <code>add.c</code>-style programs. For each one, identify the bug's category (compile-time or run-time) and explain how you'd fix it.</p>
 
@@ -386,13 +386,13 @@ int main() {
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>16. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Do bugs mean I'm a bad programmer?</strong><br>A: No — every programmer at every level debugs constantly. It's a normal, expected part of writing software.</p>
           <p><strong>Q: Will there be a formal debugger tool covered in this course?</strong><br>A: Not in this unit — this page covers the concept and mental approach to debugging; specific debugging tools are beyond this course's current scope.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>17. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li>Bugs fall into two broad categories: compile-time (syntax) errors and run-time (logic) errors.</li>
             <li>Compiling successfully is not the same as being correct — it only confirms valid syntax, not correct logic.</li>

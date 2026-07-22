@@ -156,22 +156,22 @@
         <p class="lead">How <code>sizeof</code> reports the exact number of bytes a data type or variable occupies in memory — turning the abstract idea of a "memory diagram" into a concrete, measurable number.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p><strong><code>sizeof</code></strong> is an operator — not a function, despite the parentheses often used with it — that returns the number of bytes a data type or variable occupies in memory. For example, <code>sizeof(int)</code> might return <code>4</code>, meaning an <code>int</code> typically takes up 4 bytes on many common systems.</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p><code>sizeof</code> connects directly back to earlier chapter content about data types actually occupying real memory. It makes the abstract idea of "memory diagrams" — boxes representing bytes — concrete and measurable, by letting you ask exactly how many bytes any type or variable takes up.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Think of asking "how much shelf space does this box take up?" <code>sizeof</code> answers exactly that question for a data type or variable, in bytes — it doesn't tell you what's inside the box, just how much room it occupies.</p>
         </section>
 
         <section class="topic-section" id="syntax">
-          <h2>4. Syntax</h2>
+          <h2>Syntax</h2>
           <div class="code-block">
             <div class="code-block-header">
               <span>syntax</span>
@@ -184,7 +184,7 @@ sizeof(variable)    // e.g. sizeof(a)</pre>
         </section>
 
         <section class="topic-section" id="stepbystep">
-          <h2>5. Step-by-Step Code</h2>
+          <h2>Step-by-Step Code</h2>
           <p>Using <code>sizeof</code> with <code>add.c</code>'s variables:</p>
           <div class="code-block">
             <div class="code-block-header">
@@ -210,7 +210,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="dryrun">
-          <h2>6. Dry Run</h2>
+          <h2>Dry Run</h2>
           <p>Tracing through execution: both <code>sizeof(int)</code> and <code>sizeof(a)</code> typically return <code>4</code> on many common systems, since <code>a</code> is declared as <code>int</code>.</p>
           <p>The illustrative output (this can vary by system):</p>
           <div class="code-block">
@@ -224,7 +224,7 @@ Size of a: 4 bytes</pre>
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>7. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Assuming <code>sizeof</code>'s result is always identical across every system or compiler — it can vary, though common defaults are typical on most modern systems.</li>
             <li>Treating <code>sizeof</code> like a regular function call in all respects — it's actually a compile-time operator, evaluated before the program even runs, not a runtime function call.</li>
@@ -232,19 +232,19 @@ Size of a: 4 bytes</pre>
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>8. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>If you're unsure how much memory a variable or type occupies, <code>sizeof</code> gives you a direct, reliable answer rather than guessing based on assumptions.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>9. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>Use <code>sizeof</code> rather than hardcoding assumed byte sizes when memory size actually matters in your code — a technique that becomes more relevant with dynamic memory allocation, covered much later in this course.</li>
           </ul>
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>10. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -308,30 +308,30 @@ Size of a: 4 bytes</pre>
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>11. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="sizeofOperatorQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>12. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> Write the <code>sizeof</code> expression to find the size of a <code>char</code>.</p>
           <p><strong>Medium:</strong> Explain why <code>sizeof</code> is called an operator rather than a function.</p>
           <p><strong>Hard:</strong> Research the typical <code>sizeof(double)</code> on a common modern system (commonly 8 bytes) and compare it to <code>sizeof(float)</code> (commonly 4 bytes).</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>13. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Extend this page's program to also print <code>sizeof(float)</code> and <code>sizeof(char)</code>, predicting each value before checking.</p>
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>14. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Does <code>sizeof</code> work on any data type?</strong><br>A: Yes — any built-in or user-defined type/variable.</p>
           <p><strong>Q: Will <code>sizeof</code>'s result always be exactly the same on every computer?</strong><br>A: Not guaranteed by the language itself, though common values are typical on most modern systems.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>15. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li><code>sizeof</code> returns the number of bytes a data type or variable occupies in memory.</li>
             <li>It's an operator, not a function — despite the parentheses often used with it, it's evaluated at compile time, before the program runs.</li>

@@ -156,22 +156,22 @@
         <p class="lead">The final destination of the compilation pipeline — the complete, runnable file that actually runs when you type its name.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p>Executable code is the final, complete, runnable output of the compilation pipeline — produced after linking combines your object code with any needed library code. This is the actual file you run, such as <code>add</code> or <code>add.exe</code>.</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>This is the artifact that actually matters to an end user. Everything earlier in the pipeline — source code, object code — exists purely to produce this final, runnable result. Nobody double-clicks a <code>.c</code> file expecting it to run; they run the executable.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Think of the finished car, fully assembled and ready to drive. The engine (object code) and every other component (library code) have now been combined into one complete, usable whole. You don't hand someone a box of parts and call it a car — you hand them the finished, driveable vehicle. Executable code is that finished vehicle.</p>
         </section>
 
         <section class="topic-section" id="visual">
-          <h2>4. Visual Explanation</h2>
+          <h2>Visual Explanation</h2>
           <p>The final step of the pipeline this chapter has been building toward:</p>
           <div class="flowchart">
             <div class="flow-box">add.o (Object Code)</div>
@@ -185,7 +185,7 @@
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>5. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Confusing the executable with the source file — they have different names/extensions and completely different contents (one is human-readable text, the other is binary machine code).</li>
             <li>Forgetting that an executable is platform-specific — one built on Windows generally won't run on macOS or Linux without rebuilding.</li>
@@ -194,12 +194,12 @@
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>6. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>If running a program shows old or unexpected behavior right after changing the source code, the most likely cause is forgetting to recompile — the executable file on disk is still the old version, built from the source code as it existed before your edit. Always recompile first, then run, whenever the behavior doesn't match what you expect from your latest edits.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>7. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>Always recompile before testing after any source code change.</li>
             <li>Keep executables out of version control when possible — they're regeneratable from source, so there's little value in tracking them, even at this early stage.</li>
@@ -207,7 +207,7 @@
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>8. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -271,30 +271,30 @@
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>9. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="executableCodeQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>10. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> Name the tool that produces executable code from object code.</p>
           <p><strong>Medium:</strong> In your own words, explain why an executable built on Windows won't run on macOS without rebuilding.</p>
           <p><strong>Hard:</strong> Research the typical executable file extension on Windows (<code>.exe</code>) versus Linux/macOS (often no extension at all), and explain why that difference exists.</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>11. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Write a short paragraph tracing <code>add.c</code>'s full journey from source code to executable code, using the terms covered across this chapter so far: source code, object code, and executable code.</p>
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>12. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Can I share my executable with someone on a different operating system?</strong><br>A: Generally no, not directly — they'd typically need to compile the source code themselves on their own system, or you'd need to build a version specifically for their platform.</p>
           <p><strong>Q: Is the executable the only file I need to share to give someone my program?</strong><br>A: Usually yes, for a simple standalone program like this course's examples — more complex programs may depend on additional external files.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>13. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li>Executable code is the final, runnable output of the pipeline, produced by the linker.</li>
             <li>It's platform-specific and must be rebuilt for different operating systems.</li>

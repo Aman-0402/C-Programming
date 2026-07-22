@@ -156,22 +156,22 @@
         <p class="lead">C's <strong>ternary operator</strong> — the only operator in C that takes three operands — packs a simple two-way decision into a single compact expression: <code>condition ? valueIfTrue : valueIfFalse</code>.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p>The <strong>conditional operator</strong> — also called the <strong>ternary operator</strong>, since it's the only operator in C that takes three operands — provides a compact way to write a simple if/else-style decision in a single expression: <code>condition ? valueIfTrue : valueIfFalse</code>. The condition is evaluated first; if it's true, the whole expression takes the value before the colon, otherwise it takes the value after the colon.</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>The ternary operator is a common, concise shorthand for simple two-way decisions, and it appears frequently in real C code you'll read from other programmers. Recognizing it now — even before formal <code>if</code>/<code>else</code> statements are covered in a later unit — prevents confusion when you come across it in existing code.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Think of answering "if it's raining, bring an umbrella, otherwise bring sunglasses" in one breath, rather than as two separate sentences. The ternary operator packs a full decision — condition, true-result, and false-result — into one compact expression, the same way that one-breath answer packs a whole decision into a single statement.</p>
         </section>
 
         <section class="topic-section" id="syntax">
-          <h2>4. Syntax</h2>
+          <h2>Syntax</h2>
           <div class="code-block">
             <div class="code-block-header">
               <span>syntax</span>
@@ -186,7 +186,7 @@ int max = (a > b) ? a : b;</pre>
         </section>
 
         <section class="topic-section" id="stepbystep">
-          <h2>5. Step-by-Step Code</h2>
+          <h2>Step-by-Step Code</h2>
           <p>Extending <code>add.c</code> with the conditional operator to find the larger of <code>a</code> and <code>b</code>:</p>
           <div class="code-block">
             <div class="code-block-header">
@@ -213,7 +213,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="dryrun">
-          <h2>6. Dry Run</h2>
+          <h2>Dry Run</h2>
           <p>Tracing through execution with <code>a = 5</code>, <code>b = 3</code>:</p>
           <ul>
             <li><code>(a > b)</code> is evaluated first: <code>5 > 3</code> is true.</li>
@@ -232,7 +232,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>7. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Forgetting the colon <code>:</code> — both parts, the true-result and the false-result, are required in C's ternary operator; this isn't optional like some other languages' conditional constructs.</li>
             <li>Nesting too many ternary operators together, making an expression hard to read. It's legal C, but often discouraged since it hurts clarity.</li>
@@ -240,19 +240,19 @@ int main() {
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>8. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>If a ternary expression's result seems wrong, break it apart mentally: first evaluate just the condition on its own (is it true or false?), then trace which of the two result values — before or after the colon — that maps to.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>9. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>Reserve the ternary operator for genuinely simple, quick decisions. For more complex logic, a full <code>if</code>/<code>else</code> statement (covered in a later unit) is usually clearer to read.</li>
           </ul>
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>10. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -316,30 +316,30 @@ int main() {
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>11. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="conditionalOperatorQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>12. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> Write the ternary expression that picks the larger of two variables <code>x</code> and <code>y</code>.</p>
           <p><strong>Medium:</strong> Predict the output of this page's example program if <code>a</code> were <code>10</code> and <code>b</code> were <code>2</code>.</p>
           <p><strong>Hard:</strong> Rewrite a simple ternary expression as an equivalent plain-English description of the same decision (no formal <code>if</code>/<code>else</code> syntax needed yet).</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>13. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Extend this page's program with a new ternary expression checking something else about <code>a</code> and <code>b</code> — for example, finding the <em>smaller</em> value instead of the larger — and print the result with <code>printf</code>.</p>
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>14. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Is the ternary operator the same thing as a full <code>if</code>/<code>else</code> statement?</strong><br>A: Conceptually similar for simple two-way decisions, but the ternary operator is an expression that produces a value, not a full control statement. Formal <code>if</code>/<code>else</code> is covered in a later unit.</p>
           <p><strong>Q: Can I nest ternary operators inside each other?</strong><br>A: Technically yes, but it quickly becomes hard to read — generally discouraged beyond very simple cases.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>15. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li>The conditional operator's syntax is <code>condition ? valueIfTrue : valueIfFalse</code>, where <code>?</code> separates the condition from the results, and <code>:</code> separates the true-result from the false-result.</li>
             <li>It's called the "ternary" operator because it's the only operator in C that takes three operands.</li>

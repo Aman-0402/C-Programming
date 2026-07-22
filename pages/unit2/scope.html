@@ -156,22 +156,22 @@
         <p class="lead">The region of a program where a variable is actually visible and usable — and why "undeclared identifier" errors are often a scope problem in disguise.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p><strong>Scope</strong> is the region of a program where a variable is visible and can be used. A variable declared inside a function — like <code>a</code>, <code>b</code>, and <code>sum</code> inside <code>main()</code> in this chapter's <code>add.c</code> example — is only accessible within that function. This is called <strong>local scope</strong>.</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>Understanding scope explains why a variable declared in one function can't be directly used in another, and prevents confusing "undeclared identifier" errors when a variable is referenced somewhere outside where it's actually visible.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Think of a conversation happening inside one room — what's said there isn't automatically heard in a different room down the hall, even in the same building. A variable's scope is that "room" it's confined to: it exists and can be used only within its own region of the program.</p>
         </section>
 
         <section class="topic-section" id="visual">
-          <h2>4. Visual Explanation</h2>
+          <h2>Visual Explanation</h2>
           <p>Even without full function syntax taught yet, here's the idea in conceptual terms — a variable declared inside <code>main()</code> is only usable inside <code>main()</code>:</p>
           <div class="code-block">
             <div class="code-block-header">
@@ -192,7 +192,7 @@
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>5. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Assuming a variable is available everywhere in a program just because it was declared somewhere — it's only visible within its own scope.</li>
             <li>Trying to use a variable outside the block or function where it was declared, and being surprised when the compiler doesn't recognize it.</li>
@@ -200,12 +200,12 @@
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>6. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>An "undeclared identifier" error for a variable name you know you declared is often a scope problem: you're trying to use it somewhere outside the region where it's actually visible, not because you forgot to declare it at all.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>7. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>Keep variables scoped as narrowly as reasonably possible — declare them close to where they're actually used.</li>
             <li>This makes programs easier to reason about and reduces accidental naming conflicts between unrelated parts of a program.</li>
@@ -213,7 +213,7 @@
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>8. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -277,30 +277,30 @@
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>9. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="scopeQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>10. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> Define "scope" in your own words.</p>
           <p><strong>Medium:</strong> Explain why a variable declared in one function can't be used in another.</p>
           <p><strong>Hard:</strong> Research the term "global scope" and how it differs from local scope, at a conceptual level.</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>11. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Write a short paragraph explaining scope using the room/conversation analogy from this page, in your own words.</p>
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>12. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Are all variables in this course so far local?</strong><br>A: Yes — every example (like <code>add.c</code>) has declared variables inside <code>main()</code>, giving them local scope.</p>
           <p><strong>Q: Will global scope be covered later?</strong><br>A: Yes, in more depth in a later unit, once functions are covered more fully.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>13. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li>Scope is the region of a program where a variable is visible and can be used.</li>
             <li>A variable declared inside a function has local scope — it's only accessible within that function.</li>

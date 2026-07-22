@@ -156,22 +156,22 @@
         <p class="lead">Words the C language has already claimed for itself — like <code>int</code>, <code>if</code>, and <code>return</code> — that you can never borrow for your own variable or function names.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p>A <strong>keyword</strong> is a word reserved by the C language itself for a specific, fixed purpose — words like <code>int</code>, <code>if</code>, <code>return</code>, <code>for</code>, and <code>while</code>. Keywords cannot be used as identifiers (names you choose for your own variables, functions, and so on) because the compiler always interprets them as their reserved meaning, never as something you defined.</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>Recognizing keywords by sight — and knowing up front that you can't reuse them as your own names — prevents a whole category of confusing beginner naming errors before they ever happen.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Think of reserved words in a legal contract template, like "Party" or "Agreement" — they always mean one specific thing in that context. You can't casually redefine what "Agreement" means partway through the same document; the word is locked to its fixed meaning. C's keywords work the same way.</p>
         </section>
 
         <section class="topic-section" id="visual">
-          <h2>4. Visual Explanation</h2>
+          <h2>Visual Explanation</h2>
           <div class="feature-grid">
             <div class="card">
               <i class="fa-solid fa-hashtag" style="color: var(--color-primary); font-size: 1.5rem;"></i>
@@ -192,7 +192,7 @@
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>5. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Trying to name a variable the same as a keyword, e.g. <code>int int = 5;</code> — this is invalid, since <code>int</code> is reserved and the compiler will never treat it as a variable name.</li>
             <li>Assuming <code>main</code> is a keyword. It isn't — it's just a specially-recognized identifier by convention, not a reserved word in C's grammar.</li>
@@ -200,19 +200,19 @@
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>6. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>If the compiler reports an error pointing at what looks like a perfectly normal word you tried to use as a variable name, check whether that word happens to be a reserved keyword — that mismatch is a very common source of confusing beginner errors.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>7. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>Avoid keyword-adjacent names that could confuse readers. Naming a variable <code>printf_result</code> is perfectly fine, but don't get creative trying to almost-reuse a keyword itself.</li>
           </ul>
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>8. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -276,30 +276,30 @@
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>9. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="keywordsQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>10. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> Name 3 keywords you've seen so far in this course.</p>
           <p><strong>Medium:</strong> Explain why <code>int</code> can't be used as a variable name.</p>
           <p><strong>Hard:</strong> Research whether <code>main</code> is officially a C keyword or just a convention.</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>11. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Write a short paragraph explaining why keywords exist and what would go wrong without them.</p>
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>12. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: How many keywords does C have?</strong><br>A: A relatively small, fixed set — roughly 32 in standard C, though this course doesn't require memorizing the full list up front.</p>
           <p><strong>Q: Are keywords case-sensitive?</strong><br>A: Yes — <code>int</code> is a keyword, but <code>Int</code> or <code>INT</code> are not, since C is case-sensitive throughout.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>13. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li>A keyword is a word reserved by the C language itself for a specific, fixed purpose, like <code>int</code> or <code>return</code>.</li>
             <li>Keywords can never be reused as identifiers — the compiler always interprets them with their fixed, built-in meaning, so reusing one causes a compiler error.</li>

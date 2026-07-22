@@ -156,22 +156,22 @@
         <p class="lead">The stage that combines your compiled object code with any library code it needs, producing one complete, runnable executable.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p>The linker combines one or more object code files with any needed library code — such as the compiled implementation of <code>printf</code> — into a single, complete executable. It is the stage that takes the separate pieces produced earlier in the pipeline and assembles them into one whole program.</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>This explains why a C program that only calls <code>printf</code> still ends up as a complete, standalone program. Your own object code doesn't contain <code>printf</code>'s actual instructions — the linker pulls in <code>printf</code>'s real implementation from the C standard library and merges it with your code, so the final executable has everything it needs to run on its own.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Like a publisher combining a manuscript with pre-printed cover art and binding materials into a finished, sellable book. The manuscript alone isn't a book you can sell — each piece exists separately until the publisher's assembly process links them together into one finished, complete product.</p>
         </section>
 
         <section class="topic-section" id="visual">
-          <h2>4. Visual Explanation</h2>
+          <h2>Visual Explanation</h2>
           <p>Here is how the linker combines your object code with library code into the final executable:</p>
           <div class="flowchart">
             <div class="flow-box flow-box-start"><span>add.o (Object Code)</span></div>
@@ -185,7 +185,7 @@
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>5. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Assuming your own object code alone is a complete program — it usually isn't, since it still needs library code linked in to run.</li>
             <li>Mistaking "undefined reference" linker errors for compiler errors — they actually happen at the separate linking stage, after compilation has already succeeded.</li>
@@ -193,12 +193,12 @@
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>6. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>If you see an error mentioning "undefined reference," that's a linker error — a missing library or a missing function definition — not a compilation or syntax error. The code compiled fine; the linker just couldn't find something it needed to link against.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>7. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>Know that "undefined reference" errors point to linking, not syntax.</li>
             <li>When you see one, look for missing library flags or missing function definitions, not typos in your syntax.</li>
@@ -206,7 +206,7 @@
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>8. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -270,30 +270,30 @@
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>9. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="linkerQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>10. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> From memory, state what a linker combines.</p>
           <p><strong>Medium:</strong> Explain, in your own words, why <code>printf</code> needs linking even though you never wrote its implementation yourself.</p>
           <p><strong>Hard:</strong> Research what a "static library" versus a "dynamic library" is at a high level, and write a short summary of the difference.</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>11. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Write a short paragraph explaining linking using the book-publishing analogy — a manuscript combined with pre-printed cover art and binding materials into one finished, sellable book.</p>
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>12. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Do I need to link libraries manually?</strong><br>A: No — <code>gcc</code> handles the standard library automatically for simple programs.</p>
           <p><strong>Q: Is linking part of compilation?</strong><br>A: Yes — it's the final internal stage of the overall compilation process.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>13. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li>The linker combines your object code with any needed library code into one complete executable.</li>
             <li>Even a simple <code>printf</code> program relies on the linker pulling in the standard library's actual implementation.</li>

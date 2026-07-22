@@ -156,22 +156,22 @@
         <p class="lead">Now that you can tell C's reserved keywords apart from everything else, meet the "everything else": the names you invent yourself for variables, functions, and more.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p>An <strong>identifier</strong> is the name a programmer chooses for something in a program — a variable, a function, or any other user-defined element. In <code>int sum = a + b;</code>, the words <code>sum</code>, <code>a</code>, and <code>b</code> are all identifiers: names you picked, not words C already reserved.</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>Being able to tell identifiers apart from keywords clarifies which words in your code are C's fixed vocabulary and which words you invented yourself. That distinction matters both when reading someone else's code — so you know what's built-in versus custom — and when writing your own, so you don't accidentally try to reuse a reserved word as your own name.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Think of the difference between a person's chosen nickname and a reserved title like "President." A nickname is something an individual picks for themselves — it can be anything they like. A reserved title, on the other hand, always means the same official thing to everyone, and no individual gets to redefine it. Identifiers are like nicknames; keywords are like reserved titles.</p>
         </section>
 
         <section class="topic-section" id="visual">
-          <h2>4. Visual Explanation</h2>
+          <h2>Visual Explanation</h2>
           <div class="code-block">
             <div class="code-block-header">
               <span>add.c (identifiers highlighted)</span>
@@ -185,7 +185,7 @@ int sum = a + b;  // "sum" → identifier (a name YOU chose)</pre>
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>5. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Confusing identifiers with keywords. They're actually opposites: a keyword is reserved by C and means the same thing everywhere, while an identifier is a name you chose yourself for your own variable, function, or other element.</li>
             <li>Choosing unclear, non-descriptive identifier names — for example, naming something <code>x</code> when <code>totalScore</code> would communicate its purpose far more clearly. (The full rules and conventions for naming identifiers well are covered on the next page.)</li>
@@ -193,19 +193,19 @@ int sum = a + b;  // "sum" → identifier (a name YOU chose)</pre>
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>6. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>If you ever see an <strong>"undeclared identifier"</strong> compiler error, it means you used a name the compiler has never seen defined anywhere. This is almost always caused by a typo in a variable or function name, or by forgetting to declare something before using it.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>7. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>Choose identifiers that describe what they represent — even at this early stage, before you've learned the formal naming rules. It's a habit worth building from your very first programs.</li>
           </ul>
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>8. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -269,30 +269,30 @@ int sum = a + b;  // "sum" → identifier (a name YOU chose)</pre>
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>9. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="identifiersQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>10. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> Is <code>a</code> in <code>int a = 5;</code> an identifier or a keyword?</p>
           <p><strong>Medium:</strong> List 3 identifiers from <code>add.c</code>.</p>
           <p><strong>Hard:</strong> Explain in your own words why <code>int</code> cannot also be used as an identifier.</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>11. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Write a short paragraph distinguishing keywords from identifiers, using your own example rather than one from this page.</p>
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>12. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Can an identifier be any word at all?</strong><br>A: Not quite — the next page, Naming Rules, covers the specific constraints on what makes a valid identifier.</p>
           <p><strong>Q: Do identifiers have to be in English?</strong><br>A: C doesn't require English specifically, but this course uses English identifiers throughout for consistency and clarity.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>13. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li>An identifier is a name a programmer chooses for something in a program, such as a variable or function.</li>
             <li>Identifiers and keywords are opposites: keywords are reserved by C and mean the same thing everywhere, while identifiers are names you invent yourself.</li>

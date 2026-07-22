@@ -156,22 +156,22 @@
         <p class="lead">The last topic in this chapter — how <code>&&</code>, <code>||</code>, and <code>!</code> combine multiple true/false conditions into a single overall decision, extending <code>add.c</code> one final time.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p><strong>Logical operators</strong> combine multiple true/false conditions into a single overall true/false result. C provides three of them: <code>&&</code> (AND — true only if <strong>both</strong> conditions are true), <code>||</code> (OR — true if <strong>at least one</strong> condition is true), and <code>!</code> (NOT — reverses a condition's true/false result).</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>Real decisions in programs usually depend on more than one condition at once — for example, "is this number positive <em>and</em> even?" Logical operators are how multiple relational checks, covered on the previous page, get combined into one overall decision that a program can act on.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Think of a two-key security system that requires <strong>both</strong> keys to be turned at once to open — that's <code>&&</code> (AND) in action. Compare that to a system that accepts <strong>either</strong> of two valid keycards — that's <code>||</code> (OR). Logical operators express exactly these kinds of combined requirements.</p>
         </section>
 
         <section class="topic-section" id="syntax">
-          <h2>4. Syntax</h2>
+          <h2>Syntax</h2>
           <div class="code-block">
             <div class="code-block-header">
               <span>syntax</span>
@@ -185,7 +185,7 @@ condition1 || condition2   // OR — true if AT LEAST ONE is true
         </section>
 
         <section class="topic-section" id="stepbystep">
-          <h2>5. Step-by-Step Code</h2>
+          <h2>Step-by-Step Code</h2>
           <p>Extending <code>add.c</code> with a combined relational + logical check:</p>
           <div class="code-block">
             <div class="code-block-header">
@@ -212,7 +212,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="dryrun">
-          <h2>6. Dry Run</h2>
+          <h2>Dry Run</h2>
           <p>Tracing through execution with <code>a = 5</code>, <code>b = 3</code>:</p>
           <ul>
             <li><code>(a > 0)</code> is evaluated first: <code>5 > 0</code> is true.</li>
@@ -231,7 +231,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>7. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Confusing <code>&&</code> (AND — requires both conditions) with <code>||</code> (OR — requires at least one) and using the wrong one for the intended logic.</li>
             <li>Forgetting that <code>!</code> reverses a result — <code>!(a > b)</code> means "NOT (a is greater than b)," which is the same as "a is less than or equal to b."</li>
@@ -239,19 +239,19 @@ int main() {
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>8. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>If a combined condition isn't behaving as expected, break it into its individual pieces and check each relational comparison separately first, before combining them with <code>&&</code> or <code>||</code>. Isolating each piece makes it much easier to spot which part of the logic is wrong.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>9. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>Use parentheses generously around individual conditions inside a logical expression, even when not strictly required, to make the intended grouping unambiguous to any reader — for example, <code>(a > 0) && (b > 0)</code> rather than <code>a > 0 && b > 0</code>.</li>
           </ul>
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>10. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -315,25 +315,25 @@ int main() {
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>11. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="logicalOperatorsQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>12. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> Is <code>1 && 0</code> true or false in C, as a 1/0 result?</p>
           <p><strong>Medium:</strong> Write a combined condition checking if <code>a</code> is greater than 0 OR <code>b</code> is greater than 0.</p>
           <p><strong>Hard:</strong> Predict the result of <code>!(a > b)</code> given <code>a = 5</code>, <code>b = 3</code>.</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>13. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Extend this page's program with one more combined condition of your choosing, using either <code>&&</code> or <code>||</code>, and <code>printf</code> the resulting 1/0 value.</p>
           <p>When you're comfortable with this, move on to this chapter's closing <a href="#miniproject">Mini Project</a> below.</p>
         </section>
 
         <section class="topic-section" id="miniproject">
-          <h2>14. Mini Project</h2>
+          <h2>Mini Project</h2>
           <p><strong>Build a Range Checker.</strong></p>
           <p>Using relational operators combined with a logical operator, write a small program that:</p>
           <ul>
@@ -345,13 +345,13 @@ int main() {
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>15. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Is <code>&&</code> the same as "and" written out as a word?</strong><br>A: Conceptually yes, but C requires the specific symbols <code>&&</code> / <code>||</code> / <code>!</code> — it doesn't accept English words as operators.</p>
           <p><strong>Q: Can I combine more than two conditions with <code>&&</code> or <code>||</code>?</strong><br>A: Yes — you can chain multiple conditions together, e.g. <code>(a > 0) && (b > 0) && (a != b)</code>, though this course's examples keep it to two for clarity.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>16. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li>C provides 3 logical operators: <code>&&</code> (AND — requires both), <code>||</code> (OR — requires at least one), and <code>!</code> (NOT — reverses a result).</li>
             <li>Logical operators combine multiple relational checks into a single overall true/false decision, represented as an <code>int</code> (<code>1</code> or <code>0</code>).</li>

@@ -156,22 +156,22 @@
         <p class="lead">The tool that translates human-readable assembly language into machine-readable object code — a stage that always runs, even though most C programmers never see it directly.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p>An assembler is a program that translates assembly language — human-readable mnemonics like <code>MOV</code> and <code>ADD</code> — into object code, which is machine-readable binary. It performs the "assembly" stage of the compilation process: after the compiler turns your C source into assembly instructions, the assembler turns those assembly instructions into the actual object code stored in a file like <code>add.o</code>.</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>Understanding the assembler clarifies what actually happens between "the compiler produces assembly" and "object code exists." It's a stage most C programmers never interact with directly, but it always runs as part of building every C program, so knowing it exists helps complete the mental picture of the full pipeline.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Like a stenographer converting shorthand notes into full, formal text. Assembly language is a kind of shorthand for machine code — compact mnemonics standing in for raw binary instructions — and the assembler expands that shorthand into the precise machine code the CPU can actually execute.</p>
         </section>
 
         <section class="topic-section" id="visual">
-          <h2>4. Visual Explanation</h2>
+          <h2>Visual Explanation</h2>
           <p>Here is where the assembler sits in the pipeline, translating assembly code into object code:</p>
           <div class="flowchart">
             <div class="flow-box flow-box-start"><span>Assembly Code</span></div>
@@ -183,7 +183,7 @@
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>5. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Assuming the assembler and the compiler are the same tool — the compiler produces assembly; the assembler is a separate, later step that turns that assembly into object code.</li>
             <li>Assuming assembly code is portable across CPU architectures — it isn't. Assembly is architecture-specific, unlike portable C source code.</li>
@@ -191,12 +191,12 @@
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>6. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>Assembler-stage errors are rare for C programmers, since the compiler generates valid assembly automatically as part of its normal operation. If you ever do encounter an assembler-level error, it usually points to a compiler bug or an unusual low-level extension being used, rather than a mistake in your own C code — so there's rarely a need to look for the problem there first.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>7. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>You rarely need to touch assembly directly as a C beginner — understanding it conceptually is enough for now.</li>
             <li>Focus your debugging effort on your C source code first, since that's almost always where real issues originate.</li>
@@ -204,7 +204,7 @@
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>8. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -268,30 +268,30 @@
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>9. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="assemblerQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>10. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> From memory, state what an assembler produces.</p>
           <p><strong>Medium:</strong> Explain, in your own words, why assembly code isn't portable across different CPU architectures.</p>
           <p><strong>Hard:</strong> Research one real assembly mnemonic, such as <code>MOV</code>, and write a short explanation of what it does.</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>11. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Write a paragraph, from memory, placing the assembler in the 4-stage compilation process — explaining what comes before it and what comes after it.</p>
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>12. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Do I need to learn assembly to write C?</strong><br>A: No. Understanding what the assembler does conceptually is enough; writing C doesn't require writing assembly.</p>
           <p><strong>Q: Is assembly used in this course?</strong><br>A: No — this course covers the assembler conceptually only, not hands-on assembly programming.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>13. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li>An assembler translates assembly language into object code, performing the "assembly" stage of the compilation process.</li>
             <li>Assembly is a human-readable shorthand for machine code; the assembler expands it precisely into binary.</li>

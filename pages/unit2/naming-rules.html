@@ -156,22 +156,22 @@
         <p class="lead">Not every word you might want to use as a name is actually allowed — C imposes specific, exact constraints on what a valid identifier can look like.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p>Naming rules are the specific constraints C imposes on what a valid identifier can look like. They define exactly which characters an identifier can start with, which characters can follow, and which names are off-limits entirely — regardless of how sensible the name might seem to you.</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>Knowing the exact rules up front prevents confusing "invalid identifier" errors before they happen, rather than debugging them by trial and error after the compiler rejects a name you assumed was fine.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Like the specific rules for choosing a valid username on a website — it must start with a letter, it can't contain spaces, and certain symbols aren't allowed. Some choices are simply rejected by the system, no matter how sensible they seem to you.</p>
         </section>
 
         <section class="topic-section" id="visual">
-          <h2>4. Visual Explanation</h2>
+          <h2>Visual Explanation</h2>
           <div class="feature-grid">
             <div class="card">
               <h3><i class="fa-solid fa-a" style="color: var(--color-primary);"></i> Must Start With a Letter or Underscore</h3>
@@ -197,7 +197,7 @@
         </section>
 
         <section class="topic-section" id="syntax">
-          <h2>5. Syntax</h2>
+          <h2>Syntax</h2>
           <ul>
             <li>The <strong>first character</strong> must be a letter (<code>a</code>-<code>z</code>, <code>A</code>-<code>Z</code>) or an underscore (<code>_</code>).</li>
             <li><strong>Subsequent characters</strong> can be letters, digits (<code>0</code>-<code>9</code>), or underscores, in any combination.</li>
@@ -207,7 +207,7 @@
         </section>
 
         <section class="topic-section" id="stepbystep">
-          <h2>6. Step-by-Step Code</h2>
+          <h2>Step-by-Step Code</h2>
           <p>Here are some valid and invalid identifier examples, side by side, with the reason for each:</p>
           <div class="code-block">
             <div class="code-block-header">
@@ -225,7 +225,7 @@ int int;          // INVALID: "int" is a reserved keyword</pre>
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>7. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Starting an identifier with a digit — <code>2ndPlace</code> is invalid no matter how natural it reads.</li>
             <li>Using hyphens or spaces instead of underscores — <code>my-score</code> or <code>my score</code> are both invalid; use <code>my_score</code> or <code>myScore</code> instead.</li>
@@ -234,12 +234,12 @@ int int;          // INVALID: "int" is a reserved keyword</pre>
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>8. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>If the compiler reports an unexpected syntax error right where you declared a variable, double-check your identifier against these rules first — an invalid name is a very common, easy-to-miss cause.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>9. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>Stick to letters, digits, and underscores — nothing else.</li>
             <li>Start with a lowercase letter for variables — a common convention, not a strict rule.</li>
@@ -248,7 +248,7 @@ int int;          // INVALID: "int" is a reserved keyword</pre>
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>10. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -312,30 +312,30 @@ int int;          // INVALID: "int" is a reserved keyword</pre>
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>11. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="namingRulesQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>12. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> Is <code>2ndPlace</code> a valid identifier? Explain why or why not.</p>
           <p><strong>Medium:</strong> Fix <code>my-score</code> so that it becomes a valid C identifier.</p>
           <p><strong>Hard:</strong> Write 3 valid identifiers and 3 invalid ones, and for each invalid one, name the specific rule it breaks.</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>13. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Take 5 words of your choice and determine, with reasoning, whether each would be a valid C identifier — check each one against the starting-character rule, the allowed-character rule, and the keyword restriction.</p>
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>14. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Can an identifier contain uppercase and lowercase letters together?</strong><br>A: Yes — for example, <code>totalScore</code> is a perfectly valid identifier that mixes both cases.</p>
           <p><strong>Q: Is there a maximum identifier length?</strong><br>A: Practically speaking, no concern for this course — real compilers have generous internal limits that are far beyond anything a beginner would run into.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>15. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li>A valid identifier must start with a letter or underscore, and every character after that must be a letter, digit, or underscore — no digits first, and no other symbols or spaces anywhere.</li>
             <li>C is case-sensitive, so <code>total</code> and <code>Total</code> are treated as two entirely different identifiers.</li>

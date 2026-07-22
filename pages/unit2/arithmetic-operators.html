@@ -156,22 +156,22 @@
         <p class="lead">The five operators behind almost every calculation a C program performs — extending <code>add.c</code> with subtraction, multiplication, and the modulus (remainder) operator.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p><strong>Arithmetic operators</strong> perform mathematical calculations on numeric values: <code>+</code> (addition, already seen in <code>add.c</code>), <code>-</code> (subtraction), <code>*</code> (multiplication), <code>/</code> (division), and <code>%</code> (modulus — the remainder left over after integer division).</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>These are the most commonly used operators in any program — nearly every calculation a program performs relies on some combination of them.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Think of the basic operations on a calculator — add, subtract, multiply, divide — plus one extra C provides that a typical calculator doesn't emphasize: <strong>modulus</strong>, which tells you the "leftover" amount after dividing evenly as many times as possible. For example, splitting 7 candies among 2 people gives 3 each with 1 left over — that leftover 1 is the modulus result.</p>
         </section>
 
         <section class="topic-section" id="syntax">
-          <h2>4. Syntax</h2>
+          <h2>Syntax</h2>
           <div class="code-block">
             <div class="code-block-header">
               <span>syntax</span>
@@ -188,7 +188,7 @@ int remainder = a % b;</pre>
         </section>
 
         <section class="topic-section" id="stepbystep">
-          <h2>5. Step-by-Step Code</h2>
+          <h2>Step-by-Step Code</h2>
           <p>Extending <code>add.c</code> with the three new operators:</p>
           <div class="code-block">
             <div class="code-block-header">
@@ -221,7 +221,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="dryrun">
-          <h2>6. Dry Run</h2>
+          <h2>Dry Run</h2>
           <p>Tracing through execution with <code>a = 5</code> and <code>b = 3</code>:</p>
           <ul>
             <li><code>sum</code> is set to <code>a + b</code> = 5 + 3 = <code>8</code>.</li>
@@ -243,7 +243,7 @@ Remainder: 2</pre>
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>7. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Confusing <code>%</code> (modulus/remainder) with percentage — it has nothing to do with percentages in C, it's strictly the remainder of integer division.</li>
             <li>Forgetting that <code>/</code> between two <code>int</code>s performs integer division, truncating any decimal part of the result — a callback to the Type Conversion page's coverage of this exact issue.</li>
@@ -251,19 +251,19 @@ Remainder: 2</pre>
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>8. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>If a <code>%</code> (modulus) result looks unexpected, remember it's specifically "what's left over after dividing as many whole times as possible" — trace the division by hand if the result is surprising.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>9. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>Use parentheses to make the order of operations in a complex arithmetic expression explicit and readable, even when not strictly required by operator precedence rules (a topic covered more fully in a later chapter).</li>
           </ul>
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>10. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -327,30 +327,30 @@ Remainder: 2</pre>
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>11. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="arithmeticOperatorsQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>12. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> Calculate 8 % 3 by hand and explain your reasoning.</p>
           <p><strong>Medium:</strong> Write the C expression for "the remainder when a is divided by b."</p>
           <p><strong>Hard:</strong> Predict the full output of this page's example program if <code>a</code> were changed to <code>10</code> and <code>b</code> to <code>4</code>.</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>13. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Extend this page's program with one more arithmetic calculation of your choosing (e.g. computing the average of <code>a</code> and <code>b</code>), printing the result with the correct format specifier.</p>
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>14. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Can I use % with float or double values in standard C?</strong><br>A: Not with the plain <code>%</code> operator — it's specifically for integers.</p>
           <p><strong>Q: Does the order of arithmetic operators matter in a single expression?</strong><br>A: Yes — this is called operator precedence, covered in a later chapter; for now, using parentheses to be explicit is a safe habit.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>15. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li>C provides 5 arithmetic operators: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, and <code>%</code>, covering addition, subtraction, multiplication, division, and modulus (remainder).</li>
             <li><code>%</code> gives the remainder left over after integer division — it has nothing to do with percentages.</li>

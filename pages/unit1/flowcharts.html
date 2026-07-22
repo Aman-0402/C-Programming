@@ -162,22 +162,22 @@
         <p class="lead">The third and final way to represent an algorithm in this chapter: as a picture, drawn with shapes and arrows instead of written words.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p>A flowchart is a diagram that represents an algorithm's steps as connected shapes: ovals for start/end, rectangles for actions/steps, diamonds for decisions, and arrows for the direction of flow. It's the visual counterpart to pseudocode — the exact same logic, drawn instead of written.</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>Some people, and some problems, are simply easier to reason about visually than as text. Flowcharts also make it trivial to spot missing branches or dead ends in logic — a decision diamond with only one arrow leaving it is an obvious, visible bug that might hide for longer in a page of written pseudocode.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>A subway or metro map is a flowchart-like diagram: stations are steps, junctions are decisions ("change lines here"), and the colored lines are arrows showing every possible route — all understandable at a glance, without reading a paragraph of written directions.</p>
         </section>
 
         <section class="topic-section" id="visual">
-          <h2>4. Visual Explanation</h2>
+          <h2>Visual Explanation</h2>
           <p>First, a legend of every shape used in the flowcharts on this page:</p>
           <div class="flowchart-legend">
             <div class="flowchart-legend-item">
@@ -224,7 +224,7 @@
         </section>
 
         <section class="topic-section" id="syntax">
-          <h2>5. Flowchart Symbol Rules</h2>
+          <h2>Flowchart Symbol Rules</h2>
           <ul>
             <li>Exactly <strong>one Start</strong> and <strong>one End</strong> shape per flowchart — never more, never fewer.</li>
             <li>Every decision diamond must have <strong>exactly two labeled arrows</strong> leaving it — commonly "Yes" and "No".</li>
@@ -233,7 +233,7 @@
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>6. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Missing one branch of a decision diamond (e.g. only drawing what happens if "Yes," with no arrow for "No").</li>
             <li>Drawing multiple "Start" boxes, or forgetting to include an "End" box at all.</li>
@@ -243,12 +243,12 @@
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>7. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>If a flowchart "looks right" but the algorithm it represents still fails, check every decision diamond and confirm both branches actually lead somewhere — a dangling branch (an arrow that trails off, or a "No" path that was simply never drawn) is the most common flowchart-logic bug, and it hides in plain sight until you deliberately trace both arrows out of every diamond.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>8. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>One action per box — if you catch yourself writing "and" inside a rectangle, split it into two boxes.</li>
             <li>Label every decision branch explicitly — "Yes"/"No", or the actual condition outcome, never leave a branch unlabeled.</li>
@@ -257,7 +257,7 @@
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>9. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -321,24 +321,24 @@
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>10. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="flowchartsQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>11. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> Describe, in words, the flowchart for "check if a number is positive or negative."</p>
           <p><strong>Medium:</strong> Describe, in words, the flowchart for "largest of three numbers" — the same recurring problem, now as a flowchart.</p>
           <p><strong>Hard:</strong> Describe, in words, the flowchart for the leap-year check — the same recurring problem, now in its third representation.</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>12. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Take a pseudocode example you wrote earlier in this chapter (for example, an everyday task broken into pseudocode) and describe, box by box and decision by decision, what its flowchart would look like.</p>
         </section>
 
         <section class="topic-section" id="miniproject">
-          <h2>13. Mini Project</h2>
+          <h2>Mini Project</h2>
           <p><strong>Plan a Real-World Process, Three Ways.</strong></p>
           <p>You've now met all three ways of representing an algorithm's logic taught in this chapter: as a numbered plain-English algorithm, as pseudocode, and as a flowchart. This mini project is your chance to prove you can move between all three for a process you choose yourself.</p>
           <p>Pick a real task from everyday life — for example, making a cup of tea, checking out a library book, or crossing a busy road safely. It should have at least one decision point (something that could go two different ways), so your flowchart actually needs a decision diamond.</p>
@@ -352,13 +352,13 @@
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>14. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Do I need special software to draw flowcharts?</strong><br>A: No — pen and paper, or any plain diagram, is enough. This course draws flowcharts in HTML/CSS for the web page, but drawing them by hand is just as valid.</p>
           <p><strong>Q: Which is "better," pseudocode or a flowchart?</strong><br>A: Neither — pick whichever helps you reason about a specific problem. Some people, and some problems, suit one better than the other.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>15. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li>Flowcharts are algorithms drawn as shapes — ovals, rectangles, diamonds, and arrows.</li>
             <li>Every decision needs two labeled branches; a dangling or missing branch is a visible bug.</li>

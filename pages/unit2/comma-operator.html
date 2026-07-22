@@ -156,22 +156,22 @@
         <p class="lead">A short, focused look at the comma's two roles in C — the everyday habit of declaring multiple variables in one statement, and the less common comma <strong>operator</strong> that evaluates expressions in sequence.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p>The comma is used in C for two related purposes. First, and by far the most common, it <strong>separates multiple variable declarations in one statement</strong> — for example <code>int i = 0, j = 5;</code>, a pattern you've already seen implicitly in earlier examples, including function argument lists. Second, C also has a true comma <strong>operator</strong>, which evaluates multiple expressions in sequence and produces the value of only the last one. This second usage is more advanced and rarely needed directly.</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>Recognizing the comma's role in multi-variable declarations is an everyday practical skill — it saves lines and groups related variables together. Knowing that the comma <strong>operator</strong> also exists, even if you rarely use it yourself, prevents confusion when you encounter it in code written by others.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Think of a shopping list with multiple items separated by commas — "eggs, milk, bread" lists three related items in one line. That's similar to how <code>int i = 0, j = 5;</code> declares two related variables in one line, instead of writing two separate lines.</p>
         </section>
 
         <section class="topic-section" id="syntax">
-          <h2>4. Syntax</h2>
+          <h2>Syntax</h2>
           <div class="code-block">
             <div class="code-block-header">
               <span>syntax</span>
@@ -187,7 +187,7 @@ result = (expr1, expr2);               // comma OPERATOR usage (less common)
         </section>
 
         <section class="topic-section" id="stepbystep">
-          <h2>5. Step-by-Step Code</h2>
+          <h2>Step-by-Step Code</h2>
           <p>The practical, everyday case — declaring two variables in a single statement:</p>
           <div class="code-block">
             <div class="code-block-header">
@@ -213,7 +213,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>6. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Assuming that <code>int i = 0, j = 5;</code> makes <code>i</code> and <code>j</code> somehow linked or equal to each other — they're completely independent variables, just declared together on one line for convenience.</li>
             <li>Confusing the comma used in declarations or function-argument lists with the true comma <strong>operator</strong> — they look identical but behave differently depending on context.</li>
@@ -221,12 +221,12 @@ int main() {
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>7. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>If you see a comma being used in an unfamiliar way inside an expression — not just a declaration or a function call — it might be the comma operator. Remember that it discards all but the last value, so only the final expression's result actually matters to the surrounding code.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>8. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>Use comma-separated declarations for closely related variables declared together, such as loop counters.</li>
             <li>Avoid the comma <strong>operator</strong> in everyday code, since it can make logic harder to read — prefer separate statements for clarity, even though the operator exists and is valid C.</li>
@@ -234,7 +234,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>9. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -298,30 +298,30 @@ int main() {
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>10. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="commaOperatorQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>11. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> Declare two int variables, <code>x</code> and <code>y</code>, with values <code>1</code> and <code>2</code>, in a single statement.</p>
           <p><strong>Medium:</strong> Explain why <code>int i = 0, j = 5;</code> doesn't link <code>i</code> and <code>j</code> together.</p>
           <p><strong>Hard:</strong> Predict the value of <code>result</code> in <code>int result = (1 + 1, 2 + 2);</code> (hint: the comma operator keeps only the last expression's value).</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>12. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Write your own single-line declaration of 3 <code>int</code> variables with different values, and explain in words what each one holds.</p>
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>13. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Is the comma operator commonly used in everyday C code?</strong><br>A: Not really — it's rarely needed directly; multi-variable declarations are the far more common comma usage.</p>
           <p><strong>Q: Does the comma operator work the same way in for-loops?</strong><br>A: For-loops do have a related, commonly-seen comma usage in their update section, but that's covered more fully in a later unit on loops.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>14. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li>The everyday, common comma usage separates multiple variable declarations in one statement, like <code>int i = 0, j = 5;</code> — the variables it declares remain completely independent of each other.</li>
             <li>The true comma OPERATOR evaluates multiple expressions in sequence and discards all but the last one's value, which becomes the overall expression's result.</li>

@@ -156,22 +156,22 @@
         <p class="lead">The last data type in this chapter — a sequence of characters ending with an invisible marker — and the piece that finally completes the <code>profile.c</code> example.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p>A <strong>string</strong> in C is a sequence of characters, stored as a character array (<code>char[]</code>) that ends with a special <strong>null terminator</strong> character, written <code>\0</code>, marking exactly where the string ends. Unlike <code>int</code>, <code>float</code>, or <code>char</code>, C doesn't have a dedicated built-in "string" type — strings are built directly from the <code>char</code> type you just learned, arranged one after another in sequence.</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>Strings tie together several concepts already covered in this chapter — the <code>char</code> type, and the idea of a sequence of values in memory — into the single most common way programs handle text. Names, messages, and labels are almost always represented as strings, making this one of the most frequently used pieces of C you'll write.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Think of a row of individual letter tiles placed side by side, spelling out a word — like Scrabble tiles lined up to spell "Alex." Right after the last letter tile, there's an invisible "end" marker placed down, so that anyone reading the tiles knows exactly where the word stops and nothing that comes after it is part of the word.</p>
         </section>
 
         <section class="topic-section" id="visual">
-          <h2>4. Visual Explanation</h2>
+          <h2>Visual Explanation</h2>
           <p>Here is the string <code>"Alex"</code> laid out in memory as 5 connected character cells, including its automatic null terminator as the final, invisible-but-essential character:</p>
           <div class="memory-diagram">
             <div class="memory-cell">
@@ -199,7 +199,7 @@
         </section>
 
         <section class="topic-section" id="syntax">
-          <h2>5. Syntax</h2>
+          <h2>Syntax</h2>
           <div class="code-block">
             <div class="code-block-header">
               <span>syntax</span>
@@ -214,7 +214,7 @@ char name[] = "Alex";</pre>
         </section>
 
         <section class="topic-section" id="stepbystep">
-          <h2>6. Step-by-Step Code</h2>
+          <h2>Step-by-Step Code</h2>
           <p>This is the completed <code>profile.c</code> example, now with all 4 data types together:</p>
           <div class="code-block">
             <div class="code-block-header">
@@ -248,7 +248,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="dryrun">
-          <h2>7. Dry Run</h2>
+          <h2>Dry Run</h2>
           <p>Tracing through execution line by line:</p>
           <ul>
             <li><code>age</code> is set to <code>20</code>.</li>
@@ -271,7 +271,7 @@ Grade: A</pre>
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>8. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Using single quotes instead of double quotes for a string — <code>'Alex'</code> is invalid, since single quotes are reserved for single <code>char</code> literals, not multi-character strings.</li>
             <li>Using the wrong format specifier — printing a string with <code>%d</code> or <code>%c</code> instead of <code>%s</code> produces incorrect (often garbled) output.</li>
@@ -280,12 +280,12 @@ Grade: A</pre>
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>9. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>If <code>printf</code> output for a name or text variable looks garbled or wrong, double-check two things: that you used <code>%s</code> (not <code>%d</code> or <code>%c</code>), and that the variable was actually declared as a <code>char</code> array initialized with double-quoted text.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>10. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>Always use double quotes for string literals, and single quotes for individual <code>char</code> literals — mixing these up is a common source of compiler errors.</li>
             <li>Match <code>printf</code> format specifiers carefully to each variable's actual type — a theme that has recurred across this entire chapter: <code>%d</code> for <code>int</code>, <code>%f</code> for <code>float</code>, <code>%c</code> for <code>char</code>, and <code>%s</code> for strings.</li>
@@ -293,7 +293,7 @@ Grade: A</pre>
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>11. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -357,25 +357,25 @@ Grade: A</pre>
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>12. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="stringsQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>13. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> Declare a string variable named <code>city</code> with the value <code>"Boston"</code>.</p>
           <p><strong>Medium:</strong> Explain what the null terminator is and why it's needed.</p>
           <p><strong>Hard:</strong> Predict the exact <code>printf</code> output of this page's <code>profile.c</code> if <code>age</code> were changed to <code>22</code> and <code>grade</code> were changed to <code>'B'</code>.</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>14. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Write out, from memory, the full completed <code>profile.c</code> program — all 4 variables (<code>age</code>, <code>height</code>, <code>grade</code>, <code>name</code>) and their four matching <code>printf</code> lines.</p>
           <p>When you're comfortable with this, move on to this chapter's closing <a href="#miniproject">Mini Project</a> below.</p>
         </section>
 
         <section class="topic-section" id="miniproject">
-          <h2>15. Mini Project</h2>
+          <h2>Mini Project</h2>
           <p><strong>Build Your Own Profile Program.</strong></p>
           <p>Using everything you've learned in this chapter — scope, binding, storage classes (conceptually), and all 4 data types covered (<code>int</code>, <code>float</code>, <code>char</code>, and string) — write your own small profile-style program:</p>
           <ul>
@@ -387,13 +387,13 @@ Grade: A</pre>
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>16. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Is a string the same as a char array?</strong><br>A: Essentially yes, in C — a string literal is stored as a char array with an automatic null terminator appended at the end.</p>
           <p><strong>Q: Can strings be compared or combined directly with operators like <code>+</code> in C?</strong><br>A: No, not directly with <code>+</code>, unlike some other languages — string manipulation in C requires specific functions, a topic covered later in this course.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>17. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li>A string in C is a char array — a sequence of characters ending with an automatic null terminator (<code>\0</code>) that marks where the string's content stops.</li>
             <li><code>%s</code> is the printf format specifier for strings, completing the set alongside <code>%d</code>, <code>%f</code>, and <code>%c</code>.</li>

@@ -156,22 +156,22 @@
         <p class="lead">The last building block of Unit 1 — a comment style that can stretch across as many lines as you need, bracketed off by <code>/*</code> and <code>*/</code>.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p>A multi-line comment starts with <code>/*</code> and ends with <code>*/</code>. Everything in between — even across several lines — is ignored by the compiler.</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>Multi-line comments are useful for longer explanations, for temporarily disabling multiple lines of code at once, or for writing a header block that describes an entire file or function.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Like bracketing off an entire paragraph in a document with a note that says "skip this section" — everything inside the brackets is set aside, no matter how many lines it spans.</p>
         </section>
 
         <section class="topic-section" id="visual">
-          <h2>4. Visual Explanation</h2>
+          <h2>Visual Explanation</h2>
           <div class="code-block">
             <div class="code-block-header">
               <span>example.c</span>
@@ -186,7 +186,7 @@
         </section>
 
         <section class="topic-section" id="syntax">
-          <h2>5. Syntax</h2>
+          <h2>Syntax</h2>
           <ul>
             <li><code>/*</code> marks the start of the comment.</li>
             <li><code>*/</code> marks the end of the comment.</li>
@@ -196,7 +196,7 @@
         </section>
 
         <section class="topic-section" id="stepbystep">
-          <h2>6. Step-by-Step Code</h2>
+          <h2>Step-by-Step Code</h2>
           <p>Here is <code>add.c</code> again, this time with a multi-line header comment added on top of its existing single-line comments:</p>
           <div class="code-block">
             <div class="code-block-header">
@@ -220,7 +220,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>7. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Forgetting the closing <code>*/</code> — this accidentally comments out all the rest of the file until the compiler finds a <code>*/</code> somewhere, which causes confusing errors that can be hard to trace back.</li>
             <li>Trying to nest one multi-line comment inside another, like <code>/* outer /* inner */ still outer */</code>. This does not work as expected in C — the first <code>*/</code> closes the whole comment, leaving <code>still outer */</code> as stray code, which causes errors.</li>
@@ -228,12 +228,12 @@ int main() {
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>8. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>Wrapping a whole block of code in <code>/* ... */</code> is a fast way to temporarily disable several lines at once during debugging, without deleting them or commenting out each line individually with <code>//</code>.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>9. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>Always double-check that you've closed a multi-line comment with <code>*/</code> before moving on.</li>
             <li>Use multi-line comments for file/function header blocks or for temporarily disabling multi-line blocks of code, and use <code>//</code> for short inline notes.</li>
@@ -241,7 +241,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>10. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -305,25 +305,25 @@ int main() {
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>11. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="multiLineCommentsQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>12. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> Write the opening and closing symbols for a multi-line comment.</p>
           <p><strong>Medium:</strong> Explain what happens if a closing <code>*/</code> is missing from a multi-line comment.</p>
           <p><strong>Hard:</strong> Write a multi-line header comment describing the purpose of a hypothetical program.</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>13. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Add a multi-line header comment to <code>add.c</code> describing what the whole program does, while keeping its existing single-line comments intact.</p>
           <p>When you're comfortable with this, move on to Unit 1's closing <a href="#miniproject">Mini Project</a> below.</p>
         </section>
 
         <section class="topic-section" id="miniproject">
-          <h2>14. Mini Project</h2>
+          <h2>Mini Project</h2>
           <p><strong>Fully Document add.c.</strong></p>
           <p>Take <code>add.c</code> and add a multi-line header comment at the top describing the program's overall purpose, plus single-line comments at each meaningful line: the <code>#include</code>, the <code>printf</code> call, and the <code>return</code> statement. When you're done, the whole file should read almost like a small, self-explaining document.</p>
           <div class="code-block">
@@ -349,13 +349,13 @@ int main() {
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>15. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Can I mix <code>//</code> and <code>/* */</code> comments in the same file?</strong><br>A: Yes, freely — both styles coexist normally in the same C file with no conflict.</p>
           <p><strong>Q: Which comment style should I default to?</strong><br>A: Use <code>//</code> for short inline notes, and <code>/* */</code> for longer explanations or header blocks — both are equally valid C.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>16. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li>A multi-line comment starts with <code>/*</code> and ends with <code>*/</code>, with everything in between ignored by the compiler.</li>
             <li>It does not end automatically at a line break — only <code>*/</code> ends it, so it can span as many lines as needed, and one cannot be nested inside another.</li>

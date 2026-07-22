@@ -156,22 +156,22 @@
         <p class="lead">A new chapter, a new running example — meet <code>int</code>, C's basic whole-number data type, and start building a small "student profile" program that will grow over the next few pages.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p><code>int</code> is C's basic integer data type — it stores <strong>whole numbers</strong> (numbers with no decimal point), like <code>20</code>, <code>-5</code>, or <code>0</code>. C also provides size variants — <code>short</code>, <code>long</code>, and <code>long long</code> — for controlling how much memory an integer uses and what range of values it can hold, though plain <code>int</code> is by far the most common choice for everyday use.</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>Choosing the right data type for a piece of data — starting with recognizing when a whole number is appropriate — is foundational to writing correct, memory-efficient C programs. Every value you store needs a type, and <code>int</code> is usually the very first one you'll reach for.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Think of choosing a container size for counting whole items, like eggs in a carton — you wouldn't use a container designed for liquid measurements (which can hold fractional amounts) to count discrete whole things. An <code>int</code> is exactly that kind of "whole item" container: it's built for counting, not for measuring precise fractional amounts.</p>
         </section>
 
         <section class="topic-section" id="visual">
-          <h2>4. Visual Explanation</h2>
+          <h2>Visual Explanation</h2>
           <p>Here's how a single <code>int</code> variable holds its whole-number value in memory:</p>
           <div class="memory-diagram">
             <div class="memory-cell">
@@ -183,7 +183,7 @@
         </section>
 
         <section class="topic-section" id="syntax">
-          <h2>5. Syntax</h2>
+          <h2>Syntax</h2>
           <div class="code-block">
             <div class="code-block-header">
               <span>syntax</span>
@@ -198,7 +198,7 @@ int age = 20;</pre>
         </section>
 
         <section class="topic-section" id="code">
-          <h2>6. Step-by-Step Code</h2>
+          <h2>Step-by-Step Code</h2>
           <p>This page starts a small recurring example — a <strong>student profile</strong> program — beginning with just its whole-number part:</p>
           <div class="code-block">
             <div class="code-block-header">
@@ -223,7 +223,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>7. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Trying to store a decimal value in an <code>int</code> — it gets silently truncated. Storing <code>5.9</code> in an <code>int</code> would just become <code>5</code>, losing the decimal part entirely (covered more precisely on the next page).</li>
             <li>Assuming all whole numbers need the largest integer type available. Plain <code>int</code> is sufficient for the vast majority of everyday values — reaching for <code>long long</code> "just in case" usually isn't necessary.</li>
@@ -231,12 +231,12 @@ int main() {
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>8. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>If a calculation you expected to have a decimal result instead shows a whole number with no decimal part, check whether you're accidentally storing it in an <code>int</code> instead of a floating-point type — that silent truncation is a very common source of this kind of bug.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>9. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>Use plain <code>int</code> for everyday whole-number values unless you have a specific reason — like memory constraints or a huge range requirement — to reach for a size variant.</li>
             <li>Only introduce <code>short</code>, <code>long</code>, or <code>long long</code> when your expected values genuinely call for it, rather than by default.</li>
@@ -244,7 +244,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>10. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -308,30 +308,30 @@ int main() {
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>11. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="integerTypesQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>12. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> Declare an <code>int</code> variable named <code>count</code> with the value <code>10</code>.</p>
           <p><strong>Medium:</strong> Explain what happens if you store <code>7.5</code> in an <code>int</code> variable.</p>
           <p><strong>Hard:</strong> Research the typical minimum/maximum range of a standard <code>int</code> on a modern system (conceptually — no need to memorize exact numbers).</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>13. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Declare 3 of your own <code>int</code> variables representing real whole-number values — for example, a year, a count, and an age — using sensible, descriptive names for each.</p>
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>14. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Is <code>int</code> always the same size on every system?</strong><br>A: Not guaranteed by the language itself — it can vary by platform/compiler, though it's commonly 4 bytes on modern systems.</p>
           <p><strong>Q: Should I always use <code>long</code> instead of <code>int</code> to be safe?</strong><br>A: No — plain <code>int</code> suffices for the vast majority of everyday values; oversizing everything isn't necessary or considered good practice.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>15. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li><code>int</code> stores whole numbers — no decimal point — and is C's most commonly used numeric type.</li>
             <li>Storing a decimal value in an <code>int</code> silently truncates it, which is a real and common source of bugs.</li>

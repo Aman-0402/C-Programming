@@ -156,22 +156,22 @@
         <p class="lead">The precise vocabulary behind why some expressions can legally sit on the left side of an assignment — and why others, like a plain number, never can.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p>An <strong>l-value</strong> ("locator value") is an expression that refers to an actual, addressable storage location in memory — something that could legally appear on the left side of an assignment. In <code>a = 5;</code>, <code>a</code> is an l-value because it refers to a real memory location that can be assigned to.</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>Understanding l-values explains exactly why some expressions can receive an assigned value and others (like <code>5 = a;</code>) are outright invalid. This vocabulary sharpens your precision heading into more advanced C topics later in this course.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Think of a labeled mailbox that can actually receive mail. The mailbox itself — its physical, addressable location — is what makes it a valid "recipient." You can't address mail to an abstract idea; you can only address it to a real, locatable box.</p>
         </section>
 
         <section class="topic-section" id="visual">
-          <h2>4. Visual Explanation</h2>
+          <h2>Visual Explanation</h2>
           <p>Using the <code>a</code>, <code>b</code>, and <code>sum</code> variables from <code>add.c</code>, here's a valid l-value assignment contrasted with an invalid one:</p>
           <div class="code-block">
             <div class="code-block-header">
@@ -185,7 +185,7 @@
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>5. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Assuming any expression can go on the left side of <code>=</code> — only l-values (genuine, addressable storage locations) are valid assignment targets.</li>
             <li>Confusing "l-value" with "left-hand side" purely by position. It's specifically about being addressable/assignable, not just about which side of the equals sign something happens to sit on.</li>
@@ -193,19 +193,19 @@
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>6. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>A compiler error like <code>lvalue required as left operand of assignment</code> means you tried to assign to something that isn't a valid storage location — for example a literal number, or a computed, non-addressable expression.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>7. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>When writing an assignment, always double-check the left side is a genuine variable (or other addressable location), not a literal or computed constant expression.</li>
           </ul>
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>8. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -269,30 +269,30 @@
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>9. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="lValueQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>10. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> Is <code>sum</code> in <code>sum = a + b;</code> an l-value?</p>
           <p><strong>Medium:</strong> Explain why <code>10 = x;</code> is invalid.</p>
           <p><strong>Hard:</strong> In <code>int result = a + b;</code>, identify which parts are l-values and which aren't.</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>11. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Write a short paragraph, in your own words, explaining why a variable can be an l-value but a literal number cannot.</p>
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>12. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Is every variable always an l-value?</strong><br>A: In most everyday contexts, yes — though there are some advanced nuances beyond this course's scope, like const-qualified l-values having restrictions on modification.</p>
           <p><strong>Q: Is l-value a term specific to C?</strong><br>A: No — it's a general programming-language-theory concept, used across many languages, though this course covers it in the context of C.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>13. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li>An l-value is an expression referring to an actual, addressable storage location — something that can legally appear on the left side of an assignment.</li>
             <li>Being an l-value is about addressability/assignability, not merely about sitting on the left of the <code>=</code> sign — a literal like <code>5</code> can never be one.</li>

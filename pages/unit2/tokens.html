@@ -160,7 +160,7 @@
         <p class="lead">Welcome to Unit 2 — before you can talk about variables, data types, or operators, you need to understand the smallest meaningful pieces the compiler actually sees: tokens.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p>A <strong>token</strong> is the smallest individual meaningful unit in a C program. Before the compiler does anything else with your source code, it breaks it down into a stream of tokens — this is the very first step of compilation.</p>
           <p>C has several categories of tokens:</p>
           <ul>
@@ -174,17 +174,17 @@
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>Tokens are the foundation for everything else in this unit. Keywords, identifiers, variables, and operators are all specific <em>kinds</em> of tokens — so understanding this umbrella concept first makes each individual topic click faster as you meet it.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Think of breaking a sentence down into its individual words and punctuation marks before analyzing its grammar. You can't understand a sentence's structure without first recognizing its smallest meaningful pieces — a C compiler works the same way with your code.</p>
         </section>
 
         <section class="topic-section" id="visual">
-          <h2>4. Visual Explanation</h2>
+          <h2>Visual Explanation</h2>
           <div class="code-block">
             <div class="code-block-header">
               <span>example.c</span>
@@ -205,7 +205,7 @@
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>5. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Assuming a token must be a single character — many tokens, like keywords (<code>int</code>) and identifiers (<code>sum</code>), are multi-character.</li>
             <li>Confusing "token" with "line of code" — a single line typically contains many tokens, not just one.</li>
@@ -213,12 +213,12 @@
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>6. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>The compiler's very first job is breaking your source code into tokens. So when you see a "tokenizing" or "unexpected token" error, it usually points to something like a stray symbol or an unclosed string — the compiler couldn't even recognize a valid token at that spot, let alone check its meaning.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>7. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>Keep code readable by spacing tokens clearly, even though C itself is flexible about whitespace between tokens.</li>
             <li>Remember that clarity for human readers still matters, even when the compiler doesn't strictly require it.</li>
@@ -226,7 +226,7 @@
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>8. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -290,30 +290,30 @@
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>9. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="tokensQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>10. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> Define "token" in your own words.</p>
           <p><strong>Medium:</strong> Count the tokens in <code>int a = 5;</code> (hint: there are 5 — <code>int</code>, <code>a</code>, <code>=</code>, <code>5</code>, <code>;</code>).</p>
           <p><strong>Hard:</strong> Break down <code>printf("Hello\n");</code> into its individual tokens.</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>11. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Pick any line from <code>add.c</code>, such as <code>int sum = a + b;</code>, and list every token in it along with its category (keyword, identifier, operator, or punctuation).</p>
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>12. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Does whitespace count as a token?</strong><br>A: No — whitespace generally separates tokens, but it isn't a token itself.</p>
           <p><strong>Q: Are comments tokens?</strong><br>A: No — comments are stripped out before tokenizing; they're there for human readers only, not for the compiler.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>13. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li>A token is the smallest individual meaningful unit the compiler recognizes in your source code.</li>
             <li>C's main token categories are keywords, identifiers, constants, strings, operators, and punctuation/special symbols.</li>

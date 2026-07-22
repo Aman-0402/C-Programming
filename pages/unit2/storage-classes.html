@@ -156,22 +156,22 @@
         <p class="lead">Four keywords — <code>auto</code>, <code>static</code>, <code>register</code>, and <code>extern</code> — that control a variable's lifetime, default value, and visibility beyond the basics already covered.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p>A <strong>storage class</strong> in C specifies a variable's <strong>lifetime</strong> (how long it exists in memory), its default initial value, and additional scope/visibility characteristics beyond what's already been covered. C has exactly <strong>4 storage class keywords</strong>: <code>auto</code>, <code>register</code>, <code>static</code>, and <code>extern</code>.</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>Storage classes control details like whether a variable's value <em>persists</em> between function calls or <em>resets</em> each time. Understanding this prevents confusion about why some variables seem to "remember" their previous value across calls while others don't.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Think of the difference between a whiteboard that gets erased after every meeting (a normal/<code>auto</code> local variable, reset each time it's used) versus a sticky note left on a desk that stays put between meetings (a <code>static</code> variable, which persists between calls).</p>
         </section>
 
         <section class="topic-section" id="visual">
-          <h2>4. Visual Explanation</h2>
+          <h2>Visual Explanation</h2>
           <p>The 4 C storage classes, at a glance:</p>
           <div class="feature-grid">
             <div class="card">
@@ -198,7 +198,7 @@
         </section>
 
         <section class="topic-section" id="syntax">
-          <h2>5. Syntax</h2>
+          <h2>Syntax</h2>
           <p>A storage class keyword goes before the type in a declaration:</p>
           <div class="code-block">
             <div class="code-block-header">
@@ -213,7 +213,7 @@ extern int sharedValue;</pre>
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>6. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Assuming every local variable needs an explicit storage class keyword — <code>auto</code> is implicit and almost never written.</li>
             <li>Confusing <code>static</code>'s effect (persisting a value between calls) with <code>const</code>'s effect (making a value permanently unchangeable) — they solve different problems and can even be combined.</li>
@@ -221,12 +221,12 @@ extern int sharedValue;</pre>
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>7. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>If a variable's value unexpectedly "remembers" its previous state across separate calls to the same function, check whether it was declared <code>static</code>.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>8. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>Use <code>static</code> deliberately and sparingly, only when you specifically need a value to persist across calls.</li>
             <li>Overusing <code>static</code> can make code harder to reason about, since the variable's behavior is no longer purely local to one call.</li>
@@ -234,7 +234,7 @@ extern int sharedValue;</pre>
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>9. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -298,30 +298,30 @@ extern int sharedValue;</pre>
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>10. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="storageClassesQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>11. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> Name the 4 C storage class keywords.</p>
           <p><strong>Medium:</strong> Explain what makes a <code>static</code> local variable different from a normal (<code>auto</code>) local variable.</p>
           <p><strong>Hard:</strong> Research what "register" originally meant in older C compilers, and why it's less impactful in modern compilers (which optimize automatically).</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>12. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Write a short paragraph explaining, in your own words, when you'd choose to use <code>static</code> for a variable.</p>
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>13. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Do I need to memorize all 4 storage classes right now?</strong><br>A: Recognizing <code>auto</code> and <code>static</code> is most important for now; <code>register</code> and <code>extern</code> become more relevant later in this course.</p>
           <p><strong>Q: Is <code>auto</code> in C the same as "auto" in some other languages (like C++'s type inference)?</strong><br>A: No — C's <code>auto</code> is purely about storage class/lifetime, unrelated to type inference in other languages.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>14. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li>C has 4 storage class keywords: <code>auto</code>, <code>register</code>, <code>static</code>, and <code>extern</code>.</li>
             <li><code>auto</code> is the implicit default for local variables and is almost never written explicitly.</li>

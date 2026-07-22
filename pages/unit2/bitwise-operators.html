@@ -156,22 +156,22 @@
         <p class="lead">Operators that work directly on the individual binary bits making up a number — <code>&amp;</code>, <code>|</code>, <code>^</code>, <code>~</code>, <code>&lt;&lt;</code>, and <code>&gt;&gt;</code> — extending <code>add.c</code> one more time.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p><strong>Bitwise operators</strong> work directly on the individual binary bits (0s and 1s) that make up a number's actual memory representation. C provides six of them: <code>&amp;</code> (AND), <code>|</code> (OR), <code>^</code> (XOR), <code>~</code> (NOT/complement), <code>&lt;&lt;</code> (left shift), and <code>&gt;&gt;</code> (right shift). These are different from the <a href="logical-operators.html">logical operators</a> (<code>&amp;&amp;</code>, <code>||</code>, <code>!</code>) covered earlier, which work on whole true/false values, not individual bits.</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>Bitwise operators connect directly back to how numbers are actually stored in memory — a concept touched on since Unit 1's discussion of binary and machine code. They're commonly used in low-level, performance-critical, or hardware-adjacent C code, where working with individual bits matters.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Think of a panel of individual light switches — each bit is its own independent switch (on/off), and bitwise operators let you check, combine, or flip specific switches without affecting the others.</p>
         </section>
 
         <section class="topic-section" id="syntax">
-          <h2>4. Syntax</h2>
+          <h2>Syntax</h2>
           <div class="code-block">
             <div class="code-block-header">
               <span>syntax</span>
@@ -188,7 +188,7 @@ result = operand >> numBits;    // right shift by numBits positions</pre>
         </section>
 
         <section class="topic-section" id="stepbystep">
-          <h2>5. Step-by-Step Code</h2>
+          <h2>Step-by-Step Code</h2>
           <p>Extending <code>add.c</code> with a bitwise AND operation:</p>
           <div class="code-block">
             <div class="code-block-header">
@@ -215,7 +215,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="dryrun">
-          <h2>6. Dry Run</h2>
+          <h2>Dry Run</h2>
           <p>Tracing through execution with <code>a = 5</code> (<code>0101</code>), <code>b = 3</code> (<code>0011</code>):</p>
           <ul>
             <li>Bit position 0 (rightmost): <code>1 &amp; 1 = 1</code></li>
@@ -235,7 +235,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>7. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Confusing bitwise <code>&amp;</code> / <code>|</code> with logical <code>&amp;&amp;</code> / <code>||</code> — bitwise operators work on individual bits and can produce any resulting number, while logical operators work on whole true/false values and only ever produce <code>1</code> or <code>0</code>. This is one of the most common C mixups.</li>
             <li>Forgetting that shift operators (<code>&lt;&lt;</code>, <code>&gt;&gt;</code>) move bit positions, which has the side effect of multiplying/dividing by powers of 2 (e.g. <code>a &lt;&lt; 1</code> doubles <code>a</code>'s value) — a real but easy-to-forget connection.</li>
@@ -243,12 +243,12 @@ int main() {
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>8. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>If a calculation using <code>&amp;</code> or <code>|</code> gives a surprising numeric result (not just <code>0</code> or <code>1</code>), remember these are <strong>bitwise</strong> operators working on individual bits, not logical operators working on true/false — trace the binary representation by hand if unsure.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>9. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>Use bitwise operators deliberately for genuinely bit-level tasks, like flags or hardware-adjacent code.</li>
             <li>Don't accidentally reach for <code>&amp;</code> / <code>|</code> when you actually meant the logical <code>&amp;&amp;</code> / <code>||</code> from the <a href="logical-operators.html">Logical Operators</a> page — double-check which one your code actually needs.</li>
@@ -256,7 +256,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>10. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -320,30 +320,30 @@ int main() {
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>11. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="bitwiseOperatorsQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>12. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> Name the 6 bitwise operators in C.</p>
           <p><strong>Medium:</strong> Compute <code>5 | 3</code> by hand, showing the binary bit-by-bit work.</p>
           <p><strong>Hard:</strong> Explain, in your own words, why <code>a &lt;&lt; 1</code> effectively doubles <code>a</code>'s value.</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>13. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Extend this page's program with one more bitwise operation of your choosing (for example <code>a | b</code> or <code>a &lt;&lt; 1</code>), computing and explaining the result by hand first.</p>
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>14. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Are bitwise operators commonly used in typical beginner programs?</strong><br>A: Not usually for everyday tasks, but they're important for low-level, embedded, or performance-critical code, and worth recognizing when you see them.</p>
           <p><strong>Q: Is <code>~</code> (bitwise NOT) the same as <code>!</code> (logical NOT)?</strong><br>A: No — <code>~</code> flips every individual bit of a number; <code>!</code> reverses a whole true/false value; they behave very differently.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>15. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li>C provides 6 bitwise operators — <code>&amp;</code>, <code>|</code>, <code>^</code>, <code>~</code>, <code>&lt;&lt;</code>, <code>&gt;&gt;</code> — that work on the individual bits of a number's memory representation.</li>
             <li>Bitwise operators (<code>&amp;</code>, <code>|</code>) are easily confused with logical operators (<code>&amp;&amp;</code>, <code>||</code>) — bitwise ones work bit-by-bit and can produce any value, while logical ones only ever produce <code>1</code> or <code>0</code>.</li>

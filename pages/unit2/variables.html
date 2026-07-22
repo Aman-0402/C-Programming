@@ -156,22 +156,22 @@
         <p class="lead">A variable is a named storage location in memory that holds a value which can change while the program runs — this is the page where <code>add.c</code> stops hardcoding its answer and actually starts computing it.</p>
 
         <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
+          <h2>What Is It?</h2>
           <p>A variable is a named storage location in memory that holds a value which can change while the program runs. Declaring <code>int a = 5;</code> creates a variable named <code>a</code>, of type <code>int</code>, initially holding the value 5.</p>
         </section>
 
         <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
+          <h2>Why Do We Need to Know This?</h2>
           <p>Variables are what make programs actually <em>do</em> things with changing data, rather than just printing fixed, hardcoded text. This is the single biggest step up from everything shown in Unit 1 — from here on, your programs can compute, not just recite.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
+          <h2>Real-Life Example</h2>
           <p>Like a labeled storage box that can hold different contents over time — the box's label (<code>a</code>) stays the same, but what's inside it (the value) can be swapped out.</p>
         </section>
 
         <section class="topic-section" id="visual">
-          <h2>4. Visual Explanation</h2>
+          <h2>Visual Explanation</h2>
           <p>After this page's example program runs, memory holds three labeled variables like this:</p>
           <div class="memory-diagram">
             <div class="memory-cell">
@@ -191,7 +191,7 @@
         </section>
 
         <section class="topic-section" id="syntax">
-          <h2>5. Syntax</h2>
+          <h2>Syntax</h2>
           <p>Declaring a variable follows this pattern:</p>
           <div class="code-block">
             <div class="code-block-header">
@@ -204,7 +204,7 @@
         </section>
 
         <section class="topic-section" id="stepbystep">
-          <h2>6. Step-by-Step Code</h2>
+          <h2>Step-by-Step Code</h2>
           <p>Here is <code>add.c</code>, evolved from Unit 1's hardcoded version to one that uses real variables:</p>
           <div class="code-block">
             <div class="code-block-header">
@@ -225,7 +225,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="dryrun">
-          <h2>7. Dry Run</h2>
+          <h2>Dry Run</h2>
           <table>
             <thead>
               <tr><th>Step</th><th>Statement</th><th>Memory After</th></tr>
@@ -242,7 +242,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>8. Common Mistakes</h2>
+          <h2>Common Mistakes</h2>
           <ul class="mistake-list">
             <li>Using a variable before declaring it — the compiler won't recognize the identifier yet.</li>
             <li>Forgetting to give a variable an initial value and then trying to use its value before ever assigning one — its value is unpredictable/undefined until explicitly set.</li>
@@ -251,12 +251,12 @@ int main() {
         </section>
 
         <section class="topic-section" id="debugging">
-          <h2>9. Debugging Tips</h2>
+          <h2>Debugging Tips</h2>
           <p>If a variable's printed value looks wrong or garbage-like, check whether it was actually assigned a value before being used — an uninitialized variable's value is unpredictable, not automatically zero.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
-          <h2>10. Best Practices</h2>
+          <h2>Best Practices</h2>
           <ul class="best-practice-list">
             <li>Always initialize variables with a sensible starting value when you declare them, unless you have a specific reason not to.</li>
             <li>Choose clear, descriptive variable names, following the Identifiers and Naming Rules guidelines from earlier in this unit.</li>
@@ -264,7 +264,7 @@ int main() {
         </section>
 
         <section class="topic-section" id="interview">
-          <h2>11. Interview Questions</h2>
+          <h2>Interview Questions</h2>
 
           <div class="interview-item">
             <button type="button" class="interview-question" aria-expanded="false">
@@ -328,30 +328,30 @@ int main() {
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>12. MCQs</h2>
+          <h2>MCQs</h2>
           <div class="quiz" data-quiz-source="variablesQuiz"></div>
         </section>
 
         <section class="topic-section" id="exercises">
-          <h2>13. Programming Exercises</h2>
+          <h2>Programming Exercises</h2>
           <p><strong>Easy:</strong> Declare a variable named <code>age</code> of type <code>int</code> with value 25.</p>
           <p><strong>Medium:</strong> Explain in your own words the difference between declaring a variable and assigning it a value.</p>
           <p><strong>Hard:</strong> Predict the output of a modified version of this page's <code>add.c</code> where <code>a = 10</code> and <code>b = 20</code> instead.</p>
         </section>
 
         <section class="topic-section" id="assignments">
-          <h2>14. Assignments</h2>
+          <h2>Assignments</h2>
           <p>Rewrite this page's <code>add.c</code> example to add a third number (e.g. <code>c = 2</code>) to the sum, updating all necessary lines.</p>
         </section>
 
         <section class="topic-section" id="faq">
-          <h2>15. FAQs</h2>
+          <h2>FAQs</h2>
           <p><strong>Q: Can a variable's type change after it's declared?</strong><br>A: No, not in C — a variable's type is fixed once declared.</p>
           <p><strong>Q: Do I have to initialize a variable when I declare it?</strong><br>A: No, it's optional syntactically, but strongly recommended as best practice.</p>
         </section>
 
         <section class="topic-section" id="takeaways">
-          <h2>16. Key Takeaways</h2>
+          <h2>Key Takeaways</h2>
           <ul>
             <li>A variable is a named storage location in memory that holds a value which can change while the program runs.</li>
             <li>A variable must be declared before it is used, and should generally be initialized at the same time.</li>
