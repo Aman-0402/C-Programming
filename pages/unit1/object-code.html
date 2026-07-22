@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Object Code — Unit 1 — C Programming eBook</title>
+<meta name="description" content="Learn what object code is, why it's an intermediate, not-yet-runnable translation of your source file, and how it relates to the .o/.obj files you may see in a project folder.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="../../css/variables.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/diagrams.css">
+<link rel="stylesheet" href="../../css/quiz.css">
+
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<style>
+  .topic-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-6); align-items: start; }
+  .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
+  .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
+  .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
+</style>
+</head>
+<body>
+
+<button class="icon-btn theme-toggle-float" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+  <i class="fa-solid fa-sun icon-sun"></i>
+  <i class="fa-solid fa-moon icon-moon"></i>
+</button>
+
+<div class="social-float">
+  <a class="icon-btn" href="https://github.com/Aman-0402" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+    <i class="fa-brands fa-github"></i>
+  </a>
+  <a class="icon-btn" href="https://www.linkedin.com/in/aman-raj-081905211/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+</div>
+
+<div class="shell" id="shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo" style="margin-bottom: var(--space-5);">
+      <a href="../../index.html" class="logo">
+        <i class="fa-solid fa-code" style="color: var(--color-primary);"></i><span class="sidebar-label"> C Programming eBook</span>
+      </a>
+    </div>
+
+    <button class="icon-btn" id="sidebar-collapse" aria-label="Collapse sidebar" style="margin-bottom: var(--space-4);">
+      <i class="fa-solid fa-angles-left"></i>
+    </button>
+
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 1</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit1-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">Unit 1</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit1-submenu">
+      <a class="sidebar-link" href="evolution-of-programming.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="sidebar-label">Evolution of Programming</span></a>
+      <a class="sidebar-link" href="programming-languages.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Programming Languages</span></a>
+      <a class="sidebar-link" href="problem-solving.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Problem Solving</span></a>
+      <a class="sidebar-link" href="sequential-logic.html"><i class="fa-solid fa-list-ol"></i><span class="sidebar-label">Sequential Logic</span></a>
+      <a class="sidebar-link" href="algorithms.html"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-label">Algorithms</span></a>
+      <a class="sidebar-link" href="pseudocode.html"><i class="fa-solid fa-file-lines"></i><span class="sidebar-label">Pseudocode</span></a>
+      <a class="sidebar-link" href="flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
+      <a class="sidebar-link" href="introduction-to-c.html"><i class="fa-solid fa-c"></i><span class="sidebar-label">Introduction to C</span></a>
+      <a class="sidebar-link" href="history-of-c.html"><i class="fa-solid fa-scroll"></i><span class="sidebar-label">History of C</span></a>
+      <a class="sidebar-link" href="features-of-c.html"><i class="fa-solid fa-star"></i><span class="sidebar-label">Features of C</span></a>
+      <a class="sidebar-link" href="applications-of-c.html"><i class="fa-solid fa-industry"></i><span class="sidebar-label">Applications</span></a>
+      <a class="sidebar-link" href="structure-of-c-program.html"><i class="fa-solid fa-code"></i><span class="sidebar-label">Structure of C Program</span></a>
+      <a class="sidebar-link" href="c-compiler.html"><i class="fa-solid fa-gears"></i><span class="sidebar-label">C Compiler</span></a>
+      <a class="sidebar-link" href="compilation-process.html"><i class="fa-solid fa-arrows-turn-right"></i><span class="sidebar-label">Compilation Process</span></a>
+      <a class="sidebar-link" href="source-code.html"><i class="fa-solid fa-file-code"></i><span class="sidebar-label">Source Code</span></a>
+      <a class="sidebar-link active" href="object-code.html"><i class="fa-solid fa-cube"></i><span class="sidebar-label">Object Code</span></a>
+      <a class="sidebar-link" href="executable-code.html"><i class="fa-solid fa-play"></i><span class="sidebar-label">Executable Code</span></a>
+      <a class="sidebar-link" href="execution-process.html"><i class="fa-solid fa-microchip"></i><span class="sidebar-label">Execution Process</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 2</span></div>
+      <a class="sidebar-link" href="../unit2/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">C Building Blocks &amp; Data Types</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 3</span></div>
+      <a class="sidebar-link" href="../unit3/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Control Statements</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 4</span></div>
+      <a class="sidebar-link" href="../unit4/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Strings, Functions &amp; Pointers</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 5</span></div>
+      <a class="sidebar-link" href="../unit5/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Structures, Files &amp; Memory Management</span></a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="topic-layout">
+      <div>
+        <h1>Object Code</h1>
+        <p class="lead">Somewhere between your source file and a finished, runnable program sits object code — a translated-but-not-yet-complete stepping stone.</p>
+
+        <section class="topic-section" id="introduction">
+          <h2>1. What Is It?</h2>
+          <p>Object code is the intermediate machine-code translation of your source file. It's produced after the compilation and assembly stages, but before linking has happened. That means it's already been turned into machine instructions — but it's not yet a complete, runnable program.</p>
+        </section>
+
+        <section class="topic-section" id="why">
+          <h2>2. Why Do We Need to Know This?</h2>
+          <p>Understanding object code explains why "compiling" isn't a single instant step — there's a translation stage in between source and a finished program. It also clarifies what those <code>.o</code> or <code>.obj</code> files you may notice sitting in a project folder actually are, instead of them being a mystery.</p>
+        </section>
+
+        <section class="topic-section" id="real-life">
+          <h2>3. Real-Life Example</h2>
+          <p>Think of a car engine that's been built and tested on its own workbench, before it's ever installed into a finished car. The engine is functional as a component — it does real work — but you can't drive it by itself. Object code is exactly that: a working, translated piece, but not yet something you can run.</p>
+        </section>
+
+        <section class="topic-section" id="visual">
+          <h2>4. Visual Explanation</h2>
+          <div class="flowchart">
+            <div class="flow-box">add.c (Source Code)</div>
+            <div class="flow-arrow">&#8595;</div>
+            <div class="flow-box">Compiler + Assembler</div>
+            <div class="flow-arrow">&#8595;</div>
+            <div class="flow-box">add.o (Object Code)</div>
+            <div class="flow-arrow">&#8595;</div>
+            <div class="flow-box">Not Yet Runnable</div>
+          </div>
+          <p>This is as far as compilation and assembly alone can take you. Linking — the next topic — is what turns this object code into something you can actually run.</p>
+        </section>
+
+        <section class="topic-section" id="mistakes">
+          <h2>5. Common Mistakes</h2>
+          <ul class="mistake-list">
+            <li>Assuming object code is the finished program — it isn't runnable on its own yet.</li>
+            <li>Trying to "run" a <code>.o</code> or <code>.obj</code> file directly — this fails, because it's an intermediate artifact, not an executable.</li>
+            <li>Assuming object code is human-readable — it's binary machine code, not text you can open and read like source code.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="debugging">
+          <h2>6. Debugging Tips</h2>
+          <p>If you ever see file names ending in <code>.o</code> or <code>.obj</code> in a project directory, these are typically object code. They're safe to delete — they get recreated automatically from your source code every time you compile, so losing them costs you nothing but a re-compile.</p>
+        </section>
+
+        <section class="topic-section" id="best-practices">
+          <h2>7. Best Practices</h2>
+          <ul class="best-practice-list">
+            <li>Don't manually edit object code files — they're generated, not hand-written.</li>
+            <li>Don't rely on object code files directly in your workflow — treat them as disposable, regeneratable build artifacts.</li>
+            <li>Let the compiler and linker manage these files; there's no reason to manage them by hand.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="interview">
+          <h2>8. Interview Questions</h2>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Easy:</strong> What is object code?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>The intermediate machine-code translation of source code, produced before linking. It's not yet a complete, runnable program.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Medium:</strong> Can you run an object code file (like <code>add.o</code>) directly?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>No — it isn't a complete executable yet. It still needs to go through linking before it can be run as a program.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Hard:</strong> Why isn't object code considered a finished program?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Because it may reference external code — like standard library functions such as <code>printf</code> — that hasn't been combined in yet. That combination happens during linking, which is what finally produces a complete, runnable program.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>HR:</strong> Have you ever seen <code>.o</code> or <code>.obj</code> files in a project before?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>There's no fixed right answer — reflect honestly on any past experience noticing build artifacts sitting in a project folder, even if you weren't sure at the time what they were.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Conceptual:</strong> Is object code human-readable?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>No — it's binary machine code, not readable text like source code. Opening it in a text editor shows unreadable characters, not something resembling C syntax.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Scenario-based:</strong> You find a <code>.o</code> file in your project folder and aren't sure if it's safe to delete — what should you do?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>It's generally safe to delete. Object code is a regeneratable build artifact — it gets recreated automatically the next time you compile, so nothing is permanently lost.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mcq">
+          <h2>9. MCQs</h2>
+          <div class="quiz" data-quiz-source="objectCodeQuiz"></div>
+        </section>
+
+        <section class="topic-section" id="exercises">
+          <h2>10. Programming Exercises</h2>
+          <p><strong>Easy:</strong> Name the typical file extension used for object code on Linux/macOS, and the typical extension used on Windows.</p>
+          <p><strong>Medium:</strong> In your own words, explain why object code alone can't run yet.</p>
+          <p><strong>Hard:</strong> Research the <code>gcc -c</code> flag. What kind of output does it produce, and how is that different from a normal compile?</p>
+        </section>
+
+        <section class="topic-section" id="assignments">
+          <h2>11. Assignments</h2>
+          <p>Write a short explanation, in your own words, of the difference between source code, object code, and an executable — using the car-engine analogy from this page (an engine on its own workbench, versus one installed in a finished car).</p>
+        </section>
+
+        <section class="topic-section" id="faq">
+          <h2>12. FAQs</h2>
+          <p><strong>Q: Do I need to manage object code files myself?</strong><br>A: No — they're intermediate build artifacts automatically created and used by the compiler and linker. You generally don't need to touch them directly.</p>
+          <p><strong>Q: Is object code the same across different operating systems?</strong><br>A: No — object code format and conventions can differ between platforms. That's part of why a compiled program isn't automatically cross-platform.</p>
+        </section>
+
+        <section class="topic-section" id="takeaways">
+          <h2>13. Key Takeaways</h2>
+          <ul>
+            <li>Object code is an intermediate, not-yet-runnable translation of source code.</li>
+            <li>It typically has a <code>.o</code>/<code>.obj</code> extension and is a disposable, regeneratable build artifact.</li>
+            <li>Linking — the next topic — is what turns object code into a complete, runnable executable.</li>
+          </ul>
+        </section>
+
+        <div class="topic-nav-footer">
+          <a href="source-code.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Previous: Source Code</a>
+          <a href="executable-code.html" class="btn btn-primary">Next: Executable Code <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for absolute beginners. &copy; 2026 C Programming eBook.</p>
+  </footer>
+
+</div>
+
+<div class="search-panel" id="search-panel" data-open="false">
+  <div class="search-panel-inner">
+    <div class="search-input-row">
+      <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+      <input type="text" id="search-input" placeholder="Search topics... (Ctrl+K)">
+      <button class="icon-btn" id="search-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="search-results" id="search-results"></ul>
+  </div>
+</div>
+
+<script>
+window.objectCodeQuiz = [
+  { question: "What is object code?", options: ["A finished, runnable program", "The intermediate machine-code translation of source code, produced before linking", "The original human-written source file", "A text file listing compiler errors"], correctIndex: 1, explanation: "Object code is the intermediate machine-code translation of source code, produced after compilation and assembly but before linking." },
+  { question: "Why can't object code run on its own yet?", options: ["It's still written in plain text", "It may reference external code, like library functions, that hasn't been combined in yet", "It hasn't been compiled at all", "It only works on Windows"], correctIndex: 1, explanation: "Object code may reference external code, such as standard library functions, that hasn't been combined in yet — that combination happens during linking." },
+  { question: "What file extension is object code typically saved with on Linux/macOS?", options: [".exe", ".c", ".o", ".txt"], correctIndex: 2, explanation: "Object code files are typically saved with a .o extension on Linux/macOS (and .obj on Windows)." },
+  { question: "What process turns object code into a complete, runnable executable?", options: ["Preprocessing", "Linking", "Debugging", "Formatting"], correctIndex: 1, explanation: "Linking is the process that combines object code with any needed library code to produce a complete, runnable executable." },
+  { question: "Is object code human-readable, like source code?", options: ["Yes, it's plain C syntax", "No, it's binary machine code", "Yes, but only in comments", "Only if opened in a compiler"], correctIndex: 1, explanation: "Object code is binary machine code, not readable text — unlike the source code it was translated from." }
+];
+</script>
+<script src="../../js/theme.js"></script>
+<script src="../../js/sidebar.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/quiz.js"></script>
+<script src="../../js/copy-code.js"></script>
+<script src="../../js/accordion.js"></script>
+</body>
+</html>
