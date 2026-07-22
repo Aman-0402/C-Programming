@@ -24,10 +24,8 @@
     });
   }
 
-  const currentFile = window.location.pathname.split('/').pop() || 'index.html';
   sidebar.querySelectorAll('a[href]').forEach(function (link) {
-    const linkFile = link.getAttribute('href').split('/').pop();
-    if (linkFile === currentFile) {
+    if (link.pathname === window.location.pathname) {
       link.classList.add('active');
     }
   });
