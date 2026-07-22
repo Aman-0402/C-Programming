@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operator Precedence — Unit 2 — C Programming eBook</title>
+<meta name="description" content="Learn how C decides which operator runs first in a mixed expression, why multiplication happens before addition, and how add.c's a + b * 2 evaluates to 11.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="../../css/variables.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/diagrams.css">
+<link rel="stylesheet" href="../../css/quiz.css">
+
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<style>
+  .topic-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-6); align-items: start; }
+  .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
+  .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
+  .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
+</style>
+</head>
+<body>
+
+<button class="icon-btn theme-toggle-float" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+  <i class="fa-solid fa-sun icon-sun"></i>
+  <i class="fa-solid fa-moon icon-moon"></i>
+</button>
+
+<div class="social-float">
+  <a class="icon-btn" href="https://github.com/Aman-0402" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+    <i class="fa-brands fa-github"></i>
+  </a>
+  <a class="icon-btn" href="https://www.linkedin.com/in/aman-raj-081905211/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+</div>
+
+<div class="shell" id="shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo" style="margin-bottom: var(--space-5);">
+      <a href="../../index.html" class="logo">
+        <i class="fa-solid fa-code" style="color: var(--color-primary);"></i><span class="sidebar-label"> C Programming eBook</span>
+      </a>
+    </div>
+
+    <button class="icon-btn" id="sidebar-collapse" aria-label="Collapse sidebar" style="margin-bottom: var(--space-4);">
+      <i class="fa-solid fa-angles-left"></i>
+    </button>
+
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 1</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit1-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">Unit 1</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit1-submenu">
+      <a class="sidebar-link" href="../unit1/evolution-of-programming.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="sidebar-label">Evolution of Programming</span></a>
+      <a class="sidebar-link" href="../unit1/programming-languages.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Programming Languages</span></a>
+      <a class="sidebar-link" href="../unit1/problem-solving.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Problem Solving</span></a>
+      <a class="sidebar-link" href="../unit1/sequential-logic.html"><i class="fa-solid fa-list-ol"></i><span class="sidebar-label">Sequential Logic</span></a>
+      <a class="sidebar-link" href="../unit1/algorithms.html"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-label">Algorithms</span></a>
+      <a class="sidebar-link" href="../unit1/pseudocode.html"><i class="fa-solid fa-file-lines"></i><span class="sidebar-label">Pseudocode</span></a>
+      <a class="sidebar-link" href="../unit1/flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
+      <a class="sidebar-link" href="../unit1/introduction-to-c.html"><i class="fa-solid fa-c"></i><span class="sidebar-label">Introduction to C</span></a>
+      <a class="sidebar-link" href="../unit1/history-of-c.html"><i class="fa-solid fa-scroll"></i><span class="sidebar-label">History of C</span></a>
+      <a class="sidebar-link" href="../unit1/features-of-c.html"><i class="fa-solid fa-star"></i><span class="sidebar-label">Features of C</span></a>
+      <a class="sidebar-link" href="../unit1/applications-of-c.html"><i class="fa-solid fa-industry"></i><span class="sidebar-label">Applications</span></a>
+      <a class="sidebar-link" href="../unit1/structure-of-c-program.html"><i class="fa-solid fa-code"></i><span class="sidebar-label">Structure of C Program</span></a>
+      <a class="sidebar-link" href="../unit1/c-compiler.html"><i class="fa-solid fa-gears"></i><span class="sidebar-label">C Compiler</span></a>
+      <a class="sidebar-link" href="../unit1/compilation-process.html"><i class="fa-solid fa-arrows-turn-right"></i><span class="sidebar-label">Compilation Process</span></a>
+      <a class="sidebar-link" href="../unit1/source-code.html"><i class="fa-solid fa-file-code"></i><span class="sidebar-label">Source Code</span></a>
+      <a class="sidebar-link" href="../unit1/object-code.html"><i class="fa-solid fa-cube"></i><span class="sidebar-label">Object Code</span></a>
+      <a class="sidebar-link" href="../unit1/executable-code.html"><i class="fa-solid fa-play"></i><span class="sidebar-label">Executable Code</span></a>
+      <a class="sidebar-link" href="../unit1/execution-process.html"><i class="fa-solid fa-microchip"></i><span class="sidebar-label">Execution Process</span></a>
+      <a class="sidebar-link" href="../unit1/assembler.html"><i class="fa-solid fa-wrench"></i><span class="sidebar-label">Assembler</span></a>
+      <a class="sidebar-link" href="../unit1/linker.html"><i class="fa-solid fa-link"></i><span class="sidebar-label">Linker</span></a>
+      <a class="sidebar-link" href="../unit1/loader.html"><i class="fa-solid fa-upload"></i><span class="sidebar-label">Loader</span></a>
+      <a class="sidebar-link" href="../unit1/interpreter.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Interpreter</span></a>
+      <a class="sidebar-link" href="../unit1/compilers-and-interpreters.html"><i class="fa-solid fa-code-compare"></i><span class="sidebar-label">Compilers &amp; Interpreters</span></a>
+      <a class="sidebar-link" href="../unit1/operating-systems.html"><i class="fa-solid fa-desktop"></i><span class="sidebar-label">Operating Systems</span></a>
+      <a class="sidebar-link" href="../unit1/debugging.html"><i class="fa-solid fa-bug"></i><span class="sidebar-label">Debugging</span></a>
+      <a class="sidebar-link" href="../unit1/comments.html"><i class="fa-solid fa-comment"></i><span class="sidebar-label">Comments</span></a>
+      <a class="sidebar-link" href="../unit1/single-line-comments.html"><i class="fa-solid fa-slash"></i><span class="sidebar-label">Single Line Comments</span></a>
+      <a class="sidebar-link" href="../unit1/multi-line-comments.html"><i class="fa-solid fa-quote-right"></i><span class="sidebar-label">Multi Line Comments</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 2</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit2-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">C Building Blocks &amp; Data Types</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit2-submenu">
+      <a class="sidebar-link" href="tokens.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Tokens</span></a>
+      <a class="sidebar-link" href="keywords.html"><i class="fa-solid fa-key"></i><span class="sidebar-label">Keywords</span></a>
+      <a class="sidebar-link" href="identifiers.html"><i class="fa-solid fa-tag"></i><span class="sidebar-label">Identifiers</span></a>
+      <a class="sidebar-link" href="naming-rules.html"><i class="fa-solid fa-spell-check"></i><span class="sidebar-label">Naming Rules</span></a>
+      <a class="sidebar-link" href="variables.html"><i class="fa-solid fa-box"></i><span class="sidebar-label">Variables</span></a>
+      <a class="sidebar-link" href="constants.html"><i class="fa-solid fa-lock"></i><span class="sidebar-label">Constants</span></a>
+      <a class="sidebar-link" href="values.html"><i class="fa-solid fa-hashtag"></i><span class="sidebar-label">Values</span></a>
+      <a class="sidebar-link" href="scope.html"><i class="fa-solid fa-eye"></i><span class="sidebar-label">Scope</span></a>
+      <a class="sidebar-link" href="binding.html"><i class="fa-solid fa-link"></i><span class="sidebar-label">Binding</span></a>
+      <a class="sidebar-link" href="storage-classes.html"><i class="fa-solid fa-warehouse"></i><span class="sidebar-label">Storage Classes</span></a>
+      <a class="sidebar-link" href="integer-types.html"><i class="fa-solid fa-1"></i><span class="sidebar-label">Integer Types</span></a>
+      <a class="sidebar-link" href="floating-point-types.html"><i class="fa-solid fa-percent"></i><span class="sidebar-label">Floating Point Types</span></a>
+      <a class="sidebar-link" href="character-type.html"><i class="fa-solid fa-font"></i><span class="sidebar-label">Character Type</span></a>
+      <a class="sidebar-link" href="strings.html"><i class="fa-solid fa-quote-left"></i><span class="sidebar-label">Strings</span></a>
+      <a class="sidebar-link" href="l-value.html"><i class="fa-solid fa-arrow-left-long"></i><span class="sidebar-label">L-value</span></a>
+      <a class="sidebar-link" href="r-value.html"><i class="fa-solid fa-arrow-right-long"></i><span class="sidebar-label">R-value</span></a>
+      <a class="sidebar-link" href="type-conversion.html"><i class="fa-solid fa-arrows-rotate"></i><span class="sidebar-label">Type Conversion</span></a>
+      <a class="sidebar-link" href="operators.html"><i class="fa-solid fa-calculator"></i><span class="sidebar-label">Operators</span></a>
+      <a class="sidebar-link" href="arithmetic-operators.html"><i class="fa-solid fa-plus-minus"></i><span class="sidebar-label">Arithmetic Operators</span></a>
+      <a class="sidebar-link" href="relational-operators.html"><i class="fa-solid fa-equals"></i><span class="sidebar-label">Relational Operators</span></a>
+      <a class="sidebar-link" href="logical-operators.html"><i class="fa-solid fa-code-branch"></i><span class="sidebar-label">Logical Operators</span></a>
+      <a class="sidebar-link" href="assignment-operators.html"><i class="fa-solid fa-right-left"></i><span class="sidebar-label">Assignment Operators</span></a>
+      <a class="sidebar-link" href="comma-operator.html"><i class="fa-solid fa-comma"></i><span class="sidebar-label">Comma Operator</span></a>
+      <a class="sidebar-link" href="sizeof-operator.html"><i class="fa-solid fa-ruler"></i><span class="sidebar-label">sizeof Operator</span></a>
+      <a class="sidebar-link" href="conditional-operator.html"><i class="fa-solid fa-question"></i><span class="sidebar-label">Conditional Operator</span></a>
+      <a class="sidebar-link" href="bitwise-operators.html"><i class="fa-solid fa-microchip"></i><span class="sidebar-label">Bitwise Operators</span></a>
+      <a class="sidebar-link active" href="operator-precedence.html"><i class="fa-solid fa-sort"></i><span class="sidebar-label">Operator Precedence</span></a>
+      <a class="sidebar-link" href="associativity.html"><i class="fa-solid fa-arrows-left-right"></i><span class="sidebar-label">Associativity</span></a>
+      <a class="sidebar-link" href="arrow-operator.html"><i class="fa-solid fa-arrow-right-to-bracket"></i><span class="sidebar-label">Arrow Operator</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 3</span></div>
+      <a class="sidebar-link" href="../unit3/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Control Statements</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 4</span></div>
+      <a class="sidebar-link" href="../unit4/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Strings, Functions &amp; Pointers</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 5</span></div>
+      <a class="sidebar-link" href="../unit5/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Structures, Files &amp; Memory Management</span></a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="topic-layout">
+      <div>
+        <h1>Operator Precedence</h1>
+        <p class="lead">Why <code>a + b * 2</code> doesn't mean "add first, then multiply" — the order in which C evaluates mixed operators within a single expression.</p>
+
+        <section class="topic-section" id="introduction">
+          <h2>1. What Is It?</h2>
+          <p><strong>Operator precedence</strong> determines the order in which different operators are evaluated within a single expression when there's no explicit grouping. Just like standard math — "multiplication before addition" — C follows a defined precedence order: for example, <code>*</code> and <code>/</code> are evaluated before <code>+</code> and <code>-</code>.</p>
+        </section>
+
+        <section class="topic-section" id="why">
+          <h2>2. Why Do We Need to Know This?</h2>
+          <p>Misunderstanding precedence is a very common source of subtly wrong calculations. A program can compile perfectly and still produce the wrong numeric result if you assumed a different evaluation order than C actually uses.</p>
+        </section>
+
+        <section class="topic-section" id="real-life">
+          <h2>3. Real-Life Example</h2>
+          <p>Think of the standard math classroom rule: "multiply and divide before you add and subtract." C follows a similar, well-defined set of rules for its own operators — just with more operator categories involved.</p>
+        </section>
+
+        <section class="topic-section" id="syntax">
+          <h2>4. Syntax</h2>
+          <p>Operator precedence has no special syntax of its own — it's a rule about evaluation <strong>order</strong>, not a symbol you write. Parentheses <code>()</code> can always be used to override the default precedence and force a specific evaluation order explicitly.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>syntax</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>a + b * 2      // * evaluated first (higher precedence), then +
+(a + b) * 2    // parentheses force + to be evaluated first instead</pre>
+          </div>
+        </section>
+
+        <section class="topic-section" id="stepbystep">
+          <h2>5. Step-by-Step Code</h2>
+          <p>Extending <code>add.c</code> with an expression that mixes multiplication and addition:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>add.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>#include &lt;stdio.h&gt;
+
+int main() {
+    int a = 5;
+    int b = 3;
+    int result = a + b * 2;
+
+    printf("Result: %d\n", result);
+
+    return 0;
+}</pre>
+          </div>
+          <ul>
+            <li>Even though it's written left-to-right as <code>a + b * 2</code>, the <code>*</code> (multiplication) has higher precedence than <code>+</code> (addition).</li>
+            <li>So <code>b * 2</code> is calculated <strong>first</strong>: <code>3 * 2 = 6</code>.</li>
+            <li>Only then is <code>a</code> added to that result: <code>5 + 6 = 11</code> — <strong>not</strong> <code>(a + b) * 2</code>, which would incorrectly give <code>16</code>.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="dryrun">
+          <h2>6. Dry Run</h2>
+          <p>Tracing through execution with <code>a = 5</code>, <code>b = 3</code>:</p>
+          <ul>
+            <li><code>b * 2</code> is evaluated first, because <code>*</code> has higher precedence than <code>+</code>: <code>3 * 2 = 6</code>.</li>
+            <li>Then <code>a + 6</code> is evaluated: <code>5 + 6 = 11</code>.</li>
+            <li><code>result</code> is assigned <code>11</code>.</li>
+          </ul>
+          <p>The exact output is:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>output</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>Result: 11</pre>
+          </div>
+          <p>Contrast this with the <strong>wrong</strong> assumption of strict left-to-right evaluation, which would incorrectly suggest <code>(5 + 3) * 2 = 16</code>. The actual result is <code>11</code>, not <code>16</code> — precedence rules, not pure left-to-right reading order, determine which operator runs first.</p>
+        </section>
+
+        <section class="topic-section" id="mistakes">
+          <h2>7. Common Mistakes</h2>
+          <ul class="mistake-list">
+            <li>Assuming expressions are always evaluated strictly left-to-right regardless of operator type — they're not. Precedence rules take priority over pure left-to-right reading.</li>
+            <li>Forgetting that relational and logical operators also have their own precedence relative to arithmetic operators — arithmetic generally happens before relational comparisons, which happen before logical combinations. It's a nuance worth being aware of even without memorizing every rule.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="debugging">
+          <h2>8. Debugging Tips</h2>
+          <p>If a calculated result doesn't match your expectation, mentally (or on paper) apply "multiplication/division before addition/subtraction" first, and consider adding explicit parentheses to test whether your assumed grouping was actually correct.</p>
+        </section>
+
+        <section class="topic-section" id="best-practices">
+          <h2>9. Best Practices</h2>
+          <ul class="best-practice-list">
+            <li>Use parentheses liberally to make your intended evaluation order explicit and unambiguous, even in cases where the default precedence would technically already produce the correct result — it makes code easier for others (and future you) to read correctly at a glance.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="interview">
+          <h2>10. Interview Questions</h2>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Easy:</strong> What is operator precedence?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>It's the defined order in which different operators are evaluated within an expression, when there's no explicit grouping.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Medium:</strong> In <code>a + b * 2</code>, which operation happens first?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>The multiplication (<code>b * 2</code>), since <code>*</code> has higher precedence than <code>+</code>.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Hard:</strong> Why might a program compile correctly but still produce an unexpected numeric result?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Because the programmer may have assumed a different evaluation order than C's actual precedence rules dictate, even though the syntax itself is completely valid.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>HR:</strong> Have you ever been surprised by an unexpected calculation result due to operator order?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>This is open-ended — a strong answer might describe a real moment of confusion where an expression's actual result differed from what was expected, and how checking precedence rules (or adding parentheses) resolved it.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Conceptual:</strong> Do parentheses override C's default operator precedence?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Yes — parentheses always force their contents to be evaluated first, regardless of the operators' normal precedence.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Scenario-based:</strong> You write <code>int result = a + b * 2;</code> expecting <code>(a + b) * 2</code>, but get a different answer — what's actually happening?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>C evaluates <code>b * 2</code> first due to multiplication's higher precedence over addition, giving <code>a + (b * 2)</code>, not <code>(a + b) * 2</code> as you may have assumed.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mcq">
+          <h2>11. MCQs</h2>
+          <div class="quiz" data-quiz-source="operatorPrecedenceQuiz"></div>
+        </section>
+
+        <section class="topic-section" id="exercises">
+          <h2>12. Programming Exercises</h2>
+          <p><strong>Easy:</strong> Which operator has higher precedence, <code>*</code> or <code>+</code>?</p>
+          <p><strong>Medium:</strong> Predict the result of <code>2 + 3 * 4</code> using proper precedence rules.</p>
+          <p><strong>Hard:</strong> Rewrite <code>a + b * 2</code> using explicit parentheses to make the actual evaluation order visually clear, without changing its result.</p>
+        </section>
+
+        <section class="topic-section" id="assignments">
+          <h2>13. Assignments</h2>
+          <p>Write your own expression combining at least 2 different operator types (for example, <code>+</code> and <code>*</code>), predict its result using precedence rules, then verify by tracing it step by step.</p>
+        </section>
+
+        <section class="topic-section" id="faq">
+          <h2>14. FAQs</h2>
+          <p><strong>Q: Do I need to memorize the full precedence table for every operator in C?</strong><br>A: Not entirely — knowing the most common cases, like multiplication/division before addition/subtraction, and using parentheses when unsure, covers the vast majority of real situations.</p>
+          <p><strong>Q: Is precedence the same thing as associativity?</strong><br>A: Related but distinct — precedence determines which operator type goes first; associativity (covered next) determines the order among operators of the same precedence level.</p>
+        </section>
+
+        <section class="topic-section" id="takeaways">
+          <h2>15. Key Takeaways</h2>
+          <ul>
+            <li>Operator precedence determines the order in which different operators are evaluated within an expression when there's no explicit grouping.</li>
+            <li>The most important everyday case: multiplication and division are evaluated before addition and subtraction.</li>
+            <li>Parentheses are the reliable way to make your intended evaluation order explicit, regardless of default precedence rules.</li>
+          </ul>
+        </section>
+
+        <div class="topic-nav-footer">
+          <a href="bitwise-operators.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Previous: Bitwise Operators</a>
+          <a href="associativity.html" class="btn btn-primary">Next: Associativity <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for absolute beginners. &copy; 2026 C Programming eBook.</p>
+  </footer>
+
+</div>
+
+<div class="search-panel" id="search-panel" data-open="false">
+  <div class="search-panel-inner">
+    <div class="search-input-row">
+      <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+      <input type="text" id="search-input" placeholder="Search topics... (Ctrl+K)">
+      <button class="icon-btn" id="search-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="search-results" id="search-results"></ul>
+  </div>
+</div>
+
+<script>
+window.operatorPrecedenceQuiz = [
+  { question: "What does operator precedence determine?", options: ["The order in which different operators are evaluated within an expression", "The data type of a variable", "The memory address of a variable", "The number of arguments a function takes"], correctIndex: 0, explanation: "Operator precedence is the defined order in which different operators are evaluated within a single expression when there's no explicit grouping." },
+  { question: "Which operator generally has higher precedence: * or +?", options: ["+", "*", "They are always equal", "It depends on the compiler"], correctIndex: 1, explanation: "* (multiplication) has higher precedence than + (addition), just like in standard math." },
+  { question: "Given `int a = 5, b = 3; int result = a + b * 2;`, what is printed by `printf(\"Result: %d\\n\", result);`?", options: ["Result: 16", "Result: 11", "Result: 13", "Result: 10"], correctIndex: 1, explanation: "b * 2 is evaluated first (3 * 2 = 6) because * has higher precedence than +, then a + 6 = 11." },
+  { question: "What can you use to override C's default operator precedence?", options: ["A semicolon", "Parentheses ()", "A comment", "An extra space"], correctIndex: 1, explanation: "Parentheses () always force their contents to be evaluated first, regardless of the operators' normal precedence." },
+  { question: "Why might `a + b * 2` NOT equal `(a + b) * 2`?", options: ["Because C evaluates expressions randomly", "Because * has higher precedence than +, so b * 2 is computed before the addition", "Because addition is always computed first in C", "Because parentheses are required for multiplication"], correctIndex: 1, explanation: "Since * has higher precedence than +, b * 2 is evaluated first, giving a + (b * 2) rather than (a + b) * 2." }
+];
+</script>
+<script src="../../js/theme.js"></script>
+<script src="../../js/sidebar.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/quiz.js"></script>
+<script src="../../js/copy-code.js"></script>
+<script src="../../js/accordion.js"></script>
+</body>
+</html>
