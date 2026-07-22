@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Features of C — Unit 1 — C Programming eBook</title>
+<meta name="description" content="Explore the core features of C — simplicity, portability, speed, structured programming, low-level access, and a rich standard library — that made it so influential.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="../../css/variables.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/diagrams.css">
+<link rel="stylesheet" href="../../css/quiz.css">
+
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<style>
+  .topic-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-6); align-items: start; }
+  .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
+  .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
+  .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
+  .feature-grid .card { display: flex; flex-direction: column; gap: var(--space-2); }
+  .feature-grid .card i { color: var(--color-primary); font-size: 1.3rem; }
+  .feature-grid .card h3 { margin: 0; font-size: 1.05rem; }
+  .feature-grid .card p { margin: 0; color: var(--text-muted); font-size: 0.92rem; }
+</style>
+</head>
+<body>
+
+<button class="icon-btn theme-toggle-float" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+  <i class="fa-solid fa-sun icon-sun"></i>
+  <i class="fa-solid fa-moon icon-moon"></i>
+</button>
+
+<div class="social-float">
+  <a class="icon-btn" href="https://github.com/Aman-0402" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+    <i class="fa-brands fa-github"></i>
+  </a>
+  <a class="icon-btn" href="https://www.linkedin.com/in/aman-raj-081905211/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+</div>
+
+<div class="shell" id="shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo" style="margin-bottom: var(--space-5);">
+      <a href="../../index.html" class="logo">
+        <i class="fa-solid fa-code" style="color: var(--color-primary);"></i><span class="sidebar-label"> C Programming eBook</span>
+      </a>
+    </div>
+
+    <button class="icon-btn" id="sidebar-collapse" aria-label="Collapse sidebar" style="margin-bottom: var(--space-4);">
+      <i class="fa-solid fa-angles-left"></i>
+    </button>
+
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 1</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit1-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">Unit 1</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit1-submenu">
+      <a class="sidebar-link" href="evolution-of-programming.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="sidebar-label">Evolution of Programming</span></a>
+      <a class="sidebar-link" href="programming-languages.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Programming Languages</span></a>
+      <a class="sidebar-link" href="problem-solving.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Problem Solving</span></a>
+      <a class="sidebar-link" href="sequential-logic.html"><i class="fa-solid fa-list-ol"></i><span class="sidebar-label">Sequential Logic</span></a>
+      <a class="sidebar-link" href="algorithms.html"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-label">Algorithms</span></a>
+      <a class="sidebar-link" href="pseudocode.html"><i class="fa-solid fa-file-lines"></i><span class="sidebar-label">Pseudocode</span></a>
+      <a class="sidebar-link" href="flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
+      <a class="sidebar-link" href="introduction-to-c.html"><i class="fa-solid fa-c"></i><span class="sidebar-label">Introduction to C</span></a>
+      <a class="sidebar-link" href="history-of-c.html"><i class="fa-solid fa-scroll"></i><span class="sidebar-label">History of C</span></a>
+      <a class="sidebar-link active" href="features-of-c.html"><i class="fa-solid fa-star"></i><span class="sidebar-label">Features of C</span></a>
+      <a class="sidebar-link" href="applications-of-c.html"><i class="fa-solid fa-industry"></i><span class="sidebar-label">Applications</span></a>
+      <a class="sidebar-link" href="structure-of-c-program.html"><i class="fa-solid fa-code"></i><span class="sidebar-label">Structure of C Program</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 2</span></div>
+      <a class="sidebar-link" href="../unit2/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">C Building Blocks &amp; Data Types</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 3</span></div>
+      <a class="sidebar-link" href="../unit3/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Control Statements</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 4</span></div>
+      <a class="sidebar-link" href="../unit4/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Strings, Functions &amp; Pointers</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 5</span></div>
+      <a class="sidebar-link" href="../unit5/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Structures, Files &amp; Memory Management</span></a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="topic-layout">
+      <div>
+        <h1>Features of C</h1>
+        <p class="lead">The specific design properties that made C so influential and durable — and that still explain most of what makes it distinct from higher-level languages today.</p>
+
+        <section class="topic-section" id="introduction">
+          <h2>1. What Is It?</h2>
+          <p>C's features are the specific design properties that made it so influential and durable: it's simple, fast, portable across hardware, and gives direct control over memory — a combination few languages, even today, fully replicate.</p>
+        </section>
+
+        <section class="topic-section" id="why">
+          <h2>2. Why Do We Need to Know This?</h2>
+          <p>Knowing C's core features up front sets accurate expectations for the rest of this course — you'll see these exact properties (speed, portability, direct memory access, a small core language plus a rich standard library) show up again and again as specific topics, so recognizing them now makes later chapters click into place faster.</p>
+        </section>
+
+        <section class="topic-section" id="real-life">
+          <h2>3. Real-Life Example</h2>
+          <p>Think of a Swiss Army knife that's deliberately minimal — a small number of sharp, general-purpose tools, rather than one bulky tool built for every specific job. C gives you a small set of powerful building blocks and expects you to combine them yourself, rather than handing you a pre-built solution for every situation.</p>
+        </section>
+
+        <section class="topic-section" id="visual">
+          <h2>4. Visual Explanation</h2>
+          <p>Six core features define C. Each card below is one deliberate design trade-off:</p>
+          <div class="feature-grid">
+            <div class="card">
+              <i class="fa-solid fa-cube"></i>
+              <h3>Simplicity</h3>
+              <p>A small set of keywords and rules — the core language itself is compact and easy to hold in your head.</p>
+            </div>
+            <div class="card">
+              <i class="fa-solid fa-globe"></i>
+              <h3>Portability</h3>
+              <p>The same source code compiles on many different machines and operating systems, with little or no change.</p>
+            </div>
+            <div class="card">
+              <i class="fa-solid fa-bolt"></i>
+              <h3>Speed</h3>
+              <p>Compiles to efficient machine code with minimal runtime overhead — a major reason C is still used where performance matters.</p>
+            </div>
+            <div class="card">
+              <i class="fa-solid fa-diagram-project"></i>
+              <h3>Structured Programming</h3>
+              <p>Code is organized into functions and blocks, not just jumps — making programs easier to read, test, and maintain.</p>
+            </div>
+            <div class="card">
+              <i class="fa-solid fa-memory"></i>
+              <h3>Low-Level Access</h3>
+              <p>Direct memory access via pointers gives you fine control over exactly how a program uses memory.</p>
+            </div>
+            <div class="card">
+              <i class="fa-solid fa-book"></i>
+              <h3>Rich Standard Library</h3>
+              <p>Built-in functions for input/output, strings, and math are available through headers like <code>stdio.h</code>.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mistakes">
+          <h2>10. Common Mistakes</h2>
+          <ul class="mistake-list">
+            <li>Assuming "simple" means "limited" — C's simplicity is about the language's small core, not about what you can actually build with it.</li>
+            <li>Assuming portability means zero changes are ever needed across platforms — mostly true, but some platform-specific details (like data sizes) can still differ.</li>
+            <li>Underestimating how much power "low-level access" actually hands you — and the responsibility that comes with it, since the language won't stop you from misusing memory.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="debugging">
+          <h2>11. Debugging Tips</h2>
+          <p>Not applicable yet — there's no code to debug on this page. But the habit to build starts here: when something in C feels unusually manual compared to a higher-level language, it's very likely a direct consequence of one of these six features — usually low-level access or the deliberately small standard library. Recognizing which feature explains the behavior speeds up understanding, and later, actual debugging.</p>
+        </section>
+
+        <section class="topic-section" id="best-practices">
+          <h2>12. Best Practices</h2>
+          <ul class="best-practice-list">
+            <li>Learn each feature as a trade-off, not just a fact — for example, low-level access means power AND responsibility (manual memory management).</li>
+            <li>Keep this "trade-off" framing in mind throughout the rest of the course — nearly every unfamiliar C behavior traces back to one of these six properties.</li>
+            <li>Don't try to memorize the features in isolation — connect each one to something you'll actually do later, like pointers (low-level access) or <code>printf</code> (standard library).</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="interview">
+          <h2>13. Interview Questions</h2>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Easy:</strong> Name two key features of C.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Any two of: simplicity (a small core language), portability (same code runs on different machines), speed (compiles to efficient machine code), structured programming (code organized into functions/blocks), low-level access (direct memory control via pointers), or a rich standard library (built-in functions via headers like <code>stdio.h</code>).</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Medium:</strong> What does "portability" mean for a language like C?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Portability means the same source code can be compiled and run on different hardware and operating systems with little or no change, because a C compiler exists for nearly every platform and translates the same standard code into that machine's native instructions.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Hard:</strong> How does C's "low-level access" feature relate to its speed?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Direct memory access and minimal abstraction mean the compiler doesn't need to insert extra safety checks or runtime management layers, so programs run with less overhead. That reduced overhead is a direct contributor to C's fast execution compared to higher-level, more heavily abstracted languages.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>HR:</strong> Which feature of C do you find most interesting, and why?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>There's no fixed right answer — interviewers want genuine reasoning. A strong response picks one feature (for example, low-level access) and explains specifically why it appeals to you, such as wanting to understand how memory actually works under the hood.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Conceptual:</strong> What's the difference between a language's core/keywords and its standard library?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>The core is the small set of built-in keywords and syntax rules the compiler understands directly (like <code>if</code>, <code>for</code>, <code>int</code>). The standard library is a separate collection of pre-written functions — like <code>printf</code> — that you can optionally use by including the right header, but that aren't part of the language's core syntax itself.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Scenario-based:</strong> You need code that runs efficiently on both a desktop and a tiny embedded device — which C feature makes this realistic?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Portability, combined with speed and low-level access — the same C code can be compiled efficiently for very different hardware, from a powerful desktop CPU to a resource-constrained embedded chip, without needing a different language for each.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mcq">
+          <h2>14. MCQs</h2>
+          <div class="quiz" data-quiz-source="featuresOfCQuiz"></div>
+        </section>
+
+        <section class="topic-section" id="exercises">
+          <h2>15. Programming Exercises</h2>
+          <p><strong>Easy:</strong> List the six features of C from memory, with a one-line description of each.</p>
+          <p><strong>Medium:</strong> Pick any two features and explain, in your own words, how they connect to each other — for example, how simplicity supports portability.</p>
+          <p><strong>Hard:</strong> Research one real system (for example, an embedded thermostat or a game engine) and identify which two or three C features most likely made it the right choice for that system.</p>
+        </section>
+
+        <section class="topic-section" id="assignments">
+          <h2>16. Assignments</h2>
+          <p>Write a short comparison: pick a language you've heard of (any language) and compare it to C on at least three of the six features discussed on this page.</p>
+        </section>
+
+        <section class="topic-section" id="faq">
+          <h2>20. FAQs</h2>
+          <p><strong>Q: Does C have all the features of modern languages?</strong><br>A: No — it deliberately lacks many conveniences (such as automatic memory management) that modern languages provide, trading them for speed and control.</p>
+          <p><strong>Q: Is C's standard library enough for everything?</strong><br>A: For core tasks, yes, but many real projects use additional external libraries beyond the standard one for things the standard library doesn't cover.</p>
+        </section>
+
+        <section class="topic-section" id="takeaways">
+          <h2>21. Key Takeaways</h2>
+          <ul>
+            <li>C's core features are simplicity, portability, speed, structured programming, low-level access, and a standard library.</li>
+            <li>Each feature is a deliberate trade-off, not a limitation — power (like low-level access) always comes paired with responsibility.</li>
+            <li>These features explain most of what makes C distinct from higher-level languages, and they'll keep resurfacing throughout this course.</li>
+          </ul>
+        </section>
+
+        <div class="topic-nav-footer">
+          <a href="history-of-c.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Previous: History of C</a>
+          <a href="applications-of-c.html" class="btn btn-primary">Next: Applications <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for absolute beginners. &copy; 2026 C Programming eBook.</p>
+  </footer>
+
+</div>
+
+<div class="search-panel" id="search-panel" data-open="false">
+  <div class="search-panel-inner">
+    <div class="search-input-row">
+      <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+      <input type="text" id="search-input" placeholder="Search topics... (Ctrl+K)">
+      <button class="icon-btn" id="search-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="search-results" id="search-results"></ul>
+  </div>
+</div>
+
+<script>
+window.featuresOfCQuiz = [
+  { question: "Which feature refers to the same C source code compiling on many different machines and operating systems?", options: ["Speed", "Portability", "Structured Programming", "Low-Level Access"], correctIndex: 1, explanation: "Portability means the same source code can be compiled and run across different hardware/OS combinations with little or no change." },
+  { question: "Which feature is most directly responsible for C compiling to efficient machine code with minimal runtime overhead?", options: ["Simplicity", "Rich Standard Library", "Speed", "Structured Programming"], correctIndex: 2, explanation: "Speed refers to C's efficient machine code output and low runtime overhead compared to more heavily abstracted languages." },
+  { question: "Organizing code into functions and blocks instead of relying on plain jumps describes which feature?", options: ["Structured Programming", "Portability", "Low-Level Access", "Simplicity"], correctIndex: 0, explanation: "Structured programming is about organizing code into functions and blocks, making it easier to read, test, and maintain." },
+  { question: "Direct manipulation of memory via pointers is an example of which C feature?", options: ["Rich Standard Library", "Low-Level Access", "Portability", "Simplicity"], correctIndex: 1, explanation: "Low-level access refers to direct memory access, most visibly through pointers." },
+  { question: "Built-in functions for input/output, strings, and math, available via headers like stdio.h, belong to which feature?", options: ["Speed", "Structured Programming", "Rich Standard Library", "Simplicity"], correctIndex: 2, explanation: "The rich standard library provides pre-written functions like printf, accessible by including the right header." }
+];
+</script>
+<script src="../../js/theme.js"></script>
+<script src="../../js/sidebar.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/quiz.js"></script>
+<script src="../../js/copy-code.js"></script>
+<script src="../../js/accordion.js"></script>
+</body>
+</html>
