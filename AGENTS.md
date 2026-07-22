@@ -54,8 +54,20 @@ history and `docs/superpowers/plans/` for implementation plans.
   (`multi-line-comments.html`) now links forward into
   `pages/unit2/tokens.html`, continuing the single unbroken prev/next
   chain across both units.
-- **Next up: Unit 2 / G2 — Scope & Data Types** (Scope, Binding,
-  Storage Classes, Integer/Float/Char Types, Strings).
+- **Unit 2 / G2 — Scope & Data Types — done.** 7 topic pages in
+  `pages/unit2/` (`scope.html` through `strings.html`), Unit 2's
+  sidebar now has 14 links. Introduced a SECOND recurring example,
+  `profile.c` (int `age`, float `height`, char `grade`, string `name`),
+  built incrementally one variable per page starting on Integer Types
+  and completed on Strings — keep this exact variable set/order
+  (`age`/`height`/`grade`/`name`, printf order Name→Age→Height→Grade)
+  consistent if any later group references it. `add.c` (G1's example)
+  stays the reference for int-only topics like Scope/Binding/Storage
+  Classes — two parallel running examples now exist in Unit 2, don't
+  conflate them.
+- **Next up: Unit 2 / G3 — Values & Basic Operators** (L-value,
+  R-value, Type Conversion, Operators overview, Arithmetic, Relational,
+  Logical).
 
 ## Folder structure
 
