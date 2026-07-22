@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Debugging — Unit 1 — C Programming eBook</title>
+<meta name="description" content="Learn what debugging is, the two broad categories of bugs, and practice finding and fixing them in this chapter's capstone mini project.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="../../css/variables.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/diagrams.css">
+<link rel="stylesheet" href="../../css/quiz.css">
+
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<style>
+  .topic-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-6); align-items: start; }
+  .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
+  .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
+  .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
+</style>
+</head>
+<body>
+
+<button class="icon-btn theme-toggle-float" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+  <i class="fa-solid fa-sun icon-sun"></i>
+  <i class="fa-solid fa-moon icon-moon"></i>
+</button>
+
+<div class="social-float">
+  <a class="icon-btn" href="https://github.com/Aman-0402" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+    <i class="fa-brands fa-github"></i>
+  </a>
+  <a class="icon-btn" href="https://www.linkedin.com/in/aman-raj-081905211/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+</div>
+
+<div class="shell" id="shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo" style="margin-bottom: var(--space-5);">
+      <a href="../../index.html" class="logo">
+        <i class="fa-solid fa-code" style="color: var(--color-primary);"></i><span class="sidebar-label"> C Programming eBook</span>
+      </a>
+    </div>
+
+    <button class="icon-btn" id="sidebar-collapse" aria-label="Collapse sidebar" style="margin-bottom: var(--space-4);">
+      <i class="fa-solid fa-angles-left"></i>
+    </button>
+
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 1</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit1-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">Unit 1</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit1-submenu">
+      <a class="sidebar-link" href="evolution-of-programming.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="sidebar-label">Evolution of Programming</span></a>
+      <a class="sidebar-link" href="programming-languages.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Programming Languages</span></a>
+      <a class="sidebar-link" href="problem-solving.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Problem Solving</span></a>
+      <a class="sidebar-link" href="sequential-logic.html"><i class="fa-solid fa-list-ol"></i><span class="sidebar-label">Sequential Logic</span></a>
+      <a class="sidebar-link" href="algorithms.html"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-label">Algorithms</span></a>
+      <a class="sidebar-link" href="pseudocode.html"><i class="fa-solid fa-file-lines"></i><span class="sidebar-label">Pseudocode</span></a>
+      <a class="sidebar-link" href="flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
+      <a class="sidebar-link" href="introduction-to-c.html"><i class="fa-solid fa-c"></i><span class="sidebar-label">Introduction to C</span></a>
+      <a class="sidebar-link" href="history-of-c.html"><i class="fa-solid fa-scroll"></i><span class="sidebar-label">History of C</span></a>
+      <a class="sidebar-link" href="features-of-c.html"><i class="fa-solid fa-star"></i><span class="sidebar-label">Features of C</span></a>
+      <a class="sidebar-link" href="applications-of-c.html"><i class="fa-solid fa-industry"></i><span class="sidebar-label">Applications</span></a>
+      <a class="sidebar-link" href="structure-of-c-program.html"><i class="fa-solid fa-code"></i><span class="sidebar-label">Structure of C Program</span></a>
+      <a class="sidebar-link" href="c-compiler.html"><i class="fa-solid fa-gears"></i><span class="sidebar-label">C Compiler</span></a>
+      <a class="sidebar-link" href="compilation-process.html"><i class="fa-solid fa-arrows-turn-right"></i><span class="sidebar-label">Compilation Process</span></a>
+      <a class="sidebar-link" href="source-code.html"><i class="fa-solid fa-file-code"></i><span class="sidebar-label">Source Code</span></a>
+      <a class="sidebar-link" href="object-code.html"><i class="fa-solid fa-cube"></i><span class="sidebar-label">Object Code</span></a>
+      <a class="sidebar-link" href="executable-code.html"><i class="fa-solid fa-play"></i><span class="sidebar-label">Executable Code</span></a>
+      <a class="sidebar-link" href="execution-process.html"><i class="fa-solid fa-microchip"></i><span class="sidebar-label">Execution Process</span></a>
+      <a class="sidebar-link" href="assembler.html"><i class="fa-solid fa-wrench"></i><span class="sidebar-label">Assembler</span></a>
+      <a class="sidebar-link" href="linker.html"><i class="fa-solid fa-link"></i><span class="sidebar-label">Linker</span></a>
+      <a class="sidebar-link" href="loader.html"><i class="fa-solid fa-upload"></i><span class="sidebar-label">Loader</span></a>
+      <a class="sidebar-link" href="interpreter.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Interpreter</span></a>
+      <a class="sidebar-link" href="compilers-and-interpreters.html"><i class="fa-solid fa-code-compare"></i><span class="sidebar-label">Compilers &amp; Interpreters</span></a>
+      <a class="sidebar-link" href="operating-systems.html"><i class="fa-solid fa-desktop"></i><span class="sidebar-label">Operating Systems</span></a>
+      <a class="sidebar-link active" href="debugging.html"><i class="fa-solid fa-bug"></i><span class="sidebar-label">Debugging</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 2</span></div>
+      <a class="sidebar-link" href="../unit2/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">C Building Blocks &amp; Data Types</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 3</span></div>
+      <a class="sidebar-link" href="../unit3/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Control Statements</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 4</span></div>
+      <a class="sidebar-link" href="../unit4/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Strings, Functions &amp; Pointers</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 5</span></div>
+      <a class="sidebar-link" href="../unit5/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Structures, Files &amp; Memory Management</span></a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="topic-layout">
+      <div>
+        <h1>Debugging</h1>
+        <p class="lead">The single most useful practical skill in this whole chapter — finding and fixing the bugs that stop a program from compiling, or from doing what you actually meant it to do.</p>
+
+        <section class="topic-section" id="introduction">
+          <h2>1. What Is It?</h2>
+          <p>Debugging is the process of finding and fixing errors — "bugs" — in a program. Bugs can happen at compile time, as syntax problems the compiler refuses to accept, or at run time, as logic problems that only show up once the program actually runs.</p>
+        </section>
+
+        <section class="topic-section" id="why">
+          <h2>2. Why Do We Need to Know This?</h2>
+          <p>This is the single most useful practical skill from this entire chapter. Every programmer, at every level of experience, spends significant time debugging — it isn't an occasional inconvenience, it's a core part of writing software.</p>
+        </section>
+
+        <section class="topic-section" id="real-life">
+          <h2>3. Real-Life Example</h2>
+          <p>Like a mechanic diagnosing a car problem: start by observing the symptoms (what's actually wrong), form a hypothesis about the cause, test that hypothesis, and narrow down until you find the real issue. Debugging a program follows the same disciplined process, not random guessing.</p>
+        </section>
+
+        <section class="topic-section" id="visual">
+          <h2>4. Visual Explanation</h2>
+          <p>Here is a deliberately broken variant of <code>add.c</code> — a missing semicolon after the <code>printf</code> call:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>add.c (broken)</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>#include &lt;stdio.h&gt;
+
+int main() {
+    printf("The sum of 5 and 3 is 8\n")
+    return 0;
+}</pre>
+          </div>
+          <p>This fails at compile time — it's a syntax error caused by the missing semicolon after the <code>printf</code> call. The compiler will report this with a line number, pointing you straight at the problem, illustrating what a compile-time bug looks like.</p>
+        </section>
+
+        <section class="topic-section" id="syntax">
+          <h2>5. Categories of Bugs</h2>
+          <p>Bugs generally fall into two broad categories:</p>
+          <ul>
+            <li><strong>Compile-time / syntax errors</strong> — caught by the compiler before the program ever runs (for example, a missing semicolon or mismatched braces).</li>
+            <li><strong>Run-time / logic errors</strong> — the program compiles and runs, but produces wrong behavior or output (for example, a wrong calculation or a wrong condition).</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="stepbystep">
+          <h2>6. Step-by-Step Code</h2>
+          <p>Now compare that with a logic-error variant, which compiles fine but is semantically wrong:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>add.c (logic error)</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>#include &lt;stdio.h&gt;
+
+int main() {
+    printf("The sum of 5 and 3 is 7\n");
+    return 0;
+}</pre>
+          </div>
+          <p>This compiles and runs without any error message at all — but the output is factually wrong (it says 7 instead of 8). This is a logic error: no tool catches it automatically. You have to notice it yourself by checking the actual output against what you intended.</p>
+        </section>
+
+        <section class="topic-section" id="dryrun">
+          <h2>7. Dry Run</h2>
+          <p>Tracing both broken examples above:</p>
+          <table>
+            <thead>
+              <tr><th>Example</th><th>What Happens</th><th>Category</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Missing semicolon</td><td>Fails to compile — the compiler reports the missing semicolon's line number, and no executable is produced at all.</td><td>Compile-time / syntax error</td></tr>
+              <tr><td>Wrong number printed</td><td>Compiles and executes successfully, printing "The sum of 5 and 3 is 7" — no error message anywhere. A human has to notice the output doesn't match the intended result.</td><td>Run-time / logic error</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="topic-section" id="mistakes">
+          <h2>8. Common Mistakes</h2>
+          <ul class="mistake-list">
+            <li>Assuming a "successful compile" means a correct program — as covered on the Execution Process page, it only means valid syntax, nothing more.</li>
+            <li>Panicking at the first error message instead of reading it carefully.</li>
+            <li>Trying to fix a symptom without understanding the actual root cause.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="debugging">
+          <h2>9. Debugging Tips</h2>
+          <ul>
+            <li>Read error messages fully and in order — fix the first one first, since later errors are often just consequences of it.</li>
+            <li>Test with simple, known inputs so you can predict exactly what the correct output should be.</li>
+            <li>Check your assumptions against the actual output rather than the output you intended — they aren't always the same thing.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="best-practices">
+          <h2>10. Best Practices</h2>
+          <ul class="best-practice-list">
+            <li>Fix and re-test one issue at a time — don't try to fix everything at once.</li>
+            <li>Use print statements (like <code>printf</code>) to check what a program is actually doing at a given point when something seems wrong.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="interview">
+          <h2>11. Interview Questions</h2>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Easy:</strong> What are the two broad categories of bugs covered here?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Compile-time (syntax) errors and run-time (logic) errors.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Medium:</strong> Which category of bug does the compiler catch automatically?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Compile-time / syntax errors — the compiler checks the code's grammar before it will produce an executable.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Hard:</strong> Why can't the compiler catch logic errors?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Because the code is syntactically valid; the compiler has no way to know what output you actually intended, only whether the code follows the language's grammar rules.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>HR:</strong> Describe your approach to debugging a program that isn't working.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>There's no fixed right answer — a strong response describes observing the actual symptoms, forming a hypothesis about the cause, testing that hypothesis, and narrowing down systematically until the real issue is found.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Conceptual:</strong> Is "my program compiled successfully" the same as "my program is correct"?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>No — compiling successfully only confirms valid syntax, not correct logic or output.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Scenario-based:</strong> Your program runs with no errors but prints the wrong number — what kind of bug is this, and how would you find it?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>A logic error. You'd check the code's actual calculation/output against what you intended, often using print statements to inspect values along the way.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mcq">
+          <h2>12. MCQs</h2>
+          <div class="quiz" data-quiz-source="debuggingQuiz"></div>
+        </section>
+
+        <section class="topic-section" id="exercises">
+          <h2>13. Programming Exercises</h2>
+          <p><strong>Easy:</strong> Name the two categories of bugs covered on this page.</p>
+          <p><strong>Medium:</strong> Which category does a missing closing brace <code>}</code> belong to?</p>
+          <p><strong>Hard:</strong> Write out, in words, a debugging plan for a program that "does nothing" when run.</p>
+        </section>
+
+        <section class="topic-section" id="assignments">
+          <h2>14. Assignments</h2>
+          <p>Take the second broken <code>add.c</code> example from this page — the one that prints the wrong output, "The sum of 5 and 3 is 7" — and write out how you'd discover and confirm this bug if you didn't already know the answer.</p>
+          <p>When you're comfortable with this, move on to the chapter's capstone <a href="#miniproject">Mini Project</a> below.</p>
+        </section>
+
+        <section class="topic-section" id="miniproject">
+          <h2>15. Mini Project</h2>
+          <p><strong>Find and Fix Three Bugs.</strong></p>
+          <p>Below are three short broken variants of <code>add.c</code>-style programs. For each one, identify the bug's category (compile-time or run-time) and explain how you'd fix it.</p>
+
+          <p><strong>1. Missing semicolon:</strong></p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>bug1.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>#include &lt;stdio.h&gt;
+
+int main() {
+    printf("The sum of 5 and 3 is 8\n")
+    return 0;
+}</pre>
+          </div>
+
+          <p><strong>2. Missing <code>#include &lt;stdio.h&gt;</code>:</strong></p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>bug2.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>int main() {
+    printf("The sum of 5 and 3 is 8\n");
+    return 0;
+}</pre>
+          </div>
+
+          <p><strong>3. Logic error (wrong number printed):</strong></p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>bug3.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>#include &lt;stdio.h&gt;
+
+int main() {
+    printf("The sum of 5 and 3 is 7\n");
+    return 0;
+}</pre>
+          </div>
+
+          <p>Completing this project capstones the "Translators &amp; Support Concepts" chapter, and together with everything you've learned since the start of Unit 1, functions as informal practice heading into Unit 2.</p>
+        </section>
+
+        <section class="topic-section" id="faq">
+          <h2>16. FAQs</h2>
+          <p><strong>Q: Do bugs mean I'm a bad programmer?</strong><br>A: No — every programmer at every level debugs constantly. It's a normal, expected part of writing software.</p>
+          <p><strong>Q: Will there be a formal debugger tool covered in this course?</strong><br>A: Not in this unit — this page covers the concept and mental approach to debugging; specific debugging tools are beyond this course's current scope.</p>
+        </section>
+
+        <section class="topic-section" id="takeaways">
+          <h2>17. Key Takeaways</h2>
+          <ul>
+            <li>Bugs fall into two broad categories: compile-time (syntax) errors and run-time (logic) errors.</li>
+            <li>Compiling successfully is not the same as being correct — it only confirms valid syntax, not correct logic.</li>
+            <li>Debugging is a disciplined process: observe symptoms, form a hypothesis, test it, and narrow down until you find the real issue.</li>
+          </ul>
+        </section>
+
+        <div class="topic-nav-footer">
+          <a href="operating-systems.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Previous: Operating Systems</a>
+          <span></span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for absolute beginners. &copy; 2026 C Programming eBook.</p>
+  </footer>
+
+</div>
+
+<div class="search-panel" id="search-panel" data-open="false">
+  <div class="search-panel-inner">
+    <div class="search-input-row">
+      <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+      <input type="text" id="search-input" placeholder="Search topics... (Ctrl+K)">
+      <button class="icon-btn" id="search-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="search-results" id="search-results"></ul>
+  </div>
+</div>
+
+<script>
+window.debuggingQuiz = [
+  { question: "What is debugging?", options: ["Writing new features for a program", "The process of finding and fixing errors (bugs) in a program", "Compiling a program for the first time", "Deleting unused source files"], correctIndex: 1, explanation: "Debugging is the process of finding and fixing errors, or bugs, that occur at compile time or run time." },
+  { question: "Which category of bug is a missing semicolon?", options: ["Run-time / logic error", "Compile-time / syntax error", "Neither — it has no effect", "A linker error only"], correctIndex: 1, explanation: "A missing semicolon breaks the language's grammar rules, so it is caught by the compiler as a syntax error before the program can run." },
+  { question: "Why can't a compiler catch a logic error like printing the wrong number?", options: ["Compilers are too slow to check logic", "The code is syntactically valid, so the compiler has no way to know what output was intended", "Logic errors don't actually exist", "The compiler only checks run-time behavior"], correctIndex: 1, explanation: "Logic errors involve syntactically correct code that simply does the wrong thing — the compiler cannot know your intended output, only whether the grammar is valid." },
+  { question: "In the broken add.c missing a semicolon, what does the compiler do?", options: ["Silently produces an executable that prints nothing", "Reports an error with a line number, and no executable is produced", "Fixes the missing semicolon automatically", "Prints the wrong sum"], correctIndex: 1, explanation: "A syntax error like a missing semicolon stops compilation, and the compiler reports the line number where it noticed the problem." },
+  { question: "In the add.c variant that prints \"The sum of 5 and 3 is 7\", what kind of bug is this?", options: ["A compile-time syntax error", "A run-time logic error", "A missing header file error", "A linker error"], correctIndex: 1, explanation: "This program compiles and runs without any error message, but produces the wrong output — a classic run-time logic error that only a human checking the output would catch." }
+];
+</script>
+<script src="../../js/theme.js"></script>
+<script src="../../js/sidebar.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/quiz.js"></script>
+<script src="../../js/copy-code.js"></script>
+<script src="../../js/accordion.js"></script>
+</body>
+</html>
