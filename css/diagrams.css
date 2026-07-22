@@ -1,0 +1,115 @@
+/* css/diagrams.css — HTML/CSS-only flowchart, memory, and timeline diagrams */
+
+.flowchart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  margin: var(--space-5) 0;
+}
+
+.flow-box {
+  background: var(--surface);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-5);
+  text-align: center;
+  min-width: 200px;
+  font-weight: 600;
+}
+
+.flow-box-start,
+.flow-box-end {
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.flow-box-decision {
+  border-color: var(--color-warning);
+  transform: skewX(-6deg);
+}
+
+.flow-box-decision span {
+  display: inline-block;
+  transform: skewX(6deg);
+}
+
+.flow-arrow {
+  width: 2px;
+  height: var(--space-6);
+  background: var(--text-muted);
+  position: relative;
+}
+
+.flow-arrow::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid var(--text-muted);
+}
+
+/* Memory diagram */
+.memory-diagram {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin: var(--space-5) 0;
+}
+
+.memory-cell {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  min-width: 80px;
+  overflow: hidden;
+}
+
+.memory-cell-label {
+  background: var(--bg);
+  padding: var(--space-1) var(--space-2);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.memory-cell-value {
+  padding: var(--space-3);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
+/* Timeline (for Evolution of Programming etc.) */
+.timeline {
+  position: relative;
+  margin: var(--space-6) 0;
+  padding-left: var(--space-6);
+  border-left: 2px solid var(--border);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: var(--space-5);
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: calc(-1 * var(--space-6) - 5px);
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+}
+
+.timeline-item-year {
+  font-weight: 700;
+  color: var(--color-primary);
+  font-size: 0.85rem;
+}
