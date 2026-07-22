@@ -205,12 +205,66 @@
 
         <section class="topic-section" id="interview">
           <h2>9. Interview Questions</h2>
-          <p><strong>Easy:</strong> What shape represents a decision in a flowchart?</p>
-          <p><strong>Medium:</strong> Why must a decision diamond always have two labeled branches?</p>
-          <p><strong>Hard:</strong> How would you flowchart a process with 3 possible outcomes, not just 2?</p>
-          <p><strong>HR:</strong> Do you prefer planning visually (flowcharts) or in writing (pseudocode)? Why?</p>
-          <p><strong>Conceptual:</strong> What's the relationship between an algorithm, pseudocode, and a flowchart?</p>
-          <p><strong>Scenario-based:</strong> Draw (describe in words) a flowchart for "is a number even or odd?"</p>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Easy:</strong> What shape represents a decision in a flowchart?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>A diamond (drawn here as a skewed box) represents a decision — a yes/no question with two branching outcomes.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Medium:</strong> Why must a decision diamond always have two labeled branches?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Every decision has an outcome either way — if only one branch is drawn, the other outcome is undefined, which is a real logic bug. Labeling both branches (typically "Yes"/"No") makes the flowchart's behavior complete and unambiguous.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Hard:</strong> How would you flowchart a process with 3 possible outcomes, not just 2?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>By chaining multiple decision diamonds together — the first diamond's "No" branch leads to a second decision diamond, which then splits into the remaining two outcomes. This is the visual equivalent of if-else-if logic, covered formally in a later unit.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>HR:</strong> Do you prefer planning visually (flowcharts) or in writing (pseudocode)? Why?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>There's no fixed right answer — interviewers want to see self-awareness. A strong answer explains which style suits your own thinking, or notes that the choice often depends on the specific problem (visual flow vs. detailed conditional logic).</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Conceptual:</strong> What's the relationship between an algorithm, pseudocode, and a flowchart?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>They're three different representations of the exact same underlying logic — an algorithm as numbered plain-English steps, pseudocode as structured code-like text, and a flowchart as connected shapes and arrows. None is more "correct" than the others.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Scenario-based:</strong> Draw (describe in words) a flowchart for "is a number even or odd?"</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Start → "Input a number, N" → decision diamond "Is N divided by 2 remainder 0?" → Yes branch → "Display Even" → End; No branch → "Display Odd" → End.</p>
+            </div>
+          </div>
         </section>
 
         <section class="topic-section" id="mcq">
@@ -300,5 +354,6 @@ window.flowchartsQuiz = [
 <script src="../../js/main.js"></script>
 <script src="../../js/quiz.js"></script>
 <script src="../../js/copy-code.js"></script>
+<script src="../../js/accordion.js"></script>
 </body>
 </html>

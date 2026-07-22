@@ -163,12 +163,66 @@
 
         <section class="topic-section" id="interview">
           <h2>8. Interview Questions</h2>
-          <p><strong>Easy:</strong> What are the steps of problem solving in programming?</p>
-          <p><strong>Medium:</strong> Why is understanding the problem more important than writing code quickly?</p>
-          <p><strong>Hard:</strong> How would you break down "sort a list of names alphabetically" into smaller sub-problems?</p>
-          <p><strong>HR:</strong> Tell me about a time you solved a difficult problem — what was your approach?</p>
-          <p><strong>Conceptual:</strong> What does "decomposition" mean in problem solving?</p>
-          <p><strong>Scenario-based:</strong> A user reports your program gives the wrong output sometimes — what's your first step?</p>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Easy:</strong> What are the steps of problem solving in programming?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Understand, Plan, Divide, Solve — in that order. Coding only happens at the very end, once the problem is understood and broken into manageable sub-problems.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Medium:</strong> Why is understanding the problem more important than writing code quickly?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Code that solves the wrong problem is useless no matter how fast it was written. Beginners' most common failure is starting to code before they've understood what's actually being asked, leading to wasted effort and confusing bugs.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Hard:</strong> How would you break down "sort a list of names alphabetically" into smaller sub-problems?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>For example: (1) read in the list of names, (2) compare two names to decide their alphabetical order, (3) repeatedly compare and swap/reposition names until the whole list is ordered, (4) output the sorted list. Each of these becomes its own smaller, solvable piece.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>HR:</strong> Tell me about a time you solved a difficult problem — what was your approach?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>There's no fixed answer — interviewers want to hear your process. A strong answer mirrors this framework: how you made sure you understood the real problem first, how you planned an approach, how you broke it into smaller pieces, and only then how you solved it.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Conceptual:</strong> What does "decomposition" mean in problem solving?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Decomposition is breaking a large, complex problem into smaller, more manageable sub-problems — each easier to understand, solve, and verify on its own than the original problem as a whole.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Scenario-based:</strong> A user reports your program gives the wrong output sometimes — what's your first step?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Re-check your understanding of the original problem and its expected behavior before touching the code — many "bugs" turn out to be a misunderstanding of what the program was actually supposed to do in that situation.</p>
+            </div>
+          </div>
         </section>
 
         <section class="topic-section" id="mcq">
@@ -244,5 +298,6 @@ window.problemSolvingQuiz = [
 <script src="../../js/main.js"></script>
 <script src="../../js/quiz.js"></script>
 <script src="../../js/copy-code.js"></script>
+<script src="../../js/accordion.js"></script>
 </body>
 </html>

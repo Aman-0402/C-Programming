@@ -208,3 +208,44 @@
 [data-theme="dark"] .icon-sun { display: none; }
 [data-theme="light"] .icon-moon,
 :root:not([data-theme]) .icon-moon { display: none; }
+
+/* Q&A accordion (interview questions, etc.) */
+.interview-item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-3);
+  overflow: hidden;
+}
+
+.interview-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface);
+  border: none;
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.interview-question:hover {
+  background: var(--bg);
+}
+
+.interview-question[aria-expanded="true"] .toggle-chevron {
+  transform: rotate(180deg);
+}
+
+.interview-answer {
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+.interview-answer p {
+  margin: 0;
+}

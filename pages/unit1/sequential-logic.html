@@ -157,12 +157,66 @@
 
         <section class="topic-section" id="interview">
           <h2>8. Interview Questions</h2>
-          <p><strong>Easy:</strong> What does "sequential execution" mean?</p>
-          <p><strong>Medium:</strong> Why can't a computer run steps out of order on its own?</p>
-          <p><strong>Hard:</strong> What has to change in a program's logic to make it NOT purely sequential?</p>
-          <p><strong>HR:</strong> Describe a time following steps in the wrong order caused a problem.</p>
-          <p><strong>Conceptual:</strong> Is sequential logic unique to programming?</p>
-          <p><strong>Scenario-based:</strong> Your program adds two numbers before asking the user for them — what's wrong, and why?</p>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Easy:</strong> What does "sequential execution" mean?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>It means a computer runs instructions one at a time, strictly in the order they are written, top to bottom, unless something explicitly tells it to do otherwise.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Medium:</strong> Why can't a computer run steps out of order on its own?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>A computer has no concept of "what you meant" — it has no judgment or intent-reading ability. It simply executes instructions exactly as written, in that order, every time.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Hard:</strong> What has to change in a program's logic to make it NOT purely sequential?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>You need explicit control statements — conditionals (decisions) or loops (repetition) — which deliberately redirect or repeat execution. Without them, a program is always purely sequential by default.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>HR:</strong> Describe a time following steps in the wrong order caused a problem.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>There's no single right answer — this tests real-world reasoning about ordering dependencies. A strong answer identifies a concrete situation (in code or everyday life) where a step ran before something it depended on was ready, and what that revealed about the importance of order.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Conceptual:</strong> Is sequential logic unique to programming?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>No — many everyday processes, like recipes and daily routines, depend on strict step order too. Sequential logic is a general pattern of ordered, dependent steps that shows up throughout everyday life, not just in code.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Scenario-based:</strong> Your program adds two numbers before asking the user for them — what's wrong, and why?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>The addition step runs before the input step, so the numbers don't exist yet when the addition happens — this produces an error or an undefined/incorrect result, since a value must be obtained before it can be used.</p>
+            </div>
+          </div>
         </section>
 
         <section class="topic-section" id="mcq">
@@ -238,5 +292,6 @@ window.sequentialLogicQuiz = [
 <script src="../../js/main.js"></script>
 <script src="../../js/quiz.js"></script>
 <script src="../../js/copy-code.js"></script>
+<script src="../../js/accordion.js"></script>
 </body>
 </html>

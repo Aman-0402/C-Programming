@@ -173,14 +173,86 @@
 
         <section class="topic-section" id="interview">
           <h2>8. Interview Questions</h2>
-          <p><strong>Easy:</strong> What is machine code?</p>
-          <p><strong>Easy:</strong> Name one language that came before C.</p>
-          <p><strong>Medium:</strong> Why did assembly language replace raw machine code?</p>
-          <p><strong>Medium:</strong> What problem was C designed to solve?</p>
-          <p><strong>Hard:</strong> Why do modern high-level languages still ultimately get translated to machine code?</p>
-          <p><strong>HR:</strong> Why are you interested in learning a 50-year-old language like C in a modern industry?</p>
-          <p><strong>Conceptual:</strong> What does "closer to the hardware" mean?</p>
-          <p><strong>Scenario-based:</strong> You need to write firmware for a tiny embedded sensor with almost no memory. Would you reach for C or a very high-level language, and why?</p>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Easy:</strong> What is machine code?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Machine code is the raw sequence of 1s and 0s that a specific CPU executes directly, with no translation step needed — it's the lowest level any program eventually runs as.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Easy:</strong> Name one language that came before C.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>FORTRAN (1957) is a common answer — one of the first high-level languages, created about 15 years before C. Assembly language (1950s) is also acceptable, though it's low-level rather than high-level.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Medium:</strong> Why did assembly language replace raw machine code?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Writing raw binary or wiring plugboards by hand was slow and extremely error-prone. Assembly introduced short, human-readable mnemonics (like <code>MOV</code>, <code>ADD</code>) that map directly to machine instructions, making programming faster and less mistake-prone — while still requiring hardware-specific knowledge.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Medium:</strong> What problem was C designed to solve?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>C was designed to give programmers assembly-like speed and hardware control, but with the readability and portability of a high-level language — so the same source code could run efficiently across different machines instead of being rewritten in assembly for each one.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Hard:</strong> Why do modern high-level languages still ultimately get translated to machine code?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Because the physical CPU only understands its own binary instruction set — nothing else. No matter how readable or abstracted a language is, a compiler or interpreter must eventually convert it down to that hardware-specific machine code before anything can actually execute.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>HR:</strong> Why are you interested in learning a 50-year-old language like C in a modern industry?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>There's no single correct answer here — interviewers are gauging genuine motivation. A strong answer connects C's age to its continued relevance: it still powers operating systems, embedded devices, and other performance-critical software, and understanding it builds a foundation for how computers actually work under the hood.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Conceptual:</strong> What does "closer to the hardware" mean?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>It means a language exposes more direct control over the machine's resources — memory addresses, CPU instructions, low-level data representation — rather than hiding those details behind automatic, abstracted conveniences the way many high-level languages do.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Scenario-based:</strong> You need to write firmware for a tiny embedded sensor with almost no memory. Would you reach for C or a very high-level language, and why?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>C — its small runtime footprint and direct hardware/memory control make it well suited to severely resource-constrained devices, where a high-level language's larger runtime and automatic memory management would be impractical or impossible to fit.</p>
+            </div>
+          </div>
         </section>
 
         <section class="topic-section" id="mcq">
@@ -256,5 +328,6 @@ window.evolutionQuiz = [
 <script src="../../js/main.js"></script>
 <script src="../../js/quiz.js"></script>
 <script src="../../js/copy-code.js"></script>
+<script src="../../js/accordion.js"></script>
 </body>
 </html>

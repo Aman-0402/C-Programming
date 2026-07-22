@@ -212,12 +212,66 @@ Step 6: End</pre>
 
         <section class="topic-section" id="interview">
           <h2>11. Interview Questions</h2>
-          <p><strong>Easy:</strong> What is an algorithm?</p>
-          <p><strong>Medium:</strong> What's the difference between an algorithm and a program?</p>
-          <p><strong>Hard:</strong> Why must an algorithm be finite?</p>
-          <p><strong>HR:</strong> Describe an everyday process you could turn into an algorithm.</p>
-          <p><strong>Conceptual:</strong> Can two different algorithms solve the same problem?</p>
-          <p><strong>Scenario-based:</strong> Design (in plain steps) an algorithm to check if a number is even or odd.</p>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Easy:</strong> What is an algorithm?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>A finite, precise, ordered set of steps that solves a specific problem or completes a specific task — rigorous enough that a computer, not just a person, could follow it exactly.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Medium:</strong> What's the difference between an algorithm and a program?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>An algorithm is the language-independent plan for solving a problem. A program is that plan implemented in a specific programming language's exact syntax — the same algorithm could become many different programs across many languages.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Hard:</strong> Why must an algorithm be finite?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Because an algorithm must guarantee it eventually stops and produces a result — a process with no defined end condition can run forever and never actually solve anything, which disqualifies it as a valid algorithm.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>HR:</strong> Describe an everyday process you could turn into an algorithm.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>There's no fixed answer — a strong response picks something concrete (like making coffee or checking out a library book) and shows it can be broken into precise, ordered, finite steps with clear inputs and a clear output.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Conceptual:</strong> Can two different algorithms solve the same problem?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Yes — multiple valid algorithms can solve the same problem, sometimes taking different approaches or with different efficiency. There is rarely only one "correct" algorithm for a given task.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Scenario-based:</strong> Design (in plain steps) an algorithm to check if a number is even or odd.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Step 1: Start. Step 2: Input a number, N. Step 3: If N divided by 2 has a remainder of 0, go to Step 4, else go to Step 5. Step 4: Display "Even," go to Step 6. Step 5: Display "Odd." Step 6: End.</p>
+            </div>
+          </div>
         </section>
 
         <section class="topic-section" id="mcq">
@@ -293,5 +347,6 @@ window.algorithmsQuiz = [
 <script src="../../js/main.js"></script>
 <script src="../../js/quiz.js"></script>
 <script src="../../js/copy-code.js"></script>
+<script src="../../js/accordion.js"></script>
 </body>
 </html>

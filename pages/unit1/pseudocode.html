@@ -227,12 +227,66 @@ END</pre>
 
         <section class="topic-section" id="interview">
           <h2>11. Interview Questions</h2>
-          <p><strong>Easy:</strong> What is pseudocode?</p>
-          <p><strong>Medium:</strong> Why use pseudocode instead of writing real code directly?</p>
-          <p><strong>Hard:</strong> What's the risk of skipping pseudocode and writing C directly for a complex problem?</p>
-          <p><strong>HR:</strong> How do you personally plan out a solution before coding?</p>
-          <p><strong>Conceptual:</strong> Is pseudocode language-specific?</p>
-          <p><strong>Scenario-based:</strong> Convert this real-life instruction into pseudocode: "If it's raining, take an umbrella, otherwise wear sunglasses."</p>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Easy:</strong> What is pseudocode?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Structured, code-like plain English for planning a program's logic — using keywords like <code>START</code>, <code>IF</code>, and <code>DISPLAY</code> — without following any real language's exact syntax rules.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Medium:</strong> Why use pseudocode instead of writing real code directly?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>It separates "getting the logic right" from "getting the syntax right." Beginners especially benefit from planning the logic in plain terms first, instead of fighting C's punctuation rules and the underlying problem at the same time.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Hard:</strong> What's the risk of skipping pseudocode and writing C directly for a complex problem?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>You end up debugging syntax errors and logic errors simultaneously, which is much harder to untangle. Planning the logic first in pseudocode isolates and resolves the "thinking" mistakes before any syntax is involved.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>HR:</strong> How do you personally plan out a solution before coding?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>There's no fixed answer — a strong response describes a concrete planning habit, such as writing pseudocode or a quick outline of steps before touching real code, and why that habit helps avoid mistakes.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Conceptual:</strong> Is pseudocode language-specific?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>No — pseudocode is deliberately language-agnostic. It's meant to express logic clearly for any human reader, regardless of which programming language will eventually implement it.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Scenario-based:</strong> Convert this real-life instruction into pseudocode: "If it's raining, take an umbrella, otherwise wear sunglasses."</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p><code>IF raining THEN / DISPLAY "Take an umbrella" / ELSE / DISPLAY "Wear sunglasses" / ENDIF</code></p>
+            </div>
+          </div>
         </section>
 
         <section class="topic-section" id="mcq">
@@ -308,5 +362,6 @@ window.pseudocodeQuiz = [
 <script src="../../js/main.js"></script>
 <script src="../../js/quiz.js"></script>
 <script src="../../js/copy-code.js"></script>
+<script src="../../js/accordion.js"></script>
 </body>
 </html>

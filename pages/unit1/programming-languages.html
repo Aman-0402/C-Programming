@@ -161,12 +161,66 @@
 
         <section class="topic-section" id="interview">
           <h2>8. Interview Questions</h2>
-          <p><strong>Easy:</strong> What is a programming language?</p>
-          <p><strong>Medium:</strong> What's the difference between a low-level and high-level language?</p>
-          <p><strong>Hard:</strong> Why is C sometimes called a "middle-level" language?</p>
-          <p><strong>HR:</strong> Why did you choose to start with C instead of a more modern language?</p>
-          <p><strong>Conceptual:</strong> What does "closer to the hardware" mean in practice?</p>
-          <p><strong>Scenario-based:</strong> You're asked to write a device driver — would you reach for Python or C, and why?</p>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Easy:</strong> What is a programming language?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>A formal set of words, symbols, and rules for writing instructions that a computer can eventually execute — ranging from raw machine code up through structured, human-readable high-level languages.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Medium:</strong> What's the difference between a low-level and high-level language?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Low-level languages (like assembly) map closely to a specific machine's hardware instructions, trading readability for speed and control. High-level languages read closer to human language and are more abstracted from the hardware, trading some control for readability and portability.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Hard:</strong> Why is C sometimes called a "middle-level" language?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Because it combines structured, readable high-level syntax with low-level capabilities — like pointers and direct memory access — that most high-level languages hide from the programmer entirely.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>HR:</strong> Why did you choose to start with C instead of a more modern language?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>A strong answer focuses on fundamentals: C forces you to understand memory, data types, and control flow explicitly, rather than hiding them — a foundation that makes learning other languages, and understanding how computers work, easier later.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Conceptual:</strong> What does "closer to the hardware" mean in practice?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>It means the language gives you direct access to things like memory addresses and byte-level data, rather than automatically managing them for you — in practice, this means more control, but also more responsibility (e.g. no automatic memory cleanup).</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Scenario-based:</strong> You're asked to write a device driver — would you reach for Python or C, and why?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>C — device drivers need direct hardware and memory access with predictable, low-overhead performance, which is exactly what C's middle-level design provides. Python's abstraction and runtime overhead make it a poor fit for this kind of system-level code.</p>
+            </div>
+          </div>
         </section>
 
         <section class="topic-section" id="mcq">
@@ -242,5 +296,6 @@ window.programmingLanguagesQuiz = [
 <script src="../../js/main.js"></script>
 <script src="../../js/quiz.js"></script>
 <script src="../../js/copy-code.js"></script>
+<script src="../../js/accordion.js"></script>
 </body>
 </html>
