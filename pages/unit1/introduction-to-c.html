@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introduction to C — Unit 1 — C Programming eBook</title>
+<meta name="description" content="Meet C: a general-purpose, procedural language and the direct or indirect ancestor of many modern programming languages.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="../../css/variables.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/diagrams.css">
+<link rel="stylesheet" href="../../css/quiz.css">
+
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<style>
+  .topic-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-6); align-items: start; }
+  .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
+  .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
+  .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
+  .influence-card-icon { font-size: 1.5rem; color: var(--color-primary); margin-bottom: var(--space-3); }
+  .influence-card h3 { margin-bottom: var(--space-2); }
+  .influence-card p { color: var(--text-muted); margin: 0; }
+</style>
+</head>
+<body>
+
+<button class="icon-btn theme-toggle-float" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+  <i class="fa-solid fa-sun icon-sun"></i>
+  <i class="fa-solid fa-moon icon-moon"></i>
+</button>
+
+<div class="social-float">
+  <a class="icon-btn" href="https://github.com/Aman-0402" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+    <i class="fa-brands fa-github"></i>
+  </a>
+  <a class="icon-btn" href="https://www.linkedin.com/in/aman-raj-081905211/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+</div>
+
+<div class="shell" id="shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo" style="margin-bottom: var(--space-5);">
+      <a href="../../index.html" class="logo">
+        <i class="fa-solid fa-code" style="color: var(--color-primary);"></i><span class="sidebar-label"> C Programming eBook</span>
+      </a>
+    </div>
+
+    <button class="icon-btn" id="sidebar-collapse" aria-label="Collapse sidebar" style="margin-bottom: var(--space-4);">
+      <i class="fa-solid fa-angles-left"></i>
+    </button>
+
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 1</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit1-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">Unit 1</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit1-submenu">
+      <a class="sidebar-link" href="evolution-of-programming.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="sidebar-label">Evolution of Programming</span></a>
+      <a class="sidebar-link" href="programming-languages.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Programming Languages</span></a>
+      <a class="sidebar-link" href="problem-solving.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Problem Solving</span></a>
+      <a class="sidebar-link" href="sequential-logic.html"><i class="fa-solid fa-list-ol"></i><span class="sidebar-label">Sequential Logic</span></a>
+      <a class="sidebar-link" href="algorithms.html"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-label">Algorithms</span></a>
+      <a class="sidebar-link" href="pseudocode.html"><i class="fa-solid fa-file-lines"></i><span class="sidebar-label">Pseudocode</span></a>
+      <a class="sidebar-link" href="flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
+      <a class="sidebar-link active" href="introduction-to-c.html"><i class="fa-solid fa-c"></i><span class="sidebar-label">Introduction to C</span></a>
+      <a class="sidebar-link" href="history-of-c.html"><i class="fa-solid fa-scroll"></i><span class="sidebar-label">History of C</span></a>
+      <a class="sidebar-link" href="features-of-c.html"><i class="fa-solid fa-star"></i><span class="sidebar-label">Features of C</span></a>
+      <a class="sidebar-link" href="applications-of-c.html"><i class="fa-solid fa-industry"></i><span class="sidebar-label">Applications</span></a>
+      <a class="sidebar-link" href="structure-of-c-program.html"><i class="fa-solid fa-code"></i><span class="sidebar-label">Structure of C Program</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 2</span></div>
+      <a class="sidebar-link" href="../unit2/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">C Building Blocks &amp; Data Types</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 3</span></div>
+      <a class="sidebar-link" href="../unit3/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Control Statements</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 4</span></div>
+      <a class="sidebar-link" href="../unit4/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Strings, Functions &amp; Pointers</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 5</span></div>
+      <a class="sidebar-link" href="../unit5/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Structures, Files &amp; Memory Management</span></a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="topic-layout">
+      <div>
+        <h1>Introduction to C</h1>
+        <p class="lead">A first look at the language this entire course is built around — where it sits in the world of programming, and why so much of what comes later in your career will quietly trace back to it.</p>
+
+        <section class="topic-section" id="introduction">
+          <h2>1. What Is It?</h2>
+          <p>C is a general-purpose, procedural programming language — meaning it's not tied to any one kind of application, and its programs are written as an ordered sequence of steps (procedures/functions) rather than, say, purely as objects or purely as mathematical expressions. It's also one of the most influential languages ever created: directly or indirectly, it is the ancestor of an enormous share of the languages programmers use today. C++ and C# borrow both syntax and their names from it; Java's curly-brace, semicolon-terminated style traces straight back to C; even JavaScript's basic control-flow syntax (<code>if</code>, <code>for</code>, <code>while</code>, curly braces) follows the same pattern. Python, meanwhile, is influenced more subtly — its most widely used reference interpreter, CPython, is itself written in C. Learning C means learning the language that many other languages borrow their core ideas from.</p>
+        </section>
+
+        <section class="topic-section" id="why">
+          <h2>2. Why Do We Need to Know This?</h2>
+          <p>Nearly every popular language in active use today borrows something from C — the curly braces that group code, the semicolons that end statements, or the basic shape of <code>if</code>/<code>for</code>/<code>while</code> structures. Once you've genuinely learned C, you will recognize these patterns instantly in whatever language you pick up next, which makes learning that next language noticeably faster. C also forces you to think close to how a computer actually executes instructions, step by step — a mental model that stays useful no matter how many higher-level languages you learn afterward.</p>
+        </section>
+
+        <section class="topic-section" id="real-life">
+          <h2>3. Real-Life Example</h2>
+          <p>Think of C like Latin. Almost nobody speaks Latin day-to-day anymore, but its vocabulary and grammar quietly live on inside Spanish, French, Italian, and even English. You don't need to speak Latin to use those languages — but if you do know some Latin, you start noticing familiar patterns everywhere. C works the same way for programming languages: learning it reveals structure you'll keep recognizing in language after language for the rest of your career.</p>
+        </section>
+
+        <section class="topic-section" id="visual">
+          <h2>4. Visual Explanation</h2>
+          <p>A few well-known languages and tools, and what each one borrowed or inherited from C:</p>
+          <div class="feature-grid">
+            <div class="card influence-card">
+              <div class="influence-card-icon"><i class="fa-solid fa-plus"></i></div>
+              <h3>C++</h3>
+              <p>Built directly as "C with classes" — it kept nearly all of C's syntax and added object-oriented features on top.</p>
+            </div>
+            <div class="card influence-card">
+              <div class="influence-card-icon"><i class="fa-solid fa-hashtag"></i></div>
+              <h3>C#</h3>
+              <p>Borrows C's curly-brace, semicolon-based syntax family (by way of C++ and Java) even though it runs on a completely different platform (.NET).</p>
+            </div>
+            <div class="card influence-card">
+              <div class="influence-card-icon"><i class="fa-brands fa-java"></i></div>
+              <h3>Java</h3>
+              <p>Adopted C's block structure, operators, and statement style directly, while replacing manual memory management with automatic garbage collection.</p>
+            </div>
+            <div class="card influence-card">
+              <div class="influence-card-icon"><i class="fa-brands fa-python"></i></div>
+              <h3>Python (CPython)</h3>
+              <p>Python's syntax looks nothing like C, but its most widely used interpreter, CPython, is itself written in C — C is running underneath every Python program you execute.</p>
+            </div>
+            <div class="card influence-card">
+              <div class="influence-card-icon"><i class="fa-solid fa-at"></i></div>
+              <h3>Objective-C</h3>
+              <p>A strict superset of C — every valid C program is also a valid Objective-C program, with object-oriented messaging syntax layered on top.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mistakes">
+          <h2>5. Common Mistakes</h2>
+          <ul class="mistake-list">
+            <li>Assuming C is "outdated" simply because it's old — age and relevance are not the same thing.</li>
+            <li>Assuming a language being simple or old also means it's easy to master — C's simplicity is deceptive, since it hands you a small number of extremely powerful, sharp tools that are easy to misuse if you're careless.</li>
+            <li>Confusing C with C++ or C# just because the names look related — they share history, but they are different languages with different rules, features, and use cases.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="debugging">
+          <h2>6. Debugging Tips</h2>
+          <p>There's no code on this page yet, so debugging in the classic sense doesn't apply — but it's worth building one habit right now, before you write a single line: whenever you learn a new language in the future, pause and ask "what does this borrow from C?" Recognizing the familiar pieces (braces, semicolons, loop structure) up front shortcuts a huge amount of confusion, because you'll already understand the shape of the language before you've written anything in it.</p>
+        </section>
+
+        <section class="topic-section" id="best-practices">
+          <h2>7. Best Practices</h2>
+          <ul class="best-practice-list">
+            <li>Approach C expecting to learn fundamentals, not just syntax — the real goal is understanding how computers actually run programs, not memorizing keywords.</li>
+            <li>Resist the urge to skip ahead to a "trendier" language before finishing C — the fundamentals you build here transfer directly to whatever you learn next.</li>
+            <li>When something in C feels unfamiliar or low-level, treat it as a feature of learning, not an obstacle — it's exactly the detail that higher-level languages hide from you.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="interview">
+          <h2>8. Interview Questions</h2>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Easy:</strong> What kind of language is C?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>C is a general-purpose, procedural programming language — its programs are written as an ordered sequence of steps and function calls, rather than being purely object-oriented or purely mathematical.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Medium:</strong> Name two modern languages influenced by C.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>C++ and Java are both good examples. C++ was built directly on top of C's syntax, and Java adopted C's curly-brace block structure and statement style while adding automatic memory management on top.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Hard:</strong> Why does learning C make learning other languages easier?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>So many popular languages share C's basic syntax and control-flow structure — curly braces, semicolons, <code>if</code>/<code>for</code>/<code>while</code> — that once you recognize these patterns in C, you recognize them everywhere else too. That recognition transfers broadly, so each new language after C takes noticeably less effort to pick up.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>HR:</strong> Why are you starting your programming journey with C?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>There's no fixed right answer here — interviewers want to see genuine reasoning. A strong response connects the choice to building real fundamentals (understanding how programs actually run) rather than simply jumping straight to whatever language is currently trendy.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Conceptual:</strong> What does it mean for a language to be an "ancestor" of others?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>It means later languages borrowed its syntax, structure, or core ideas when they were designed — even if they weren't literally built from its source code. C++ and Java, for example, are "descendants" of C in this sense: they copied its block structure and statement style rather than reusing its actual implementation.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Scenario-based:</strong> A friend says C is "useless" because it's old — how would you respond?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>I'd point out that C is still actively used today in operating systems, embedded devices, and performance-critical software — it's the opposite of abandoned. "Old" and "obsolete" aren't the same thing; C has simply stayed useful for the exact jobs it was designed for.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mcq">
+          <h2>9. MCQs</h2>
+          <div class="quiz" data-quiz-source="introductionToCQuiz"></div>
+        </section>
+
+        <section class="topic-section" id="exercises">
+          <h2>10. Programming Exercises</h2>
+          <p><strong>Easy:</strong> List three programming languages you've heard of, and for each one, guess (researching if needed) whether it was influenced by C.</p>
+          <p><strong>Medium:</strong> Write a short paragraph explaining why "old" doesn't mean "irrelevant" for a programming language, using C as your example.</p>
+          <p><strong>Hard:</strong> Research one specific syntax feature — for example, curly-brace code blocks or semicolon-terminated statements — and trace which languages besides C also use it.</p>
+        </section>
+
+        <section class="topic-section" id="assignments">
+          <h2>11. Assignments</h2>
+          <p>Write a half-page reflection on why you're learning C, and what you hope to understand by the end of this course. Be specific: is it about getting a stronger grip on how computers work, preparing for later languages, or something else entirely?</p>
+        </section>
+
+        <section class="topic-section" id="faq">
+          <h2>12. FAQs</h2>
+          <p><strong>Q: Do I need to learn C before other languages?</strong><br>A: Not strictly required, but it builds fundamentals — how memory, control flow, and functions actually work — that make every other language noticeably easier to pick up afterward.</p>
+          <p><strong>Q: Is C only useful for old systems?</strong><br>A: No — C is still actively used today for operating systems, embedded devices, and performance-critical software. It's a current, working tool, not a museum piece.</p>
+        </section>
+
+        <section class="topic-section" id="takeaways">
+          <h2>13. Key Takeaways</h2>
+          <ul>
+            <li>C is a foundational, highly influential general-purpose, procedural language.</li>
+            <li>Many modern languages — C++, C#, Java, and others — borrow syntax or ideas directly from C.</li>
+            <li>Learning C builds transferable fundamentals, not just C-specific syntax — the payoff shows up in every language you learn next.</li>
+          </ul>
+        </section>
+
+        <div class="topic-nav-footer">
+          <a href="flowcharts.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Previous: Flowcharts</a>
+          <a href="history-of-c.html" class="btn btn-primary">Next: History of C <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for absolute beginners. &copy; 2026 C Programming eBook.</p>
+  </footer>
+
+</div>
+
+<div class="search-panel" id="search-panel" data-open="false">
+  <div class="search-panel-inner">
+    <div class="search-input-row">
+      <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+      <input type="text" id="search-input" placeholder="Search topics... (Ctrl+K)">
+      <button class="icon-btn" id="search-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="search-results" id="search-results"></ul>
+  </div>
+</div>
+
+<script>
+window.introductionToCQuiz = [
+  { question: "What kind of programming language is C?", options: ["Object-oriented only", "General-purpose, procedural", "Markup language", "Query language"], correctIndex: 1, explanation: "C is a general-purpose, procedural language — its programs run as an ordered sequence of steps and function calls." },
+  { question: "Which of these languages directly borrowed C's curly-brace, semicolon-based syntax?", options: ["Java", "HTML", "SQL", "Markdown"], correctIndex: 0, explanation: "Java adopted C's block structure, operators, and statement style, while adding automatic memory management." },
+  { question: "How is Python connected to C, even though its syntax looks very different?", options: ["Python has no connection to C", "Python's most widely used interpreter, CPython, is itself written in C", "Python replaced C entirely", "Python was C's direct predecessor"], correctIndex: 1, explanation: "CPython, Python's reference interpreter, is implemented in C — so C runs underneath most Python programs." },
+  { question: "Why is it inaccurate to call C 'outdated'?", options: ["Because C is the newest language available", "Because it is still actively used today in operating systems, embedded devices, and performance-critical software", "Because C has no real-world applications", "Because 'old' and 'outdated' always mean the same thing"], correctIndex: 1, explanation: "C being decades old doesn't mean it's unused — it remains a current, actively used tool in many performance-critical domains." },
+  { question: "What does it mean for a language to be an 'ancestor' of C++?", options: ["C++ was built from scratch with no connection to C", "C++ borrowed C's syntax and structure when it was designed, as 'C with classes'", "C was created after C++", "Ancestor languages must share identical source code"], correctIndex: 1, explanation: "C++ was originally designed as 'C with classes,' carrying over nearly all of C's syntax while adding object-oriented features." }
+];
+</script>
+<script src="../../js/theme.js"></script>
+<script src="../../js/sidebar.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/quiz.js"></script>
+<script src="../../js/copy-code.js"></script>
+<script src="../../js/accordion.js"></script>
+</body>
+</html>
