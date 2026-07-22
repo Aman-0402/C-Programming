@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interpreter — Unit 1 — C Programming eBook</title>
+<meta name="description" content="Learn what an interpreter is, how it differs from a compiler by running source code directly line by line, and why C takes the compiled path instead.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="../../css/variables.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/diagrams.css">
+<link rel="stylesheet" href="../../css/quiz.css">
+
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<style>
+  .topic-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-6); align-items: start; }
+  .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
+  .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
+  .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); }
+  @media (max-width: 720px) { .compare-grid { grid-template-columns: 1fr; } }
+  .compare-grid h3 { margin-bottom: var(--space-3); }
+</style>
+</head>
+<body>
+
+<button class="icon-btn theme-toggle-float" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+  <i class="fa-solid fa-sun icon-sun"></i>
+  <i class="fa-solid fa-moon icon-moon"></i>
+</button>
+
+<div class="social-float">
+  <a class="icon-btn" href="https://github.com/Aman-0402" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+    <i class="fa-brands fa-github"></i>
+  </a>
+  <a class="icon-btn" href="https://www.linkedin.com/in/aman-raj-081905211/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+</div>
+
+<div class="shell" id="shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo" style="margin-bottom: var(--space-5);">
+      <a href="../../index.html" class="logo">
+        <i class="fa-solid fa-code" style="color: var(--color-primary);"></i><span class="sidebar-label"> C Programming eBook</span>
+      </a>
+    </div>
+
+    <button class="icon-btn" id="sidebar-collapse" aria-label="Collapse sidebar" style="margin-bottom: var(--space-4);">
+      <i class="fa-solid fa-angles-left"></i>
+    </button>
+
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 1</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit1-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">Unit 1</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit1-submenu">
+      <a class="sidebar-link" href="evolution-of-programming.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="sidebar-label">Evolution of Programming</span></a>
+      <a class="sidebar-link" href="programming-languages.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Programming Languages</span></a>
+      <a class="sidebar-link" href="problem-solving.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Problem Solving</span></a>
+      <a class="sidebar-link" href="sequential-logic.html"><i class="fa-solid fa-list-ol"></i><span class="sidebar-label">Sequential Logic</span></a>
+      <a class="sidebar-link" href="algorithms.html"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-label">Algorithms</span></a>
+      <a class="sidebar-link" href="pseudocode.html"><i class="fa-solid fa-file-lines"></i><span class="sidebar-label">Pseudocode</span></a>
+      <a class="sidebar-link" href="flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
+      <a class="sidebar-link" href="introduction-to-c.html"><i class="fa-solid fa-c"></i><span class="sidebar-label">Introduction to C</span></a>
+      <a class="sidebar-link" href="history-of-c.html"><i class="fa-solid fa-scroll"></i><span class="sidebar-label">History of C</span></a>
+      <a class="sidebar-link" href="features-of-c.html"><i class="fa-solid fa-star"></i><span class="sidebar-label">Features of C</span></a>
+      <a class="sidebar-link" href="applications-of-c.html"><i class="fa-solid fa-industry"></i><span class="sidebar-label">Applications</span></a>
+      <a class="sidebar-link" href="structure-of-c-program.html"><i class="fa-solid fa-code"></i><span class="sidebar-label">Structure of C Program</span></a>
+      <a class="sidebar-link" href="c-compiler.html"><i class="fa-solid fa-gears"></i><span class="sidebar-label">C Compiler</span></a>
+      <a class="sidebar-link" href="compilation-process.html"><i class="fa-solid fa-arrows-turn-right"></i><span class="sidebar-label">Compilation Process</span></a>
+      <a class="sidebar-link" href="source-code.html"><i class="fa-solid fa-file-code"></i><span class="sidebar-label">Source Code</span></a>
+      <a class="sidebar-link" href="object-code.html"><i class="fa-solid fa-cube"></i><span class="sidebar-label">Object Code</span></a>
+      <a class="sidebar-link" href="executable-code.html"><i class="fa-solid fa-play"></i><span class="sidebar-label">Executable Code</span></a>
+      <a class="sidebar-link" href="execution-process.html"><i class="fa-solid fa-microchip"></i><span class="sidebar-label">Execution Process</span></a>
+      <a class="sidebar-link" href="assembler.html"><i class="fa-solid fa-wrench"></i><span class="sidebar-label">Assembler</span></a>
+      <a class="sidebar-link" href="linker.html"><i class="fa-solid fa-link"></i><span class="sidebar-label">Linker</span></a>
+      <a class="sidebar-link" href="loader.html"><i class="fa-solid fa-upload"></i><span class="sidebar-label">Loader</span></a>
+      <a class="sidebar-link active" href="interpreter.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Interpreter</span></a>
+      <a class="sidebar-link" href="compilers-and-interpreters.html"><i class="fa-solid fa-code-compare"></i><span class="sidebar-label">Compilers &amp; Interpreters</span></a>
+      <a class="sidebar-link" href="operating-systems.html"><i class="fa-solid fa-desktop"></i><span class="sidebar-label">Operating Systems</span></a>
+      <a class="sidebar-link" href="debugging.html"><i class="fa-solid fa-bug"></i><span class="sidebar-label">Debugging</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 2</span></div>
+      <a class="sidebar-link" href="../unit2/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">C Building Blocks &amp; Data Types</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 3</span></div>
+      <a class="sidebar-link" href="../unit3/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Control Statements</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 4</span></div>
+      <a class="sidebar-link" href="../unit4/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Strings, Functions &amp; Pointers</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 5</span></div>
+      <a class="sidebar-link" href="../unit5/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Structures, Files &amp; Memory Management</span></a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="topic-layout">
+      <div>
+        <h1>Interpreter</h1>
+        <p class="lead">Not every language works like C. An interpreter reads and runs source code directly, line by line — a completely different strategy from the compile-then-run pipeline you've been tracing.</p>
+
+        <section class="topic-section" id="introduction">
+          <h2>1. What Is It?</h2>
+          <p>An interpreter is a program that reads and executes source code directly, line by line, without producing a separate standalone executable file first. Instead of translating an entire program ahead of time and saving the result as an executable, an interpreter reads one line (or statement), translates it, and runs it immediately — then moves to the next line, and repeats. This is a fundamentally different strategy from C's compile-then-run approach, where translation and execution are two completely separate steps.</p>
+        </section>
+
+        <section class="topic-section" id="why">
+          <h2>2. Why Do We Need to Know This?</h2>
+          <p>You've just spent this entire chapter tracing C's compiler pipeline — preprocessing, compilation, assembly, linking, and loading — all of which happens before a program ever runs. Contrasting interpreters with that pipeline makes C's specific approach, and its speed and portability tradeoffs, much clearer by comparison. Once you see the alternative, C's design choices stop looking arbitrary and start looking deliberate.</p>
+        </section>
+
+        <section class="topic-section" id="real-life">
+          <h2>3. Real-Life Example</h2>
+          <p>Like a live interpreter at a conference translating a speaker's sentences one at a time, in real time, as the speech happens — versus a translator who translates an entire document in advance, before anyone reads a single word of it (the compiler). The live interpreter never produces a saved, complete translated transcript ahead of time; they translate live, every single time the speech is given. The document translator does the work once, up front, so the finished translation can be read instantly, as many times as needed, without retranslating.</p>
+        </section>
+
+        <section class="topic-section" id="visual">
+          <h2>4. Visual Explanation</h2>
+          <p>Two very different strategies for getting from source code to running behavior:</p>
+          <div class="compare-grid">
+            <div>
+              <h3>Compiled (C)</h3>
+              <div class="flowchart">
+                <div class="flow-box flow-box-start"><span>Source Code</span></div>
+                <div class="flow-arrow"></div>
+                <div class="flow-box"><span>Compile Once</span></div>
+                <div class="flow-arrow"></div>
+                <div class="flow-box"><span>Executable</span></div>
+                <div class="flow-arrow"></div>
+                <div class="flow-box flow-box-end"><span>Run Many Times</span></div>
+              </div>
+            </div>
+            <div>
+              <h3>Interpreted</h3>
+              <div class="flowchart">
+                <div class="flow-box flow-box-start"><span>Source Code</span></div>
+                <div class="flow-arrow"></div>
+                <div class="flow-box flow-box-end"><span>Read + Run Line by Line, Every Time</span></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mistakes">
+          <h2>5. Common Mistakes</h2>
+          <ul class="mistake-list">
+            <li>Assuming interpreted languages don't get translated at all — they do, just differently: line by line, at run time, instead of all at once ahead of time.</li>
+            <li>Assuming C is interpreted — it isn't. C is a compiled language; it always goes through the full compile-then-run pipeline covered earlier in this chapter.</li>
+            <li>Assuming interpreters and compilers are just two names for the same thing — they represent two genuinely different strategies for getting from source code to running behavior.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="debugging">
+          <h2>6. Debugging Tips</h2>
+          <p>Interpreted languages often report errors as soon as they hit the bad line during execution — the program may have already printed output from earlier, correct lines before it fails. Compiled languages like C, by contrast, catch many errors earlier, during compilation, before the program ever runs at all. This is useful context when comparing debugging experiences across languages: a C program that compiles has already passed a syntax check that an interpreted script simply hasn't, because that script isn't checked until each line is actually reached.</p>
+        </section>
+
+        <section class="topic-section" id="best-practices">
+          <h2>7. Best Practices</h2>
+          <ul class="best-practice-list">
+            <li>Recognize which category — compiled or interpreted — a new language falls into early, before you start writing serious code in it.</li>
+            <li>Knowing the category changes your expectations for speed, startup behavior, and when errors will surface.</li>
+            <li>Don't assume every language behaves like C; always check whether it's compiled, interpreted, or something else before comparing performance or debugging habits.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="interview">
+          <h2>8. Interview Questions</h2>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Easy:</strong> What is an interpreter?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>A program that reads and executes source code directly, line by line, without a separate compile step producing an executable.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Medium:</strong> Is C interpreted or compiled?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Compiled — C source code is translated into an executable ahead of time, before it's ever run.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Hard:</strong> Why might a compiled program run faster than an interpreted one?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Compiled programs are translated once, ahead of time, into efficient machine code; interpreted programs are translated on the fly, every run, which adds overhead.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>HR:</strong> Have you used any interpreted languages before (e.g. Python)?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>There's no fixed right answer — a strong response names a specific interpreted language you've used and briefly describes what running it felt like compared to a compiled language like C.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Conceptual:</strong> Do interpreted languages skip translation entirely?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>No — they still translate, just line-by-line at run time instead of all at once beforehand.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Scenario-based:</strong> You run an interpreted script and it crashes on line 50 after printing output from lines 1-49 — why did it get that far before failing?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Because each line executes as it's reached; the earlier lines had already run successfully before the interpreter reached the bad one on line 50.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mcq">
+          <h2>9. MCQs</h2>
+          <div class="quiz" data-quiz-source="interpreterQuiz"></div>
+        </section>
+
+        <section class="topic-section" id="exercises">
+          <h2>10. Programming Exercises</h2>
+          <p><strong>Easy:</strong> Is C compiled or interpreted?</p>
+          <p><strong>Medium:</strong> Name one interpreted language you've heard of.</p>
+          <p><strong>Hard:</strong> Research one advantage interpreted languages have over compiled ones (for example, faster iteration during development).</p>
+        </section>
+
+        <section class="topic-section" id="assignments">
+          <h2>11. Assignments</h2>
+          <p>Write a paragraph comparing compiled and interpreted languages, using the conference-interpreter analogy from this page: explain which one behaves like the live interpreter translating on the spot, and which one behaves like the translator who prepares an entire document in advance.</p>
+        </section>
+
+        <section class="topic-section" id="faq">
+          <h2>12. FAQs</h2>
+          <p><strong>Q: Is one approach objectively better?</strong><br>A: No — each has tradeoffs. Compiled languages favor speed and catching errors early; interpreted languages favor flexibility and fast iteration during development.</p>
+          <p><strong>Q: Can a language be both?</strong><br>A: Some languages and runtimes blend both strategies, but that's beyond the scope of this course.</p>
+        </section>
+
+        <section class="topic-section" id="takeaways">
+          <h2>13. Key Takeaways</h2>
+          <ul>
+            <li>An interpreter reads and executes source code directly, line by line, without first producing a standalone executable.</li>
+            <li>Compiled languages translate once ahead of time and run the result many times; interpreted languages translate and run each line every time the program runs.</li>
+            <li>C is a compiled language, not an interpreted one.</li>
+          </ul>
+        </section>
+
+        <div class="topic-nav-footer">
+          <a href="loader.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Previous: Loader</a>
+          <a href="compilers-and-interpreters.html" class="btn btn-primary">Next: Compilers &amp; Interpreters <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for absolute beginners. &copy; 2026 C Programming eBook.</p>
+  </footer>
+
+</div>
+
+<div class="search-panel" id="search-panel" data-open="false">
+  <div class="search-panel-inner">
+    <div class="search-input-row">
+      <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+      <input type="text" id="search-input" placeholder="Search topics... (Ctrl+K)">
+      <button class="icon-btn" id="search-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="search-results" id="search-results"></ul>
+  </div>
+</div>
+
+<script>
+window.interpreterQuiz = [
+  { question: "What is an interpreter?", options: ["A program that reads and executes source code directly, line by line, without producing an executable first", "A program that only checks syntax without running anything", "A tool that links object files together", "A hardware component that runs machine code"], correctIndex: 0, explanation: "An interpreter reads source code and executes it directly, line by line, rather than translating the whole program ahead of time into a standalone executable." },
+  { question: "Which best describes the compiled approach used by C?", options: ["Source is read and run line by line, every time, with no separate executable", "Source is compiled once into an executable, which can then be run many times", "Source is never translated at all", "Source is translated only if it fails to run"], correctIndex: 1, explanation: "C follows the compiled model: translation happens once, ahead of time, producing an executable that can be run repeatedly without retranslating." },
+  { question: "Is C an interpreted language?", options: ["Yes, C is always interpreted", "No, C is a compiled language", "C is interpreted only on some operating systems", "C has no defined translation strategy"], correctIndex: 1, explanation: "C is compiled — its source code is translated ahead of time into a standalone executable, unlike interpreted languages." },
+  { question: "Why can a compiled program often run faster than an interpreted one?", options: ["Compiled programs are translated once ahead of time into efficient machine code, while interpreted programs are translated on the fly every run", "Interpreted programs skip translation entirely", "Compiled programs always use less memory", "Interpreters can only run one line of code ever"], correctIndex: 0, explanation: "Because compilation happens once ahead of time, the resulting machine code runs without repeated translation overhead, unlike an interpreter that translates every time it runs." },
+  { question: "How does error-timing typically differ between compiled and interpreted languages?", options: ["Compiled languages never produce errors", "Compiled languages like C often catch many errors earlier, during compilation, while interpreted languages report errors when execution reaches the bad line", "Interpreted languages catch all errors before running anything", "There is no difference in when errors appear"], correctIndex: 1, explanation: "Compilers check the whole program up front, catching many errors before the program runs; interpreters instead surface errors only once execution actually reaches the problematic line." }
+];
+</script>
+<script src="../../js/theme.js"></script>
+<script src="../../js/sidebar.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/quiz.js"></script>
+<script src="../../js/copy-code.js"></script>
+<script src="../../js/accordion.js"></script>
+</body>
+</html>
