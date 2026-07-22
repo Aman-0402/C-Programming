@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loader — Unit 1 — C Programming eBook</title>
+<meta name="description" content="Learn what the loader does, how it takes a compiled executable and places it into memory so the CPU can begin execution, and how this connects to the execution process.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="../../css/variables.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/diagrams.css">
+<link rel="stylesheet" href="../../css/quiz.css">
+
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<style>
+  .topic-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-6); align-items: start; }
+  .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
+  .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
+  .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
+</style>
+</head>
+<body>
+
+<button class="icon-btn theme-toggle-float" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+  <i class="fa-solid fa-sun icon-sun"></i>
+  <i class="fa-solid fa-moon icon-moon"></i>
+</button>
+
+<div class="social-float">
+  <a class="icon-btn" href="https://github.com/Aman-0402" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+    <i class="fa-brands fa-github"></i>
+  </a>
+  <a class="icon-btn" href="https://www.linkedin.com/in/aman-raj-081905211/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+</div>
+
+<div class="shell" id="shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo" style="margin-bottom: var(--space-5);">
+      <a href="../../index.html" class="logo">
+        <i class="fa-solid fa-code" style="color: var(--color-primary);"></i><span class="sidebar-label"> C Programming eBook</span>
+      </a>
+    </div>
+
+    <button class="icon-btn" id="sidebar-collapse" aria-label="Collapse sidebar" style="margin-bottom: var(--space-4);">
+      <i class="fa-solid fa-angles-left"></i>
+    </button>
+
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 1</span></div>
+      <button type="button" class="sidebar-link sidebar-toggle" id="unit1-toggle" aria-expanded="false">
+        <i class="fa-solid fa-book"></i><span class="sidebar-label">Unit 1</span>
+        <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+      </button>
+      <div class="sidebar-submenu" id="unit1-submenu">
+      <a class="sidebar-link" href="evolution-of-programming.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="sidebar-label">Evolution of Programming</span></a>
+      <a class="sidebar-link" href="programming-languages.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Programming Languages</span></a>
+      <a class="sidebar-link" href="problem-solving.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Problem Solving</span></a>
+      <a class="sidebar-link" href="sequential-logic.html"><i class="fa-solid fa-list-ol"></i><span class="sidebar-label">Sequential Logic</span></a>
+      <a class="sidebar-link" href="algorithms.html"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-label">Algorithms</span></a>
+      <a class="sidebar-link" href="pseudocode.html"><i class="fa-solid fa-file-lines"></i><span class="sidebar-label">Pseudocode</span></a>
+      <a class="sidebar-link" href="flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
+      <a class="sidebar-link" href="introduction-to-c.html"><i class="fa-solid fa-c"></i><span class="sidebar-label">Introduction to C</span></a>
+      <a class="sidebar-link" href="history-of-c.html"><i class="fa-solid fa-scroll"></i><span class="sidebar-label">History of C</span></a>
+      <a class="sidebar-link" href="features-of-c.html"><i class="fa-solid fa-star"></i><span class="sidebar-label">Features of C</span></a>
+      <a class="sidebar-link" href="applications-of-c.html"><i class="fa-solid fa-industry"></i><span class="sidebar-label">Applications</span></a>
+      <a class="sidebar-link" href="structure-of-c-program.html"><i class="fa-solid fa-code"></i><span class="sidebar-label">Structure of C Program</span></a>
+      <a class="sidebar-link" href="c-compiler.html"><i class="fa-solid fa-gears"></i><span class="sidebar-label">C Compiler</span></a>
+      <a class="sidebar-link" href="compilation-process.html"><i class="fa-solid fa-arrows-turn-right"></i><span class="sidebar-label">Compilation Process</span></a>
+      <a class="sidebar-link" href="source-code.html"><i class="fa-solid fa-file-code"></i><span class="sidebar-label">Source Code</span></a>
+      <a class="sidebar-link" href="object-code.html"><i class="fa-solid fa-cube"></i><span class="sidebar-label">Object Code</span></a>
+      <a class="sidebar-link" href="executable-code.html"><i class="fa-solid fa-play"></i><span class="sidebar-label">Executable Code</span></a>
+      <a class="sidebar-link" href="execution-process.html"><i class="fa-solid fa-microchip"></i><span class="sidebar-label">Execution Process</span></a>
+      <a class="sidebar-link" href="assembler.html"><i class="fa-solid fa-wrench"></i><span class="sidebar-label">Assembler</span></a>
+      <a class="sidebar-link" href="linker.html"><i class="fa-solid fa-link"></i><span class="sidebar-label">Linker</span></a>
+      <a class="sidebar-link active" href="loader.html"><i class="fa-solid fa-upload"></i><span class="sidebar-label">Loader</span></a>
+      <a class="sidebar-link" href="interpreter.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Interpreter</span></a>
+      <a class="sidebar-link" href="compilers-and-interpreters.html"><i class="fa-solid fa-code-compare"></i><span class="sidebar-label">Compilers &amp; Interpreters</span></a>
+      <a class="sidebar-link" href="operating-systems.html"><i class="fa-solid fa-desktop"></i><span class="sidebar-label">Operating Systems</span></a>
+      <a class="sidebar-link" href="debugging.html"><i class="fa-solid fa-bug"></i><span class="sidebar-label">Debugging</span></a>
+      </div>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 2</span></div>
+      <a class="sidebar-link" href="../unit2/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">C Building Blocks &amp; Data Types</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 3</span></div>
+      <a class="sidebar-link" href="../unit3/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Control Statements</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 4</span></div>
+      <a class="sidebar-link" href="../unit4/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Strings, Functions &amp; Pointers</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 5</span></div>
+      <a class="sidebar-link" href="../unit5/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Structures, Files &amp; Memory Management</span></a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="topic-layout">
+      <div>
+        <h1>Loader</h1>
+        <p class="lead">The operating system component that takes a finished executable and places it into memory, right before the CPU begins running it.</p>
+
+        <section class="topic-section" id="introduction">
+          <h2>1. What Is It?</h2>
+          <p>The loader is the operating system component that takes a compiled executable file and loads it into memory so the CPU can begin executing it. This is the very first thing that happens during the execution process covered earlier — before any instruction runs, the loader has to get the program into memory and ready to go.</p>
+        </section>
+
+        <section class="topic-section" id="why">
+          <h2>2. Why Do We Need to Know This?</h2>
+          <p>This directly ties back to the execution process: "the OS loads the executable into memory" was described there as just one step in a bigger picture. Here, that step gets its own name and its own detail — the loader is the specific component responsible for doing exactly that.</p>
+        </section>
+
+        <section class="topic-section" id="real-life">
+          <h2>3. Real-Life Example</h2>
+          <p>Like a stage crew setting up all the props and actors in position before a play can begin. The audience never sees this preparation, but nothing can start until it's done. In the same way, the loader arranges a program in memory before the CPU ever runs its first instruction.</p>
+        </section>
+
+        <section class="topic-section" id="visual">
+          <h2>4. Visual Explanation</h2>
+          <p>Here is how an executable becomes a running program:</p>
+          <div class="flowchart">
+            <div class="flow-box flow-box-start"><span>Executable (on disk)</span></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box"><span>Loader</span></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box"><span>Executable (in Memory, ready to run)</span></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box flow-box-end"><span>CPU Begins Execution</span></div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mistakes">
+          <h2>5. Common Mistakes</h2>
+          <ul class="mistake-list">
+            <li>Assuming loading and execution are the same step — loading prepares memory; execution is the CPU actually running instructions afterward.</li>
+            <li>Assuming the loader is part of the compiler — it's actually part of the operating system, used at run time, not build time.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="debugging">
+          <h2>6. Debugging Tips</h2>
+          <p>If a program fails to even start — rather than misbehaving after starting — the issue is more likely a loading problem, such as a missing shared library it depends on, than a logic bug in your own code. A program that never produces any output at all, not even a partial one, is a strong hint to look at what the loader needed rather than at your program's logic.</p>
+        </section>
+
+        <section class="topic-section" id="best-practices">
+          <h2>7. Best Practices</h2>
+          <ul class="best-practice-list">
+            <li>Understand loading as a run-time operating system responsibility, separate from the build-time compiler and linker steps.</li>
+            <li>Remember that loading happens fresh every single time you run a program, not just once.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="interview">
+          <h2>8. Interview Questions</h2>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Easy:</strong> What does the loader do?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>It loads an executable into memory so it can run.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Medium:</strong> Is loading part of compilation or execution?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Execution — it happens every time you run the program, not once at build time.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Hard:</strong> What's the practical difference between loading and executing?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Loading arranges the program in memory first; executing is the CPU then actually carrying out its instructions.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>HR:</strong> Why might understanding background OS steps like loading be useful?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>There's no single right answer — a strong response might mention that it builds better debugging intuition, since knowing what happens behind the scenes helps you reason about where a problem is likely coming from.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Conceptual:</strong> Is the loader part of the compiler toolchain or the OS?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>The operating system.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span><strong>Scenario-based:</strong> A program fails to start at all, with no output — is this more likely a loader issue or a logic bug?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>More likely a loading issue, such as a missing dependency, since logic bugs usually show up after a program has already started running.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="mcq">
+          <h2>9. MCQs</h2>
+          <div class="quiz" data-quiz-source="loaderQuiz"></div>
+        </section>
+
+        <section class="topic-section" id="exercises">
+          <h2>10. Programming Exercises</h2>
+          <p><strong>Easy:</strong> From memory, state what the loader does.</p>
+          <p><strong>Medium:</strong> Explain, in your own words, the difference between loading and execution.</p>
+          <p><strong>Hard:</strong> Research what a "shared library" (<code>.dll</code> or <code>.so</code>) is and why a loader needs to find them at run time.</p>
+        </section>
+
+        <section class="topic-section" id="assignments">
+          <h2>11. Assignments</h2>
+          <p>Write a short paragraph explaining loading using the stage-crew analogy — describe what the "crew" sets up, and why the "play" (execution) cannot begin until that setup is complete.</p>
+        </section>
+
+        <section class="topic-section" id="faq">
+          <h2>12. FAQs</h2>
+          <p><strong>Q: Does loading happen every time I run a program?</strong><br>A: Yes — it happens fresh each time, not just once.</p>
+          <p><strong>Q: Is the loader something I write code for?</strong><br>A: No — it's an operating system component you never call directly.</p>
+        </section>
+
+        <section class="topic-section" id="takeaways">
+          <h2>13. Key Takeaways</h2>
+          <ul>
+            <li>The loader is the OS component that takes an executable and places it into memory so it can run.</li>
+            <li>Loading prepares memory; execution is the separate, later step where the CPU actually runs the instructions.</li>
+            <li>Loading is an operating system responsibility that happens at run time, not part of the compiler toolchain.</li>
+          </ul>
+        </section>
+
+        <div class="topic-nav-footer">
+          <a href="linker.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Previous: Linker</a>
+          <a href="interpreter.html" class="btn btn-primary">Next: Interpreter <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for absolute beginners. &copy; 2026 C Programming eBook.</p>
+  </footer>
+
+</div>
+
+<div class="search-panel" id="search-panel" data-open="false">
+  <div class="search-panel-inner">
+    <div class="search-input-row">
+      <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+      <input type="text" id="search-input" placeholder="Search topics... (Ctrl+K)">
+      <button class="icon-btn" id="search-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="search-results" id="search-results"></ul>
+  </div>
+</div>
+
+<script>
+window.loaderQuiz = [
+  { question: "What is the loader's main job?", options: ["To translate source code into object code", "To take a compiled executable and load it into memory so the CPU can run it", "To combine multiple object files into one", "To remove comments from source code"], correctIndex: 1, explanation: "The loader is the operating system component that places a compiled executable into memory so the CPU can begin executing its instructions." },
+  { question: "When does loading happen relative to running a program?", options: ["Only once, when the program is first compiled", "Every single time the program is run", "Only during the linking stage", "Only if the program crashes"], correctIndex: 1, explanation: "Loading is a run-time step that happens fresh every time you run a program, not a one-time build-time step." },
+  { question: "Is the loader part of the compiler or the operating system?", options: ["The compiler", "A text editor", "The operating system", "The linker's internal cache"], correctIndex: 2, explanation: "The loader is an operating system component, used at run time, separate from the compiler toolchain that runs at build time." },
+  { question: "What is the correct order of events when a program starts?", options: ["CPU executes, then the loader loads the executable", "The loader loads the executable into memory, then the CPU begins execution", "Execution and loading happen at the exact same instant with no order", "The linker loads the executable directly into the CPU"], correctIndex: 1, explanation: "The loader must first place the executable into memory before the CPU can begin carrying out its instructions." },
+  { question: "A program fails to start at all, producing no output whatsoever. What is this most likely a sign of?", options: ["A syntax error in the source code", "A logic bug inside main()", "A loading problem, such as a missing shared library", "A missing return statement"], correctIndex: 2, explanation: "Failures before a program even starts running point toward a loading problem, such as an unresolved dependency, rather than a logic bug that would normally surface after execution begins." }
+];
+</script>
+<script src="../../js/theme.js"></script>
+<script src="../../js/sidebar.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/quiz.js"></script>
+<script src="../../js/copy-code.js"></script>
+<script src="../../js/accordion.js"></script>
+</body>
+</html>
