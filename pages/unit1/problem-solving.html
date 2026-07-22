@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Problem Solving — Unit 1 — C Programming eBook</title>
-<meta name="description" content="Why coding is the last step, not the first — learn the Understand, Plan, Divide, Solve framework used before writing any C program.">
+<title>Problem Solving with Sequential Logic Structure — Unit 1 — C Programming eBook</title>
+<meta name="description" content="What problem solving and logic mean in programming, and how the sequential logic structure executes statements one after another, with C examples.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -70,8 +70,7 @@
       </button>
       <div class="sidebar-submenu" id="unit1-submenu">
       <a class="sidebar-link" href="evolution-of-programming.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="sidebar-label">Evolution of Programming &amp; Languages</span></a>
-      <a class="sidebar-link active" href="problem-solving.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Problem Solving</span></a>
-      <a class="sidebar-link" href="sequential-logic.html"><i class="fa-solid fa-list-ol"></i><span class="sidebar-label">Sequential Logic</span></a>
+      <a class="sidebar-link" href="problem-solving.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Problem Solving &amp; Sequential Logic</span></a>
       <a class="sidebar-link" href="algorithms.html"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-label">Algorithms</span></a>
       <a class="sidebar-link" href="pseudocode.html"><i class="fa-solid fa-file-lines"></i><span class="sidebar-label">Pseudocode</span></a>
       <a class="sidebar-link" href="flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
@@ -153,167 +152,400 @@
   <main class="content">
     <div class="topic-layout">
       <div>
-        <h1>Problem Solving</h1>
-        <p class="lead">Before you write a single line of C, you need a plan. Coding is the <em>last</em> step of problem solving — not the first.</p>
+        <h1>Problem Solving with Sequential Logic Structure</h1>
+        <p class="lead">Before you write a single line of C, you need to understand what problem solving and logic actually mean — and how the simplest control structure of all, sequential logic, executes your instructions one after another.</p>
 
-        <section class="topic-section" id="introduction">
-          <h2>1. What Is It?</h2>
-          <p>Problem solving in programming means figuring out <em>what</em> you need to do and <em>how</em> before you touch a keyboard to write code. It follows a repeatable four-stage framework:</p>
+        <section class="topic-section" id="problem-solving">
+          <h2>1. What is Problem Solving?</h2>
+          <p><strong>Problem Solving</strong> is the process of understanding a problem, finding a solution, and then implementing it in a programming language.</p>
+          <p><strong>Problem:</strong> You are hungry.</p>
+          <p><strong>Solution Steps:</strong></p>
           <ol>
-            <li><strong>Understand</strong> — read the problem carefully and be sure you know exactly what is being asked, what inputs you have, and what output is expected.</li>
-            <li><strong>Plan</strong> — decide on a general approach or strategy for solving it, without worrying about syntax yet.</li>
-            <li><strong>Divide</strong> — break the problem into smaller, more manageable sub-problems.</li>
-            <li><strong>Solve</strong> — work out a solution for each sub-problem, one at a time.</li>
+            <li>Go to the kitchen.</li>
+            <li>Take bread and butter.</li>
+            <li>Apply butter on bread.</li>
+            <li>Eat the bread.</li>
           </ol>
-          <p>Only after all four stages are done does writing actual code make sense. Coding is where you translate a plan into a language the computer understands — it is not where thinking happens.</p>
+          <p>You don't start eating before making the bread! The steps happen in the correct order. Programming works the same way.</p>
         </section>
 
-        <section class="topic-section" id="why">
-          <h2>2. Why Do We Need to Know This?</h2>
-          <p>The single most common failure for beginners is not a syntax error — it's opening an editor and typing code before they actually understand the problem. This leads to programs that are half-built, contradict themselves, or solve the wrong problem entirely. Learning to pause and work through Understand → Plan → Divide → Solve <em>before</em> coding prevents the single biggest source of beginner frustration.</p>
+        <section class="topic-section" id="logic">
+          <h2>2. What is Logic?</h2>
+          <p><strong>Logic</strong> is the sequence of decisions or steps used to solve a problem. A programmer thinks logically before writing code.</p>
+          <p><strong>Problem:</strong> Find the area of a rectangle.</p>
+          <p><strong>Logic:</strong></p>
+          <ol>
+            <li>Read length.</li>
+            <li>Read width.</li>
+            <li>Multiply them.</li>
+            <li>Display the result.</li>
+          </ol>
+          <p>Simple formula:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Formula</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>Area = Length &times; Width</pre>
+          </div>
         </section>
 
-        <section class="topic-section" id="real-life">
-          <h2>3. Real-Life Example</h2>
-          <p>Think about planning a trip. You don't start packing a suitcase before you've decided where you're going. The natural order is: understand the goal (where and why you're traveling), plan the approach (budget, dates, mode of transport), then break the plan into smaller tasks — book transport, arrange accommodation, pack, plan a route for each day — and finally do each one. Skipping straight to "packing" without a destination or budget wastes time and often produces a trip that doesn't actually work.</p>
-        </section>
-
-        <section class="topic-section" id="visual">
-          <h2>4. Visual Explanation</h2>
+        <section class="topic-section" id="sequential-structure">
+          <h2>3. What is a Sequential Logic Structure?</h2>
+          <p>A <strong>Sequential Logic Structure</strong> means that <strong>statements execute one after another in the order they are written</strong>, without skipping or repeating. It is the <strong>simplest control structure</strong> in programming.</p>
           <div class="flowchart">
-            <div class="flow-box flow-box-start">Understand</div>
+            <div class="flow-box flow-box-start">Start</div>
             <div class="flow-arrow"></div>
-            <div class="flow-box">Plan</div>
+            <div class="flow-box">Step 1</div>
             <div class="flow-arrow"></div>
-            <div class="flow-box">Divide</div>
+            <div class="flow-box">Step 2</div>
             <div class="flow-arrow"></div>
-            <div class="flow-box flow-box-end">Solve</div>
+            <div class="flow-box">Step 3</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box flow-box-end">Stop</div>
           </div>
-          <p>This isn't strictly a one-way street. If the result you get doesn't match the goal you started with, re-check from <strong>Understand</strong> again — you may have misread the problem, planned the wrong approach, or split it into the wrong sub-problems.</p>
+          <p>Every step is executed exactly once.</p>
         </section>
 
-        <section class="topic-section" id="mistakes">
-          <h2>5. Common Mistakes</h2>
-          <ul class="mistake-list">
-            <li>Jumping straight to writing code before understanding the problem.</li>
-            <li>Trying to solve a big problem all at once instead of breaking it into smaller ones.</li>
-            <li>Assuming the first idea that comes to mind is the only possible approach.</li>
+        <section class="topic-section" id="example-tea">
+          <h2>4. Example 1: Making Tea</h2>
+          <p>Imagine making tea.</p>
+          <div class="flowchart">
+            <div class="flow-box flow-box-start">Start</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Boil water</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Add tea leaves</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Add sugar</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Add milk</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Serve tea</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box flow-box-end">Stop</div>
+          </div>
+          <p>If you add milk before boiling water, the process won't work correctly. This is why <strong>order matters</strong>.</p>
+        </section>
+
+        <section class="topic-section" id="example-add">
+          <h2>5. Example 2: Add Two Numbers</h2>
+          <p>Suppose:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Given</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>A = 10
+B = 20</pre>
+          </div>
+          <p>Steps:</p>
+          <div class="flowchart">
+            <div class="flow-box flow-box-start">Start</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Read A</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Read B</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Sum = A + B</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Print Sum</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box flow-box-end">Stop</div>
+          </div>
+          <p>Output:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Output</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>30</pre>
+          </div>
+        </section>
+
+        <section class="topic-section" id="c-program">
+          <h2>6. C Program Example</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>add.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>#include &lt;stdio.h&gt;
+
+int main()
+{
+    int a = 10;
+    int b = 20;
+    int sum;
+
+    sum = a + b;
+
+    printf("Sum = %d", sum);
+
+    return 0;
+}</pre>
+          </div>
+          <p><strong>Execution Order</strong></p>
+          <ol>
+            <li>Declare variables</li>
+            <li>Store values</li>
+            <li>Calculate sum</li>
+            <li>Print result</li>
+            <li>End program</li>
+          </ol>
+          <p>Every line executes <strong>from top to bottom</strong>.</p>
+        </section>
+
+        <section class="topic-section" id="example-percentage">
+          <h2>7. Another Example: Student Percentage</h2>
+          <p>Suppose:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Given</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>Marks = 450
+Total = 500</pre>
+          </div>
+          <p>Formula:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Formula</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>Percentage = (Marks &times; 100) / Total</pre>
+          </div>
+          <p>Steps:</p>
+          <div class="flowchart">
+            <div class="flow-box flow-box-start">Start</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Read Marks</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Read Total</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Calculate Percentage</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Display Percentage</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box flow-box-end">Stop</div>
+          </div>
+          <p>Output:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Output</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>90%</pre>
+          </div>
+        </section>
+
+        <section class="topic-section" id="characteristics">
+          <h2>8. Characteristics of Sequential Logic</h2>
+          <ul>
+            <li>Executes statements one by one.</li>
+            <li>No conditions (<code>if</code>, <code>else</code>).</li>
+            <li>No loops (<code>for</code>, <code>while</code>).</li>
+            <li>Easy to understand.</li>
+            <li>Used in almost every program.</li>
           </ul>
         </section>
 
-        <section class="topic-section" id="debugging">
-          <h2>6. Debugging Tips</h2>
-          <p>When you get stuck, don't stare harder at code that doesn't exist yet. Go back one stage instead: re-read the problem statement first, not any code or notes you've already written. Most "stuck" moments are actually a sign that the <em>Understand</em> or <em>Divide</em> stage was rushed, not that the sub-problem itself is unsolvable.</p>
-        </section>
-
-        <section class="topic-section" id="best-practices">
-          <h2>7. Best Practices</h2>
-          <ul class="best-practice-list">
-            <li>Restate the problem in your own words before attempting to solve it — if you can't, you don't understand it yet.</li>
-            <li>Write down the inputs you're given and the exact output you expect before attempting a solution.</li>
-            <li>If a problem feels too big, solve a smaller or simpler version of it first, then build up from there.</li>
+        <section class="topic-section" id="advantages">
+          <h2>9. Advantages</h2>
+          <ul>
+            <li>Very simple.</li>
+            <li>Easy to debug.</li>
+            <li>Easy to read.</li>
+            <li>Best for beginner programs.</li>
+            <li>Suitable for straightforward calculations.</li>
           </ul>
         </section>
 
-        <section class="topic-section" id="interview">
-          <h2>8. Interview Questions</h2>
+        <section class="topic-section" id="limitations">
+          <h2>10. Limitations</h2>
+          <ul>
+            <li>Cannot make decisions.</li>
+            <li>Cannot repeat tasks automatically.</li>
+            <li>Not suitable for complex programs.</li>
+          </ul>
+          <p>Example: A login system needs to check whether the password is correct. Sequential logic alone cannot do this — you need decision-making (<code>if-else</code>).</p>
+        </section>
 
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Easy:</strong> What are the steps of problem solving in programming?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>Understand, Plan, Divide, Solve — in that order. Coding only happens at the very end, once the problem is understood and broken into manageable sub-problems.</p>
-            </div>
-          </div>
+        <section class="topic-section" id="where-used">
+          <h2>11. Where is Sequential Logic Used?</h2>
+          <ul>
+            <li>Calculator programs</li>
+            <li>Area and perimeter calculations</li>
+            <li>Unit conversions</li>
+            <li>Temperature conversion</li>
+            <li>Simple billing systems</li>
+            <li>Basic mathematical operations</li>
+          </ul>
+        </section>
 
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Medium:</strong> Why is understanding the problem more important than writing code quickly?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>Code that solves the wrong problem is useless no matter how fast it was written. Beginners' most common failure is starting to code before they've understood what's actually being asked, leading to wasted effort and confusing bugs.</p>
-            </div>
+        <section class="topic-section" id="real-life-examples">
+          <h2>12. Real-Life Examples</h2>
+          <p><strong>ATM Cash Withdrawal</strong></p>
+          <div class="flowchart">
+            <div class="flow-box flow-box-start">Insert Card</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Enter PIN</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Select Amount</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Receive Cash</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box flow-box-end">Take Card</div>
           </div>
+          <p><strong>Online Food Order</strong></p>
+          <div class="flowchart">
+            <div class="flow-box flow-box-start">Open App</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Select Food</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Add to Cart</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Pay</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box flow-box-end">Order Confirmed</div>
+          </div>
+          <p>Each step happens in sequence.</p>
+        </section>
 
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Hard:</strong> How would you break down "sort a list of names alphabetically" into smaller sub-problems?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>For example: (1) read in the list of names, (2) compare two names to decide their alphabetical order, (3) repeatedly compare and swap/reposition names until the whole list is ordered, (4) output the sorted list. Each of these becomes its own smaller, solvable piece.</p>
-            </div>
-          </div>
+        <section class="topic-section" id="facts">
+          <h2>13. Interesting Facts 💡</h2>
+          <ul>
+            <li>Every program starts with sequential execution.</li>
+            <li>Even advanced software like games or web browsers execute instructions sequentially unless a condition or loop changes the flow.</li>
+            <li>There are <strong>three basic control structures</strong> in programming: Sequential, Selection (Decision Making), and Iteration (Loops).</li>
+          </ul>
+        </section>
 
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>HR:</strong> Tell me about a time you solved a difficult problem — what was your approach?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>There's no fixed answer — interviewers want to hear your process. A strong answer mirrors this framework: how you made sure you understood the real problem first, how you planned an approach, how you broke it into smaller pieces, and only then how you solved it.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Conceptual:</strong> What does "decomposition" mean in problem solving?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>Decomposition is breaking a large, complex problem into smaller, more manageable sub-problems — each easier to understand, solve, and verify on its own than the original problem as a whole.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Scenario-based:</strong> A user reports your program gives the wrong output sometimes — what's your first step?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>Re-check your understanding of the original problem and its expected behavior before touching the code — many "bugs" turn out to be a misunderstanding of what the program was actually supposed to do in that situation.</p>
-            </div>
-          </div>
+        <section class="topic-section" id="revision">
+          <h2>14. Quick Revision</h2>
+          <ul>
+            <li>Problem solving means finding a logical solution before coding.</li>
+            <li>Logic is the sequence of steps used to solve a problem.</li>
+            <li>Sequential logic executes instructions <strong>top to bottom</strong>.</li>
+            <li>No decisions or loops are involved.</li>
+            <li>It is the first and simplest control structure.</li>
+          </ul>
         </section>
 
         <section class="topic-section" id="mcq">
-          <h2>9. MCQs</h2>
+          <h2>15. MCQs</h2>
           <div class="quiz" data-quiz-source="problemSolvingQuiz"></div>
         </section>
 
-        <section class="topic-section" id="exercises">
-          <h2>10. Programming Exercises</h2>
-          <p><strong>Easy:</strong> Write out the four stages of problem solving (Understand, Plan, Divide, Solve) from memory, with a one-sentence description of each.</p>
-          <p><strong>Medium:</strong> Break "plan a birthday party" into at least 5 sub-problems.</p>
-          <p><strong>Hard:</strong> Take the problem "find the largest number in a list of 10 numbers" and write out Understand / Plan / Divide / Solve for it in plain English — no code needed. (You'll turn this into actual logic in the Sequential Logic and Algorithms topics.)</p>
+        <section class="topic-section" id="interview">
+          <h2>16. Interview Questions</h2>
+
+          <h3>Beginner</h3>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What is problem solving in programming?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Problem solving is the process of understanding a problem, finding a solution, and then implementing it in a programming language.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What is logic in programming?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Logic is the sequence of decisions or steps used to solve a problem — a programmer thinks logically before writing code.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What is sequential logic?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Sequential logic means statements execute one after another in the order they are written, without skipping or repeating — it's the simplest control structure in programming.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Why is sequential execution important?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Because order determines correctness — a step run before its required input is ready produces wrong or undefined results. Every program relies on this default before any decisions or loops are added.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Give two real-life examples of sequential logic.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>ATM cash withdrawal (insert card → enter PIN → select amount → receive cash → take card) and making tea (boil water → add tea leaves → add sugar → add milk → serve).</p>
+            </div>
+          </div>
+
+          <h3>Intermediate</h3>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Differentiate between sequential, selection, and iteration structures.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Sequential runs statements one after another with no branching or repetition. Selection (decision making, e.g. <code>if-else</code>) chooses between different paths based on a condition. Iteration (loops, e.g. <code>for</code>, <code>while</code>) repeats a set of statements multiple times.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Why can't sequential logic alone implement a login system?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>A login system must check whether the entered password is correct and respond differently depending on the result — that requires decision-making (<code>if-else</code>), which sequential logic alone doesn't provide.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Explain the Input &rarr; Process &rarr; Output model with an example.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Input is data the program reads (e.g. two numbers), Process is what it does with that data (e.g. adding them), and Output is the result shown to the user (e.g. printing the sum). Sequential logic naturally follows this order: read inputs, process them, then output the result.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Where is sequential logic used in real-world software?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>In calculator programs, area/perimeter calculations, unit and temperature conversions, simple billing systems, and any straightforward step-by-step calculation without branching or repetition.</p>
+            </div>
+          </div>
         </section>
 
-        <section class="topic-section" id="assignments">
-          <h2>11. Assignments</h2>
-          <p>Pick any everyday task — making a sandwich, doing laundry, packing a school bag — and write it out fully using the four-stage framework: Understand, Plan, Divide, Solve.</p>
-        </section>
-
-        <section class="topic-section" id="faq">
-          <h2>12. FAQs</h2>
-          <p><strong>Q: Do I have to follow these 4 stages formally every time?</strong><br>A: Not rigidly — but internalizing the habit prevents most beginner mistakes, even once it becomes automatic and you're not writing each stage down.</p>
-          <p><strong>Q: What if I can't break the problem down?</strong><br>A: Try solving a smaller or simpler version of the problem first, then build up from there.</p>
-        </section>
-
-        <section class="topic-section" id="takeaways">
-          <h2>13. Key Takeaways</h2>
-          <ul>
-            <li>Problem solving follows a repeatable four-stage framework: Understand, Plan, Divide, Solve.</li>
-            <li>Decomposition — breaking a big problem into smaller sub-problems — makes even large problems manageable.</li>
-            <li>Coding is the last step of problem solving, not the first.</li>
-          </ul>
+        <section class="topic-section" id="practice">
+          <h2>17. Practice Questions</h2>
+          <p><strong>Q1.</strong> Write the sequence of steps to calculate the simple interest. Formula: <code>SI = (P &times; R &times; T) / 100</code></p>
+          <p><strong>Q2.</strong> Write the sequence of steps to calculate the average of three numbers.</p>
+          <p><strong>Q3.</strong> Write a C program to calculate the area of a circle using: <code>Area = 3.14 &times; r &times; r</code></p>
+          <p><strong>Q4.</strong> Identify whether the following tasks use sequential logic: (1) Finding the sum of two numbers, (2) ATM login using PIN, (3) Calculating a student's percentage, (4) Printing numbers from 1 to 100.</p>
         </section>
 
         <div class="topic-nav-footer">
           <a href="evolution-of-programming.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Previous: Evolution of Programming &amp; Languages</a>
-          <a href="sequential-logic.html" class="btn btn-primary">Next: Sequential Logic <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="algorithms.html" class="btn btn-primary">Next: Algorithms <i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </div>
 
@@ -339,11 +571,11 @@
 
 <script>
 window.problemSolvingQuiz = [
-  { question: "What are the four stages of the problem-solving framework, in order?", options: ["Plan, Understand, Solve, Divide", "Understand, Plan, Divide, Solve", "Divide, Solve, Understand, Plan", "Solve, Plan, Divide, Understand"], correctIndex: 1, explanation: "The correct order is Understand, Plan, Divide, Solve." },
-  { question: "According to this framework, when should you start writing code?", options: ["Before understanding the problem, to save time", "As the very first step", "Only after understanding, planning, and dividing the problem", "It doesn't matter when"], correctIndex: 2, explanation: "Coding is the last step — it happens only after the problem is understood, planned, and broken down." },
-  { question: "What does 'decomposition' mean in problem solving?", options: ["Deleting unnecessary code", "Breaking a big problem into smaller, manageable sub-problems", "Compiling a program", "Testing a program for bugs"], correctIndex: 1, explanation: "Decomposition is the process of splitting a large problem into smaller, easier-to-solve parts." },
-  { question: "If a problem feels too big to solve, what's a recommended strategy?", options: ["Give up and try a different problem", "Solve a smaller or simpler version of it first", "Write code randomly until something works", "Skip the Understand stage"], correctIndex: 1, explanation: "Solving a smaller or simpler version first often reveals the approach needed for the full problem." },
-  { question: "If your program's output doesn't match your goal, what should you do first, according to this framework?", options: ["Immediately rewrite all the code", "Re-check from the Understand stage", "Give up on the problem", "Ignore the mismatch and move on"], correctIndex: 1, explanation: "The framework loops back to Understand when results don't match the goal, since the root cause is often a misunderstanding of the problem." }
+  { question: "In a sequential structure, statements execute:", options: ["Randomly", "One after another", "From bottom to top", "Only if a condition is true"], correctIndex: 1, explanation: "Sequential logic executes statements one after another, in the exact order they are written." },
+  { question: "Which control structure is the simplest?", options: ["Loop", "Selection", "Sequential", "Recursion"], correctIndex: 2, explanation: "Sequential is the simplest control structure — no conditions, no repetition, just top-to-bottom execution." },
+  { question: "Which of the following is not used in sequential logic?", options: ["Input", "Calculation", "Output", "if-else"], correctIndex: 3, explanation: "if-else is a decision (selection) construct, not part of sequential logic — sequential logic has no conditions." },
+  { question: "Sequential logic is mainly suitable for:", options: ["Repeating tasks", "Decision making", "Straightforward step-by-step tasks", "Recursive problems"], correctIndex: 2, explanation: "Sequential logic suits simple, straightforward step-by-step tasks with no branching or repetition." },
+  { question: "Which is the correct order?", options: ["Output → Input → Process", "Process → Output → Input", "Input → Process → Output", "Process → Input → Output"], correctIndex: 2, explanation: "The standard model is Input → Process → Output: read data, process it, then display the result." }
 ];
 </script>
 <script src="../../js/theme.js"></script>
