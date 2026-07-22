@@ -1,0 +1,61 @@
+/* css/variables.css — design tokens: palette, spacing, radius, shadows, theme layer */
+
+:root {
+  /* Brand palette (fixed, per spec) */
+  --color-primary: #2563EB;
+  --color-primary-dark: #1D4ED8;
+  --color-primary-light: #60A5FA;
+  --color-secondary: #0EA5E9;
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+  --bg-light: #F8FAFC;
+  --bg-dark: #0F172A;
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* Radius scale */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.10);
+  --shadow-lg: 0 12px 32px rgba(15, 23, 42, 0.16);
+
+  /* Fonts */
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Consolas', monospace;
+
+  /* Layout */
+  --sidebar-width: 280px;
+  --sidebar-width-collapsed: 72px;
+  --topnav-height: 64px;
+
+  /* Semantic tokens — light theme (default) */
+  --bg: var(--bg-light);
+  --surface: #FFFFFF;
+  --surface-glass: rgba(255, 255, 255, 0.65);
+  --text: #0F172A;
+  --text-muted: #475569;
+  --border: #E2E8F0;
+}
+
+[data-theme="dark"] {
+  --bg: var(--bg-dark);
+  --surface: #1E293B;
+  --surface-glass: rgba(30, 41, 59, 0.65);
+  --text: #F1F5F9;
+  --text-muted: #94A3B8;
+  --border: #334155;
+}
