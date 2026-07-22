@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Algorithms — Unit 1 — C Programming eBook</title>
+<meta name="description" content="What an algorithm is, why it matters before you write any C syntax, and how to write, dry-run, and debug one step by step.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="../../css/variables.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/diagrams.css">
+<link rel="stylesheet" href="../../css/quiz.css">
+
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<style>
+  .topic-layout { display: grid; grid-template-columns: 1fr 220px; gap: var(--space-6); align-items: start; }
+  .topic-toc { position: sticky; top: calc(var(--topnav-height) + var(--space-4)); border: 1px solid var(--border); border-radius: var(--radius-md); padding: var(--space-4); font-size: 0.85rem; }
+  .topic-toc a { display: block; padding: var(--space-1) 0; color: var(--text-muted); }
+  .topic-toc a:hover { color: var(--color-primary); text-decoration: none; }
+  .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
+  .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
+  .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
+  @media (max-width: 1000px) { .topic-layout { grid-template-columns: 1fr; } .topic-toc { position: static; } }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progress-bar"></div>
+
+<div class="shell" id="shell">
+
+  <nav class="topnav">
+    <div class="topnav-left">
+      <button class="icon-btn mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <a href="../../index.html" class="logo">
+        <i class="fa-solid fa-code" style="color: var(--color-primary);"></i>
+        C Programming eBook
+      </a>
+      <div class="breadcrumbs">
+        <a href="../../index.html">Home</a>
+        <span>/</span>
+        <a href="index.html">Unit 1</a>
+        <span>/</span>
+        <span>Algorithms</span>
+      </div>
+    </div>
+    <div class="topnav-right">
+      <button class="icon-btn" id="search-open" aria-label="Search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+      <button class="icon-btn" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+        <i class="fa-solid fa-sun icon-sun"></i>
+        <i class="fa-solid fa-moon icon-moon"></i>
+      </button>
+    </div>
+  </nav>
+
+  <aside class="sidebar">
+    <button class="icon-btn" id="sidebar-collapse" aria-label="Collapse sidebar" style="margin-bottom: var(--space-4);">
+      <i class="fa-solid fa-angles-left"></i>
+    </button>
+
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 1</span></div>
+      <a class="sidebar-link" href="index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Unit 1 Overview</span></a>
+      <a class="sidebar-link" href="evolution-of-programming.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="sidebar-label">Evolution of Programming</span></a>
+      <a class="sidebar-link" href="programming-languages.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Programming Languages</span></a>
+      <a class="sidebar-link" href="problem-solving.html"><i class="fa-solid fa-puzzle-piece"></i><span class="sidebar-label">Problem Solving</span></a>
+      <a class="sidebar-link" href="sequential-logic.html"><i class="fa-solid fa-list-ol"></i><span class="sidebar-label">Sequential Logic</span></a>
+      <a class="sidebar-link active" href="algorithms.html"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-label">Algorithms</span></a>
+      <a class="sidebar-link" href="pseudocode.html"><i class="fa-solid fa-file-lines"></i><span class="sidebar-label">Pseudocode</span></a>
+      <a class="sidebar-link" href="flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 2</span></div>
+      <a class="sidebar-link" href="../unit2/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">C Building Blocks &amp; Data Types</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 3</span></div>
+      <a class="sidebar-link" href="../unit3/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Control Statements</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 4</span></div>
+      <a class="sidebar-link" href="../unit4/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Strings, Functions &amp; Pointers</span></a>
+    </div>
+    <div class="sidebar-unit">
+      <div class="sidebar-unit-title"><span class="sidebar-label">Unit 5</span></div>
+      <a class="sidebar-link" href="../unit5/index.html"><i class="fa-solid fa-book"></i><span class="sidebar-label">Structures, Files &amp; Memory Management</span></a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="topic-layout">
+      <div>
+        <h1>Algorithms</h1>
+        <p class="lead">An algorithm is what you get when a plan becomes precise enough for a machine to follow — the first idea in this chapter you'll carry, unchanged, into every C program you ever write.</p>
+
+        <section class="topic-section" id="introduction">
+          <h2>1. What Is It?</h2>
+          <p>An algorithm is a finite, precise, ordered set of steps to solve a problem or complete a task. It is the output of the "Plan" and "Divide" stages from the Problem Solving topic, made rigorous enough that a computer — not just a human — could follow it exactly, with nothing left to guesswork.</p>
+        </section>
+
+        <section class="topic-section" id="why">
+          <h2>2. Why Do We Need to Know This?</h2>
+          <p>Every program is an implementation of an algorithm. Learning to design an algorithm in plain steps first — before any C syntax — means the syntax (taught starting in the next chapter) only has to represent an idea you already have clearly, instead of asking you to invent the idea and the syntax at the same time.</p>
+        </section>
+
+        <section class="topic-section" id="real-life">
+          <h2>3. Real-Life Example</h2>
+          <p>A recipe is an algorithm: precise ordered steps ("preheat oven to 350&deg;F," not "make it hot-ish") with clear inputs (ingredients) and a clear output (the finished dish). Skip a step, or do them out of order, and the recipe fails the same way a program fails when its algorithm is wrong.</p>
+        </section>
+
+        <section class="topic-section" id="visual">
+          <h2>4. Visual Explanation</h2>
+          <p>The flowchart below traces the algorithm "find the largest of two numbers":</p>
+          <div class="flowchart">
+            <div class="flow-box flow-box-start">Start</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Get number A and B</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box flow-box-decision"><span>Is A &gt; B?</span></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Yes &rarr; Largest is A &nbsp;|&nbsp; No &rarr; Largest is B</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Display result</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box flow-box-end">End</div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="syntax">
+          <h2>5. Algorithm-Writing Conventions</h2>
+          <p>Algorithms in this course follow a few simple conventions so they stay unambiguous and easy to translate into code later:</p>
+          <ul>
+            <li>Steps are numbered in order: Step 1, Step 2, Step 3&hellip;</li>
+            <li>Every algorithm begins with a <strong>Start</strong> marker and ends with an <strong>End</strong> marker.</li>
+            <li>Each step describes exactly one action — never bundle two actions into one step.</li>
+            <li>Decisions are written as "If [condition], then&hellip; else&hellip;" so every branch is explicit — never leave an "else" implied.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="steps">
+          <h2>8. Step-by-Step Code</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>algorithm.txt</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>Step 1: Start
+Step 2: Input two numbers, A and B
+Step 3: If A &gt; B, go to Step 4, else go to Step 5
+Step 4: Display A as the largest, go to Step 6
+Step 5: Display B as the largest
+Step 6: End</pre>
+          </div>
+          <p><strong>Step 1</strong> and <strong>Step 6</strong> mark where the algorithm begins and ends — every algorithm needs both, so it's never left "hanging" with an undefined finish. <strong>Step 2</strong> gathers the raw inputs before any decision is made. <strong>Step 3</strong> is the one decision in this algorithm, written with both an explicit "yes" path (Step 4) and "no" path (Step 5) — leaving either branch out would make the algorithm incomplete. <strong>Steps 4 and 5</strong> each display exactly one result, and Step 4 explicitly jumps past Step 5 so both outcomes can never run together.</p>
+        </section>
+
+        <section class="topic-section" id="dryrun">
+          <h2>9. Dry Run</h2>
+          <p>A dry run traces an algorithm by hand, step by step, using real numbers — the fastest way to catch a logic mistake before it becomes a bug in real code.</p>
+          <table>
+            <thead>
+              <tr><th>Step</th><th>Action</th><th>Result / Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><td colspan="3"><strong>Run 1: A = 8, B = 3</strong></td></tr>
+              <tr><td>1</td><td>Start</td><td>Algorithm begins</td></tr>
+              <tr><td>2</td><td>Input A = 8, B = 3</td><td>Values stored</td></tr>
+              <tr><td>3</td><td>Is A &gt; B? (8 &gt; 3)</td><td>True &rarr; go to Step 4</td></tr>
+              <tr><td>4</td><td>Display A as largest</td><td>Output: 8 &rarr; go to Step 6</td></tr>
+              <tr><td>6</td><td>End</td><td>Algorithm finishes</td></tr>
+              <tr><td colspan="3"><strong>Run 2: A = 2, B = 9</strong></td></tr>
+              <tr><td>1</td><td>Start</td><td>Algorithm begins</td></tr>
+              <tr><td>2</td><td>Input A = 2, B = 9</td><td>Values stored</td></tr>
+              <tr><td>3</td><td>Is A &gt; B? (2 &gt; 9)</td><td>False &rarr; go to Step 5</td></tr>
+              <tr><td>5</td><td>Display B as largest</td><td>Output: 9</td></tr>
+              <tr><td>6</td><td>End</td><td>Algorithm finishes</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="topic-section" id="mistakes">
+          <h2>10. Common Mistakes</h2>
+          <ul class="mistake-list">
+            <li>Writing vague, unmeasurable steps like "make it work" instead of a precise, checkable action.</li>
+            <li>Missing an end condition, leaving the algorithm infinite or undefined about when it should stop.</li>
+            <li>Skipping the decision's "else" branch, so one possible outcome is never accounted for.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="debugging">
+          <h2>11. Debugging Tips</h2>
+          <p>If an algorithm gives the wrong answer, dry-run it by hand with a simple example first, exactly like the table above. Most "logic bugs" — decisions with a missing branch, a step in the wrong order, a comparison flipped the wrong way — are visible without ever writing a single line of real code.</p>
+        </section>
+
+        <section class="topic-section" id="best-practices">
+          <h2>12. Best Practices</h2>
+          <ul class="best-practice-list">
+            <li>Keep each step small and singular — one action per step.</li>
+            <li>Always account for every branch of a decision, including the "else" case.</li>
+            <li>Test your algorithm by hand with at least 2 different inputs before trusting it.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="interview">
+          <h2>13. Interview Questions</h2>
+          <p><strong>Easy:</strong> What is an algorithm?</p>
+          <p><strong>Medium:</strong> What's the difference between an algorithm and a program?</p>
+          <p><strong>Hard:</strong> Why must an algorithm be finite?</p>
+          <p><strong>HR:</strong> Describe an everyday process you could turn into an algorithm.</p>
+          <p><strong>Conceptual:</strong> Can two different algorithms solve the same problem?</p>
+          <p><strong>Scenario-based:</strong> Design (in plain steps) an algorithm to check if a number is even or odd.</p>
+        </section>
+
+        <section class="topic-section" id="mcq">
+          <h2>14. MCQs</h2>
+          <div class="quiz" data-quiz-source="algorithmsQuiz"></div>
+        </section>
+
+        <section class="topic-section" id="exercises">
+          <h2>15. Programming Exercises</h2>
+          <p><strong>Easy:</strong> Write an algorithm (plain steps) to check if a number is even or odd.</p>
+          <p><strong>Medium:</strong> Write an algorithm to find the largest of THREE numbers.</p>
+          <p><strong>Hard:</strong> Write an algorithm to check whether a given year is a leap year. Use the real divisibility rule: a year is a leap year if it is divisible by 4, but not by 100 &mdash; unless it is also divisible by 400.</p>
+        </section>
+
+        <section class="topic-section" id="assignments">
+          <h2>16. Assignments</h2>
+          <p>Write and hand-dry-run (with 2 sample inputs) an algorithm for "calculate the average of 5 numbers."</p>
+        </section>
+
+        <section class="topic-section" id="summary">
+          <h2>18. Chapter Summary</h2>
+          <p>An algorithm is a precise, finite, ordered set of steps solving a specific problem — the output of problem-solving made rigorous enough to eventually become real code. Dry-running an algorithm by hand catches most logic errors before any syntax is involved.</p>
+        </section>
+
+        <section class="topic-section" id="cheatsheet">
+          <h2>19. Cheat Sheet</h2>
+          <p>Algorithm = Start &rarr; numbered steps &rarr; decisions cover every branch &rarr; End. Always dry-run with real numbers before trusting it.</p>
+        </section>
+
+        <section class="topic-section" id="faq">
+          <h2>20. FAQs</h2>
+          <p><strong>Q: Is an algorithm the same as code?</strong><br>A: No &mdash; code is one specific implementation of an algorithm in a specific language.</p>
+          <p><strong>Q: Can one problem have multiple correct algorithms?</strong><br>A: Yes.</p>
+        </section>
+
+        <section class="topic-section" id="takeaways">
+          <h2>21. Key Takeaways</h2>
+          <ul>
+            <li>Algorithms are precise, finite, and ordered.</li>
+            <li>Dry-running by hand catches logic errors early.</li>
+            <li>An algorithm is language-independent; code is the C-specific implementation of it.</li>
+          </ul>
+        </section>
+
+        <div class="topic-nav-footer">
+          <a href="sequential-logic.html" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i> Previous: Sequential Logic</a>
+          <a href="pseudocode.html" class="btn btn-primary">Next: Pseudocode <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <nav class="topic-toc" aria-label="On this page">
+        <strong>On This Page</strong>
+        <a href="#introduction">What Is It?</a>
+        <a href="#why">Why Do We Need to Know This?</a>
+        <a href="#real-life">Real-Life Example</a>
+        <a href="#visual">Visual Explanation</a>
+        <a href="#syntax">Algorithm-Writing Conventions</a>
+        <a href="#steps">Step-by-Step Code</a>
+        <a href="#dryrun">Dry Run</a>
+        <a href="#mistakes">Common Mistakes</a>
+        <a href="#debugging">Debugging Tips</a>
+        <a href="#best-practices">Best Practices</a>
+        <a href="#interview">Interview Questions</a>
+        <a href="#mcq">MCQs</a>
+        <a href="#exercises">Programming Exercises</a>
+        <a href="#assignments">Assignments</a>
+        <a href="#summary">Chapter Summary</a>
+        <a href="#cheatsheet">Cheat Sheet</a>
+        <a href="#faq">FAQs</a>
+        <a href="#takeaways">Key Takeaways</a>
+      </nav>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for absolute beginners. &copy; 2026 C Programming eBook.</p>
+  </footer>
+
+</div>
+
+<div class="search-panel" id="search-panel" data-open="false">
+  <div class="search-panel-inner">
+    <div class="search-input-row">
+      <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+      <input type="text" id="search-input" placeholder="Search topics... (Ctrl+K)">
+      <button class="icon-btn" id="search-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="search-results" id="search-results"></ul>
+  </div>
+</div>
+
+<script>
+window.algorithmsQuiz = [
+  { question: "What is an algorithm?", options: ["A programming language", "A finite, precise, ordered set of steps to solve a problem", "A type of computer hardware", "A syntax error"], correctIndex: 1, explanation: "An algorithm is a finite, precise, ordered set of steps to solve a problem or complete a task." },
+  { question: "What is the difference between an algorithm and a program?", options: ["There is no difference", "An algorithm is the plan; a program is that plan implemented in a specific language", "A program comes before the algorithm", "An algorithm can only be written in C"], correctIndex: 1, explanation: "An algorithm is the language-independent plan; a program is that plan implemented in a specific programming language." },
+  { question: "Why must an algorithm be finite?", options: ["So it fits on one page", "So it is guaranteed to eventually stop with a result, not run forever", "So it uses less memory", "Finiteness is not actually required"], correctIndex: 1, explanation: "An algorithm must terminate after a finite number of steps and actually produce a result — an endless process isn't a valid algorithm." },
+  { question: "In the 'largest of two numbers' algorithm, what happens if A > B is true?", options: ["B is displayed as the largest", "A is displayed as the largest", "The algorithm ends immediately with no output", "Both A and B are displayed"], correctIndex: 1, explanation: "When the condition A > B is true, the algorithm displays A as the largest." },
+  { question: "In the 'largest of two numbers' algorithm, what happens if A > B is false?", options: ["A is displayed as the largest", "B is displayed as the largest", "The algorithm restarts", "Nothing is displayed"], correctIndex: 1, explanation: "When A > B is false, the else branch runs and B is displayed as the largest." },
+  { question: "What is a 'dry run' of an algorithm?", options: ["Running the compiled program with no input", "Tracing the algorithm by hand, step by step, using real example values", "Deleting unused steps", "Running the algorithm on real hardware only"], correctIndex: 1, explanation: "A dry run traces an algorithm manually with real sample values to verify its logic before any code is written." },
+  { question: "Why is dry-running an algorithm useful?", options: ["It makes the algorithm run faster", "It catches most logic errors before any code is written", "It replaces the need for a Start/End marker", "It is only useful after the program is finished"], correctIndex: 1, explanation: "Dry-running by hand exposes logic mistakes early, before they become bugs in real code." },
+  { question: "Which of these is a common mistake when writing an algorithm?", options: ["Numbering every step", "Writing a vague, unmeasurable step like 'make it work'", "Including a Start and End marker", "Covering every branch of a decision"], correctIndex: 1, explanation: "Vague, unmeasurable steps like 'make it work' aren't precise enough to actually follow or verify." },
+  { question: "What problem does a missing 'End' marker (or end condition) cause?", options: ["The algorithm becomes faster", "The algorithm becomes infinite or undefined about when to stop", "Nothing — End markers are optional", "It only affects decision steps"], correctIndex: 1, explanation: "Without a clear end condition, an algorithm never definitively finishes, making it infinite or undefined." },
+  { question: "In algorithm-writing conventions used in this course, how should a decision be written?", options: ["As a vague suggestion", "As 'If [condition], then... else...' covering both branches", "Only the 'then' branch needs to be written", "As a separate algorithm entirely"], correctIndex: 1, explanation: "Decisions should explicitly state both the 'then' and 'else' branch so no outcome is left unaccounted for." },
+  { question: "How many actions should each step of an algorithm contain?", options: ["As many as possible", "Exactly one action per step", "At least three", "Zero — steps describe outcomes only"], correctIndex: 1, explanation: "Best practice is one action per step, keeping each step small and singular." },
+  { question: "An algorithm is best described as being:", options: ["Tied to one specific programming language", "Language-independent — it can be implemented in many languages", "Only valid in English", "The same thing as a compiler"], correctIndex: 1, explanation: "An algorithm describes a solution independent of any specific language; the program is the language-specific implementation." },
+  { question: "Can two different algorithms solve the same problem?", options: ["No, only one correct algorithm can ever exist", "Yes, multiple different valid algorithms can solve the same problem", "Only if they are written in the same language", "Only for very simple problems"], correctIndex: 1, explanation: "Multiple different algorithms can solve the same problem, sometimes with different efficiency or approaches." },
+  { question: "In the dry run example with A = 8 and B = 3, what is displayed?", options: ["3", "8", "Both 8 and 3", "Nothing"], correctIndex: 1, explanation: "Since A (8) is greater than B (3), the algorithm displays A, which is 8, as the largest." },
+  { question: "In the dry run example with A = 2 and B = 9, what is displayed?", options: ["2", "9", "Both 2 and 9", "An error"], correctIndex: 1, explanation: "Since A (2) is not greater than B (9), the else branch runs and B, which is 9, is displayed as the largest." },
+  { question: "What is the recipe analogy used to describe an algorithm?", options: ["A recipe has no real steps", "A recipe is an algorithm — precise ordered steps with clear inputs and a clear output", "Recipes are less precise than algorithms by design", "Recipes can be followed in any order"], correctIndex: 1, explanation: "A recipe with precise ordered steps, clear ingredients (inputs), and a finished dish (output) is a real-life example of an algorithm." },
+  { question: "Why is 'preheat oven to 350°F' a better algorithm step than 'make it hot-ish'?", options: ["It uses fewer words", "It is precise and measurable, removing ambiguity", "It is written in a friendlier tone", "There is no real difference between the two"], correctIndex: 1, explanation: "A good algorithm step must be precise and measurable so it can be followed exactly, unlike a vague instruction." },
+  { question: "What is the relationship between problem solving and algorithms?", options: ["They are unrelated topics", "An algorithm is the output of the Plan/Divide stages of problem solving, made rigorous", "Problem solving happens only after an algorithm is coded", "Algorithms replace the need for problem solving"], correctIndex: 1, explanation: "An algorithm is the precise, ordered result of the planning and dividing stages of problem solving." },
+  { question: "Why should you test an algorithm with at least two different inputs before trusting it?", options: ["One input is always sufficient", "Different inputs can reveal untested branches or logic errors", "It only matters for very long algorithms", "Testing inputs is unnecessary once it's dry-run once"], correctIndex: 1, explanation: "Testing multiple inputs, especially ones that trigger different decision branches, verifies the algorithm actually handles every case correctly." },
+  { question: "What best explains why algorithms should be learned before C syntax?", options: ["C syntax is more important than logic", "So the syntax only has to represent an idea you already have clearly", "Algorithms are not related to programming languages", "Because C requires algorithms to be written in C first"], correctIndex: 1, explanation: "Designing the algorithm first means you clarify the idea before worrying about how to express it in a specific language's syntax." }
+];
+</script>
+<script src="../../js/theme.js"></script>
+<script src="../../js/sidebar.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/quiz.js"></script>
+<script src="../../js/copy-code.js"></script>
+</body>
+</html>
