@@ -27,14 +27,10 @@
 </script>
 
 <style>
-  .topic-layout { display: grid; grid-template-columns: 1fr 220px; gap: var(--space-6); align-items: start; }
-  .topic-toc { position: sticky; top: calc(var(--topnav-height) + var(--space-4)); border: 1px solid var(--border); border-radius: var(--radius-md); padding: var(--space-4); font-size: 0.85rem; }
-  .topic-toc a { display: block; padding: var(--space-1) 0; color: var(--text-muted); }
-  .topic-toc a:hover { color: var(--color-primary); text-decoration: none; }
+  .topic-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-6); align-items: start; }
   .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
   .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
   .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
-  @media (max-width: 1000px) { .topic-layout { grid-template-columns: 1fr; } .topic-toc { position: static; } }
 </style>
 </head>
 <body>
@@ -233,24 +229,6 @@
         </div>
       </div>
 
-      <nav class="topic-toc" aria-label="On this page">
-        <strong>On This Page</strong>
-        <a href="#introduction">What Is It?</a>
-        <a href="#why">Why Do We Need to Know This?</a>
-        <a href="#real-life">Real-Life Example</a>
-        <a href="#visual">Visual Explanation</a>
-        <a href="#mistakes">Common Mistakes</a>
-        <a href="#debugging">Debugging Tips</a>
-        <a href="#best-practices">Best Practices</a>
-        <a href="#interview">Interview Questions</a>
-        <a href="#mcq">MCQs</a>
-        <a href="#exercises">Programming Exercises</a>
-        <a href="#assignments">Assignments</a>
-        <a href="#summary">Chapter Summary</a>
-        <a href="#cheatsheet">Cheat Sheet</a>
-        <a href="#faq">FAQs</a>
-        <a href="#takeaways">Key Takeaways</a>
-      </nav>
     </div>
   </main>
 
