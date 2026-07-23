@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Compilation Process — Unit 1 — C Programming eBook</title>
-<meta name="description" content="Learn the 4 internal stages a C compiler runs your source code through — preprocessing, compilation, assembly, and linking — using a real gcc command.">
+<title>Compilation (Source Code &rarr; Object Code &rarr; Executable Code) — Unit 1 — C Programming eBook</title>
+<meta name="description" content="The full journey of a C program: source code, preprocessing, compilation, assembling, object code, linking, executable code, loading, and execution.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,6 +31,9 @@
   .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
   .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
   .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
+  .compare-table { width: 100%; border-collapse: collapse; margin: var(--space-4) 0; font-size: 0.92rem; }
+  .compare-table th, .compare-table td { border: 1px solid var(--border); padding: var(--space-2) var(--space-3); text-align: left; vertical-align: top; }
+  .compare-table th { background: var(--bg-subtle, rgba(128,128,128,0.08)); }
 </style>
 </head>
 <body>
@@ -76,14 +79,7 @@
       <a class="sidebar-link" href="flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
       <a class="sidebar-link" href="introduction-to-c.html"><i class="fa-solid fa-c"></i><span class="sidebar-label">Introduction to C &amp; Compilers</span></a>
       <a class="sidebar-link" href="structure-of-c-program.html"><i class="fa-solid fa-code"></i><span class="sidebar-label">Structure of C Program</span></a>
-      <a class="sidebar-link active" href="compilation-process.html"><i class="fa-solid fa-arrows-turn-right"></i><span class="sidebar-label">Compilation Process</span></a>
-      <a class="sidebar-link" href="source-code.html"><i class="fa-solid fa-file-code"></i><span class="sidebar-label">Source Code</span></a>
-      <a class="sidebar-link" href="object-code.html"><i class="fa-solid fa-cube"></i><span class="sidebar-label">Object Code</span></a>
-      <a class="sidebar-link" href="executable-code.html"><i class="fa-solid fa-play"></i><span class="sidebar-label">Executable Code</span></a>
-      <a class="sidebar-link" href="execution-process.html"><i class="fa-solid fa-microchip"></i><span class="sidebar-label">Execution Process</span></a>
-      <a class="sidebar-link" href="assembler.html"><i class="fa-solid fa-wrench"></i><span class="sidebar-label">Assembler</span></a>
-      <a class="sidebar-link" href="linker.html"><i class="fa-solid fa-link"></i><span class="sidebar-label">Linker</span></a>
-      <a class="sidebar-link" href="loader.html"><i class="fa-solid fa-upload"></i><span class="sidebar-label">Loader</span></a>
+      <a class="sidebar-link" href="compilation-process.html"><i class="fa-solid fa-arrows-turn-right"></i><span class="sidebar-label">Compilation Process</span></a>
       <a class="sidebar-link" href="interpreter.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Interpreter</span></a>
       <a class="sidebar-link" href="compilers-and-interpreters.html"><i class="fa-solid fa-code-compare"></i><span class="sidebar-label">Compilers &amp; Interpreters</span></a>
       <a class="sidebar-link" href="operating-systems.html"><i class="fa-solid fa-desktop"></i><span class="sidebar-label">Operating Systems</span></a>
@@ -148,168 +144,304 @@
   <main class="content">
     <div class="topic-layout">
       <div>
-        <h1>Compilation Process</h1>
-        <p class="lead">Here's where it all comes together — the exact sequence of internal steps that turns your source code into a program you can actually run.</p>
+        <h1>Compilation (Source Code &rarr; Object Code &rarr; Executable Code)</h1>
+        <p class="lead">Many beginners think that when they press Run, the program executes immediately. It doesn't. Before a C program runs, it goes through multiple stages.</p>
 
-        <section class="topic-section" id="introduction">
-          <h2>What Is It?</h2>
-          <p>The compilation process is the sequence of internal stages a compiler runs your source code through to produce a final executable: <strong>preprocessing</strong>, <strong>compilation</strong> (translation to assembly), <strong>assembly</strong> (translation to object code), and <strong>linking</strong> (combining object code into one executable).</p>
-        </section>
-
-        <section class="topic-section" id="why">
-          <h2>Why Do We Need to Know This?</h2>
-          <p>This is the practical payoff of everything covered so far in the "Getting to Know C" chapter. You now get to actually turn a program's source code into a running program, using one real command — and understanding the 4 stages behind that command means you'll know exactly what's happening (and where things went wrong) whenever you compile.</p>
-        </section>
-
-        <section class="topic-section" id="real-life">
-          <h2>Real-Life Example</h2>
-          <p>Think of an assembly line in a factory. Raw material (your source code) moves through several distinct stations — preprocessing, compiling, assembling, linking — each transforming it a bit further, until a finished product (the executable) comes out the other end, ready to use.</p>
-        </section>
-
-        <section class="topic-section" id="visual">
-          <h2>Visual Explanation</h2>
+        <section class="topic-section" id="big-picture">
+          <h2>Big Picture</h2>
+          <p>When you write a C program, the computer cannot understand C language directly. It understands only Machine Language (0s and 1s). So your program goes through this journey:</p>
           <div class="flowchart">
-            <div class="flow-box flow-box-start">Source Code (add.c)</div>
+            <div class="flow-box flow-box-start">Source Code (.c)</div>
             <div class="flow-arrow"></div>
-            <div class="flow-box">Preprocessing</div>
+            <div class="flow-box">Preprocessor</div>
             <div class="flow-arrow"></div>
-            <div class="flow-box">Compilation (to assembly)</div>
+            <div class="flow-box">Compiler</div>
             <div class="flow-arrow"></div>
-            <div class="flow-box">Assembly (to object code)</div>
+            <div class="flow-box">Assembler</div>
             <div class="flow-arrow"></div>
-            <div class="flow-box flow-box-end">Linking (to executable)</div>
+            <div class="flow-box">Object Code (.o/.obj)</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Linker</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Executable File (.exe on Windows)</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Loader</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box flow-box-end">Program Runs</div>
           </div>
-          <p>The Assembler and the Linker each get their own full topic later in this sub-project — this page is just the overview that ties all 4 stages together.</p>
+          <p>Understanding these stages will help you debug compilation errors, understand interview questions, and learn how a compiler works internally.</p>
         </section>
 
-        <section class="topic-section" id="syntax">
-          <h2>Syntax</h2>
-          <p>The real compile command that triggers all 4 stages looks like this:</p>
+        <section class="topic-section" id="analogy">
+          <h2>Real-Life Analogy</h2>
+          <p>Imagine writing a book.</p>
+          <div class="flowchart">
+            <div class="flow-box flow-box-start">You write a manuscript.</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Editor checks grammar.</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Printing press converts it into a printed book.</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box flow-box-end">Book is delivered to readers.</div>
+          </div>
+          <p>Similarly,</p>
+          <div class="flowchart">
+            <div class="flow-box flow-box-start">Write Program</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Compiler Checks</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Machine Code Created</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Executable Generated</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box flow-box-end">Program Runs</div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="source-code">
+          <h2>Step 1: Source Code</h2>
+          <p>This is the code written by the programmer. Extension: <code>.c</code></p>
           <div class="code-block">
             <div class="code-block-header">
-              <span>terminal</span>
+              <span>hello.c</span>
               <button class="copy-btn">Copy</button>
             </div>
-            <pre>gcc add.c -o add</pre>
+            <pre>#include &lt;stdio.h&gt;
+
+int main()
+{
+    printf("Hello");
+
+    return 0;
+}</pre>
           </div>
+          <p>This is called the Source Code.</p>
+          <h3>What is Source Code?</h3>
+          <p><strong>Definition:</strong> Source Code is the human-readable program written in a programming language such as C.</p>
+        </section>
+
+        <section class="topic-section" id="preprocessing">
+          <h2>Step 2: Preprocessing</h2>
+          <p>Before compilation begins, the Preprocessor processes the source code. It handles:</p>
           <ul>
-            <li><strong><code>gcc</code></strong> — the compiler program being invoked.</li>
-            <li><strong><code>add.c</code></strong> — the source file to compile.</li>
-            <li><strong><code>-o add</code></strong> — names the output executable <code>add</code>.</li>
+            <li><code>#include</code></li>
+            <li><code>#define</code></li>
+            <li>Conditional compilation directives like <code>#ifdef</code>, <code>#ifndef</code>, <code>#if</code></li>
+          </ul>
+          <p>Example: <code>#include &lt;stdio.h&gt;</code></p>
+          <p>The preprocessor replaces this with the contents of the stdio.h header file. Think of it as:</p>
+          <div class="flowchart">
+            <div class="flow-box">#include &lt;stdio.h&gt;</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Entire stdio.h file inserted here</div>
+          </div>
+          <p>It also removes comments.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Before</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>// This is a comment
+
+printf("Hello");</pre>
+          </div>
+          <p>After preprocessing:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>After</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>printf("Hello");</pre>
+          </div>
+          <p>The comment is removed.</p>
+        </section>
+
+        <section class="topic-section" id="compilation">
+          <h2>Step 3: Compilation</h2>
+          <p>Now the Compiler checks the program. It checks for:</p>
+          <ul>
+            <li>Syntax errors</li>
+            <li>Type checking</li>
+            <li>Variable declarations</li>
+            <li>Function definitions</li>
+          </ul>
+          <p>Correct: <code>int a = 10;</code></p>
+          <p>Wrong: <code>int a = ;</code></p>
+          <p>Compiler error: <strong>Syntax Error</strong></p>
+          <p>If everything is correct, the compiler converts the code into Assembly Language.</p>
+        </section>
+
+        <section class="topic-section" id="assembling">
+          <h2>Step 4: Assembling</h2>
+          <p>The Assembler converts the Assembly Language into Machine Code. Machine Code contains only binary instructions.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>1011010010101010</pre>
+          </div>
+          <p>The output is called Object Code. Extensions: Windows <code>.obj</code>, Linux/macOS <code>.o</code>.</p>
+          <h3>What is Object Code?</h3>
+          <p>Object Code is machine code generated from one source file, but it is not yet a complete runnable program. It may still contain unresolved references to library functions like <code>printf()</code>.</p>
+        </section>
+
+        <section class="topic-section" id="linking">
+          <h2>Step 5: Linking</h2>
+          <p>Now the Linker takes your Object Code and Required Library Files, and combines them.</p>
+          <p>Your program contains <code>printf("Hello");</code>. But where is <code>printf()</code>? It exists inside the Standard C Library. The linker connects your code with that library.</p>
+          <p>After successful linking: Executable File Created. Examples: Windows <code>hello.exe</code>, Linux <code>hello</code>.</p>
+          <h3>What is an Executable File?</h3>
+          <p>An Executable File is a complete machine-language program that the operating system can run. This is what you execute when you double-click a program or type its name in the terminal.</p>
+        </section>
+
+        <section class="topic-section" id="loading">
+          <h2>Step 6: Loading</h2>
+          <p>The Loader is part of the operating system. It:</p>
+          <ul>
+            <li>Loads the executable into RAM (memory).</li>
+            <li>Allocates memory for the program.</li>
+            <li>Prepares the program to run.</li>
+            <li>Transfers control to the main() function.</li>
           </ul>
         </section>
 
-        <section class="topic-section" id="steps">
-          <h2>Step-by-Step Code</h2>
+        <section class="topic-section" id="execution">
+          <h2>Step 7: Execution</h2>
+          <p>Finally, the CPU starts executing the instructions. The program begins at <code>int main()</code>.</p>
           <div class="code-block">
             <div class="code-block-header">
-              <span>terminal</span>
+              <span>Example</span>
               <button class="copy-btn">Copy</button>
             </div>
-            <pre>gcc add.c -o add</pre>
+            <pre>printf("Hello");</pre>
           </div>
-          <p>This single command runs all 4 internal stages automatically — preprocessing, compilation, assembly, and linking — one after another, without you needing to invoke each one separately. The result is a runnable file named <code>add</code> placed in the current directory.</p>
+          <p>Output: <code>Hello</code></p>
         </section>
 
-        <section class="topic-section" id="dryrun">
-          <h2>Dry Run</h2>
-          <p>Tracing what actually happens when <code>gcc add.c -o add</code> runs:</p>
-          <table>
+        <section class="topic-section" id="complete-process">
+          <h2>Complete Compilation Process</h2>
+          <div class="flowchart">
+            <div class="flow-box flow-box-start">Write Code</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Source File (.c)</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Preprocessor</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Compiler</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Assembly Code</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Assembler</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Object File (.o/.obj)</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Linker</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Executable (.exe)</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Loader</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box flow-box-end">Execution</div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="click-run">
+          <h2>What Happens When You Click "Run"?</h2>
+          <p>When you click Run in an IDE (such as Code::Blocks, Dev-C++, Visual Studio Code with GCC, or CLion), it usually performs these steps automatically:</p>
+          <ol>
+            <li>Save the source file.</li>
+            <li>Preprocess the code.</li>
+            <li>Compile the code.</li>
+            <li>Assemble it.</li>
+            <li>Link it.</li>
+            <li>Load it into memory.</li>
+            <li>Execute the program.</li>
+          </ol>
+          <p>You don't see these steps because the IDE performs them behind the scenes.</p>
+        </section>
+
+        <section class="topic-section" id="errors">
+          <h2>Compilation Errors vs Runtime Errors</h2>
+          <p><strong>Compilation Error</strong> — Occurs before the program runs.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>broken.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>#include &lt;stdio.h&gt;
+
+int main()
+{
+    printf("Hello")
+
+    return 0;
+}</pre>
+          </div>
+          <p>Missing semicolon: <strong>Compilation Error</strong>. The executable is not created.</p>
+          <p><strong>Runtime Error</strong> — Occurs after successful compilation, while the program is running.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>int a = 10;
+int b = 0;
+
+printf("%d", a / b);</pre>
+          </div>
+          <p>Division by zero can cause a runtime error or undefined behavior depending on the system.</p>
+        </section>
+
+        <section class="topic-section" id="compilation-vs-execution">
+          <h2>Compilation vs Execution</h2>
+          <table class="compare-table">
             <thead>
-              <tr><th>Order</th><th>Stage</th><th>What Happens</th></tr>
+              <tr><th>Compilation</th><th>Execution</th></tr>
             </thead>
             <tbody>
-              <tr><td>1</td><td>Preprocessing</td><td>Expands directives like <code>#include &lt;stdio.h&gt;</code>, pasting in the referenced code before anything else happens.</td></tr>
-              <tr><td>2</td><td>Compilation</td><td>Translates the expanded code into assembly instructions — a low-level, human-readable form close to machine instructions.</td></tr>
-              <tr><td>3</td><td>Assembly</td><td>Converts the assembly instructions into object code, producing an intermediate file such as <code>add.o</code>.</td></tr>
-              <tr><td>4</td><td>Linking</td><td>Combines the object code with the C standard library's own compiled code (so functions like <code>printf</code> actually work), producing the final executable <code>add</code>.</td></tr>
+              <tr><td>Converts source code into machine code</td><td>Runs the machine code</td></tr>
+              <tr><td>Done by compiler, assembler, and linker</td><td>Done by CPU after the loader loads the program</td></tr>
+              <tr><td>Happens before running</td><td>Happens after compilation</td></tr>
+              <tr><td>Detects syntax errors</td><td>May reveal runtime or logical errors</td></tr>
             </tbody>
           </table>
         </section>
 
-        <section class="topic-section" id="mistakes">
-          <h2>Common Mistakes</h2>
-          <ul class="mistake-list">
-            <li>Assuming "compiling" means just one single step — it's actually 4 internal stages working together.</li>
-            <li>Forgetting the <code>-o outputname</code> flag — without it, GCC uses a default output name rather than the one you might expect.</li>
-            <li>Trying to run the source file directly (<code>add.c</code>) instead of the compiled executable (<code>add</code>).</li>
+        <section class="topic-section" id="source-object-executable">
+          <h2>Source Code vs Object Code vs Executable</h2>
+          <table class="compare-table">
+            <thead>
+              <tr><th>Source Code</th><th>Object Code</th><th>Executable</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Written by programmer</td><td>Generated by assembler</td><td>Generated after linking</td></tr>
+              <tr><td>Human-readable</td><td>Machine code (not complete)</td><td>Complete runnable program</td></tr>
+              <tr><td>.c</td><td>.o / .obj</td><td>.exe (Windows) or executable file (Linux/macOS)</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="topic-section" id="facts">
+          <h2>Interesting Facts 💡</h2>
+          <ul>
+            <li>Large software projects can contain thousands of object files before linking.</li>
+            <li>The Linux kernel consists of millions of lines of C code and is built by compiling many source files into object files and then linking them together.</li>
+            <li>GCC can stop after different stages (preprocessing, compilation, assembling) using command-line options, which is useful for debugging and learning.</li>
           </ul>
         </section>
 
-        <section class="topic-section" id="debugging">
-          <h2>Debugging Tips</h2>
-          <p>If <code>gcc</code> reports an error, it will usually mention which stage failed, which helps you narrow down what to fix. Most beginner errors happen during the compilation stage — a syntax mistake in your own source code, like a missing semicolon or an unmatched brace, that the compiler catches while translating your code into assembly.</p>
-        </section>
-
-        <section class="topic-section" id="best-practices">
-          <h2>Best Practices</h2>
-          <ul class="best-practice-list">
-            <li>Always recompile after making changes to source code — the executable is a snapshot from the last time you compiled, not a live reflection of your source file.</li>
+        <section class="topic-section" id="revision">
+          <h2>Quick Revision</h2>
+          <ul>
+            <li>Source Code &rarr; Human-readable C program (.c).</li>
+            <li>Preprocessor &rarr; Handles #include, #define, removes comments.</li>
+            <li>Compiler &rarr; Checks syntax and converts C to Assembly.</li>
+            <li>Assembler &rarr; Converts Assembly to Object Code (.o/.obj).</li>
+            <li>Linker &rarr; Combines object files with libraries to create an executable.</li>
+            <li>Loader &rarr; Loads the executable into memory.</li>
+            <li>Execution &rarr; CPU runs the program starting from main().</li>
           </ul>
-        </section>
-
-        <section class="topic-section" id="interview">
-          <h2>Interview Questions</h2>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Easy:</strong> What are the 4 internal stages of the compilation process?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>Preprocessing, compilation, assembly, and linking. Each stage transforms the code a bit further, ending with a ready-to-run executable.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Medium:</strong> What does the <code>-o</code> flag do in <code>gcc add.c -o add</code>?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>It names the resulting output executable file — here, <code>add</code> — instead of GCC using its default output name.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Hard:</strong> Why is linking a separate stage from compilation?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>Because your program needs to be combined with pre-compiled library code — such as the code that implements <code>printf</code> — which isn't part of your own source file. Linking is the stage that pulls that external code in and joins it with your object code.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>HR:</strong> Describe your understanding of what happens when you compile a program.</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>There's no fixed right answer — a strong response walks through the 4 stages (preprocessing, compilation, assembly, linking) in the candidate's own words, showing they understand the overall flow rather than reciting it word-for-word.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Conceptual:</strong> Why do you need to recompile after changing source code?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>The executable is a fixed snapshot produced from an earlier version of the source code. It won't reflect any changes you make until you compile again, generating a fresh executable.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Scenario-based:</strong> You run <code>add.c</code> directly instead of the compiled <code>add</code> file — what goes wrong?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>Source code isn't executable — you get an error, since the operating system doesn't know how to directly run C source text. It needs to be compiled into an executable first.</p>
-            </div>
-          </div>
         </section>
 
         <section class="topic-section" id="mcq">
@@ -317,36 +449,125 @@
           <div class="quiz" data-quiz-source="compilationProcessQuiz"></div>
         </section>
 
-        <section class="topic-section" id="exercises">
-          <h2>Programming Exercises</h2>
-          <p><strong>Easy:</strong> From memory, write out the 4 stages of compilation, in order.</p>
-          <p><strong>Medium:</strong> Write the exact <code>gcc</code> command to compile a file named <code>hello.c</code> into an executable named <code>hello</code>.</p>
-          <p><strong>Hard:</strong> Research what happens if you run <code>gcc add.c</code> without the <code>-o</code> flag. What's the default output filename on Linux/macOS?</p>
+        <section class="topic-section" id="interview">
+          <h2>Interview Questions</h2>
+
+          <h3>Beginner</h3>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What is source code?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Source code is the human-readable program written by the programmer in a language such as C, usually saved with a .c extension.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What is object code?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Object code is machine code generated by the assembler from one source file, but it is not yet a complete runnable program — it may still contain unresolved references to library functions.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What is an executable file?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>An executable file is a complete machine-language program that the operating system can run, produced after the linker combines object code with the required libraries.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What is the role of the compiler?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>The compiler checks the preprocessed source code for syntax errors, type checking, variable declarations, and function definitions, then converts it into Assembly Language if everything is correct.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What is the difference between compilation and execution?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Compilation converts source code into machine code (done by the compiler, assembler, and linker) and happens before running, detecting syntax errors. Execution runs the machine code (done by the CPU after loading) and happens after compilation, potentially revealing runtime or logical errors.</p>
+            </div>
+          </div>
+
+          <h3>Intermediate</h3>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Explain the complete compilation process in C.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Source code (.c) is first handled by the preprocessor (expanding #include/#define, removing comments), then the compiler checks and translates it to assembly code, the assembler converts that into object code (.o/.obj), the linker combines object code with libraries into an executable, and finally the loader loads the executable into memory so the CPU can execute it.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What is the role of the preprocessor?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>The preprocessor runs before compilation and handles directives like #include, #define, and conditional compilation directives (#ifdef, #ifndef, #if). It also strips out comments before the compiler ever sees the code.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Why is the linker required even after successful compilation?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Compilation and assembling only produce object code for your own source file, which may still reference library functions like printf() that live in the Standard C Library. The linker is required to resolve those references and combine everything into one complete executable.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What is the difference between object code and executable code?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Object code is machine code generated from one source file but is not yet complete — it may have unresolved library references. Executable code is generated after the linker resolves those references and combines everything, producing a complete program the operating system can run.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Differentiate between compile-time errors and runtime errors with examples.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>A compile-time (compilation) error occurs before the program runs, such as a missing semicolon — the executable is never created. A runtime error occurs after successful compilation, while the program is running, such as division by zero, which can cause a crash or undefined behavior depending on the system.</p>
+            </div>
+          </div>
         </section>
 
-        <section class="topic-section" id="assignments">
-          <h2>Assignments</h2>
-          <p>Write out the full <code>gcc</code> command you'd use to compile a program called <code>myprogram.c</code> into an executable called <code>myprogram</code>, and explain each part of the command in your own words.</p>
-        </section>
-
-        <section class="topic-section" id="faq">
-          <h2>FAQs</h2>
-          <p><strong>Q: Do I need to run all 4 stages manually?</strong><br>A: No — a single <code>gcc</code> command runs all of them automatically. Understanding the stages just helps you understand what's happening and interpret errors.</p>
-          <p><strong>Q: Does every C compiler use the same command as gcc?</strong><br>A: No — other compilers like Clang have their own command syntax, though many core ideas are similar.</p>
-        </section>
-
-        <section class="topic-section" id="takeaways">
-          <h2>Key Takeaways</h2>
-          <ul>
-            <li>Compilation is 4 internal stages — preprocessing, compilation, assembly, and linking — all run by one command like <code>gcc add.c -o add</code>.</li>
-            <li>The process transforms readable source code into a runnable executable.</li>
-            <li>Recompiling is required after any source change.</li>
-          </ul>
+        <section class="topic-section" id="practice">
+          <h2>Practice Questions</h2>
+          <p><strong>Q1.</strong> Draw the complete compilation flow from Source Code to Execution.</p>
+          <p><strong>Q2.</strong> Explain the role of each of the following: Preprocessor, Compiler, Assembler, Linker, Loader.</p>
+          <p><strong>Q3.</strong> What happens if: stdio.h is not included but printf() is used? There is a missing semicolon? A library function cannot be found during linking?</p>
+          <p><strong>Q4.</strong> Differentiate between: Source Code vs Object Code, Compiler vs Linker, Compilation vs Execution.</p>
         </section>
 
         <div class="topic-nav-footer">
           <a href="structure-of-c-program.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Previous: Structure of C Program</a>
-          <a href="source-code.html" class="btn btn-primary">Next: Source Code <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="interpreter.html" class="btn btn-primary">Next: Interpreter <i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </div>
 
@@ -372,11 +593,11 @@
 
 <script>
 window.compilationProcessQuiz = [
-  { question: "What are the 4 internal stages of the compilation process, in order?", options: ["Linking, assembly, compilation, preprocessing", "Preprocessing, compilation, assembly, linking", "Compilation, linking, preprocessing, assembly", "Assembly, preprocessing, linking, compilation"], correctIndex: 1, explanation: "The compiler runs source code through preprocessing, compilation (to assembly), assembly (to object code), and linking (to an executable), in that order." },
-  { question: "In the command gcc add.c -o add, what does add.c represent?", options: ["The output executable", "The compiler program", "The source file being compiled", "An object file"], correctIndex: 2, explanation: "add.c is the source file passed to gcc for compilation." },
-  { question: "What does the -o flag do in gcc add.c -o add?", options: ["Optimizes the code for speed", "Names the output executable", "Runs the program immediately", "Enables debugging symbols"], correctIndex: 1, explanation: "The -o flag names the resulting output executable — here, add — instead of using GCC's default output name." },
-  { question: "Why do you need to recompile a program after changing its source code?", options: ["You don't — the executable updates itself automatically", "The executable is a fixed snapshot from the previous compile and won't reflect new changes until recompiled", "Recompiling is only needed for large programs", "Source code changes are applied at runtime"], correctIndex: 1, explanation: "The executable is a snapshot produced at compile time; it won't reflect any source code changes until you compile again." },
-  { question: "Which stage of compilation combines your object code with the C standard library's compiled code?", options: ["Preprocessing", "Compilation", "Assembly", "Linking"], correctIndex: 3, explanation: "Linking combines your object code with pre-compiled library code (such as the implementation of printf) to produce the final executable." }
+  { question: "Which file contains the program written by the programmer?", options: ["Object File", "Executable File", "Source File", "Library File"], correctIndex: 2, explanation: "The Source File (.c) contains the human-readable program written by the programmer." },
+  { question: "Which stage processes #include directives?", options: ["Compiler", "Linker", "Preprocessor", "Loader"], correctIndex: 2, explanation: "The Preprocessor handles #include, #define, and conditional compilation directives before compilation begins." },
+  { question: "What is the output of the assembler?", options: ["Source Code", "Object Code", "Executable Code", "Header File"], correctIndex: 1, explanation: "The Assembler converts assembly language into Object Code (.o/.obj)." },
+  { question: "Which component combines object files and libraries?", options: ["Compiler", "Loader", "Linker", "Assembler"], correctIndex: 2, explanation: "The Linker combines object code with required library files to produce the executable." },
+  { question: "Which component loads the executable into memory?", options: ["Compiler", "Linker", "Loader", "Preprocessor"], correctIndex: 2, explanation: "The Loader loads the executable into RAM and transfers control to main()." }
 ];
 </script>
 <script src="../../js/theme.js"></script>
