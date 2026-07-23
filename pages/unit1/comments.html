@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Comments — Unit 1 — C Programming eBook</title>
-<meta name="description" content="Learn what comments are in C, why they matter, and the classic 'commenting out' debugging technique, ahead of the single-line and multi-line comment syntax pages.">
+<title>Single-Line and Multi-Line Comments — Unit 1 — C Programming eBook</title>
+<meta name="description" content="What comments are, why we use them, single-line (//) vs multi-line (/* */) syntax, disabling code with comments, common mistakes, and good vs bad comments.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,6 +31,9 @@
   .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
   .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
   .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
+  .compare-table { width: 100%; border-collapse: collapse; margin: var(--space-4) 0; font-size: 0.92rem; }
+  .compare-table th, .compare-table td { border: 1px solid var(--border); padding: var(--space-2) var(--space-3); text-align: left; vertical-align: top; }
+  .compare-table th { background: var(--bg-subtle, rgba(128,128,128,0.08)); }
 </style>
 </head>
 <body>
@@ -80,9 +83,7 @@
       <a class="sidebar-link" href="interpreter.html"><i class="fa-solid fa-language"></i><span class="sidebar-label">Interpreters, Linkers, and Loaders</span></a>
       <a class="sidebar-link" href="operating-systems.html"><i class="fa-solid fa-desktop"></i><span class="sidebar-label">Operating Systems</span></a>
       <a class="sidebar-link" href="debugging.html"><i class="fa-solid fa-bug"></i><span class="sidebar-label">Execution and Debugging</span></a>
-      <a class="sidebar-link active" href="comments.html"><i class="fa-solid fa-comment"></i><span class="sidebar-label">Comments</span></a>
-      <a class="sidebar-link" href="single-line-comments.html"><i class="fa-solid fa-slash"></i><span class="sidebar-label">Single Line Comments</span></a>
-      <a class="sidebar-link" href="multi-line-comments.html"><i class="fa-solid fa-quote-right"></i><span class="sidebar-label">Multi Line Comments</span></a>
+      <a class="sidebar-link" href="comments.html"><i class="fa-solid fa-comment"></i><span class="sidebar-label">Single-Line and Multi-Line Comments</span></a>
       </div>
     </div>
     <div class="sidebar-unit">
@@ -140,130 +141,402 @@
   <main class="content">
     <div class="topic-layout">
       <div>
-        <h1>Comments</h1>
-        <p class="lead">Text left behind for human readers, not for the compiler — the opening topic of this chapter, before the next two pages dig into C's two comment styles.</p>
+        <h1>Single-Line and Multi-Line Comments</h1>
+        <p class="lead">Comments may seem like a small topic, but they are extremely important in real-world programming. Professional developers write comments to explain code, making it easier for themselves and others to understand programs later.</p>
 
-        <section class="topic-section" id="introduction">
-          <h2>What Is It?</h2>
-          <p>A comment is text in source code that the compiler completely ignores — it exists purely for human readers, not for the computer. C supports two comment styles, single-line and multi-line, each covered in detail on the next two pages.</p>
-        </section>
-
-        <section class="topic-section" id="why">
-          <h2>Why Do We Need to Know This?</h2>
-          <p>Comments let you explain <em>why</em> code does something, not just <em>what</em> it does — invaluable for your future self and anyone else reading your code later.</p>
+        <section class="topic-section" id="what-is-comment">
+          <h2>What is a Comment?</h2>
+          <p><strong>Definition:</strong> A comment is text written inside a program that is ignored by the compiler. Comments are written only for humans, not for the computer.</p>
+          <p>Simply put: <strong>Comment = Explanation for the programmer.</strong></p>
         </section>
 
         <section class="topic-section" id="real-life">
           <h2>Real-Life Example</h2>
-          <p>Like a sticky note left in a recipe book explaining why you substitute an ingredient — the recipe still works without it, but the note helps whoever reads it next understand your reasoning.</p>
-        </section>
-
-        <section class="topic-section" id="visual">
-          <h2>Visual Explanation</h2>
-          <p>Here is <code>add.c</code> again, this time with an explanatory comment added:</p>
+          <p>Imagine reading a book. Sometimes the author writes notes like:</p>
           <div class="code-block">
             <div class="code-block-header">
-              <span>add.c</span>
+              <span>Note</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>Note:
+This formula will be used in the next chapter.</pre>
+          </div>
+          <p>This note is for the reader, not part of the actual content. Similarly:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>// Calculate the total marks</pre>
+          </div>
+          <p>is for the programmer, not the computer.</p>
+        </section>
+
+        <section class="topic-section" id="why-comments">
+          <h2>Why Do We Use Comments?</h2>
+          <p>Comments help to:</p>
+          <ul>
+            <li>Explain the purpose of the code.</li>
+            <li>Make programs easier to understand.</li>
+            <li>Help during debugging.</li>
+            <li>Make maintenance easier.</li>
+            <li>Improve teamwork.</li>
+            <li>Temporarily disable code while testing.</li>
+          </ul>
+        </section>
+
+        <section class="topic-section" id="types">
+          <h2>Types of Comments in C</h2>
+          <p>C supports two types of comments:</p>
+          <ol>
+            <li>Single-Line Comments (<code>//</code>)</li>
+            <li>Multi-Line Comments (<code>/* ... */</code>)</li>
+          </ol>
+        </section>
+
+        <section class="topic-section" id="single-line">
+          <h2>Single-Line Comment</h2>
+          <p><strong>Syntax</strong></p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Syntax</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>// This is a comment</pre>
+          </div>
+          <p>Everything after <code>//</code> on the same line is ignored by the compiler.</p>
+
+          <h3>Example 1</h3>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>hello.c</span>
               <button class="copy-btn">Copy</button>
             </div>
             <pre>#include &lt;stdio.h&gt;
 
-int main() {
-    // Print the result of adding 5 and 3
-    printf("The sum of 5 and 3 is 8\n");
+int main()
+{
+    // Print Hello World
+    printf("Hello World");
+
     return 0;
 }</pre>
           </div>
-          <p>The comment line is completely ignored by the compiler — removing it wouldn't change the program's behavior at all. It exists solely to help a human reader understand the line below it.</p>
+          <p>Output: <code>Hello World</code></p>
+          <p>The compiler ignores <code>// Print Hello World</code>.</p>
+
+          <h3>Example 2</h3>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>int age = 20; // Store age</pre>
+          </div>
+          <p>The program stores <code>20</code>. The text "Store age" is ignored.</p>
+
+          <h3>Multiple Single-Line Comments</h3>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>// Read input
+
+// Calculate sum
+
+// Display result</pre>
+          </div>
+          <p>Each line starts with <code>//</code>.</p>
         </section>
 
-        <section class="topic-section" id="mistakes">
-          <h2>Common Mistakes</h2>
-          <ul class="mistake-list">
-            <li>Assuming comments affect how a program runs — they never do; they're purely for humans.</li>
-            <li>Over-commenting obvious code, such as commenting <code>return 0;</code> with "return zero".</li>
-            <li>Under-commenting genuinely tricky or non-obvious logic, where a comment would actually help.</li>
-          </ul>
+        <section class="topic-section" id="multi-line">
+          <h2>Multi-Line Comment</h2>
+          <p><strong>Syntax</strong></p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Syntax</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>/*
+This is a
+multi-line
+comment
+*/</pre>
+          </div>
+          <p>Everything between <code>/*</code> and <code>*/</code> is ignored.</p>
+
+          <h3>Example</h3>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>hello.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>#include &lt;stdio.h&gt;
+
+/*
+Program Name : Hello World
+Author       : Aman
+Version      : 1.0
+*/
+
+int main()
+{
+    printf("Hello");
+
+    return 0;
+}</pre>
+          </div>
+          <p>Output: <code>Hello</code></p>
+          <p>The entire block comment is ignored.</p>
+
+          <h3>Another Example</h3>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>/*
+Calculate Area
+
+Formula
+
+Area = Length &times; Width
+*/</pre>
+          </div>
+          <p>Useful for describing algorithms, formulas, or program details.</p>
         </section>
 
-        <section class="topic-section" id="debugging">
-          <h2>Debugging Tips</h2>
-          <ul>
-            <li>A classic technique called "commenting out" temporarily disables a line or block of code by turning it into a comment, letting you test a program without that code running, without deleting it.</li>
-            <li>The next two pages explain exactly how to apply this technique using each comment style.</li>
-          </ul>
+        <section class="topic-section" id="comparison">
+          <h2>Difference Between Single-Line and Multi-Line Comments</h2>
+          <table class="compare-table">
+            <thead>
+              <tr><th>Single-Line Comment</th><th>Multi-Line Comment</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Starts with <code>//</code></td><td>Starts with <code>/*</code></td></tr>
+              <tr><td>Ends at the end of the line</td><td>Ends with <code>*/</code></td></tr>
+              <tr><td>Used for short explanations</td><td>Used for long descriptions</td></tr>
+              <tr><td>One line only</td><td>Multiple lines</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="topic-section" id="anywhere">
+          <h2>Can We Write Comments Anywhere?</h2>
+          <p>Yes.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>// Header comment
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    // Variable declaration
+    int a = 10;
+
+    // Printing value
+    printf("%d", a);
+
+    return 0;
+}</pre>
+          </div>
+          <p>Comments can appear before, after, or between statements.</p>
+        </section>
+
+        <section class="topic-section" id="documentation">
+          <h2>Using Comments for Documentation</h2>
+          <p>Professional programs often begin with:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>/*
+Program Name : Student Management System
+Author       : Aman
+Date         : 23 July 2026
+Version      : 1.0
+Description  : Stores student records.
+*/</pre>
+          </div>
+          <p>This makes the code easier to understand.</p>
+        </section>
+
+        <section class="topic-section" id="disable-code">
+          <h2>Using Comments to Disable Code</h2>
+          <p>Sometimes you don't want to delete code. Instead, comment it out.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>printf("Hello");
+
+/*
+printf("Welcome");
+printf("Learning C");
+*/
+
+printf("Bye");</pre>
+          </div>
+          <p>Output:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Output</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>Hello
+Bye</pre>
+          </div>
+          <p>The commented code is ignored.</p>
+        </section>
+
+        <section class="topic-section" id="common-mistakes">
+          <h2>Common Beginner Mistakes</h2>
+          <h3>Mistake 1: Forgetting to Close a Multi-Line Comment</h3>
+          <p>Wrong:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>broken.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>/*
+This comment never ends
+
+printf("Hello");</pre>
+          </div>
+          <p>The compiler treats the rest of the file as part of the comment, leading to an error.</p>
+          <p>Correct:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>fixed.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>/*
+This comment ends properly.
+*/
+
+printf("Hello");</pre>
+          </div>
+
+          <h3>Mistake 2: Nested Multi-Line Comments</h3>
+          <p>Wrong:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>broken.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>/*
+Outer comment
+
+/* Inner comment */
+
+End
+*/</pre>
+          </div>
+          <p>Standard C does not support nested block comments.</p>
+          <p>Correct approach:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>fixed.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>/*
+Outer comment
+Inner comment
+End
+*/</pre>
+          </div>
+          <p>or use <code>//</code> inside a block comment if appropriate.</p>
+
+          <h3>Mistake 3: Writing Too Many Comments</h3>
+          <p>Bad:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>// Declare integer
+int a;
+
+// Assign value
+a = 10;
+
+// Print value
+printf("%d", a);</pre>
+          </div>
+          <p>The code is already obvious.</p>
+          <p>Better:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>// Store the student's total marks
+int totalMarks = 450;</pre>
+          </div>
+          <p>Good comments explain why, not just what.</p>
+        </section>
+
+        <section class="topic-section" id="good-vs-bad">
+          <h2>Good vs Bad Comments</h2>
+          <p>❌ Bad:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>// Add 1 to i
+i = i + 1;</pre>
+          </div>
+          <p>The code already tells us that.</p>
+          <p>✅ Good:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>// Skip the first record because it contains column headings.
+i = i + 1;</pre>
+          </div>
+          <p>This explains the reason.</p>
         </section>
 
         <section class="topic-section" id="best-practices">
           <h2>Best Practices</h2>
           <ul class="best-practice-list">
-            <li>Comment the <em>why</em>, not the <em>what</em>, when the code itself is already clear.</li>
-            <li>Keep comments up to date — an outdated comment describing old behavior is worse than no comment at all.</li>
+            <li>✔ Write meaningful comments.</li>
+            <li>✔ Keep comments updated.</li>
+            <li>✔ Explain complex logic.</li>
+            <li>✔ Don't comment every obvious line.</li>
+            <li>✔ Remove unnecessary comments before final submission if they add no value.</li>
           </ul>
         </section>
 
-        <section class="topic-section" id="interview">
-          <h2>Interview Questions</h2>
+        <section class="topic-section" id="facts">
+          <h2>Interesting Facts 💡</h2>
+          <ul>
+            <li>Comments do not affect program execution because the compiler ignores them.</li>
+            <li>Many IDEs can automatically generate documentation comments.</li>
+            <li>Well-commented code is easier to maintain, especially in team projects.</li>
+          </ul>
+        </section>
 
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Easy:</strong> What is a comment?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>Text in source code that the compiler ignores, meant for human readers.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Medium:</strong> Does a comment affect how a program runs?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>No, never — comments are completely ignored during compilation.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Hard:</strong> Why might over-commenting be a problem?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>It can clutter code with obvious, redundant explanations that add noise rather than clarity.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>HR:</strong> How do you decide what deserves a comment?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>There's no single right answer — a strong response ideally reflects the why-not-what principle: commenting the reasoning behind non-obvious code, rather than restating what the code already makes clear.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Conceptual:</strong> How many comment styles does C support?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>Two — single-line and multi-line, covered on the next two pages.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Scenario-based:</strong> You want to temporarily disable a line of code to test something, without deleting it — what technique would you use?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>"Commenting it out" — turning the line into a comment so the compiler ignores it, without removing the code itself.</p>
-            </div>
-          </div>
+        <section class="topic-section" id="revision">
+          <h2>Quick Revision</h2>
+          <ul>
+            <li>Comments are ignored by the compiler.</li>
+            <li>Comments improve readability and maintainability.</li>
+            <li><code>//</code> is used for single-line comments.</li>
+            <li><code>/* ... */</code> is used for multi-line comments.</li>
+            <li>Avoid unnecessary or outdated comments.</li>
+            <li>Standard C does not support nested multi-line comments.</li>
+          </ul>
         </section>
 
         <section class="topic-section" id="mcq">
@@ -271,36 +544,145 @@ int main() {
           <div class="quiz" data-quiz-source="commentsQuiz"></div>
         </section>
 
-        <section class="topic-section" id="exercises">
-          <h2>Programming Exercises</h2>
-          <p><strong>Easy:</strong> Does a comment affect a program's behavior? Why or why not?</p>
-          <p><strong>Medium:</strong> Write one good comment explaining "why" for a line of your choice from <code>add.c</code>.</p>
-          <p><strong>Hard:</strong> Explain "commenting out" in your own words, and describe a situation where you'd use it.</p>
+        <section class="topic-section" id="interview">
+          <h2>Interview Questions</h2>
+
+          <h3>Beginner</h3>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What is a comment in C?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>A comment is text written inside a program that is ignored by the compiler, meant only for human readers.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Why do programmers use comments?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>To explain the purpose of code, make programs easier to understand, help during debugging, ease maintenance, improve teamwork, and temporarily disable code while testing.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What are the two types of comments in C?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Single-line comments (<code>//</code>) and multi-line comments (<code>/* ... */</code>).</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Can comments affect program execution? Why?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>No — comments are completely ignored by the compiler, so they have zero effect on program execution or output.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What is the difference between single-line and multi-line comments?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>A single-line comment starts with <code>//</code> and ends at the end of the line, used for short explanations. A multi-line comment starts with <code>/*</code> and ends with <code>*/</code>, and can span multiple lines for longer descriptions.</p>
+            </div>
+          </div>
+
+          <h3>Intermediate</h3>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Why is good commenting important in software development?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Good comments make code easier to understand, maintain, and debug, especially for other developers (or your future self) working on the same codebase — this matters even more in team projects.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What are the disadvantages of excessive commenting?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Commenting every obvious line clutters the code, makes it harder to read, and can become outdated as the code changes — outdated comments can actively mislead readers. Good comments explain why, not just what.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Can comments be used to disable code temporarily? Explain with an example.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Yes — wrapping code in <code>/* ... */</code> (or prefixing lines with <code>//</code>) makes the compiler ignore it without deleting it. For example, wrapping <code>printf("Welcome"); printf("Learning C");</code> in a block comment disables both lines while keeping them in the file for later use.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Why are nested block comments not allowed in standard C?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Because the C standard defines a block comment as ending at the first <code>*/</code> it encounters — so a nested <code>/* ... */</code> inside an outer comment would close the outer comment early, leaving the rest of the intended comment (and possibly real code) misinterpreted.</p>
+            </div>
+          </div>
         </section>
 
-        <section class="topic-section" id="assignments">
-          <h2>Assignments</h2>
-          <p>Add at least 2 comments to a version of <code>add.c</code> explaining what each part does, applying the why-not-what principle rather than restating the obvious.</p>
-        </section>
+        <section class="topic-section" id="practice">
+          <h2>Practice Questions</h2>
+          <p><strong>Q1.</strong> Write a C program that prints your name and uses one single-line comment and one multi-line comment.</p>
+          <p><strong>Q2.</strong> Convert the following into comments without deleting it:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Q2.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>printf("Welcome");
+printf("Learning C");</pre>
+          </div>
+          <p><strong>Q3.</strong> Find and correct the error:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Q3.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>/*
+Program Starts
 
-        <section class="topic-section" id="faq">
-          <h2>FAQs</h2>
-          <p><strong>Q: Do comments make a program run slower?</strong><br>A: No — they're stripped out before execution, so they have zero runtime cost.</p>
-          <p><strong>Q: Are comments required in C?</strong><br>A: No, entirely optional — but strongly recommended for readability.</p>
-        </section>
+printf("Hello");</pre>
+          </div>
+          <p><strong>Q4.</strong> Improve the following comments:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Q4.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>// Add 1
+i++;
 
-        <section class="topic-section" id="takeaways">
-          <h2>Key Takeaways</h2>
-          <ul>
-            <li>A comment is text the compiler completely ignores — it exists purely for human readers.</li>
-            <li>Follow the why-not-what principle: comment the reasoning, not what the code already makes obvious.</li>
-            <li>"Commenting out" is a classic debugging technique for temporarily disabling code without deleting it.</li>
-          </ul>
+// Print number
+printf("%d", i);</pre>
+          </div>
+          <p>Write more meaningful comments that explain the purpose.</p>
         </section>
 
         <div class="topic-nav-footer">
           <a href="debugging.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Previous: Execution and Debugging</a>
-          <a href="single-line-comments.html" class="btn btn-primary">Next: Single Line Comments <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="../unit2/tokens.html" class="btn btn-primary">Next: Tokens <i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </div>
 
@@ -326,11 +708,11 @@ int main() {
 
 <script>
 window.commentsQuiz = [
-  { question: "What is a comment in C?", options: ["A keyword that stops the program", "Text in source code that the compiler ignores, meant for human readers", "A special kind of variable declaration", "A required part of every function"], correctIndex: 1, explanation: "A comment is text the compiler completely ignores — it exists purely to help human readers understand the code." },
-  { question: "Does a comment affect how a C program runs?", options: ["Yes, it can change the output", "Yes, but only in multi-line comments", "No, comments are completely ignored during compilation", "Only if it contains code"], correctIndex: 2, explanation: "Comments never affect program behavior — they are stripped out before the program runs." },
-  { question: "What does the 'why-not-what' principle suggest about comments?", options: ["Comment every single line of code", "Comment the reasoning behind code, not what the code already makes obvious", "Never write comments", "Only comment function names"], correctIndex: 1, explanation: "Good comments explain why code does something, especially when that reasoning isn't obvious — not what the code is already clearly doing." },
-  { question: "How many comment styles does C support?", options: ["One", "Two — single-line and multi-line", "Three", "Four"], correctIndex: 1, explanation: "C supports two comment styles: single-line and multi-line, each covered on the following pages." },
-  { question: "What is 'commenting out' a line of code?", options: ["Deleting the line permanently", "Turning the line into a comment so the compiler ignores it, without deleting it", "Copying the line to another file", "Adding a semicolon to the line"], correctIndex: 1, explanation: "Commenting out temporarily disables code by turning it into a comment, letting you test the program without that code running, while keeping it available to restore later." }
+  { question: "Which symbol starts a single-line comment?", options: ["/*", "//", "#", "**"], correctIndex: 1, explanation: "// starts a single-line comment; everything after it on that line is ignored by the compiler." },
+  { question: "Which symbols are used for a multi-line comment?", options: ["// ... //", "# ... #", "/* ... */", "<< ... >>"], correctIndex: 2, explanation: "/* ... */ marks a multi-line comment; everything between them is ignored." },
+  { question: "Comments are mainly used to:", options: ["Speed up program execution", "Explain the code", "Create variables", "Compile the program"], correctIndex: 1, explanation: "Comments explain the code for human readers and have no effect on execution." },
+  { question: "Does the compiler execute comments?", options: ["Yes", "No", "Sometimes", "Only multi-line comments"], correctIndex: 1, explanation: "The compiler ignores comments entirely — they are never executed." },
+  { question: "Which statement about comments is correct?", options: ["Comments change the output of the program.", "Nested multi-line comments are supported in standard C.", "Comments are ignored by the compiler.", "Every line of code should have a comment."], correctIndex: 2, explanation: "Comments are ignored by the compiler; standard C does not support nested block comments, and over-commenting is discouraged." }
 ];
 </script>
 <script src="../../js/theme.js"></script>
