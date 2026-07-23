@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Keywords — Unit 2 — C Programming eBook</title>
-<meta name="description" content="Learn what keywords are in C, why they can't be reused as identifiers, and the common beginner misconception that main is a reserved keyword.">
+<title>Keywords in C — Unit 2 — C Programming eBook</title>
+<meta name="description" content="What C keywords are, the 32 ANSI C keywords grouped by category (data types, decision-making, loops, jump statements, storage classes, and more), and the rules for using them.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,6 +31,9 @@
   .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
   .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
   .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
+  .compare-table { width: 100%; border-collapse: collapse; margin: var(--space-4) 0; font-size: 0.92rem; }
+  .compare-table th, .compare-table td { border: 1px solid var(--border); padding: var(--space-2) var(--space-3); text-align: left; vertical-align: top; }
+  .compare-table th { background: var(--bg-subtle, rgba(128,128,128,0.08)); }
 </style>
 </head>
 <body>
@@ -138,127 +141,505 @@
   <main class="content">
     <div class="topic-layout">
       <div>
-        <h1>Keywords</h1>
-        <p class="lead">Words the C language has already claimed for itself — like <code>int</code>, <code>if</code>, and <code>return</code> — that you can never borrow for your own variable or function names.</p>
+        <h1>Keywords in C</h1>
+        <p class="lead">A keyword is a reserved word in the C language that has a predefined meaning to the compiler. You cannot use a keyword as the name of a variable, function, or any identifier.</p>
 
-        <section class="topic-section" id="introduction">
-          <h2>What Is It?</h2>
-          <p>A <strong>keyword</strong> is a word reserved by the C language itself for a specific, fixed purpose — words like <code>int</code>, <code>if</code>, <code>return</code>, <code>for</code>, and <code>while</code>. Keywords cannot be used as identifiers (names you choose for your own variables, functions, and so on) because the compiler always interprets them as their reserved meaning, never as something you defined.</p>
-        </section>
-
-        <section class="topic-section" id="why">
-          <h2>Why Do We Need to Know This?</h2>
-          <p>Recognizing keywords by sight — and knowing up front that you can't reuse them as your own names — prevents a whole category of confusing beginner naming errors before they ever happen.</p>
+        <section class="topic-section" id="what-are-keywords">
+          <h2>What are Keywords?</h2>
+          <p><strong>Definition:</strong> Keywords are reserved words predefined by the C language that have special meanings and cannot be used as identifiers.</p>
         </section>
 
         <section class="topic-section" id="real-life">
-          <h2>Real-Life Example</h2>
-          <p>Think of reserved words in a legal contract template, like "Party" or "Agreement" — they always mean one specific thing in that context. You can't casually redefine what "Agreement" means partway through the same document; the word is locked to its fixed meaning. C's keywords work the same way.</p>
+          <h2>Real-Life Analogy</h2>
+          <p>Imagine a classroom. The teacher says: Present, Absent, Leave. These words have fixed meanings. You cannot suddenly decide that "Present" means "Go Home."</p>
+          <p>Similarly, in C, <code>int</code> always means declare an integer variable. You cannot change its meaning.</p>
         </section>
 
-        <section class="topic-section" id="visual">
-          <h2>Visual Explanation</h2>
-          <div class="feature-grid">
-            <div class="card">
-              <i class="fa-solid fa-hashtag" style="color: var(--color-primary); font-size: 1.5rem;"></i>
-              <h3><code>int</code></h3>
-              <p>A data type keyword — it tells the compiler that a variable will hold a whole number.</p>
+        <section class="topic-section" id="why">
+          <h2>Why Do We Need Keywords?</h2>
+          <p>Without keywords, the compiler wouldn't know what you want to do.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
             </div>
-            <div class="card">
-              <i class="fa-solid fa-arrow-turn-up" style="color: var(--color-secondary); font-size: 1.5rem;"></i>
-              <h3><code>return</code></h3>
-              <p>A keyword that ends a function, optionally sending a value back to whoever called it.</p>
-            </div>
-            <div class="card">
-              <i class="fa-solid fa-circle-exclamation" style="color: var(--color-warning); font-size: 1.5rem;"></i>
-              <h3><code>main</code> is <strong>NOT</strong> a keyword</h3>
-              <p>Surprising but true: <code>main</code> is just a conventionally-named identifier that the operating system/runtime looks for as the program's entry point. It is not reserved by C's grammar at all.</p>
-            </div>
+            <pre>int age = 20;</pre>
           </div>
+          <p>Compiler understands: <code>int</code> &rarr; Create an integer variable, <code>age</code> &rarr; Variable name, <code>20</code> &rarr; Value.</p>
+          <p>Without <code>int</code>, the compiler wouldn't know the data type.</p>
+        </section>
+
+        <section class="topic-section" id="number">
+          <h2>Number of Keywords in C</h2>
+          <p>The original ANSI C standard defines 32 keywords. Modern C standards (C99, C11, C18, C23) add more keywords, but the classic 32 keywords are the most important and are commonly taught in introductory courses.</p>
+        </section>
+
+        <section class="topic-section" id="32-keywords">
+          <h2>The 32 ANSI C Keywords</h2>
+          <table class="compare-table">
+            <thead>
+              <tr><th>Keyword</th><th>Purpose</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>auto</td><td>Automatic variable</td></tr>
+              <tr><td>break</td><td>Exit loop/switch</td></tr>
+              <tr><td>case</td><td>Switch case</td></tr>
+              <tr><td>char</td><td>Character data type</td></tr>
+              <tr><td>const</td><td>Constant value</td></tr>
+              <tr><td>continue</td><td>Skip current iteration</td></tr>
+              <tr><td>default</td><td>Default switch case</td></tr>
+              <tr><td>do</td><td>Do-while loop</td></tr>
+              <tr><td>double</td><td>Double precision float</td></tr>
+              <tr><td>else</td><td>Alternative condition</td></tr>
+              <tr><td>enum</td><td>Enumeration</td></tr>
+              <tr><td>extern</td><td>External variable</td></tr>
+              <tr><td>float</td><td>Floating-point data type</td></tr>
+              <tr><td>for</td><td>For loop</td></tr>
+              <tr><td>goto</td><td>Jump statement</td></tr>
+              <tr><td>if</td><td>Conditional statement</td></tr>
+              <tr><td>int</td><td>Integer data type</td></tr>
+              <tr><td>long</td><td>Long integer</td></tr>
+              <tr><td>register</td><td>Register storage class</td></tr>
+              <tr><td>return</td><td>Return value from function</td></tr>
+              <tr><td>short</td><td>Short integer</td></tr>
+              <tr><td>signed</td><td>Signed number</td></tr>
+              <tr><td>sizeof</td><td>Returns size of data</td></tr>
+              <tr><td>static</td><td>Static storage class</td></tr>
+              <tr><td>struct</td><td>Structure</td></tr>
+              <tr><td>switch</td><td>Multiple selection</td></tr>
+              <tr><td>typedef</td><td>Create new type name</td></tr>
+              <tr><td>union</td><td>Union</td></tr>
+              <tr><td>unsigned</td><td>Unsigned number</td></tr>
+              <tr><td>void</td><td>No value/no type</td></tr>
+              <tr><td>volatile</td><td>Special memory handling</td></tr>
+              <tr><td>while</td><td>While loop</td></tr>
+            </tbody>
+          </table>
+          <p><em>Note: We'll learn each keyword naturally throughout the course. You don't need to memorize them all at once.</em></p>
+        </section>
+
+        <section class="topic-section" id="categories">
+          <h2>Categories of Keywords</h2>
+          <p>Instead of memorizing 32 words randomly, group them by purpose.</p>
+          <div class="flowchart">
+            <div class="flow-box">Data Types</div>
+            <div class="flow-box">Decision Making</div>
+            <div class="flow-box">Loops</div>
+            <div class="flow-box">Jump Statements</div>
+            <div class="flow-box">Storage Classes</div>
+            <div class="flow-box">User Defined Types</div>
+            <div class="flow-box">Type Modifiers</div>
+            <div class="flow-box">Miscellaneous</div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="data-type-keywords">
+          <h2>Data Type Keywords</h2>
+          <p>These define the type of data.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Keywords</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>int
+char
+float
+double
+void</pre>
+          </div>
+          <p>Example:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>int age = 20;
+char grade = 'A';
+float salary = 25000.50;
+double pi = 3.1415926535;</pre>
+          </div>
+        </section>
+
+        <section class="topic-section" id="decision-keywords">
+          <h2>Decision-Making Keywords</h2>
+          <p>Used for conditions.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Keywords</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>if
+else
+switch
+case
+default</pre>
+          </div>
+          <p>Example:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>int age = 18;
+
+if(age >= 18)
+{
+    printf("Adult");
+}
+else
+{
+    printf("Minor");
+}</pre>
+          </div>
+          <p>Output: <code>Adult</code></p>
+        </section>
+
+        <section class="topic-section" id="loop-keywords">
+          <h2>Loop Keywords</h2>
+          <p>Used to repeat code.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Keywords</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>for
+while
+do</pre>
+          </div>
+          <p>Example:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>for(int i = 1; i <= 5; i++)
+{
+    printf("%d ", i);
+}</pre>
+          </div>
+          <p>Output: <code>1 2 3 4 5</code></p>
+        </section>
+
+        <section class="topic-section" id="jump-keywords">
+          <h2>Jump Statements</h2>
+          <p>These change the normal flow of execution.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Keywords</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>break
+continue
+return
+goto</pre>
+          </div>
+          <p>Example:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>for(int i = 1; i <= 5; i++)
+{
+    if(i == 3)
+        break;
+
+    printf("%d ", i);
+}</pre>
+          </div>
+          <p>Output: <code>1 2</code></p>
+        </section>
+
+        <section class="topic-section" id="storage-keywords">
+          <h2>Storage Class Keywords</h2>
+          <p>Control the lifetime and visibility of variables.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Keywords</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>auto
+extern
+static
+register</pre>
+          </div>
+          <p>Don't worry &mdash; we'll study storage classes in detail later in this unit.</p>
+        </section>
+
+        <section class="topic-section" id="user-defined-keywords">
+          <h2>User-Defined Data Types</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Keywords</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>struct
+union
+enum
+typedef</pre>
+          </div>
+          <p>Example:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>struct Student
+{
+    int id;
+    char name[30];
+};</pre>
+          </div>
+        </section>
+
+        <section class="topic-section" id="type-modifiers">
+          <h2>Type Modifiers</h2>
+          <p>These modify the size or range of data types.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Keywords</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>long
+short
+signed
+unsigned</pre>
+          </div>
+          <p>Example:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>unsigned int marks;
+long int distance;
+short int age;</pre>
+          </div>
+        </section>
+
+        <section class="topic-section" id="misc-keywords">
+          <h2>Miscellaneous Keywords</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Keywords</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>const
+volatile
+sizeof</pre>
+          </div>
+          <p>Example:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>const float PI = 3.14;</pre>
+          </div>
+          <p>Now <code>PI</code> cannot be modified.</p>
+        </section>
+
+        <section class="topic-section" id="example1">
+          <h2>Example 1</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>example1.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>#include &lt;stdio.h&gt;
+
+int main()
+{
+    int age = 20;
+
+    if(age >= 18)
+    {
+        printf("Eligible");
+    }
+
+    return 0;
+}</pre>
+          </div>
+          <p>Keywords used:</p>
+          <table class="compare-table">
+            <thead>
+              <tr><th>Keyword</th><th>Meaning</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>int</td><td>Integer type</td></tr>
+              <tr><td>if</td><td>Condition</td></tr>
+              <tr><td>return</td><td>Return from function</td></tr>
+            </tbody>
+          </table>
+          <p>Output: <code>Eligible</code></p>
+        </section>
+
+        <section class="topic-section" id="example2">
+          <h2>Example 2</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>example2.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>#include &lt;stdio.h&gt;
+
+int main()
+{
+    float salary = 25000.50;
+
+    printf("%.2f", salary);
+
+    return 0;
+}</pre>
+          </div>
+          <p>Keywords: <code>int</code>, <code>float</code>, <code>return</code></p>
+          <p>Output: <code>25000.50</code></p>
+        </section>
+
+        <section class="topic-section" id="example3">
+          <h2>Example 3</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>example3.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>#include &lt;stdio.h&gt;
+
+int main()
+{
+    char grade = 'A';
+
+    printf("%c", grade);
+
+    return 0;
+}</pre>
+          </div>
+          <p>Output: <code>A</code></p>
+        </section>
+
+        <section class="topic-section" id="example4">
+          <h2>Example 4</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>example4.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>#include &lt;stdio.h&gt;
+
+int main()
+{
+    const int MAX = 100;
+
+    printf("%d", MAX);
+
+    return 0;
+}</pre>
+          </div>
+          <p>Output: <code>100</code></p>
+          <p>If you try:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>MAX = 200;</pre>
+          </div>
+          <p>Compiler Error: <code>assignment of read-only variable 'MAX'</code></p>
+        </section>
+
+        <section class="topic-section" id="rules">
+          <h2>Rules for Keywords</h2>
+          <p><strong>Rule 1:</strong> Keywords are reserved.</p>
+          <p>❌ Wrong: <code>int int = 10;</code> &mdash; Compiler Error</p>
+          <p><strong>Rule 2:</strong> Cannot use keywords as variable names.</p>
+          <p>❌ Wrong: <code>float return = 5.5;</code></p>
+          <p><strong>Rule 3:</strong> Cannot use keywords as function names.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Wrong</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>void while()
+{
+}</pre>
+          </div>
+          <p><strong>Rule 4:</strong> Keywords are lowercase.</p>
+          <p>Correct: <code>int</code> &mdash; Wrong: <code>Int</code></p>
+          <p><code>Int</code> is treated as an identifier, not the <code>int</code> keyword.</p>
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>Common Mistakes</h2>
-          <ul class="mistake-list">
-            <li>Trying to name a variable the same as a keyword, e.g. <code>int int = 5;</code> — this is invalid, since <code>int</code> is reserved and the compiler will never treat it as a variable name.</li>
-            <li>Assuming <code>main</code> is a keyword. It isn't — it's just a specially-recognized identifier by convention, not a reserved word in C's grammar.</li>
+          <h2>Common Beginner Mistakes</h2>
+          <p><strong>Mistake 1:</strong> <code>int if = 5;</code> &mdash; Wrong because <code>if</code> is a keyword.</p>
+          <p><strong>Mistake 2:</strong> <code>float while = 2.5;</code> &mdash; Wrong.</p>
+          <p><strong>Mistake 3:</strong> Thinking keywords are case-insensitive.</p>
+          <p>Wrong: <code>INT age;</code> &mdash; Correct: <code>int age;</code></p>
+          <p>C is case-sensitive.</p>
+        </section>
+
+        <section class="topic-section" id="keywords-vs-identifiers">
+          <h2>Keywords vs Identifiers</h2>
+          <table class="compare-table">
+            <thead>
+              <tr><th>Keyword</th><th>Identifier</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Reserved by C</td><td>Created by programmer</td></tr>
+              <tr><td>Fixed meaning</td><td>User-defined meaning</td></tr>
+              <tr><td>Cannot be used as variable names</td><td>Can be variable/function names</td></tr>
+              <tr><td>Examples: int, if, while</td><td>Examples: age, marks, salary</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="topic-section" id="facts">
+          <h2>Interesting Facts</h2>
+          <p><strong>Fact 1:</strong> Every C compiler has a predefined list of keywords.</p>
+          <p><strong>Fact 2:</strong> Keywords are recognized during the lexical analysis (tokenization) phase of compilation.</p>
+          <p><strong>Fact 3:</strong> The number of keywords has increased in newer C standards, but the original 32 remain the foundation.</p>
+          <p><strong>Fact 4:</strong> You cannot redefine or overload a keyword in C.</p>
+        </section>
+
+        <section class="topic-section" id="complete-example">
+          <h2>Complete Example</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>complete.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>#include &lt;stdio.h&gt;
+
+int main()
+{
+    const int PASS = 40;
+
+    int marks = 70;
+
+    if(marks >= PASS)
+    {
+        printf("Pass");
+    }
+    else
+    {
+        printf("Fail");
+    }
+
+    return 0;
+}</pre>
+          </div>
+          <p>Keywords used: <code>const</code>, <code>int</code>, <code>if</code>, <code>else</code>, <code>return</code></p>
+          <p>Output: <code>Pass</code></p>
+        </section>
+
+        <section class="topic-section" id="revision">
+          <h2>Summary</h2>
+          <ul>
+            <li>Keywords are reserved words with predefined meanings.</li>
+            <li>You cannot use keywords as identifiers.</li>
+            <li>ANSI C has 32 standard keywords.</li>
+            <li>Keywords are case-sensitive.</li>
+            <li>Grouping keywords by purpose makes them easier to learn.</li>
           </ul>
-        </section>
-
-        <section class="topic-section" id="debugging">
-          <h2>Debugging Tips</h2>
-          <p>If the compiler reports an error pointing at what looks like a perfectly normal word you tried to use as a variable name, check whether that word happens to be a reserved keyword — that mismatch is a very common source of confusing beginner errors.</p>
-        </section>
-
-        <section class="topic-section" id="best-practices">
-          <h2>Best Practices</h2>
-          <ul class="best-practice-list">
-            <li>Avoid keyword-adjacent names that could confuse readers. Naming a variable <code>printf_result</code> is perfectly fine, but don't get creative trying to almost-reuse a keyword itself.</li>
-          </ul>
-        </section>
-
-        <section class="topic-section" id="interview">
-          <h2>Interview Questions</h2>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Easy:</strong> What is a keyword in C?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>A keyword is a word reserved by the C language for a specific, fixed purpose, like <code>int</code> or <code>return</code>.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Medium:</strong> Can you name a variable the same as a keyword?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>No, this causes a compiler error since keywords are reserved and always carry their fixed, built-in meaning.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Hard:</strong> Is <code>main</code> a C keyword?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>No — it's just a conventionally-named identifier that the OS/runtime looks for as the program's entry point, not a reserved word in C's grammar.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>HR:</strong> Can you name a few C keywords you've already seen in this course?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>This is open-ended — a strong answer might mention <code>int</code>, <code>return</code>, or others seen so far in the course's examples.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Conceptual:</strong> Why can't keywords be reused as variable names?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>Because the compiler always interprets them with their fixed, built-in meaning, so reusing one would create an unresolvable conflict between the reserved meaning and your intended use.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Scenario-based:</strong> You get a compiler error trying to declare <code>int for = 5;</code> — why does this fail?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p><code>for</code> is a reserved keyword (used for loops), so it can't be used as a variable name.</p>
-            </div>
-          </div>
         </section>
 
         <section class="topic-section" id="mcq">
@@ -266,31 +647,95 @@
           <div class="quiz" data-quiz-source="keywordsQuiz"></div>
         </section>
 
+        <section class="topic-section" id="interview">
+          <h2>Interview Questions</h2>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What is a keyword in C?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>A keyword is a reserved word in the C language that has a predefined meaning to the compiler and cannot be used as an identifier.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Why can't keywords be used as variable names?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Because the compiler always interprets a keyword using its fixed, reserved meaning, so reusing it as a variable name would create an unresolvable conflict.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>How many ANSI C keywords are there?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>32 keywords, as defined by the original ANSI C standard. Later standards (C99, C11, C18, C23) add more.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What is the difference between a keyword and an identifier?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>A keyword is reserved by C with a fixed meaning and cannot be used as a variable name (e.g. int, if, while). An identifier is a name created by the programmer with user-defined meaning (e.g. age, marks, salary).</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Are C keywords case-sensitive? Explain with an example.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Yes. <code>int</code> is a keyword, but <code>INT</code> or <code>Int</code> are not — C is case-sensitive throughout, so <code>Int age;</code> treats <code>Int</code> as an ordinary identifier, not the <code>int</code> keyword.</p>
+            </div>
+          </div>
+        </section>
+
         <section class="topic-section" id="exercises">
           <h2>Programming Exercises</h2>
-          <p><strong>Easy:</strong> Name 3 keywords you've seen so far in this course.</p>
-          <p><strong>Medium:</strong> Explain why <code>int</code> can't be used as a variable name.</p>
-          <p><strong>Hard:</strong> Research whether <code>main</code> is officially a C keyword or just a convention.</p>
-        </section>
+          <p><strong>Exercise 1.</strong> Write a C program that declares one <code>int</code>, one <code>float</code>, one <code>char</code>, and one <code>const</code> integer. Print all the values.</p>
+          <p><strong>Exercise 2.</strong> Identify all the keywords in the following program:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>exercise2.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>#include &lt;stdio.h&gt;
 
-        <section class="topic-section" id="assignments">
-          <h2>Assignments</h2>
-          <p>Write a short paragraph explaining why keywords exist and what would go wrong without them.</p>
-        </section>
+int main()
+{
+    int num = 5;
 
-        <section class="topic-section" id="faq">
-          <h2>FAQs</h2>
-          <p><strong>Q: How many keywords does C have?</strong><br>A: A relatively small, fixed set — roughly 32 in standard C, though this course doesn't require memorizing the full list up front.</p>
-          <p><strong>Q: Are keywords case-sensitive?</strong><br>A: Yes — <code>int</code> is a keyword, but <code>Int</code> or <code>INT</code> are not, since C is case-sensitive throughout.</p>
-        </section>
+    while(num > 0)
+    {
+        printf("%d\n", num);
+        num--;
+    }
 
-        <section class="topic-section" id="takeaways">
-          <h2>Key Takeaways</h2>
-          <ul>
-            <li>A keyword is a word reserved by the C language itself for a specific, fixed purpose, like <code>int</code> or <code>return</code>.</li>
-            <li>Keywords can never be reused as identifiers — the compiler always interprets them with their fixed, built-in meaning, so reusing one causes a compiler error.</li>
-            <li><code>main</code> is not a keyword; it's just a conventionally-named identifier the OS looks for as the program's entry point, not a reserved word in C's grammar.</li>
-          </ul>
+    return 0;
+}</pre>
+          </div>
+          <p><strong>Exercise 3.</strong> Correct the errors in the following code:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>exercise3.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>int if = 10;
+float while = 20.5;
+char return = 'A';</pre>
+          </div>
+          <p>Replace the invalid variable names with valid identifiers and run the program.</p>
         </section>
 
         <div class="topic-nav-footer">
@@ -321,11 +766,11 @@
 
 <script>
 window.keywordsQuiz = [
-  { question: "What is a keyword in C?", options: ["Any word used inside main()", "A word reserved by the C language for a specific, fixed purpose", "A comment marker", "Any identifier declared with int"], correctIndex: 1, explanation: "A keyword is a word reserved by C for a specific, fixed purpose, like int, if, or return — it cannot be redefined by the programmer." },
-  { question: "Which of these is invalid in C?", options: ["int total = 5;", "int int = 5;", "int Int = 5;", "int _count = 5;"], correctIndex: 1, explanation: "int int = 5; is invalid because int is a reserved keyword and cannot be used as a variable name." },
-  { question: "Is main a keyword in C?", options: ["Yes, it is reserved by C's grammar", "No, it is just a conventionally-named identifier the OS looks for as the entry point", "Yes, but only in older C standards", "Only when used with return 0;"], correctIndex: 1, explanation: "main is not a reserved keyword — it's a conventionally-named identifier that the operating system/runtime looks for as the program's entry point." },
-  { question: "Why can't a keyword be used as a variable name?", options: ["Because it's too short", "Because the compiler always interprets it with its fixed, built-in meaning", "Because keywords are stored in a separate file", "Keywords actually can be used as variable names"], correctIndex: 1, explanation: "The compiler always interprets a keyword using its reserved meaning, so reusing it as a variable name creates an unresolvable conflict." },
-  { question: "Are C keywords case-sensitive?", options: ["No, int and INT are the same", "Yes, int is a keyword but Int or INT are not", "Only for loop keywords like for and while", "Case sensitivity depends on the compiler"], correctIndex: 1, explanation: "C is case-sensitive throughout, so int is a keyword while Int or INT are treated as ordinary, unreserved identifiers." }
+  { question: "What is a keyword in C?", options: ["Variable name", "Reserved word", "Function name", "Operator"], correctIndex: 1, explanation: "A keyword is a reserved word predefined by the C language with a special, fixed meaning." },
+  { question: "Which of the following is not a keyword?", options: ["int", "float", "salary", "while"], correctIndex: 2, explanation: "salary is a programmer-defined identifier, not a reserved keyword." },
+  { question: "How many standard ANSI C keywords are there?", options: ["16", "24", "32", "64"], correctIndex: 2, explanation: "The original ANSI C standard defines 32 keywords." },
+  { question: "Which keyword is used to exit a loop?", options: ["return", "break", "continue", "goto"], correctIndex: 1, explanation: "break immediately exits the current loop or switch statement." },
+  { question: "Which declaration is valid?", options: ["int if = 10;", "int age = 20;", "float while = 3.5;", "char return = 'A';"], correctIndex: 1, explanation: "int age = 20; is valid since age is a normal identifier — if, while, and return are reserved keywords and cannot be used as variable names." }
 ];
 </script>
 <script src="../../js/theme.js"></script>

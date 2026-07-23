@@ -119,7 +119,8 @@
 }
 
 .sidebar-submenu.open {
-  max-height: 500px;
+  max-height: none;
+  overflow: visible;
 }
 
 /* Content */
