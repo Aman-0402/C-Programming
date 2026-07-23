@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Introduction to C — Unit 1 — C Programming eBook</title>
-<meta name="description" content="Meet C: a general-purpose, procedural language and the direct or indirect ancestor of many modern programming languages.">
+<title>Introduction to C Program and C Compilers — Unit 1 — C Programming eBook</title>
+<meta name="description" content="What C is, its history and creator, why it's called a middle-level language, its features and applications, and what a compiler does — with the first C program.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,6 +34,9 @@
   .influence-card-icon { font-size: 1.5rem; color: var(--color-primary); margin-bottom: var(--space-3); }
   .influence-card h3 { margin-bottom: var(--space-2); }
   .influence-card p { color: var(--text-muted); margin: 0; }
+  .compare-table { width: 100%; border-collapse: collapse; margin: var(--space-4) 0; font-size: 0.92rem; }
+  .compare-table th, .compare-table td { border: 1px solid var(--border); padding: var(--space-2) var(--space-3); text-align: left; vertical-align: top; }
+  .compare-table th { background: var(--bg-subtle, rgba(128,128,128,0.08)); }
 </style>
 </head>
 <body>
@@ -77,12 +80,8 @@
       <a class="sidebar-link" href="algorithms.html"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-label">Algorithms</span></a>
       <a class="sidebar-link" href="pseudocode.html"><i class="fa-solid fa-file-lines"></i><span class="sidebar-label">Pseudocode</span></a>
       <a class="sidebar-link" href="flowcharts.html"><i class="fa-solid fa-sitemap"></i><span class="sidebar-label">Flowcharts</span></a>
-      <a class="sidebar-link active" href="introduction-to-c.html"><i class="fa-solid fa-c"></i><span class="sidebar-label">Introduction to C</span></a>
-      <a class="sidebar-link" href="history-of-c.html"><i class="fa-solid fa-scroll"></i><span class="sidebar-label">History of C</span></a>
-      <a class="sidebar-link" href="features-of-c.html"><i class="fa-solid fa-star"></i><span class="sidebar-label">Features of C</span></a>
-      <a class="sidebar-link" href="applications-of-c.html"><i class="fa-solid fa-industry"></i><span class="sidebar-label">Applications</span></a>
+      <a class="sidebar-link" href="introduction-to-c.html"><i class="fa-solid fa-c"></i><span class="sidebar-label">Introduction to C &amp; Compilers</span></a>
       <a class="sidebar-link" href="structure-of-c-program.html"><i class="fa-solid fa-code"></i><span class="sidebar-label">Structure of C Program</span></a>
-      <a class="sidebar-link" href="c-compiler.html"><i class="fa-solid fa-gears"></i><span class="sidebar-label">C Compiler</span></a>
       <a class="sidebar-link" href="compilation-process.html"><i class="fa-solid fa-arrows-turn-right"></i><span class="sidebar-label">Compilation Process</span></a>
       <a class="sidebar-link" href="source-code.html"><i class="fa-solid fa-file-code"></i><span class="sidebar-label">Source Code</span></a>
       <a class="sidebar-link" href="object-code.html"><i class="fa-solid fa-cube"></i><span class="sidebar-label">Object Code</span></a>
@@ -155,141 +154,319 @@
   <main class="content">
     <div class="topic-layout">
       <div>
-        <h1>Introduction to C</h1>
-        <p class="lead">A first look at the language this entire course is built around — where it sits in the world of programming, and why so much of what comes later in your career will quietly trace back to it.</p>
+        <h1>Introduction to C Program and C Compilers</h1>
+        <p class="lead">Almost every interview starts with questions like "What is C?", "Who developed C?", "Why is C still used today?", and "What is a compiler?" Let's understand everything from the beginning.</p>
 
-        <section class="topic-section" id="introduction">
-          <h2>What Is It?</h2>
-          <p>C is a general-purpose, procedural programming language — meaning it's not tied to any one kind of application, and its programs are written as an ordered sequence of steps (procedures/functions) rather than, say, purely as objects or purely as mathematical expressions. It's also one of the most influential languages ever created: directly or indirectly, it is the ancestor of an enormous share of the languages programmers use today. C++ and C# borrow both syntax and their names from it; Java's curly-brace, semicolon-terminated style traces straight back to C; even JavaScript's basic control-flow syntax (<code>if</code>, <code>for</code>, <code>while</code>, curly braces) follows the same pattern. Python, meanwhile, is influenced more subtly — its most widely used reference interpreter, CPython, is itself written in C. Learning C means learning the language that many other languages borrow their core ideas from.</p>
+        <section class="topic-section" id="what-is-c">
+          <h2>What is C?</h2>
+          <p><strong>Definition:</strong> C is a general-purpose, procedural, high-level programming language used to develop software, operating systems, embedded systems, and many other applications.</p>
+          <p>In simple words: <strong>C is a language used to communicate with a computer to create programs.</strong></p>
         </section>
 
-        <section class="topic-section" id="why">
-          <h2>Why Do We Need to Know This?</h2>
-          <p>Nearly every popular language in active use today borrows something from C — the curly braces that group code, the semicolons that end statements, or the basic shape of <code>if</code>/<code>for</code>/<code>while</code> structures. Once you've genuinely learned C, you will recognize these patterns instantly in whatever language you pick up next, which makes learning that next language noticeably faster. C also forces you to think close to how a computer actually executes instructions, step by step — a mental model that stays useful no matter how many higher-level languages you learn afterward.</p>
+        <section class="topic-section" id="why-developed">
+          <h2>Why Was C Developed?</h2>
+          <p>Before C, programmers mainly used languages like Assembly and B (BCPL-based language). These languages had limitations:</p>
+          <ul>
+            <li>Difficult to write large programs.</li>
+            <li>Less portable.</li>
+            <li>Hard to maintain.</li>
+          </ul>
+          <p>To solve these problems, <strong>Dennis Ritchie</strong> developed <strong>C</strong>.</p>
         </section>
 
-        <section class="topic-section" id="real-life">
+        <section class="topic-section" id="history">
+          <h2>History of C</h2>
+          <table class="compare-table">
+            <thead>
+              <tr><th>Year</th><th>Event</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1967</td><td>BCPL developed by Martin Richards</td></tr>
+              <tr><td>1970</td><td>B language developed by Ken Thompson</td></tr>
+              <tr><td><strong>1972</strong></td><td><strong>C developed by Dennis Ritchie at Bell Labs</strong></td></tr>
+              <tr><td>1978</td><td>Book "The C Programming Language" by Brian Kernighan &amp; Dennis Ritchie</td></tr>
+              <tr><td>1989</td><td>ANSI standardized C (ANSI C / C89)</td></tr>
+              <tr><td>1990</td><td>ISO adopted the C standard (C90)</td></tr>
+              <tr><td>1999</td><td>C99 introduced</td></tr>
+              <tr><td>2011</td><td>C11 introduced</td></tr>
+              <tr><td>2018</td><td>C17 introduced</td></tr>
+              <tr><td>2023</td><td>C23 published</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="topic-section" id="who-developed">
+          <h2>Who Developed C?</h2>
+          <p><strong>Dennis Ritchie</strong></p>
+          <ul>
+            <li>Developed C in <strong>1972</strong>.</li>
+            <li>Worked at <strong>Bell Laboratories (Bell Labs)</strong>.</li>
+            <li>Also played a major role in developing the <strong>UNIX operating system</strong>.</li>
+          </ul>
+          <p><strong>Interview Tip:</strong> Father of C = Dennis Ritchie</p>
+        </section>
+
+        <section class="topic-section" id="why-named-c">
+          <h2>Why Was C Named "C"?</h2>
+          <p>The language B already existed. Dennis Ritchie improved B and named the new language C, the next letter in the English alphabet.</p>
+          <div class="flowchart">
+            <div class="flow-box">BCPL</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">B</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">C</div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="why-popular">
+          <h2>Why is C So Popular?</h2>
+          <p>Because C is:</p>
+          <ul>
+            <li>Fast</li>
+            <li>Efficient</li>
+            <li>Portable</li>
+            <li>Powerful</li>
+            <li>Close to hardware</li>
+            <li>Easy to learn compared to Assembly</li>
+          </ul>
+          <p>Even after 50+ years, C is still widely used.</p>
+        </section>
+
+        <section class="topic-section" id="features">
+          <h2>Features of C</h2>
+          <p>Let's understand each feature.</p>
+
+          <h3>1. Simple</h3>
+          <p>C has a relatively small set of keywords and straightforward syntax.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>int a = 10;
+printf("%d", a);</pre>
+          </div>
+          <p>Easy to understand.</p>
+
+          <h3>2. Fast</h3>
+          <p>C programs compile into efficient machine code. That's why operating systems and games often use C.</p>
+
+          <h3>3. Portable</h3>
+          <p>A C program written on Windows can often be compiled on Linux or macOS with little or no modification.</p>
+          <div class="flowchart">
+            <div class="flow-box">Windows</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Linux</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">macOS</div>
+          </div>
+          <p>This is called <strong>portability</strong>.</p>
+
+          <h3>4. Structured Language</h3>
+          <p>Programs are divided into <strong>functions</strong>.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>main()
+{
+}
+
+sum()
+{
+}
+
+display()
+{
+}</pre>
+          </div>
+          <p>This makes programs organized and easier to maintain.</p>
+
+          <h3>5. Rich Library</h3>
+          <p>C provides many built-in functions.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Examples</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>printf()
+scanf()
+strlen()
+sqrt()
+pow()</pre>
+          </div>
+          <p>These come from standard libraries.</p>
+
+          <h3>6. Middle-Level Language</h3>
+          <p>This is one of the most asked interview questions.</p>
+          <p><strong>Why is C called a Middle-Level Language?</strong></p>
+          <p>Because it supports both:</p>
+          <p><strong>High-Level Features</strong></p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>printf("Hello");</pre>
+          </div>
+          <p>Easy for humans to understand.</p>
+          <p><strong>Low-Level Features</strong></p>
+          <ul>
+            <li>Pointers</li>
+            <li>Memory Addresses</li>
+            <li>Bitwise Operations</li>
+          </ul>
+          <p>These allow direct interaction with hardware. Therefore, <strong>C combines features of both high-level and low-level languages.</strong></p>
+
+          <h3>7. Case Sensitive</h3>
+          <p>C distinguishes between uppercase and lowercase letters.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>int age;
+
+int Age;</pre>
+          </div>
+          <p>These are <strong>two different variables</strong>.</p>
+        </section>
+
+        <section class="topic-section" id="applications">
+          <h2>Applications of C</h2>
+          <p>C is used in many areas.</p>
+
+          <h3>Operating Systems</h3>
+          <p>Examples: Linux Kernel, UNIX, Parts of Windows.</p>
+
+          <h3>Embedded Systems</h3>
+          <p>Examples: Washing Machines, Microwave Ovens, Smart TVs, Routers, IoT Devices.</p>
+
+          <h3>Database Systems</h3>
+          <p>Examples: MySQL (core components), PostgreSQL (parts).</p>
+
+          <h3>Compilers</h3>
+          <p>Many compilers are written in C or C++.</p>
+
+          <h3>Device Drivers</h3>
+          <p>Examples: Printer Drivers, Keyboard Drivers, Mouse Drivers.</p>
+
+          <h3>Game Development</h3>
+          <p>Game engines often use C/C++ for performance-critical components.</p>
+
+          <h3>Networking</h3>
+          <p>Routers, switches, and networking software often rely on C.</p>
+        </section>
+
+        <section class="topic-section" id="what-is-compiler">
+          <h2>What is a Compiler?</h2>
+          <p>Now let's understand one of the most important concepts.</p>
+          <p><strong>Definition:</strong> A compiler is a software program that converts C source code into machine code so that the computer can execute it.</p>
+          <p>Simply put: <strong>Compiler = Translator</strong></p>
+        </section>
+
+        <section class="topic-section" id="real-life-compiler">
           <h2>Real-Life Example</h2>
-          <p>Think of C like Latin. Almost nobody speaks Latin day-to-day anymore, but its vocabulary and grammar quietly live on inside Spanish, French, Italian, and even English. You don't need to speak Latin to use those languages — but if you do know some Latin, you start noticing familiar patterns everywhere. C works the same way for programming languages: learning it reveals structure you'll keep recognizing in language after language for the rest of your career.</p>
-        </section>
-
-        <section class="topic-section" id="visual">
-          <h2>Visual Explanation</h2>
-          <p>A few well-known languages and tools, and what each one borrowed or inherited from C:</p>
-          <div class="feature-grid">
-            <div class="card influence-card">
-              <div class="influence-card-icon"><i class="fa-solid fa-plus"></i></div>
-              <h3>C++</h3>
-              <p>Built directly as "C with classes" — it kept nearly all of C's syntax and added object-oriented features on top.</p>
-            </div>
-            <div class="card influence-card">
-              <div class="influence-card-icon"><i class="fa-solid fa-hashtag"></i></div>
-              <h3>C#</h3>
-              <p>Borrows C's curly-brace, semicolon-based syntax family (by way of C++ and Java) even though it runs on a completely different platform (.NET).</p>
-            </div>
-            <div class="card influence-card">
-              <div class="influence-card-icon"><i class="fa-brands fa-java"></i></div>
-              <h3>Java</h3>
-              <p>Adopted C's block structure, operators, and statement style directly, while replacing manual memory management with automatic garbage collection.</p>
-            </div>
-            <div class="card influence-card">
-              <div class="influence-card-icon"><i class="fa-brands fa-python"></i></div>
-              <h3>Python (CPython)</h3>
-              <p>Python's syntax looks nothing like C, but its most widely used interpreter, CPython, is itself written in C — C is running underneath every Python program you execute.</p>
-            </div>
-            <div class="card influence-card">
-              <div class="influence-card-icon"><i class="fa-solid fa-at"></i></div>
-              <h3>Objective-C</h3>
-              <p>A strict superset of C — every valid C program is also a valid Objective-C program, with object-oriented messaging syntax layered on top.</p>
-            </div>
+          <p>Suppose: You know English. Your friend knows only Japanese. You need a translator.</p>
+          <div class="flowchart">
+            <div class="flow-box">English</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Translator</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Japanese</div>
+          </div>
+          <p>Similarly,</p>
+          <div class="flowchart">
+            <div class="flow-box">C Program</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Compiler</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Machine Language (0 &amp; 1)</div>
           </div>
         </section>
 
-        <section class="topic-section" id="mistakes">
-          <h2>Common Mistakes</h2>
-          <ul class="mistake-list">
-            <li>Assuming C is "outdated" simply because it's old — age and relevance are not the same thing.</li>
-            <li>Assuming a language being simple or old also means it's easy to master — C's simplicity is deceptive, since it hands you a small number of extremely powerful, sharp tools that are easy to misuse if you're careless.</li>
-            <li>Confusing C with C++ or C# just because the names look related — they share history, but they are different languages with different rules, features, and use cases.</li>
+        <section class="topic-section" id="why-compiler">
+          <h2>Why Do We Need a Compiler?</h2>
+          <p>The CPU understands only machine language (binary instructions). Humans write programs in C. The compiler converts C code into machine code. Without a compiler, the computer cannot execute a C program.</p>
+        </section>
+
+        <section class="topic-section" id="popular-compilers">
+          <h2>Popular C Compilers</h2>
+          <table class="compare-table">
+            <thead>
+              <tr><th>Compiler</th><th>Platform</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>GCC (GNU Compiler Collection)</td><td>Linux, Windows (MinGW), macOS</td></tr>
+              <tr><td>Clang</td><td>Linux, macOS, Windows</td></tr>
+              <tr><td>Turbo C</td><td>Old DOS-based compiler, mainly for learning/history</td></tr>
+              <tr><td>Microsoft Visual C (MSVC)</td><td>Windows</td></tr>
+            </tbody>
+          </table>
+          <p>Today, <strong>GCC</strong> and <strong>Clang</strong> are the most commonly used.</p>
+        </section>
+
+        <section class="topic-section" id="how-compiler-works">
+          <h2>How a Compiler Works (Basic View)</h2>
+          <div class="flowchart">
+            <div class="flow-box">C Source Code (.c)</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Compiler</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Machine Code</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Program Runs</div>
+          </div>
+          <p>Later in this unit, you'll learn about <strong>Source Code &rarr; Object Code &rarr; Executable Code</strong> in detail.</p>
+        </section>
+
+        <section class="topic-section" id="first-program">
+          <h2>First C Program</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>hello.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>#include &lt;stdio.h&gt;
+
+int main()
+{
+    printf("Hello, World!");
+
+    return 0;
+}</pre>
+          </div>
+          <p>Output:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Output</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>Hello, World!</pre>
+          </div>
+          <p>Don't worry if you don't understand every line yet — we'll cover the structure of a C program in the next topic.</p>
+        </section>
+
+        <section class="topic-section" id="facts">
+          <h2>Interesting Facts 💡</h2>
+          <ul>
+            <li>Dennis Ritchie received the Turing Award in 1983 for his contributions to computer science.</li>
+            <li>The Linux kernel is primarily written in C.</li>
+            <li>Many modern languages such as C++, Java, C#, Objective-C, JavaScript, PHP, and Go were influenced by C.</li>
+            <li>C is often called the "Mother of Modern Programming Languages" because it inspired many later languages.</li>
           </ul>
         </section>
 
-        <section class="topic-section" id="debugging">
-          <h2>Debugging Tips</h2>
-          <p>There's no code on this page yet, so debugging in the classic sense doesn't apply — but it's worth building one habit right now, before you write a single line: whenever you learn a new language in the future, pause and ask "what does this borrow from C?" Recognizing the familiar pieces (braces, semicolons, loop structure) up front shortcuts a huge amount of confusion, because you'll already understand the shape of the language before you've written anything in it.</p>
-        </section>
-
-        <section class="topic-section" id="best-practices">
-          <h2>Best Practices</h2>
-          <ul class="best-practice-list">
-            <li>Approach C expecting to learn fundamentals, not just syntax — the real goal is understanding how computers actually run programs, not memorizing keywords.</li>
-            <li>Resist the urge to skip ahead to a "trendier" language before finishing C — the fundamentals you build here transfer directly to whatever you learn next.</li>
-            <li>When something in C feels unfamiliar or low-level, treat it as a feature of learning, not an obstacle — it's exactly the detail that higher-level languages hide from you.</li>
+        <section class="topic-section" id="revision">
+          <h2>Quick Revision</h2>
+          <ul>
+            <li>C is a general-purpose, procedural programming language.</li>
+            <li>Dennis Ritchie developed C in 1972 at Bell Labs.</li>
+            <li>C is a middle-level language because it supports both high-level and low-level programming.</li>
+            <li>A compiler converts C source code into machine code.</li>
+            <li>Popular compilers include GCC, Clang, Turbo C, and MSVC.</li>
           </ul>
-        </section>
-
-        <section class="topic-section" id="interview">
-          <h2>Interview Questions</h2>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Easy:</strong> What kind of language is C?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>C is a general-purpose, procedural programming language — its programs are written as an ordered sequence of steps and function calls, rather than being purely object-oriented or purely mathematical.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Medium:</strong> Name two modern languages influenced by C.</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>C++ and Java are both good examples. C++ was built directly on top of C's syntax, and Java adopted C's curly-brace block structure and statement style while adding automatic memory management on top.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Hard:</strong> Why does learning C make learning other languages easier?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>So many popular languages share C's basic syntax and control-flow structure — curly braces, semicolons, <code>if</code>/<code>for</code>/<code>while</code> — that once you recognize these patterns in C, you recognize them everywhere else too. That recognition transfers broadly, so each new language after C takes noticeably less effort to pick up.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>HR:</strong> Why are you starting your programming journey with C?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>There's no fixed right answer here — interviewers want to see genuine reasoning. A strong response connects the choice to building real fundamentals (understanding how programs actually run) rather than simply jumping straight to whatever language is currently trendy.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Conceptual:</strong> What does it mean for a language to be an "ancestor" of others?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>It means later languages borrowed its syntax, structure, or core ideas when they were designed — even if they weren't literally built from its source code. C++ and Java, for example, are "descendants" of C in this sense: they copied its block structure and statement style rather than reusing its actual implementation.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Scenario-based:</strong> A friend says C is "useless" because it's old — how would you respond?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>I'd point out that C is still actively used today in operating systems, embedded devices, and performance-critical software — it's the opposite of abandoned. "Old" and "obsolete" aren't the same thing; C has simply stayed useful for the exact jobs it was designed for.</p>
-            </div>
-          </div>
         </section>
 
         <section class="topic-section" id="mcq">
@@ -297,36 +474,125 @@
           <div class="quiz" data-quiz-source="introductionToCQuiz"></div>
         </section>
 
-        <section class="topic-section" id="exercises">
-          <h2>Programming Exercises</h2>
-          <p><strong>Easy:</strong> List three programming languages you've heard of, and for each one, guess (researching if needed) whether it was influenced by C.</p>
-          <p><strong>Medium:</strong> Write a short paragraph explaining why "old" doesn't mean "irrelevant" for a programming language, using C as your example.</p>
-          <p><strong>Hard:</strong> Research one specific syntax feature — for example, curly-brace code blocks or semicolon-terminated statements — and trace which languages besides C also use it.</p>
+        <section class="topic-section" id="interview">
+          <h2>Interview Questions</h2>
+
+          <h3>Beginner</h3>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What is the C programming language?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>C is a general-purpose, procedural, high-level programming language used to develop software, operating systems, embedded systems, and many other applications.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Who developed C and why?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Dennis Ritchie developed C in 1972 at Bell Labs to solve the limitations of Assembly and B — difficulty writing large programs, poor portability, and hard maintenance.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Why is C called a middle-level language?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Because it supports both high-level features (like readable functions such as printf) and low-level features (like pointers, memory addresses, and bitwise operations) that allow direct interaction with hardware.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What is a compiler?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>A compiler is a software program that converts C source code into machine code so that the computer can execute it — essentially a translator between human-readable code and machine language.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Name any four C compilers.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>GCC (GNU Compiler Collection), Clang, Turbo C, and Microsoft Visual C (MSVC).</p>
+            </div>
+          </div>
+
+          <h3>Intermediate</h3>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Explain the evolution from BCPL &rarr; B &rarr; C.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>BCPL was developed by Martin Richards in 1967. Ken Thompson developed B, based on BCPL, in 1970. Dennis Ritchie then improved B and named the result C, the next letter in the alphabet, in 1972.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Why is C still relevant today despite newer languages?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>C is fast, efficient, portable, and close to hardware, which keeps it essential for operating systems, embedded systems, device drivers, and other performance-critical software that newer, higher-level languages aren't as well suited for.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Compare C with Assembly Language.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Assembly is machine-dependent and very difficult to write and maintain for large programs. C is portable across machines, easier to read and write thanks to its structured, high-level syntax, while still allowing low-level access via pointers when needed.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Explain the role of a compiler in program execution.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Since the CPU only understands machine language, the compiler translates the C source code into machine code first. Only after this translation can the program actually run on the computer.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What makes C portable?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>A C program written on one platform, like Windows, can often be compiled on Linux or macOS with little or no modification, because C compilers exist for nearly every platform and translate the same standard source code accordingly.</p>
+            </div>
+          </div>
         </section>
 
-        <section class="topic-section" id="assignments">
-          <h2>Assignments</h2>
-          <p>Write a half-page reflection on why you're learning C, and what you hope to understand by the end of this course. Be specific: is it about getting a stronger grip on how computers work, preparing for later languages, or something else entirely?</p>
-        </section>
-
-        <section class="topic-section" id="faq">
-          <h2>FAQs</h2>
-          <p><strong>Q: Do I need to learn C before other languages?</strong><br>A: Not strictly required, but it builds fundamentals — how memory, control flow, and functions actually work — that make every other language noticeably easier to pick up afterward.</p>
-          <p><strong>Q: Is C only useful for old systems?</strong><br>A: No — C is still actively used today for operating systems, embedded devices, and performance-critical software. It's a current, working tool, not a museum piece.</p>
-        </section>
-
-        <section class="topic-section" id="takeaways">
-          <h2>Key Takeaways</h2>
-          <ul>
-            <li>C is a foundational, highly influential general-purpose, procedural language.</li>
-            <li>Many modern languages — C++, C#, Java, and others — borrow syntax or ideas directly from C.</li>
-            <li>Learning C builds transferable fundamentals, not just C-specific syntax — the payoff shows up in every language you learn next.</li>
-          </ul>
+        <section class="topic-section" id="practice">
+          <h2>Practice Questions</h2>
+          <p><strong>Q1.</strong> Write five features of the C programming language.</p>
+          <p><strong>Q2.</strong> Explain why C is called the Mother of Modern Programming Languages.</p>
+          <p><strong>Q3.</strong> Differentiate between a programming language and a compiler.</p>
+          <p><strong>Q4.</strong> Research and write a short note (5&ndash;7 lines) on Dennis Ritchie and his contributions to computer science.</p>
         </section>
 
         <div class="topic-nav-footer">
           <a href="flowcharts.html" class="btn btn-ghost"><i class="fa-solid fa-arrow-left"></i> Previous: Flowcharts</a>
-          <a href="history-of-c.html" class="btn btn-primary">Next: History of C <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="structure-of-c-program.html" class="btn btn-primary">Next: Structure of C Program <i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </div>
 
@@ -352,11 +618,11 @@
 
 <script>
 window.introductionToCQuiz = [
-  { question: "What kind of programming language is C?", options: ["Object-oriented only", "General-purpose, procedural", "Markup language", "Query language"], correctIndex: 1, explanation: "C is a general-purpose, procedural language — its programs run as an ordered sequence of steps and function calls." },
-  { question: "Which of these languages directly borrowed C's curly-brace, semicolon-based syntax?", options: ["Java", "HTML", "SQL", "Markdown"], correctIndex: 0, explanation: "Java adopted C's block structure, operators, and statement style, while adding automatic memory management." },
-  { question: "How is Python connected to C, even though its syntax looks very different?", options: ["Python has no connection to C", "Python's most widely used interpreter, CPython, is itself written in C", "Python replaced C entirely", "Python was C's direct predecessor"], correctIndex: 1, explanation: "CPython, Python's reference interpreter, is implemented in C — so C runs underneath most Python programs." },
-  { question: "Why is it inaccurate to call C 'outdated'?", options: ["Because C is the newest language available", "Because it is still actively used today in operating systems, embedded devices, and performance-critical software", "Because C has no real-world applications", "Because 'old' and 'outdated' always mean the same thing"], correctIndex: 1, explanation: "C being decades old doesn't mean it's unused — it remains a current, actively used tool in many performance-critical domains." },
-  { question: "What does it mean for a language to be an 'ancestor' of C++?", options: ["C++ was built from scratch with no connection to C", "C++ borrowed C's syntax and structure when it was designed, as 'C with classes'", "C was created after C++", "Ancestor languages must share identical source code"], correctIndex: 1, explanation: "C++ was originally designed as 'C with classes,' carrying over nearly all of C's syntax while adding object-oriented features." }
+  { question: "Who developed the C programming language?", options: ["James Gosling", "Dennis Ritchie", "Bjarne Stroustrup", "Guido van Rossum"], correctIndex: 1, explanation: "Dennis Ritchie developed C in 1972 at Bell Labs." },
+  { question: "In which year was C developed?", options: ["1967", "1970", "1972", "1989"], correctIndex: 2, explanation: "C was developed in 1972 by Dennis Ritchie at Bell Labs." },
+  { question: "Why is C called a middle-level language?", options: ["It is slow.", "It only supports graphics.", "It combines high-level and low-level features.", "It only works on Windows."], correctIndex: 2, explanation: "C supports high-level features like printf as well as low-level features like pointers and bitwise operations." },
+  { question: "What is the main function of a compiler?", options: ["Execute machine code", "Convert C code into machine code", "Store programs", "Debug programs"], correctIndex: 1, explanation: "A compiler converts C source code into machine code so the computer can execute it." },
+  { question: "Which compiler is widely used today?", options: ["GCC", "Turbo Pascal", "QBASIC", "LOGO"], correctIndex: 0, explanation: "GCC (GNU Compiler Collection) and Clang are the most commonly used C compilers today." }
 ];
 </script>
 <script src="../../js/theme.js"></script>
