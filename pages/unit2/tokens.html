@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tokens — Unit 2 — C Programming eBook</title>
-<meta name="description" content="Learn what a token is in C — the smallest meaningful unit the compiler recognizes — and the categories keywords, identifiers, constants, strings, operators, and punctuation fall into.">
+<meta name="description" content="What a C token is, the 6 token types (keywords, identifiers, constants, string literals, operators, special symbols), worked examples, and common beginner mistakes.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,6 +35,9 @@
   .token-breakdown .card { padding: var(--space-3); text-align: center; }
   .token-breakdown .card code { display: block; font-size: 1.05rem; margin-bottom: var(--space-2); }
   .token-breakdown .card span { color: var(--text-muted); font-size: 0.85rem; }
+  .compare-table { width: 100%; border-collapse: collapse; margin: var(--space-4) 0; font-size: 0.92rem; }
+  .compare-table th, .compare-table td { border: 1px solid var(--border); padding: var(--space-2) var(--space-3); text-align: left; vertical-align: top; }
+  .compare-table th { background: var(--bg-subtle, rgba(128,128,128,0.08)); }
 </style>
 </head>
 <body>
@@ -142,137 +145,434 @@
   <main class="content">
     <div class="topic-layout">
       <div>
-        <h1>Tokens</h1>
-        <p class="lead">Welcome to Unit 2 — before you can talk about variables, data types, or operators, you need to understand the smallest meaningful pieces the compiler actually sees: tokens.</p>
+        <h1>C Tokens</h1>
+        <p class="lead">A Token is the smallest individual unit (building block) of a C program that has meaning to the compiler.</p>
 
-        <section class="topic-section" id="introduction">
-          <h2>What Is It?</h2>
-          <p>A <strong>token</strong> is the smallest individual meaningful unit in a C program. Before the compiler does anything else with your source code, it breaks it down into a stream of tokens — this is the very first step of compilation.</p>
-          <p>C has several categories of tokens:</p>
-          <ul>
-            <li><strong>Keywords</strong> — reserved words like <code>int</code>, <code>return</code>, <code>if</code>.</li>
-            <li><strong>Identifiers</strong> — names given to variables, functions, etc., like <code>sum</code> or <code>main</code>.</li>
-            <li><strong>Constants</strong> — fixed values like <code>5</code> or <code>3.14</code>.</li>
-            <li><strong>Strings</strong> — text enclosed in double quotes, like <code>"Hello"</code>.</li>
-            <li><strong>Operators</strong> — symbols that perform operations, like <code>+</code> or <code>=</code>.</li>
-            <li><strong>Punctuation / special symbols</strong> — things like <code>;</code>, <code>{</code>, <code>}</code>, and <code>(</code> <code>)</code>.</li>
-          </ul>
+        <section class="topic-section" id="what-are-tokens">
+          <h2>What are C Tokens?</h2>
+          <p>Think of English. Sentence: <em>"I love programming."</em> Smallest meaningful parts are: I, love, programming, .</p>
+          <p>Similarly, in C:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>int age = 20;</pre>
+          </div>
+          <p>Compiler divides it into small meaningful pieces:</p>
+          <div class="token-breakdown">
+            <div class="card"><code>int</code></div>
+            <div class="card"><code>age</code></div>
+            <div class="card"><code>=</code></div>
+            <div class="card"><code>20</code></div>
+            <div class="card"><code>;</code></div>
+          </div>
+          <p>Each of these is called a Token.</p>
         </section>
 
-        <section class="topic-section" id="why">
-          <h2>Why Do We Need to Know This?</h2>
-          <p>Tokens are the foundation for everything else in this unit. Keywords, identifiers, variables, and operators are all specific <em>kinds</em> of tokens — so understanding this umbrella concept first makes each individual topic click faster as you meet it.</p>
+        <section class="topic-section" id="definition">
+          <h2>Definition</h2>
+          <p>A Token is the smallest meaningful element recognized by the C compiler. Everything you write in C is made of tokens.</p>
         </section>
 
-        <section class="topic-section" id="real-life">
-          <h2>Real-Life Example</h2>
-          <p>Think of breaking a sentence down into its individual words and punctuation marks before analyzing its grammar. You can't understand a sentence's structure without first recognizing its smallest meaningful pieces — a C compiler works the same way with your code.</p>
+        <section class="topic-section" id="why-important">
+          <h2>Why are Tokens Important?</h2>
+          <p>Imagine building a house. House &rarr; Bricks. Similarly, Program &rarr; Tokens. Without tokens, no program exists.</p>
         </section>
 
-        <section class="topic-section" id="visual">
-          <h2>Visual Explanation</h2>
+        <section class="topic-section" id="example">
+          <h2>Example</h2>
           <div class="code-block">
             <div class="code-block-header">
               <span>example.c</span>
               <button class="copy-btn">Copy</button>
             </div>
-            <pre>int sum = a + b;</pre>
+            <pre>#include&lt;stdio.h&gt;
+
+int main()
+{
+    int a = 10;
+
+    printf("%d", a);
+
+    return 0;
+}</pre>
           </div>
-          <p>The compiler sees this single line as seven separate tokens:</p>
+          <p>Let's identify every token.</p>
+          <table class="compare-table">
+            <thead>
+              <tr><th>Code</th><th>Token Type</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>int</td><td>Keyword</td></tr>
+              <tr><td>main</td><td>Identifier</td></tr>
+              <tr><td>(</td><td>Special Symbol</td></tr>
+              <tr><td>)</td><td>Special Symbol</td></tr>
+              <tr><td>{</td><td>Special Symbol</td></tr>
+              <tr><td>int</td><td>Keyword</td></tr>
+              <tr><td>a</td><td>Identifier</td></tr>
+              <tr><td>=</td><td>Operator</td></tr>
+              <tr><td>10</td><td>Constant</td></tr>
+              <tr><td>;</td><td>Special Symbol</td></tr>
+              <tr><td>printf</td><td>Identifier</td></tr>
+              <tr><td>(</td><td>Special Symbol</td></tr>
+              <tr><td>"%d"</td><td>String Literal</td></tr>
+              <tr><td>,</td><td>Special Symbol</td></tr>
+              <tr><td>a</td><td>Identifier</td></tr>
+              <tr><td>)</td><td>Special Symbol</td></tr>
+              <tr><td>;</td><td>Special Symbol</td></tr>
+              <tr><td>return</td><td>Keyword</td></tr>
+              <tr><td>0</td><td>Constant</td></tr>
+              <tr><td>;</td><td>Special Symbol</td></tr>
+              <tr><td>}</td><td>Special Symbol</td></tr>
+            </tbody>
+          </table>
+          <p>Everything is a token.</p>
+        </section>
+
+        <section class="topic-section" id="types">
+          <h2>Types of Tokens in C</h2>
+          <p>There are 6 major types.</p>
+          <div class="flowchart">
+            <div class="flow-box">Keywords</div>
+            <div class="flow-box">Identifiers</div>
+            <div class="flow-box">Constants</div>
+            <div class="flow-box">Strings</div>
+            <div class="flow-box">Operators</div>
+            <div class="flow-box">Special Symbols</div>
+          </div>
+          <p>We'll study each separately in upcoming lessons.</p>
+        </section>
+
+        <section class="topic-section" id="keywords">
+          <h2>Keywords</h2>
+          <p>Reserved words having predefined meaning.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Examples</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>int
+char
+float
+if
+else
+return
+while
+for
+break
+continue</pre>
+          </div>
+          <p>Example: <code>int age;</code> &mdash; here <code>int</code> is a keyword.</p>
+        </section>
+
+        <section class="topic-section" id="identifiers">
+          <h2>Identifiers</h2>
+          <p>Names given by programmer.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Examples</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>age
+salary
+totalMarks
+studentName</pre>
+          </div>
+          <p>Example: <code>int marks;</code> &mdash; here <code>marks</code> is an identifier.</p>
+        </section>
+
+        <section class="topic-section" id="constants">
+          <h2>Constants</h2>
+          <p>Fixed values that never change.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Examples</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>10
+20
+3.14
+'A'
+100</pre>
+          </div>
+          <p>Example: <code>int age = 20;</code> &mdash; <code>20</code> is a constant.</p>
+        </section>
+
+        <section class="topic-section" id="string-literals">
+          <h2>String Literals</h2>
+          <p>Anything inside double quotes.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Examples</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>"Hello"
+"Aman"
+"Welcome"</pre>
+          </div>
+          <p>Example: <code>printf("Hello");</code> &mdash; <code>"Hello"</code> is a string literal.</p>
+        </section>
+
+        <section class="topic-section" id="operators">
+          <h2>Operators</h2>
+          <p>Symbols used to perform operations.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Examples</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>+
+-
+*
+/
+%
+=
+==
+&lt;
+&gt;
+&amp;&amp;
+||
+!</pre>
+          </div>
+          <p>Example: <code>a + b</code> &mdash; <code>+</code> is an operator.</p>
+        </section>
+
+        <section class="topic-section" id="special-symbols">
+          <h2>Special Symbols (Separators/Punctuators)</h2>
+          <p>Used to separate different parts of program.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Examples</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>;
+,
+()
+{}
+[]
+#
+.
+:</pre>
+          </div>
+          <p>Example: <code>int a;</code> &mdash; <code>;</code> is a special symbol.</p>
+        </section>
+
+        <section class="topic-section" id="visual-example">
+          <h2>Visual Example</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Program</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>int x = 5;
+
+printf("Hello");</pre>
+          </div>
+          <p>Compiler sees:</p>
           <div class="token-breakdown">
-            <div class="card"><code>int</code><span>keyword</span></div>
-            <div class="card"><code>sum</code><span>identifier</span></div>
-            <div class="card"><code>=</code><span>operator</span></div>
-            <div class="card"><code>a</code><span>identifier</span></div>
-            <div class="card"><code>+</code><span>operator</span></div>
-            <div class="card"><code>b</code><span>identifier</span></div>
-            <div class="card"><code>;</code><span>punctuation</span></div>
+            <div class="card"><code>int</code></div>
+            <div class="card"><code>x</code></div>
+            <div class="card"><code>=</code></div>
+            <div class="card"><code>5</code></div>
+            <div class="card"><code>;</code></div>
+            <div class="card"><code>printf</code></div>
+            <div class="card"><code>(</code></div>
+            <div class="card"><code>"Hello"</code></div>
+            <div class="card"><code>)</code></div>
+            <div class="card"><code>;</code></div>
+          </div>
+          <p>Every piece is a token.</p>
+        </section>
+
+        <section class="topic-section" id="another-example">
+          <h2>Another Example</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>float salary = 25000.50;</pre>
+          </div>
+          <table class="compare-table">
+            <thead>
+              <tr><th>Token</th><th>Type</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>float</td><td>Keyword</td></tr>
+              <tr><td>salary</td><td>Identifier</td></tr>
+              <tr><td>=</td><td>Operator</td></tr>
+              <tr><td>25000.50</td><td>Constant</td></tr>
+              <tr><td>;</td><td>Special Symbol</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="topic-section" id="one-more-example">
+          <h2>One More Example</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>char grade = 'A';</pre>
+          </div>
+          <table class="compare-table">
+            <thead>
+              <tr><th>Token</th><th>Type</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>char</td><td>Keyword</td></tr>
+              <tr><td>grade</td><td>Identifier</td></tr>
+              <tr><td>=</td><td>Operator</td></tr>
+              <tr><td>'A'</td><td>Character Constant</td></tr>
+              <tr><td>;</td><td>Special Symbol</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="topic-section" id="real-life">
+          <h2>Real-Life Analogy</h2>
+          <p>Sentence: <em>Rohit plays cricket.</em></p>
+          <div class="token-breakdown">
+            <div class="card"><code>Rohit</code></div>
+            <div class="card"><code>plays</code></div>
+            <div class="card"><code>cricket</code></div>
+            <div class="card"><code>.</code></div>
+          </div>
+          <p>Similarly, <code>int x = 5;</code></p>
+          <div class="token-breakdown">
+            <div class="card"><code>int</code></div>
+            <div class="card"><code>x</code></div>
+            <div class="card"><code>=</code></div>
+            <div class="card"><code>5</code></div>
+            <div class="card"><code>;</code></div>
           </div>
         </section>
 
         <section class="topic-section" id="mistakes">
-          <h2>Common Mistakes</h2>
-          <ul class="mistake-list">
-            <li>Assuming a token must be a single character — many tokens, like keywords (<code>int</code>) and identifiers (<code>sum</code>), are multi-character.</li>
-            <li>Confusing "token" with "line of code" — a single line typically contains many tokens, not just one.</li>
+          <h2>Common Beginner Mistakes</h2>
+          <p><strong>Mistake 1:</strong> Thinking spaces are tokens.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>int     a     =     10;</pre>
+          </div>
+          <p>Spaces are ignored. Tokens remain: <code>int</code>, <code>a</code>, <code>=</code>, <code>10</code>, <code>;</code></p>
+          <p><strong>Mistake 2:</strong> Thinking <code>10;</code> is one token.</p>
+          <p>Wrong: <code>10;</code> &mdash; Correct: <code>10</code> then <code>;</code> (two separate tokens).</p>
+          <p><strong>Mistake 3:</strong> Thinking <code>printf("Hello");</code> is one token.</p>
+          <p>Actually: <code>printf</code>, <code>(</code>, <code>"Hello"</code>, <code>)</code>, <code>;</code> (five separate tokens).</p>
+        </section>
+
+        <section class="topic-section" id="facts">
+          <h2>Interesting Facts</h2>
+          <p><strong>Fact 1:</strong> Every C compiler first converts your code into tokens before checking syntax.</p>
+          <p><strong>Fact 2:</strong> Even a million-line C program is broken into tokens internally.</p>
+          <p><strong>Fact 3:</strong> The compiler cannot understand your program until it identifies all tokens correctly.</p>
+          <p><strong>Fact 4:</strong> Removing spaces usually doesn't affect tokenization.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>int a=5;</pre>
+          </div>
+          <p>and</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>int        a      =       5;</pre>
+          </div>
+          <p>Both produce the same tokens.</p>
+        </section>
+
+        <section class="topic-section" id="complete-example">
+          <h2>Complete Example</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>example.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>#include&lt;stdio.h&gt;
+
+int main()
+{
+    int age = 21;
+
+    float height = 5.9;
+
+    printf("Age = %d", age);
+
+    return 0;
+}</pre>
+          </div>
+          <p>Some tokens are:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Tokens</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>#include
+&lt;
+stdio.h
+&gt;
+
+int
+main
+(
+)
+
+{
+
+int
+age
+=
+21
+;
+
+float
+height
+=
+5.9
+;
+
+printf
+(
+"Age = %d"
+,
+age
+)
+;
+
+return
+0
+;
+
+}</pre>
+          </div>
+          <p>Output:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Output</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>Age = 21</pre>
+          </div>
+        </section>
+
+        <section class="topic-section" id="revision">
+          <h2>Summary</h2>
+          <ul>
+            <li>A token is the smallest meaningful unit of a C program.</li>
+            <li>Every C program is built from tokens.</li>
+            <li>There are 6 major types of tokens: Keywords, Identifiers, Constants, String Literals, Operators, Special Symbols.</li>
+            <li>The compiler first breaks the source code into tokens before parsing it.</li>
           </ul>
-        </section>
-
-        <section class="topic-section" id="debugging">
-          <h2>Debugging Tips</h2>
-          <p>The compiler's very first job is breaking your source code into tokens. So when you see a "tokenizing" or "unexpected token" error, it usually points to something like a stray symbol or an unclosed string — the compiler couldn't even recognize a valid token at that spot, let alone check its meaning.</p>
-        </section>
-
-        <section class="topic-section" id="best-practices">
-          <h2>Best Practices</h2>
-          <ul class="best-practice-list">
-            <li>Keep code readable by spacing tokens clearly, even though C itself is flexible about whitespace between tokens.</li>
-            <li>Remember that clarity for human readers still matters, even when the compiler doesn't strictly require it.</li>
-          </ul>
-        </section>
-
-        <section class="topic-section" id="interview">
-          <h2>Interview Questions</h2>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Easy:</strong> What is a token in C?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>A token is the smallest individual meaningful unit that the compiler recognizes in source code.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Medium:</strong> Name three categories of tokens in C.</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>Any three of: keywords, identifiers, constants, strings, operators, or punctuation/special symbols.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Hard:</strong> Why does the compiler need to identify tokens before doing anything else?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>Because all later processing — parsing the code's structure and checking its meaning — depends on first recognizing the basic building-block pieces of the code. Without tokens, the compiler has nothing to work with.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>HR:</strong> How would you explain "tokens" to someone brand new to programming?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>This is open-ended — a strong answer might use an analogy, like comparing tokens to the individual words and punctuation marks in a sentence, which must be recognized before the sentence's grammar can be understood.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Conceptual:</strong> Is a single line of code usually one token or many?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>Many — most lines contain several tokens, such as keywords, identifiers, operators, and punctuation, all combined together.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Scenario-based:</strong> You get a compiler error mentioning an "unexpected token" — what does this suggest?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>It suggests the compiler encountered something it couldn't recognize as a valid token at that point in the code — often caused by a typo or a stray symbol.</p>
-            </div>
-          </div>
         </section>
 
         <section class="topic-section" id="mcq">
@@ -280,31 +580,73 @@
           <div class="quiz" data-quiz-source="tokensQuiz"></div>
         </section>
 
+        <section class="topic-section" id="interview">
+          <h2>Interview Questions</h2>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What is a token in C?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>A token is the smallest individual unit (building block) of a C program that has meaning to the compiler.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Why are tokens important during compilation?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Every C compiler first converts source code into tokens before checking syntax — without correctly identifying tokens, the compiler cannot understand the program at all.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>List the different types of tokens in C.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Keywords, Identifiers, Constants, String Literals, Operators, and Special Symbols.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What is the difference between an identifier and a keyword?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>A keyword is a reserved word with a predefined meaning in C (like <code>int</code> or <code>return</code>), while an identifier is a name given by the programmer (like <code>age</code> or <code>totalMarks</code>) for a variable, function, or other entity.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Can whitespace change the tokens recognized by the compiler? Why or why not?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>No — whitespace is ignored by the compiler and simply separates tokens. <code>int a=5;</code> and <code>int        a      =       5;</code> both produce the exact same tokens.</p>
+            </div>
+          </div>
+        </section>
+
         <section class="topic-section" id="exercises">
           <h2>Programming Exercises</h2>
-          <p><strong>Easy:</strong> Define "token" in your own words.</p>
-          <p><strong>Medium:</strong> Count the tokens in <code>int a = 5;</code> (hint: there are 5 — <code>int</code>, <code>a</code>, <code>=</code>, <code>5</code>, <code>;</code>).</p>
-          <p><strong>Hard:</strong> Break down <code>printf("Hello\n");</code> into its individual tokens.</p>
-        </section>
-
-        <section class="topic-section" id="assignments">
-          <h2>Assignments</h2>
-          <p>Pick any line from <code>add.c</code>, such as <code>int sum = a + b;</code>, and list every token in it along with its category (keyword, identifier, operator, or punctuation).</p>
-        </section>
-
-        <section class="topic-section" id="faq">
-          <h2>FAQs</h2>
-          <p><strong>Q: Does whitespace count as a token?</strong><br>A: No — whitespace generally separates tokens, but it isn't a token itself.</p>
-          <p><strong>Q: Are comments tokens?</strong><br>A: No — comments are stripped out before tokenizing; they're there for human readers only, not for the compiler.</p>
-        </section>
-
-        <section class="topic-section" id="takeaways">
-          <h2>Key Takeaways</h2>
-          <ul>
-            <li>A token is the smallest individual meaningful unit the compiler recognizes in your source code.</li>
-            <li>C's main token categories are keywords, identifiers, constants, strings, operators, and punctuation/special symbols.</li>
-            <li>Tokens are the foundation this whole unit builds on — every topic ahead, from keywords to variables to operators, is really just a deeper look at a specific kind of token.</li>
-          </ul>
+          <p><strong>Exercise 1.</strong> Write a C program and identify all the tokens manually: <code>int num = 50;</code></p>
+          <p><strong>Exercise 2.</strong> Write a program containing: one integer variable, one floating-point variable, one character variable, one string printed using <code>printf()</code>. Then list all the tokens used.</p>
+          <p><strong>Exercise 3.</strong> Identify the token type of each item in the following code:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Exercise 3</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>char grade = 'A';
+printf("Grade = %c", grade);</pre>
+          </div>
         </section>
 
         <div class="topic-nav-footer">
@@ -335,11 +677,11 @@
 
 <script>
 window.tokensQuiz = [
-  { question: "What is a token in C?", options: ["A line of code", "The smallest individual meaningful unit the compiler recognizes", "A type of variable", "A comment"], correctIndex: 1, explanation: "A token is the smallest individual meaningful unit in a C program — the compiler breaks source code into tokens before doing anything else with it." },
-  { question: "Which of these is NOT a category of token in C?", options: ["Keyword", "Identifier", "Operator", "Whitespace"], correctIndex: 3, explanation: "Whitespace is not a token — it generally separates tokens but is not itself a meaningful unit the compiler acts on." },
-  { question: "How many tokens does a typical single line of C code usually contain?", options: ["Always exactly one", "Usually several — keywords, identifiers, operators, and punctuation", "Zero, unless it has a comment", "Exactly two"], correctIndex: 1, explanation: "Most lines of C contain several tokens combined together, not just one." },
-  { question: "What does an 'unexpected token' compiler error usually suggest?", options: ["The program ran out of memory", "The compiler encountered something it couldn't recognize as a valid token, often a typo or stray symbol", "The program compiled successfully", "A logic error in the output"], correctIndex: 1, explanation: "An 'unexpected token' error means the compiler's tokenizing stage couldn't recognize a valid token at that spot in the code." },
-  { question: "Are comments treated as tokens in C?", options: ["Yes, always", "No — comments are stripped out before tokenizing", "Only multi-line comments", "Only if they contain code"], correctIndex: 1, explanation: "Comments are removed before the tokenizing stage; they exist for human readers only and are not passed on as tokens." }
+  { question: "What is the smallest meaningful unit of a C program?", options: ["Variable", "Function", "Token", "Statement"], correctIndex: 2, explanation: "A Token is the smallest individual unit of a C program that has meaning to the compiler." },
+  { question: "Which of the following is an identifier?", options: ["int", "return", "marks", "while"], correctIndex: 2, explanation: "marks is a name given by the programmer, making it an identifier. int, return, and while are keywords." },
+  { question: 'Which token type is "Hello"?', options: ["Keyword", "Operator", "String Literal", "Identifier"], correctIndex: 2, explanation: 'Anything inside double quotes, like "Hello", is a String Literal.' },
+  { question: "In the statement int x = 10;, how many main tokens are there?", options: ["3", "4", "5", "6"], correctIndex: 2, explanation: "5 tokens: int, x, =, 10, ;" },
+  { question: "Which of the following is not a token type?", options: ["Identifier", "Operator", "Loop", "Constant"], correctIndex: 2, explanation: "Loop is a control structure, not one of the 6 token types (Keywords, Identifiers, Constants, String Literals, Operators, Special Symbols)." }
 ];
 </script>
 <script src="../../js/theme.js"></script>
