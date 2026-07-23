@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Structure of a C Program — Unit 1 — C Programming eBook</title>
-<meta name="description" content="Learn the 4-part skeleton every C program shares, write and trace your first real C program, and complete this chapter's capstone mini project.">
+<meta name="description" content="Every section of a C program explained line by line: documentation, link, definition, global declaration, main(), curly braces, statements, and return 0;.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,6 +34,9 @@
   .part-cards { display: grid; grid-template-columns: 1fr; gap: var(--space-3); margin: var(--space-5) 0; }
   .part-cards .card { display: flex; flex-direction: column; gap: var(--space-2); }
   .part-cards .card code { font-family: var(--font-mono, monospace); font-size: 0.95rem; color: var(--color-primary); }
+  .compare-table { width: 100%; border-collapse: collapse; margin: var(--space-4) 0; font-size: 0.92rem; }
+  .compare-table th, .compare-table td { border: 1px solid var(--border); padding: var(--space-2) var(--space-3); text-align: left; vertical-align: top; }
+  .compare-table th { background: var(--bg-subtle, rgba(128,128,128,0.08)); }
 </style>
 </head>
 <body>
@@ -152,63 +155,10 @@
     <div class="topic-layout">
       <div>
         <h1>Structure of a C Program</h1>
-        <p class="lead">The last topic in this chapter — and the first real C code in the entire course. Every C program you will ever write shares this same basic skeleton.</p>
+        <p class="lead">Almost every C program, from the smallest to the largest, follows the same basic structure. By the end of this topic, you'll understand every line of your first C program.</p>
 
-        <section class="topic-section" id="introduction">
-          <h2>What Is It?</h2>
-          <p>Every C program follows the same basic skeleton: a preprocessor directive (like <code>#include &lt;stdio.h&gt;</code>), a <code>main()</code> function (where execution starts), one or more statements inside it, and a <code>return</code> statement ending it. Learning this skeleton means you can read — and start writing — the basic shape of any C program.</p>
-        </section>
-
-        <section class="topic-section" id="why">
-          <h2>Why Do We Need to Know This?</h2>
-          <p>Every single C program you will ever write or read follows this same structure. Understanding it once means you'll never be confused by "where does this program start, and where does it end" again — no matter how large or complex the program eventually gets.</p>
-        </section>
-
-        <section class="topic-section" id="real-life">
-          <h2>Real-Life Example</h2>
-          <p>Think of the standard structure of a formal letter: a heading, a greeting, a body, and a closing. Once you know the expected parts and the order they appear in, reading — or writing — any new letter becomes far less intimidating. A C program has the exact same reassurance built in: learn the 4 parts once, and every program you meet afterward is just a variation on the same shape.</p>
-        </section>
-
-        <section class="topic-section" id="visual">
-          <h2>Visual Explanation</h2>
-          <p>Here is the classic "Hello, World!" program, broken down part by part:</p>
-          <div class="part-cards">
-            <div class="card">
-              <code>#include &lt;stdio.h&gt;</code>
-              <span>Preprocessor directive — brings in the standard input/output library so <code>printf</code> is available.</span>
-            </div>
-            <div class="card">
-              <code>int main() {</code>
-              <span>Opens the <code>main()</code> function — the single fixed point where every C program's execution begins.</span>
-            </div>
-            <div class="card">
-              <code>printf("Hello, World!\n");</code>
-              <span>A statement — prints the text <code>Hello, World!</code> to the screen, then starts a new line.</span>
-            </div>
-            <div class="card">
-              <code>return 0;</code>
-              <span>Ends the program and signals to the system that it finished successfully.</span>
-            </div>
-            <div class="card">
-              <code>}</code>
-              <span>Closing brace — marks the end of the <code>main()</code> function's body.</span>
-            </div>
-          </div>
-        </section>
-
-        <section class="topic-section" id="syntax">
-          <h2>Syntax</h2>
-          <p>Every C program is built from these 4 core parts, always in this order:</p>
-          <ul>
-            <li><strong>Preprocessor directive</strong> — <code>#include &lt;stdio.h&gt;</code> tells the compiler to bring in the standard input/output library, which is needed before you can use functions like <code>printf</code>.</li>
-            <li><strong><code>main()</code> function</strong> — every C program has exactly one <code>main()</code> function. This is where execution starts, no matter how many other functions the program eventually has.</li>
-            <li><strong>Statements</strong> — the actual instructions inside <code>main()</code>, each one ending in a semicolon (<code>;</code>).</li>
-            <li><strong><code>return 0;</code></strong> — signals that the program finished successfully.</li>
-          </ul>
-        </section>
-
-        <section class="topic-section" id="steps">
-          <h2>Step-by-Step Code</h2>
+        <section class="topic-section" id="first-program">
+          <h2>Our First C Program</h2>
           <div class="code-block">
             <div class="code-block-header">
               <span>hello.c</span>
@@ -216,125 +166,413 @@
             </div>
             <pre>#include &lt;stdio.h&gt;
 
-int main() {
-    printf("Hello, World!\n");
+int main()
+{
+    printf("Hello, World!");
+
     return 0;
 }</pre>
           </div>
-          <p>The <code>#include &lt;stdio.h&gt;</code> line is processed first — it brings in the standard input/output library, which is what makes <code>printf</code> available to use later in the file. The <code>int main() {</code> line opens the <code>main()</code> function — the single required entry point of the program — with an opening curly brace marking the start of its body. The <code>printf("Hello, World!\n");</code> line is a statement: it prints the text <code>Hello, World!</code> to the screen, ending with a semicolon like every statement must. The <code>return 0;</code> line ends the program and reports that it finished successfully. Finally, the closing <code>}</code> marks the end of <code>main()</code>'s body, matching the opening brace from earlier.</p>
-        </section>
-
-        <section class="topic-section" id="dryrun">
-          <h2>Dry Run</h2>
-          <p>Tracing this program's execution top-to-bottom:</p>
-          <table>
-            <thead>
-              <tr><th>Order</th><th>Line</th><th>What Happens</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>1</td><td><code>#include &lt;stdio.h&gt;</code></td><td>Processed first, bringing in <code>printf</code>'s definition before the program actually runs.</td></tr>
-              <tr><td>2</td><td><code>int main() {</code></td><td><code>main()</code> begins — this is where the program's execution officially starts.</td></tr>
-              <tr><td>3</td><td><code>printf("Hello, World!\n");</code></td><td>Runs and displays <code>Hello, World!</code> to the screen.</td></tr>
-              <tr><td>4</td><td><code>return 0;</code></td><td>Ends the program, reporting success.</td></tr>
-            </tbody>
-          </table>
-          <p>The exact output produced is:</p>
+          <p>Output:</p>
           <div class="code-block">
             <div class="code-block-header">
-              <span>output</span>
+              <span>Output</span>
               <button class="copy-btn">Copy</button>
             </div>
             <pre>Hello, World!</pre>
           </div>
-          <p>You'll learn exactly how this source code becomes a running program in the next chapter — for now, focus on what the code means.</p>
+          <p>Let's understand it line by line.</p>
         </section>
 
-        <section class="topic-section" id="mistakes">
-          <h2>Common Mistakes</h2>
-          <ul class="mistake-list">
-            <li>Forgetting the semicolon at the end of a statement.</li>
-            <li>Forgetting <code>return 0;</code> at the end of <code>main()</code>.</li>
-            <li>Case sensitivity mistakes — <code>main</code> is not the same as <code>Main</code> or <code>MAIN</code>. C is case-sensitive throughout.</li>
-            <li>Forgetting <code>#include &lt;stdio.h&gt;</code> before using <code>printf</code> — without it, the compiler won't know what <code>printf</code> is.</li>
+        <section class="topic-section" id="general-structure">
+          <h2>General Structure of a C Program</h2>
+          <div class="flowchart">
+            <div class="flow-box">Documentation Section (Optional)</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Link Section</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Definition Section (Optional)</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Global Declaration Section (Optional)</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">main() Function</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">User Defined Functions (Optional)</div>
+          </div>
+          <p>Most beginner programs only use the <strong>Link Section</strong> and the <strong>main() function</strong>.</p>
+        </section>
+
+        <section class="topic-section" id="documentation">
+          <h2>Documentation Section (Optional)</h2>
+          <p>This section contains comments that describe the program.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>// Program to print Hello World</pre>
+          </div>
+          <p>or</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>/*
+Program Name : Hello World
+Author       : Aman
+Date         : 23 July 2026
+*/</pre>
+          </div>
+          <p><strong>Purpose</strong></p>
+          <ul>
+            <li>Explains the program.</li>
+            <li>Helps other programmers understand the code.</li>
+            <li>Ignored by the compiler.</li>
           </ul>
         </section>
 
-        <section class="topic-section" id="debugging">
-          <h2>Debugging Tips</h2>
-          <p>If a program "does nothing," or the compiler produces a confusing error, check the basics first, in this order: is every statement's semicolon present; are the curly braces <code>{ }</code> balanced, with every opening brace matched by a closing one; is <code>main</code> spelled and cased correctly (lowercase, exactly); and are the <code>#include</code> lines needed for the functions you're using actually present at the top of the file. Most beginner errors trace back to one of these four checks.</p>
+        <section class="topic-section" id="link-section">
+          <h2>Link Section</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>#include &lt;stdio.h&gt;</pre>
+          </div>
+          <p>This is called the <strong>Link Section</strong> because it links the program with the required library.</p>
+
+          <h3>What is #include?</h3>
+          <p><code>#include</code> is a <strong>preprocessor directive</strong>. It tells the compiler:</p>
+          <p>"Include the contents of this header file before compiling the program."</p>
+
+          <h3>What is &lt;stdio.h&gt;?</h3>
+          <p><code>stdio</code> means: <strong>Standard Input Output</strong></p>
+          <p><code>.h</code> means: <strong>Header File</strong></p>
+          <p>So, <code>#include &lt;stdio.h&gt;</code> allows us to use functions like:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Functions</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>printf()
+scanf()
+getchar()
+putchar()</pre>
+          </div>
+          <p>Without it, <code>printf("Hello");</code> may produce a warning or error because the compiler doesn't know about <code>printf()</code>.</p>
+
+          <h3>Other Common Header Files</h3>
+          <table class="compare-table">
+            <thead>
+              <tr><th>Header File</th><th>Purpose</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>stdio.h</code></td><td>Input and Output</td></tr>
+              <tr><td><code>math.h</code></td><td>Mathematical functions (<code>sqrt()</code>, <code>pow()</code>)</td></tr>
+              <tr><td><code>string.h</code></td><td>String functions (<code>strlen()</code>, <code>strcpy()</code>)</td></tr>
+              <tr><td><code>stdlib.h</code></td><td>Memory allocation, conversion, random numbers, etc.</td></tr>
+              <tr><td><code>ctype.h</code></td><td>Character handling (<code>toupper()</code>, <code>isdigit()</code>)</td></tr>
+            </tbody>
+          </table>
         </section>
 
-        <section class="topic-section" id="best-practices">
-          <h2>Best Practices</h2>
-          <ul class="best-practice-list">
-            <li>Always match every opening <code>{</code> with a closing <code>}</code>.</li>
-            <li>Always end statements with a semicolon.</li>
-            <li>Always include the headers (like <code>stdio.h</code>) needed for the functions you use.</li>
+        <section class="topic-section" id="definition-section">
+          <h2>Definition Section (Optional)</h2>
+          <p>Used to define constants.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>#define PI 3.14159</pre>
+          </div>
+          <p>Now we can write:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>area = PI * r * r;</pre>
+          </div>
+          <p>instead of:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>area = 3.14159 * r * r;</pre>
+          </div>
+        </section>
+
+        <section class="topic-section" id="global-declaration">
+          <h2>Global Declaration Section (Optional)</h2>
+          <p>Variables or functions declared here can be used throughout the program.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>int total;</pre>
+          </div>
+          <p>We'll study global variables in later units.</p>
+        </section>
+
+        <section class="topic-section" id="main-function">
+          <h2>The main() Function</h2>
+          <p>This is the <strong>heart of every C program</strong>.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>int main()
+{
+}</pre>
+          </div>
+          <p>Every C program starts executing from <code>main()</code>. Even if there are many functions:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>sum()
+display()
+average()
+multiply()</pre>
+          </div>
+          <p>the program always begins with <code>main()</code>.</p>
+
+          <h3>Why int main()?</h3>
+          <p>Let's break it down.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>int main()</pre>
+          </div>
+          <p><strong>int</strong> — Means the function returns an integer value. Usually <code>return 0;</code> returns 0 to indicate successful execution.</p>
+          <p><strong>main</strong> — This is the entry point of the program. The operating system calls <code>main()</code> when the program starts.</p>
+
+          <h3>Curly Braces { }</h3>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>int main()
+{
+    printf("Hello");
+}</pre>
+          </div>
+          <p>The braces define the <strong>body (block)</strong> of the function. Everything between <code>{</code> and <code>}</code> belongs to the function.</p>
+
+          <h3>Statements</h3>
+          <p>A statement is an instruction executed by the computer.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>printf("Hello");</pre>
+          </div>
+          <p>Another example:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>a = b + c;</pre>
+          </div>
+          <p>Each statement performs one task.</p>
+
+          <h3>Semicolon ;</h3>
+          <p>Every statement in C usually ends with a semicolon.</p>
+          <p>Correct: <code>printf("Hello");</code></p>
+          <p>Wrong: <code>printf("Hello")</code></p>
+          <p>Without <code>;</code>, the compiler reports a syntax error. Think of it like a full stop (<code>.</code>) at the end of a sentence.</p>
+
+          <h3>The printf() Function</h3>
+          <p><code>printf()</code> is used to display output on the screen.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>printf("Hello");</pre>
+          </div>
+          <p>Output: <code>Hello</code></p>
+          <p>Another example:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>printf("Welcome to C Programming");</pre>
+          </div>
+          <p>Output: <code>Welcome to C Programming</code></p>
+
+          <h3>What Does return 0; Mean?</h3>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>return 0;</pre>
+          </div>
+          <p>This returns the value 0 to the operating system. It generally means: "The program finished successfully."</p>
+          <p>Modern C allows:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>int main()
+{
+    printf("Hello");
+}</pre>
+          </div>
+          <p>and many compilers will implicitly return 0, but writing <code>return 0;</code> is still good practice and commonly taught to beginners.</p>
+        </section>
+
+        <section class="topic-section" id="execution-flow">
+          <h2>Program Execution Flow</h2>
+          <p>Consider:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Example</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>#include &lt;stdio.h&gt;
+
+int main()
+{
+    printf("A");
+
+    printf("B");
+
+    printf("C");
+
+    return 0;
+}</pre>
+          </div>
+          <p>Execution order:</p>
+          <div class="flowchart">
+            <div class="flow-box flow-box-start">Include stdio.h</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Enter main()</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Print A</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Print B</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Print C</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Return 0</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box flow-box-end">Program Ends</div>
+          </div>
+          <p>Output:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Output</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>ABC</pre>
+          </div>
+        </section>
+
+        <section class="topic-section" id="complete-breakdown">
+          <h2>Complete Breakdown</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Line</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>#include &lt;stdio.h&gt;</pre>
+          </div>
+          <p>&#10148; Includes the Standard Input Output header file.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Line</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>int main()</pre>
+          </div>
+          <p>&#10148; Starting point of every C program.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Line</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>{</pre>
+          </div>
+          <p>&#10148; Beginning of the function body.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Line</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>printf("Hello World");</pre>
+          </div>
+          <p>&#10148; Prints output.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Line</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>return 0;</pre>
+          </div>
+          <p>&#10148; Ends the function and returns success to the operating system.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>Line</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>}</pre>
+          </div>
+          <p>&#10148; End of the function.</p>
+        </section>
+
+        <section class="topic-section" id="visual">
+          <h2>Visual Representation</h2>
+          <div class="flowchart">
+            <div class="flow-box">Documentation</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">#include</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">int main()</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Statements</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">return 0;</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box flow-box-end">Program Ends</div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="facts">
+          <h2>Interesting Facts 💡</h2>
+          <ul>
+            <li>Every standard C program starts execution from <code>main()</code>.</li>
+            <li><code>printf()</code> is declared in the <code>stdio.h</code> header file.</li>
+            <li><code>#include</code> is handled by the preprocessor, before the actual compilation starts.</li>
+            <li>Missing a semicolon (<code>;</code>) is one of the most common errors beginners make.</li>
           </ul>
         </section>
 
-        <section class="topic-section" id="interview">
-          <h2>Interview Questions</h2>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Easy:</strong> What are the 4 basic parts of a C program's structure?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>A preprocessor directive (such as <code>#include &lt;stdio.h&gt;</code>), a <code>main()</code> function, one or more statements inside it, and a return statement that ends the program.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Medium:</strong> What does <code>#include &lt;stdio.h&gt;</code> do?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>It tells the compiler to bring in the standard input/output library, which is needed to use functions like <code>printf</code>. Without it, the compiler has no idea what <code>printf</code> refers to.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Hard:</strong> Why must every C program have exactly one <code>main()</code> function?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p><code>main()</code> is the fixed entry point that the operating system or runtime calls to start the program. Without exactly one <code>main()</code>, the program would have no single, defined starting point, and the system wouldn't know where execution should begin.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>HR:</strong> Describe the first program you'd want to write once you understand this structure.</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>There's no fixed right answer — a strong response describes something small and personally meaningful (printing your name, a favorite quote, or a simple greeting), showing genuine engagement rather than reciting a textbook example.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Conceptual:</strong> Why does C care about the difference between <code>main</code> and <code>Main</code>?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>C is case-sensitive throughout, so <code>main</code> and <code>Main</code> are treated as completely different identifiers. The compiler looks specifically for lowercase <code>main</code> as the program's entry point — anything else isn't recognized as the entry function.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Scenario-based:</strong> Your program won't compile and the error mentions <code>printf</code> is undefined — what's the most likely missing piece?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>A missing <code>#include &lt;stdio.h&gt;</code> directive at the top of the file. Without it, the compiler has never been told what <code>printf</code> is, so it reports the function as undefined.</p>
-            </div>
-          </div>
+        <section class="topic-section" id="revision">
+          <h2>Quick Revision</h2>
+          <ul>
+            <li><code>#include &lt;stdio.h&gt;</code> includes the standard input/output library.</li>
+            <li><code>main()</code> is the starting point of every C program.</li>
+            <li><code>{ }</code> define the function body.</li>
+            <li><code>printf()</code> displays output.</li>
+            <li>Every statement usually ends with a <code>;</code>.</li>
+            <li><code>return 0;</code> indicates successful program execution.</li>
+          </ul>
         </section>
 
         <section class="topic-section" id="mcq">
@@ -342,10 +580,119 @@ int main() {
           <div class="quiz" data-quiz-source="structureOfCProgramQuiz"></div>
         </section>
 
-        <section class="topic-section" id="exercises">
-          <h2>Programming Exercises</h2>
-          <p><strong>Easy:</strong> From memory, list the 4 parts of a C program's structure, in order.</p>
-          <p><strong>Medium:</strong> Spot the bug in this broken version of Hello World:</p>
+        <section class="topic-section" id="interview">
+          <h2>Interview Questions</h2>
+
+          <h3>Beginner</h3>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What is the structure of a C program?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>A C program's structure is: Documentation Section (optional), Link Section, Definition Section (optional), Global Declaration Section (optional), the main() function, and User Defined Functions (optional).</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Why do we use #include &lt;stdio.h&gt;?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>It links the program with the Standard Input Output header file, allowing us to use functions like printf(), scanf(), getchar(), and putchar().</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What is the purpose of the main() function?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>main() is the entry point of the program — the operating system calls main() when the program starts, and every C program begins executing from there, regardless of how many other functions it has.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Why is return 0; used?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>It returns the value 0 to the operating system, indicating the program finished successfully.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What happens if you forget a semicolon?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>The compiler reports a syntax error, since every statement in C usually must end with a semicolon.</p>
+            </div>
+          </div>
+
+          <h3>Intermediate</h3>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Explain each section of a C program.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Documentation Section holds comments describing the program (ignored by the compiler). Link Section brings in required libraries via #include. Definition Section defines constants using #define. Global Declaration Section declares variables/functions usable throughout the program. The main() function is where execution starts. User Defined Functions are additional functions the programmer writes.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What is a header file? Give examples.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>A header file is a file (ending in .h) containing pre-written function declarations that the compiler needs before it can let you use those functions. Examples: stdio.h (input/output), math.h (mathematical functions), string.h (string functions), stdlib.h (memory allocation, conversion), and ctype.h (character handling).</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What is the difference between a preprocessor directive and a C statement?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>A preprocessor directive (like #include or #define) is processed by the preprocessor before compilation and doesn't end with a semicolon. A C statement (like printf("Hello");) is an actual instruction executed by the program and ends with a semicolon.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Why is main() called the entry point of a C program?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Because the operating system calls main() when the program starts — no matter how many other functions exist in the program, execution always begins with main().</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What is the role of the preprocessor before compilation?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>The preprocessor handles directives like #include and #define before the actual compilation starts — for example, it inserts the contents of header files so the compiler knows about functions like printf() ahead of time.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="topic-section" id="practice">
+          <h2>Practice Questions</h2>
+          <p><strong>Q1.</strong> Write a C program to print: <code>Welcome to C Programming</code></p>
+          <p><strong>Q2.</strong> Write a C program that prints your Name, Age, and College (each on a new line).</p>
+          <p><strong>Q3.</strong> Identify and correct the errors:</p>
           <div class="code-block">
             <div class="code-block-header">
               <span>broken.c</span>
@@ -353,42 +700,26 @@ int main() {
             </div>
             <pre>#include &lt;stdio.h&gt;
 
-int main() {
-    printf("Hello, World!\n")
+int main()
+{
+    printf("Hello World")
+    return 0
+}</pre>
+          </div>
+          <p><strong>Q4.</strong> Label each part of the following program:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span>learning.c</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre>#include &lt;stdio.h&gt;
+
+int main()
+{
+    printf("Learning C");
     return 0;
 }</pre>
           </div>
-          <p>What's wrong with it, and how would you fix it?</p>
-          <p><strong>Hard:</strong> Write out (by hand, no need to run it) a modified version of Hello World that prints your own name instead of "Hello, World!".</p>
-        </section>
-
-        <section class="topic-section" id="assignments">
-          <h2>Assignments</h2>
-          <p>Write out, from memory, the full Hello World program structure. Then modify it to print two lines of text instead of one, using two separate <code>printf</code> calls.</p>
-          <p>When you're comfortable with this, move on to the chapter's capstone <a href="#miniproject">Mini Project</a> below.</p>
-        </section>
-
-        <section class="topic-section" id="miniproject">
-          <h2>Mini Project</h2>
-          <p><strong>Write Your First C Program.</strong></p>
-          <p>You've now covered every idea in this chapter's title: "Getting to Know C." This mini project is where it becomes real — a complete C program, written by you, following the exact structure just taught.</p>
-          <p>Write a complete C program that prints your name and one fact about yourself, each on its own line, using two separate <code>printf</code> statements. Make sure your program includes all 4 required parts: the <code>#include &lt;stdio.h&gt;</code> directive, the <code>main()</code> function, both <code>printf</code> statements (each ending in a semicolon), and <code>return 0;</code> to close things out.</p>
-          <p>Completing this project capstones the "Getting to Know C" chapter — you've gone from "what even is C?" all the way to writing an actual (if simple) working C program. Everything from here builds directly on this same skeleton.</p>
-        </section>
-
-        <section class="topic-section" id="faq">
-          <h2>FAQs</h2>
-          <p><strong>Q: Do I need to memorize this exact structure?</strong><br>A: No — you'll internalize it naturally through practice. For now, being able to recognize the 4 parts when you see them is enough.</p>
-          <p><strong>Q: What does the <code>\n</code> inside the <code>printf</code> string do?</strong><br>A: For now, just know it starts a new line. The full details of strings and escape sequences are covered in a later unit.</p>
-        </section>
-
-        <section class="topic-section" id="takeaways">
-          <h2>Key Takeaways</h2>
-          <ul>
-            <li>Every C program shares the same basic structure: a preprocessor directive, a <code>main()</code> function, statements, and a return statement.</li>
-            <li>This structure is the foundation for everything else in the course — every future program builds on this same skeleton.</li>
-            <li>You've now written your first real C program.</li>
-          </ul>
         </section>
 
         <div class="topic-nav-footer">
@@ -419,11 +750,11 @@ int main() {
 
 <script>
 window.structureOfCProgramQuiz = [
-  { question: "What are the 4 basic parts of a C program's structure?", options: ["Loop, function, array, pointer", "Preprocessor directive, main() function, statements, return statement", "Header, footer, body, sidebar", "Variable, constant, operator, expression"], correctIndex: 1, explanation: "Every C program shares the same skeleton: a preprocessor directive, a main() function, one or more statements, and a return statement." },
-  { question: "What does #include <stdio.h> do?", options: ["Runs the program", "Tells the compiler to bring in the standard input/output library", "Deletes unused variables", "Ends the main() function"], correctIndex: 1, explanation: "#include <stdio.h> brings in the standard input/output library, which is needed to use functions like printf." },
-  { question: "Why must every C program have exactly one main() function?", options: ["It is optional for small programs", "It is the fixed entry point where execution starts", "It only matters for large programs", "main() controls how the compiler is installed"], correctIndex: 1, explanation: "main() is the fixed entry point the operating system/runtime calls to start the program — without exactly one, the program has no defined starting point." },
-  { question: "In C, is main the same as Main?", options: ["Yes, C ignores letter case", "No, C is case-sensitive so they are different identifiers", "Only in older versions of C", "Only inside loops"], correctIndex: 1, explanation: "C is case-sensitive throughout, so main and Main are treated as completely different identifiers — the compiler looks specifically for lowercase main." },
-  { question: "What does the Hello World program from this page output when run?", options: ["Hello, World! (with a trailing newline)", "hello world", "Nothing", "An error message"], correctIndex: 0, explanation: "The printf(\"Hello, World!\\n\"); statement prints the exact text Hello, World! to the screen, followed by a new line." }
+  { question: "Which function is the entry point of a C program?", options: ["printf()", "start()", "main()", "begin()"], correctIndex: 2, explanation: "main() is the entry point of every C program — the operating system calls it when the program starts." },
+  { question: "Which header file is required for printf()?", options: ["math.h", "stdio.h", "string.h", "stdlib.h"], correctIndex: 1, explanation: "stdio.h (Standard Input Output) declares printf(), scanf(), getchar(), and putchar()." },
+  { question: "What is the purpose of return 0;?", options: ["Prints 0", "Ends the program and returns a success status", "Starts the program", "Includes a library"], correctIndex: 1, explanation: "return 0; returns the value 0 to the operating system, indicating the program finished successfully." },
+  { question: "Which symbol marks the end of most statements in C?", options: [".", ",", ";", ":"], correctIndex: 2, explanation: "Every statement in C usually ends with a semicolon — without it, the compiler reports a syntax error." },
+  { question: "What is #include?", options: ["A function", "A variable", "A preprocessor directive", "An operator"], correctIndex: 2, explanation: "#include is a preprocessor directive that tells the compiler to include a header file's contents before compiling." }
 ];
 </script>
 <script src="../../js/theme.js"></script>
