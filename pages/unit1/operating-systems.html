@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Operating Systems — Unit 1 — C Programming eBook</title>
-<meta name="description" content="Learn what an operating system is and how it manages memory, CPU time, files, and devices for every running program, including your compiled C executables.">
+<meta name="description" content="What an operating system is, its functions (process, memory, file, device management, security, UI), types of OS, kernel vs shell, and why C is used to build OSes.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,6 +31,9 @@
   .topic-section { margin-bottom: var(--space-7); scroll-margin-top: calc(var(--topnav-height) + var(--space-3)); }
   .topic-nav-footer { display: flex; justify-content: space-between; margin-top: var(--space-7); gap: var(--space-4); }
   .mistake-list li, .best-practice-list li { margin-bottom: var(--space-2); }
+  .compare-table { width: 100%; border-collapse: collapse; margin: var(--space-4) 0; font-size: 0.92rem; }
+  .compare-table th, .compare-table td { border: 1px solid var(--border); padding: var(--space-2) var(--space-3); text-align: left; vertical-align: top; }
+  .compare-table th { background: var(--bg-subtle, rgba(128,128,128,0.08)); }
 </style>
 </head>
 <body>
@@ -142,133 +145,248 @@
     <div class="topic-layout">
       <div>
         <h1>Operating Systems</h1>
-        <p class="lead">Zooming out from the loader to the whole system that makes every C program's execution possible in the first place.</p>
+        <p class="lead">C and Operating Systems are closely connected — most operating systems (or major parts of them) are written in C. Linux Kernel, UNIX, parts of Windows, and the Android Kernel are all examples.</p>
 
-        <section class="topic-section" id="introduction">
-          <h2>What Is It?</h2>
-          <p>An operating system (OS) is the software that manages a computer's hardware and resources — memory, CPU time, files, and devices — and provides the environment every program actually runs within. That includes the loader that runs your compiled C executables: the loader itself is one part of the OS, not something separate from it.</p>
-        </section>
-
-        <section class="topic-section" id="why">
-          <h2>Why Do We Need to Know This?</h2>
-          <p>Every C program you write ultimately depends on OS services: getting loaded into memory, being given CPU time to actually run, and being allowed to read or write files. Understanding the OS's role explains why the exact same compiled executable can behave differently on one machine than another — or fail to run at all on a different operating system.</p>
+        <section class="topic-section" id="what-is-os">
+          <h2>What is an Operating System (OS)?</h2>
+          <p><strong>Definition:</strong> An Operating System (OS) is system software that acts as an interface between the user and the computer hardware.</p>
+          <p>In simple words: <strong>Operating System = Manager of the Computer.</strong> It controls all hardware and software resources.</p>
         </section>
 
         <section class="topic-section" id="real-life">
           <h2>Real-Life Example</h2>
-          <p>Like a building manager who allocates rooms (memory) to different tenants, schedules meeting times (CPU time) so people don't collide, and manages shared facilities like the copier or mailroom (files/devices) for everyone in the building — the operating system does exactly this for every program running on a computer.</p>
+          <p>Imagine a restaurant. Customer &rarr; User. Chef &rarr; Hardware. Waiter &rarr; Operating System.</p>
+          <p>The customer doesn't go directly to the chef. Instead:</p>
+          <div class="flowchart">
+            <div class="flow-box flow-box-start">Customer</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Waiter (OS)</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box flow-box-end">Chef (Hardware)</div>
+          </div>
+          <p>The waiter takes the order, gives it to the chef, and brings back the food. Similarly:</p>
+          <div class="flowchart">
+            <div class="flow-box flow-box-start">User</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Operating System</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box flow-box-end">Hardware</div>
+          </div>
+          <p>The OS communicates between you and the hardware.</p>
         </section>
 
-        <section class="topic-section" id="visual">
-          <h2>Visual Explanation</h2>
-          <p>Four of the core responsibilities an operating system handles for every running program:</p>
-          <div class="feature-grid">
-            <div class="card">
-              <i class="fa-solid fa-memory"></i>
-              <h3>Memory Management</h3>
-              <p>Allocates and tracks memory for running programs, and reclaims it once they finish.</p>
+        <section class="topic-section" id="why-os">
+          <h2>Why Do We Need an Operating System?</h2>
+          <p>Without an Operating System, you cannot:</p>
+          <ul>
+            <li>Open files.</li>
+            <li>Run programs.</li>
+            <li>Use the keyboard or mouse.</li>
+            <li>Connect to the internet.</li>
+            <li>Print documents.</li>
+          </ul>
+          <p>The OS manages all these tasks.</p>
+        </section>
+
+        <section class="topic-section" id="functions">
+          <h2>Functions of an Operating System</h2>
+          <p>An OS performs many important functions.</p>
+
+          <h3>1. Process Management</h3>
+          <p>A process is a program that is currently running. Example: you open Chrome, VS Code, and Spotify — each one is a separate process.</p>
+          <p>The OS creates processes, runs them, stops them, and schedules CPU time.</p>
+          <div class="flowchart">
+            <div class="flow-box">Chrome</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">VS Code</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Music Player</div>
+          </div>
+          <p>The CPU switches between them very quickly.</p>
+
+          <h3>2. Memory Management</h3>
+          <p>RAM is limited. The OS decides which program gets memory, how much memory is allocated, and when memory is released.</p>
+          <div class="memory-diagram">
+            <div class="memory-cell">
+              <div class="memory-cell-label">RAM</div>
+              <div class="memory-cell-value">Chrome</div>
             </div>
-            <div class="card">
-              <i class="fa-solid fa-microchip"></i>
-              <h3>Process Management</h3>
-              <p>Schedules CPU time across multiple running programs so they can all make progress.</p>
+            <div class="memory-cell">
+              <div class="memory-cell-label">RAM</div>
+              <div class="memory-cell-value">VS Code</div>
             </div>
-            <div class="card">
-              <i class="fa-solid fa-folder-open"></i>
-              <h3>File System Access</h3>
-              <p>Lets programs read from and write to files, mediating access to storage.</p>
-            </div>
-            <div class="card">
-              <i class="fa-solid fa-upload"></i>
-              <h3>Loading Programs</h3>
-              <p>The loader, covered previously, is itself part of the operating system — not a separate tool.</p>
+            <div class="memory-cell">
+              <div class="memory-cell-label">RAM</div>
+              <div class="memory-cell-value">Spotify</div>
             </div>
           </div>
+
+          <h3>3. File Management</h3>
+          <p>The OS manages files, folders, and directories. Examples: Documents, Pictures, Videos, Downloads. Without the OS, organizing files would be extremely difficult.</p>
+
+          <h3>4. Device Management</h3>
+          <p>The OS controls hardware devices like the keyboard, mouse, printer, scanner, monitor, and webcam.</p>
+          <p>When you press a key:</p>
+          <div class="flowchart">
+            <div class="flow-box flow-box-start">Keyboard</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Operating System</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box flow-box-end">Application</div>
+          </div>
+
+          <h3>5. Security</h3>
+          <p>The OS protects your computer using passwords, user accounts, permissions, encryption, and firewalls (often with additional software).</p>
+          <p>Example: a Windows login screen asks for a Username and Password. Only authorized users can access the system.</p>
+
+          <h3>6. User Interface</h3>
+          <p>The OS provides an interface for interacting with the computer. Two common types:</p>
+          <p><strong>GUI (Graphical User Interface)</strong> — Examples: Windows, macOS, Ubuntu Desktop. Uses icons, windows, mouse, buttons.</p>
+          <p><strong>CLI (Command Line Interface)</strong> — Examples: <code>dir</code>, <code>cd</code>, <code>ls</code>, <code>mkdir</code>. Used in the Linux Terminal, Windows Command Prompt, and PowerShell.</p>
+
+          <h3>7. Resource Management</h3>
+          <p>The OS manages the CPU, RAM, Hard Disk/SSD, printers, USB devices, and network resources. It ensures multiple programs can share these resources efficiently.</p>
         </section>
 
-        <section class="topic-section" id="mistakes">
-          <h2>Common Mistakes</h2>
-          <ul class="mistake-list">
-            <li>Assuming an executable is "universal" and will run on any operating system — it's typically built for one specific OS and architecture combination.</li>
-            <li>Underestimating how much of a running C program's behavior actually depends on OS services, rather than just the program's own code.</li>
+        <section class="topic-section" id="os-types">
+          <h2>Types of Operating Systems</h2>
+
+          <h3>1. Batch Operating System</h3>
+          <p>Oldest type. Jobs are collected into batches and executed one after another.</p>
+          <div class="flowchart">
+            <div class="flow-box flow-box-start">Job 1</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Job 2</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box flow-box-end">Job 3</div>
+          </div>
+          <p>No user interaction during execution.</p>
+
+          <h3>2. Time-Sharing Operating System</h3>
+          <p>Allows multiple users or programs to share the CPU. The CPU rapidly switches between tasks.</p>
+          <div class="flowchart">
+            <div class="flow-box flow-box-start">Chrome</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">VS Code</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Spotify</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box flow-box-end">Back to Chrome</div>
+          </div>
+          <p>This creates the illusion that everything runs simultaneously. Examples: Linux, UNIX.</p>
+
+          <h3>3. Multitasking Operating System</h3>
+          <p>Runs multiple applications at the same time. Example: YouTube, MS Word, Calculator, VS Code. Examples: Windows, macOS, Linux.</p>
+
+          <h3>4. Multiuser Operating System</h3>
+          <p>Allows multiple users to use the same system. Example: a university server with many student accounts.</p>
+
+          <h3>5. Real-Time Operating System (RTOS)</h3>
+          <p>Designed for systems where timing is critical. Examples: airplane control systems, medical equipment, industrial robots, car braking systems (ABS).</p>
+          <p>Popular RTOS examples: FreeRTOS, VxWorks, QNX.</p>
+
+          <h3>6. Distributed Operating System</h3>
+          <p>Controls multiple computers and makes them appear as one system. Used in supercomputers and large clusters.</p>
+        </section>
+
+        <section class="topic-section" id="popular-os">
+          <h2>Popular Operating Systems</h2>
+          <table class="compare-table">
+            <thead>
+              <tr><th>Operating System</th><th>Developed By</th><th>Used For</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Windows</td><td>Microsoft</td><td>Personal Computers</td></tr>
+              <tr><td>Linux</td><td>Community (started by Linus Torvalds)</td><td>Servers, Desktops, Embedded Systems</td></tr>
+              <tr><td>macOS</td><td>Apple</td><td>Mac Computers</td></tr>
+              <tr><td>Android</td><td>Google (Linux-based)</td><td>Smartphones</td></tr>
+              <tr><td>iOS</td><td>Apple</td><td>iPhones and iPads</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="topic-section" id="kernel">
+          <h2>Kernel</h2>
+          <p>The Kernel is the core (heart) of the Operating System. It directly communicates with the hardware.</p>
+          <p><strong>Responsibilities</strong></p>
+          <ul>
+            <li>CPU scheduling</li>
+            <li>Memory management</li>
+            <li>Device management</li>
+            <li>Process management</li>
+          </ul>
+          <div class="flowchart">
+            <div class="flow-box flow-box-start">Application</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Kernel</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box flow-box-end">Hardware</div>
+          </div>
+          <p>Without the kernel, the OS cannot function.</p>
+        </section>
+
+        <section class="topic-section" id="shell">
+          <h2>Shell</h2>
+          <p>The Shell is the interface between the user and the kernel. Examples: Bash, PowerShell, Command Prompt (cmd).</p>
+          <div class="flowchart">
+            <div class="flow-box flow-box-start">User</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Shell</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box">Kernel</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-box flow-box-end">Hardware</div>
+          </div>
+          <p>When you type <code>mkdir Cprograms</code>, the shell passes the command to the kernel.</p>
+        </section>
+
+        <section class="topic-section" id="file-system">
+          <h2>File System</h2>
+          <p>The File System is the method the OS uses to organize and store files.</p>
+          <table class="compare-table">
+            <thead>
+              <tr><th>OS</th><th>File System</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Windows</td><td>NTFS, FAT32, exFAT</td></tr>
+              <tr><td>Linux</td><td>ext4, XFS, Btrfs</td></tr>
+              <tr><td>macOS</td><td>APFS</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="topic-section" id="why-c-for-os">
+          <h2>Why is C Used to Develop Operating Systems?</h2>
+          <p>This is a very common interview question. Reasons:</p>
+          <ul>
+            <li>Fast execution.</li>
+            <li>Direct memory access using pointers.</li>
+            <li>Efficient hardware interaction.</li>
+            <li>Small runtime overhead.</li>
+            <li>Portable across different hardware.</li>
           </ul>
         </section>
 
-        <section class="topic-section" id="debugging">
-          <h2>Debugging Tips</h2>
-          <p>If a program behaves differently on two different machines, consider whether the operating system itself — not just your code — could be the source of the difference. File paths, available memory, and other OS-specific behaviors can all vary between systems, even when the source code is identical.</p>
-        </section>
-
-        <section class="topic-section" id="best-practices">
-          <h2>Best Practices</h2>
-          <ul class="best-practice-list">
-            <li>When sharing a compiled program, be explicit about which operating system it was built for.</li>
-            <li>Remember that executables are generally not portable across operating systems without rebuilding.</li>
+        <section class="topic-section" id="facts">
+          <h2>Interesting Facts 💡</h2>
+          <ul>
+            <li>The Linux Kernel contains millions of lines of C code.</li>
+            <li>Android is built on the Linux kernel.</li>
+            <li>The first version of UNIX was rewritten in C, making it much easier to move to different hardware.</li>
+            <li>C remains one of the most important languages for systems programming.</li>
           </ul>
         </section>
 
-        <section class="topic-section" id="interview">
-          <h2>Interview Questions</h2>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Easy:</strong> What is an operating system?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>The software that manages a computer's hardware and resources and provides the environment programs run in.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Medium:</strong> Name two things an OS manages for a running program.</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>For example, memory and CPU time (file access is another valid answer).</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Hard:</strong> Why does an executable built for one OS generally not run on another?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>Different operating systems have different expectations for program format, system calls, and hardware interaction — the executable typically needs to be rebuilt for each target OS.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>HR:</strong> Which operating systems have you used?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>Open-ended — describe the operating systems you've personally used, such as Windows, macOS, or Linux.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Conceptual:</strong> Is the loader part of the operating system?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>Yes — as covered on the Loader page, the loader is one specific component of the operating system.</p>
-            </div>
-          </div>
-
-          <div class="interview-item">
-            <button type="button" class="interview-question" aria-expanded="false">
-              <span><strong>Scenario-based:</strong> A program runs fine on Linux but won't run at all on Windows — what's the most likely reason?</span>
-              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
-            </button>
-            <div class="interview-answer" hidden>
-              <p>It was compiled specifically for Linux and needs to be rebuilt (or recompiled) to run on Windows.</p>
-            </div>
-          </div>
+        <section class="topic-section" id="revision">
+          <h2>Quick Revision</h2>
+          <ul>
+            <li>An Operating System manages computer hardware and software.</li>
+            <li>It acts as an interface between the user and hardware.</li>
+            <li>Main functions: Process Management, Memory Management, File Management, Device Management, Security, User Interface.</li>
+            <li>The Kernel is the core of the OS.</li>
+            <li>The Shell lets users communicate with the kernel.</li>
+            <li>C is widely used for operating system development because of its speed and low-level capabilities.</li>
+          </ul>
         </section>
 
         <section class="topic-section" id="mcq">
@@ -276,31 +394,120 @@
           <div class="quiz" data-quiz-source="operatingSystemsQuiz"></div>
         </section>
 
-        <section class="topic-section" id="exercises">
-          <h2>Programming Exercises</h2>
-          <p><strong>Easy:</strong> Name the operating system you personally use most.</p>
-          <p><strong>Medium:</strong> List two resources an operating system manages for running programs.</p>
-          <p><strong>Hard:</strong> Research one major difference in how Windows and Linux handle executable file formats at a high level.</p>
+        <section class="topic-section" id="interview">
+          <h2>Interview Questions</h2>
+
+          <h3>Beginner</h3>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What is an Operating System?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>An Operating System is system software that acts as an interface between the user and the computer hardware, managing all hardware and software resources.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Why do we need an Operating System?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Without an OS, you couldn't open files, run programs, use the keyboard or mouse, connect to the internet, or print documents — the OS manages all these tasks.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What are the main functions of an Operating System?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Process management, memory management, file management, device management, security, user interface, and resource management.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What is the difference between GUI and CLI?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>A GUI (Graphical User Interface) uses icons, windows, and a mouse to interact with the computer (e.g. Windows, macOS). A CLI (Command Line Interface) uses typed text commands like dir, cd, ls, and mkdir (e.g. Linux Terminal, PowerShell).</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What is a kernel?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>The kernel is the core (heart) of the Operating System — it directly communicates with the hardware and handles CPU scheduling, memory management, device management, and process management.</p>
+            </div>
+          </div>
+
+          <h3>Intermediate</h3>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Differentiate between the kernel and the shell.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>The kernel is the core of the OS that directly communicates with hardware and manages CPU, memory, and devices. The shell is the interface between the user and the kernel — it takes user commands (like in Bash or PowerShell) and passes them to the kernel.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Explain different types of Operating Systems with examples.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Batch OS runs jobs one after another with no user interaction. Time-Sharing OS (e.g. Linux, UNIX) shares CPU among multiple users/programs. Multitasking OS (e.g. Windows, macOS) runs multiple applications at once. Multiuser OS allows many users on one system (e.g. a university server). Real-Time OS (e.g. FreeRTOS, VxWorks, QNX) is used where timing is critical, like airplane control systems. Distributed OS controls multiple computers appearing as one system, used in supercomputers and clusters.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Why is C preferred for Operating System development?</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Because C offers fast execution, direct memory access using pointers, efficient hardware interaction, small runtime overhead, and portability across different hardware — exactly what's needed to build an OS.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>Explain process management and memory management.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>Process management involves creating, running, stopping, and scheduling CPU time for processes (running programs) like Chrome, VS Code, and Spotify. Memory management involves deciding which program gets memory, how much is allocated, and when it is released, since RAM is limited.</p>
+            </div>
+          </div>
+
+          <div class="interview-item">
+            <button type="button" class="interview-question" aria-expanded="false">
+              <span>What is a file system? Name some common file systems.</span>
+              <i class="fa-solid fa-chevron-down toggle-chevron"></i>
+            </button>
+            <div class="interview-answer" hidden>
+              <p>A file system is the method the OS uses to organize and store files. Common examples: NTFS, FAT32, and exFAT on Windows; ext4, XFS, and Btrfs on Linux; and APFS on macOS.</p>
+            </div>
+          </div>
         </section>
 
-        <section class="topic-section" id="assignments">
-          <h2>Assignments</h2>
-          <p>Write a paragraph explaining the operating system's role using the building-manager analogy: how it allocates memory (rooms), schedules CPU time (meeting times), and manages files and devices (shared facilities) for every running program.</p>
-        </section>
-
-        <section class="topic-section" id="faq">
-          <h2>FAQs</h2>
-          <p><strong>Q: Do I need to understand OS internals to write C?</strong><br>A: No — deep knowledge isn't required for this course, but understanding the OS's conceptual role matters.</p>
-          <p><strong>Q: Is the OS the same thing as the loader?</strong><br>A: No — the loader is one specific OS component; the OS is the whole system.</p>
-        </section>
-
-        <section class="topic-section" id="takeaways">
-          <h2>Key Takeaways</h2>
-          <ul>
-            <li>The operating system manages a computer's hardware and resources, and provides the environment every program runs within.</li>
-            <li>It manages memory, CPU time, and files for running programs, including the loader that runs your compiled C executables.</li>
-            <li>Executables are typically built for one specific OS, which is why the same program can't simply be copied and run unmodified on a different operating system.</li>
-          </ul>
+        <section class="topic-section" id="practice">
+          <h2>Practice Questions</h2>
+          <p><strong>Q1.</strong> Draw and explain the relationship between User &rarr; Operating System &rarr; Hardware.</p>
+          <p><strong>Q2.</strong> Compare: GUI vs CLI, Kernel vs Shell, Process Management vs Memory Management.</p>
+          <p><strong>Q3.</strong> List any five functions of an Operating System and explain each with an example.</p>
+          <p><strong>Q4.</strong> Write a short note (8&ndash;10 lines) on why C is suitable for Operating System development.</p>
         </section>
 
         <div class="topic-nav-footer">
@@ -331,11 +538,11 @@
 
 <script>
 window.operatingSystemsQuiz = [
-  { question: "What is an operating system?", options: ["A programming language for writing C programs", "The software that manages a computer's hardware and resources and provides the environment programs run in", "A type of compiler", "A hardware component inside the CPU"], correctIndex: 1, explanation: "An operating system manages a computer's hardware and resources (memory, CPU time, files, devices) and provides the environment every program runs within." },
-  { question: "Which of the following is a core responsibility of an operating system?", options: ["Writing source code for the programmer", "Managing memory and scheduling CPU time for running programs", "Choosing which programming language to use", "Designing the program's logic"], correctIndex: 1, explanation: "The OS manages resources such as memory and CPU time (and files/devices) for every running program." },
-  { question: "Why does an executable built for one operating system generally not run on another?", options: ["Executables are always identical across operating systems", "Different operating systems expect different program formats, system calls, and hardware interaction", "Executables contain no machine-specific information", "Operating systems don't affect how executables run"], correctIndex: 1, explanation: "Operating systems differ in program format, system calls, and hardware interaction, so an executable typically needs to be rebuilt for each target OS." },
-  { question: "Is the loader part of the operating system?", options: ["No, it is a completely separate program with no connection to the OS", "Yes, the loader is one specific component of the operating system", "The loader replaces the operating system", "The loader only exists on Windows"], correctIndex: 1, explanation: "As covered on the Loader page, the loader is a component of the operating system, responsible for loading executables into memory." },
-  { question: "A program runs fine on Linux but won't run at all on Windows. What is the most likely reason?", options: ["The program has too many comments", "It was compiled specifically for Linux and needs to be rebuilt to run on Windows", "Windows does not support running any programs", "The program's variable names are invalid on Windows"], correctIndex: 1, explanation: "Executables are generally OS-specific, so a program compiled for Linux typically needs to be recompiled to run on Windows." }
+  { question: "What is an Operating System?", options: ["Application software", "System software", "Programming language", "Compiler"], correctIndex: 1, explanation: "An Operating System is system software that acts as an interface between the user and the computer hardware." },
+  { question: "Which component is called the heart of the Operating System?", options: ["Shell", "Compiler", "Kernel", "Loader"], correctIndex: 2, explanation: "The Kernel is the core (heart) of the Operating System, communicating directly with the hardware." },
+  { question: "Which Operating System is based on the Linux kernel?", options: ["Windows", "Android", "MS-DOS", "macOS"], correctIndex: 1, explanation: "Android is built on the Linux kernel." },
+  { question: "Which function of the OS manages RAM?", options: ["File Management", "Process Management", "Memory Management", "Device Management"], correctIndex: 2, explanation: "Memory Management decides which program gets memory, how much, and when it's released." },
+  { question: "Why is C widely used in operating system development?", options: ["It is the easiest language.", "It only supports graphics.", "It provides efficient hardware access and high performance.", "It requires no compiler."], correctIndex: 2, explanation: "C offers fast execution, direct memory access, efficient hardware interaction, and portability — ideal for OS development." }
 ];
 </script>
 <script src="../../js/theme.js"></script>
