@@ -15,80 +15,118 @@ history and `docs/superpowers/plans/` for implementation plans.
 - Allowed external dependencies (fonts/icons only, not frameworks):
   Google Fonts (Inter, JetBrains Mono), Font Awesome Free via CDN.
 
+## Current mode: user-authored content replacement (active, ongoing)
+
+The project has pivoted away from AI-generated topic content. The user
+now pastes their own raw material (Markdown-ish, with code blocks,
+tables, MCQs, interview Qs) **one topic at a time**, in official
+syllabus order, and each message fully replaces the AI-authored content
+for that topic. This is the live workflow — expect it to continue
+until every unit is done.
+
+**Per-topic procedure:**
+
+1. User pastes content labeled like `Unit N – Topic M: <Title>`.
+2. Check whether the content maps to exactly one existing sidebar
+   topic, or spans several existing pages (this has happened
+   repeatedly in Unit 1 — one user "topic" often covers what used to
+   be 2–8 separate AI-authored pages). If it spans more than one
+   existing page, **ask the user via AskUserQuestion** whether to
+   merge them into a single page (keeping one canonical URL, deleting
+   the others) or keep them separate — do not assume.
+3. Rewrite: `<title>`/meta description, `<h1>`, and the full body,
+   following the **user's own heading structure verbatim** — do not
+   force their content into the old 21-section template. Reuse
+   existing site components wherever the content matches them (see
+   below). Regenerate the `window.<name>Quiz` array from the user's
+   MCQs (keep the existing variable name if the page already had one).
+   Regenerate the interview-question accordion from the user's
+   questions — if the user splits them Beginner/Intermediate (or
+   similar), use `<h3>` subheadings inside the `#interview` section
+   instead of the old Easy/Medium/Hard/HR/Conceptual/Scenario
+   six-category scheme.
+4. **Never leave numbered `<h2>` headings** (e.g. `<h2>1. Title</h2>`)
+   — strip any leading number-dot prefix. This was an explicit
+   site-wide cleanup (commit `2cb5884`) and keeps recurring by accident
+   whenever the user's source material itself uses numbered sections —
+   always `perl -pi -e 's{<h2>\d+\.\s*}{<h2>}g'` after drafting.
+5. When merging pages: delete the extra file(s) via `git rm`, sweep
+   the sidebar `<a class="sidebar-link">` block for that topic across
+   **every** page that has a copy (`index.html`, all of
+   `pages/unit1/*.html`, all of `pages/unit2/*.html`, with the right
+   `../unit1/` or `pages/unit1/` href prefix per file), and fix the
+   prev/next `topic-nav-footer` links on the pages immediately
+   before/after the merged range (their labels go stale even when
+   hrefs still resolve).
+6. Verify before committing: `grep -c "question:"` (expect 5),
+   `grep -o '<h2>[^<]*</h2>'` (no leading numbers, no gaps), sidebar
+   link count (`grep -c 'sidebar-link" href="pages/unit1/' index.html`
+   or the unit2 equivalent), and that no stale filename references to
+   any just-deleted page remain anywhere (`grep -rl <old-filename>
+  . --include=*.html`).
+7. Commit with a plain descriptive message (see git rules below) —
+   one commit per topic (or per merge), no push unless asked.
+
 ## Progress
 
 - **Foundation** — done. Design system, shell (sidebar/floating
   controls/search), homepage.
-- **Unit 1 — fully complete.** All 28 topics across `pages/unit1/`, from
-  `evolution-of-programming.html` through `multi-line-comments.html`.
-  Built in 5 sub-projects: Group 1 (Programming Fundamentals, 7 topics,
-  pseudocode/plain-English only), Group 2 (Getting to Know C, 5 topics,
-  first real C syntax — Hello World), Group 3a (The Pipeline Itself, 6
-  topics, the `add.c` example traced through real `gcc` compilation),
-  Group 3b (Translators & Support Concepts, 7 topics — Assembler,
-  Linker, Loader, Interpreter, Compilers & Interpreters, Operating
-  Systems, Debugging), Group 4 (Comments, 3 topics, Unit 1's closing
-  capstone). Sidebar's Unit 1 accordion holds all 28 links; prev/next
-  chain runs unbroken end to end.
-- **Unit 2 — C Building Blocks & Data Types, in progress.** 36 raw
-  syllabus topics, decomposed into 5 groups (~7 topics each, same
-  rhythm as Unit 1): **G1** Tokens & Naming (Tokens, Keywords,
-  Identifiers, Naming Rules, Variables, Constants, Values). **G2**
-  Scope & Data Types (Scope, Binding, Storage Classes, Integer/Float/
-  Char Types, Strings). **G3** Values & Basic Operators (L-value,
-  R-value, Type Conversion, Operators overview, Arithmetic, Relational,
-  Logical). **G4** Advanced Operators (Conditional, Bitwise, Assignment,
-  Comma, Arrow, `sizeof`, Precedence, Associativity). **G5**
-  Increment/Decrement/Notation + I/O (Increment, Decrement, Hungarian
-  Notation, Input, Output, `printf()`, `scanf()`). Build one group at a
-  time, same spec→plan→execute→review cycle as every Unit 1 group.
-- **Unit 2 / G1 — Tokens & Naming — done.** 7 topic pages in
-  `pages/unit2/` (`tokens.html` through `values.html`). Evolved the
-  recurring `add.c` example from Unit 1's hardcoded string into real
-  variables (`int a = 5; int b = 3; int sum = a + b;`), then a `const`
-  variant on the Constants page — same output throughout ("The sum of
-  5 and 3 is 8"), keep it consistent when G2+ reference this example.
-  Unit 2's sidebar entry is now an accordion (`#unit2-toggle`/
-  `#unit2-submenu`) exactly like Unit 1's, wired into all 36 existing
-  pages (homepage + 28 Unit 1 pages + these 7). Unit 1's finale
-  (`multi-line-comments.html`) now links forward into
-  `pages/unit2/tokens.html`, continuing the single unbroken prev/next
-  chain across both units.
-- **Unit 2 / G2 — Scope & Data Types — done.** 7 topic pages in
-  `pages/unit2/` (`scope.html` through `strings.html`), Unit 2's
-  sidebar now has 14 links. Introduced a SECOND recurring example,
-  `profile.c` (int `age`, float `height`, char `grade`, string `name`),
-  built incrementally one variable per page starting on Integer Types
-  and completed on Strings — keep this exact variable set/order
-  (`age`/`height`/`grade`/`name`, printf order Name→Age→Height→Grade)
-  consistent if any later group references it. `add.c` (G1's example)
-  stays the reference for int-only topics like Scope/Binding/Storage
-  Classes — two parallel running examples now exist in Unit 2, don't
-  conflate them.
-- **Unit 2 / G3 — Values & Basic Operators — done.** 7 topic pages in
-  `pages/unit2/` (`l-value.html` through `logical-operators.html`),
-  Unit 2's sidebar now has 21 links. Extended `add.c` (a=5, b=3) with
-  arithmetic (`diff`/`product`/`remainder`), relational (`isGreater`),
-  and logical (`bothPositive`) operator demos, plus a `divide.c`-style
-  cast example on Type Conversion — all built on the same base without
-  altering it. `profile.c` (G2's example) wasn't touched here.
-- **Unit 2 / G4 — Advanced Operators — done.** 8 topic pages in
-  `pages/unit2/` (`assignment-operators.html` through
-  `arrow-operator.html`), Unit 2's sidebar now has 29 links. Extended
-  `add.c` further with compound assignment (`total += a/b`), a comma
-  declaration (`i=0, j=5`), `sizeof(int)`/`sizeof(a)`, the ternary
-  operator (`max = (a>b)?a:b`), bitwise AND (`a & b` = 1), precedence
-  (`a + b*2` = 11), and associativity (`a - b - 1` = 1, left-to-right).
-  **`arrow-operator.html` is deliberately code-free** — a conceptual
-  preview only, since it needs pointers/structs not taught until Unit
-  4/5; don't add real `->` code to it before those units exist.
-- **Next up: Unit 2 / G5 — Increment/Decrement/Notation + I/O**
-  (Increment, Decrement, Hungarian Notation, Input, Output, `printf()`,
-  `scanf()`) — the final Unit 2 group.
+- **Unit 1 — content fully replaced with user-authored material,
+  reduced from 28 AI-authored topics down to 12.** Every page in
+  `pages/unit1/` now holds the user's own material, topic by topic, in
+  official syllabus order. Six merges happened along the way (each
+  confirmed with the user first):
+  - `evolution-of-programming.html` ← merged with the old
+    `programming-languages.html` (deleted).
+  - `problem-solving.html` ← merged with the old
+    `sequential-logic.html` (deleted).
+  - `introduction-to-c.html` ← merged with the old `history-of-c.html`,
+    `features-of-c.html`, `applications-of-c.html`, `c-compiler.html`
+    (all four deleted) — title became "Introduction to C Program and C
+    Compilers".
+  - `compilation-process.html` ← merged with the old `source-code.html`,
+    `object-code.html`, `executable-code.html`, `execution-process.html`,
+    `assembler.html`, `linker.html`, `loader.html` (all seven deleted) —
+    title became "Compilation (Source Code → Object Code → Executable
+    Code)".
+  - `interpreter.html` ← merged with the old
+    `compilers-and-interpreters.html` (deleted) — title became
+    "Interpreters, Linkers, and Loaders" (re-covers linker/loader as
+    review since those moved into the compilation-process merge above).
+  - `debugging.html` ← renamed in place (no file merge) to "Execution
+    and Debugging" — content now covers program execution *and*
+    debugging together; sidebar label updated site-wide.
+  - `comments.html` ← merged with the old `single-line-comments.html`
+    and `multi-line-comments.html` (both deleted) — title became
+    "Single-Line and Multi-Line Comments", the closing topic of Unit 1.
+  - `algorithms.html`, `pseudocode.html`, `flowcharts.html`,
+    `structure-of-c-program.html`, `operating-systems.html` were
+    replaced 1:1, no merge needed.
+  - Final Unit 1 topic list/order (12): Evolution of Programming &
+    Languages → Problem Solving & Sequential Logic → Algorithms →
+    Pseudocode → Flowcharts → Introduction to C Program and C Compilers
+    → Structure of C Program → Compilation (Source Code → Object Code
+    → Executable Code) → Interpreters, Linkers, and Loaders →
+    Operating Systems → Execution and Debugging → Single-Line and
+    Multi-Line Comments.
+- **Unit 2 — C Building Blocks & Data Types, user-content replacement
+  in progress.** 29 AI-authored pages still exist in `pages/unit2/`
+  (see folder structure below); being replaced topic by topic in
+  syllabus order, same procedure as Unit 1. Done so far:
+  `tokens.html` ("C Tokens"), `keywords.html` ("Keywords in C") — both
+  1:1 replacements, no merge needed. Everything else in
+  `pages/unit2/*.html` still holds the **old AI-generated content**
+  (the `add.c`/`profile.c` running-example material, 21-section
+  template) and should be treated as not-yet-updated, not as final.
+- The pre-pivot Unit 2 build notes (G1–G5 groups, the `add.c`/
+  `profile.c` recurring examples, the old 21-section template) describe
+  the *original AI-authored* version of Unit 2 that is now being
+  overwritten page by page. Don't use those old examples as a
+  reference for new content — follow whatever the user pastes.
 
 ## Folder structure
 
-```
+```text
 /
 ├── index.html          homepage
 ├── AGENTS.md
@@ -103,10 +141,15 @@ history and `docs/superpowers/plans/` for implementation plans.
 │                         one IIFE, no build/bundler, loaded via plain
 │                         <script> tags in document order
 ├── assets/images/, assets/icons/
-├── pages/unit1/          7 topic pages + unit2..5/ placeholders
-│                         (unit1 has NO index.html — see below)
+├── pages/unit1/          12 topic pages, user-authored content (see
+│                         Progress above for the full merge history)
+├── pages/unit2/          29 topic pages; only tokens.html and
+│                         keywords.html are user-authored so far, the
+│                         rest still hold pre-pivot AI-generated content
 └── docs/superpowers/     specs/ and plans/ from the brainstorming and
-                          writing-plans skills
+                          writing-plans skills (describe the OLD
+                          AI-authored build; superseded by the current
+                          user-content-replacement workflow above)
 ```
 
 ## Important caveat: duplicated shell markup
@@ -115,10 +158,9 @@ There is no templating engine. The sidebar, floating theme-toggle,
 floating social links, and search panel markup in `index.html` must be
 copied into every new page (unit pages, topic pages) rather than
 included from one source. **When the shell changes, every page that
-has a copy needs the same edit.** The current topic-page template to
-copy from is `pages/unit1/evolution-of-programming.html` — it sets the
-exact structure (head link order, shell markup, quiz data-array
-format, script tag order) that every later topic page replicates.
+has a copy needs the same edit.** When merging or renaming a topic, the
+sidebar `<a class="sidebar-link">` line for it must be swept across
+**every** page in the site, not just the page being edited.
 
 There is **no top navbar** — it was removed. The theme toggle and
 social links (GitHub/LinkedIn) are `position: fixed` buttons floating
@@ -131,21 +173,17 @@ top-right, independent of any nav bar (see `.theme-toggle-float` /
   100vh` with its own `overflow-y: auto` (see `.sidebar` in
   `css/layout.css`). Don't reintroduce `grid-row: 2` — content and
   sidebar both use `grid-row: 1` since the navbar row was removed.
-- **Unit 1 is an accordion**, not a link to an overview page. There is
-  no `pages/unit1/index.html` — it was deleted. The "Unit 1" entry is
-  a `<button class="sidebar-link sidebar-toggle" id="unit1-toggle">`
-  that expands/collapses a `<div class="sidebar-submenu"
-  id="unit1-submenu">` wrapping the 7 topic links. `js/sidebar.js`
-  auto-opens the submenu on load if one of its links is the active
-  page. Former links to the old overview page (homepage hero/card,
-  every sidebar, Flowcharts' end-of-chapter button) now point to
-  `evolution-of-programming.html` (the first topic) instead.
-- Units 2-5 remain single collapsed links to their own not-yet-built
+- **Both Unit 1 and Unit 2 are accordions**, not links to an overview
+  page — `<button class="sidebar-link sidebar-toggle" id="unit1-toggle">`
+  / `id="unit2-toggle"` expanding `<div class="sidebar-submenu"
+  id="unit1-submenu">` / `id="unit2-submenu">`. `js/sidebar.js`
+  auto-opens whichever submenu contains the active link.
+- Units 3-5 remain single collapsed links to their own not-yet-built
   `index.html` placeholders — don't build the accordion pattern for
   them until each unit actually has multiple topic pages.
 - **Active-link matching** compares `link.pathname` (resolved full
   path) against `location.pathname`, not basenames — multiple sidebar
-  links share the basename `index.html` (Units 2-5's placeholders), so
+  links share the basename `index.html` (Units 3-5's placeholders), so
   basename-only matching produces false positives. Don't regress this.
 - **Logo text must stay wrapped in `<span class="sidebar-label">`**
   (inside `.sidebar-logo`) — the collapsed-sidebar CSS rule
@@ -170,35 +208,57 @@ copying the shell into new pages.
 
 ## Topic page pattern (per-topic content pages)
 
-Each topic page (e.g. `pages/unit1/*.html`) follows the master brief's
-21-section template, skipping sections that don't apply to a given
-topic (documented per-page, not stubbed with placeholder content).
-Reusable pieces:
+Each topic page (e.g. `pages/unit1/*.html`, `pages/unit2/*.html`) now
+follows **the user's own content structure/headings**, not a fixed
+template — see "Current mode" above. Reusable site components to map
+the user's material onto wherever it fits:
 
 - **Diagrams**: `css/diagrams.css` — `.flowchart`/`.flow-box`/
-  `.flow-box-decision`/`.flow-arrow` for flow diagrams, `.memory-*` for
-  memory diagrams, `.timeline*` for chronological content. HTML/CSS
-  only, no images, per the master spec.
+  `.flow-box-start`/`.flow-box-end`/`.flow-box-decision`/`.flow-arrow`
+  for any "Step 1 → Step 2 → ..." or process-flow content (arrows are
+  empty `<div class="flow-arrow"></div>`, never stray glyphs);
+  `.flow-branch-row`/`.flow-branch-col`/`.flow-branch-label` for
+  Yes/No decision branches (see `flowcharts.html` for the pattern);
+  `.memory-diagram`/`.memory-cell`/`.memory-cell-label`/
+  `.memory-cell-value` for RAM/variable-storage illustrations;
+  `.timeline`/`.timeline-item`/`.timeline-item-year` for chronological
+  content.
+- **Comparison tables**: plain `<table>` (no class) works site-wide
+  with no extra CSS needed for simple cases (see e.g.
+  `structure-of-c-program.html`'s Dry Run table). For side-by-side
+  comparison tables specifically, add a small local `.compare-table`
+  CSS block to the page's `<style>` if it isn't already there
+  (`width:100%; border-collapse:collapse` + bordered `th`/`td` + a
+  subtle `th` background) — this has been copy-pasted onto most
+  Unit 1 pages now; check for it before re-adding.
 - **MCQs**: `css/quiz.css` + `js/quiz.js`. Each page defines a
   `window.<name>Quiz` array (`{ question, options: [4 strings],
   correctIndex, explanation }`) and a `<div class="quiz"
-  data-quiz-source="<name>Quiz">`. **5 questions per topic** (not the
-  master brief's literal "20 minimum" — trimmed per explicit user
-  direction: min 2, max 5, picked for quality/diversity over volume).
+  data-quiz-source="<name>Quiz">`. **Always exactly 5 questions per
+  topic**, taken directly from the user's provided MCQs (rewrite
+  distractor text as needed for the widget's format, but don't invent
+  new questions). The widget renders one question at a time with a
+  "Question X of 5" progress line and a Next/Try Again flow — this is
+  correct, expected behavior, not a bug (a user has asked about this
+  before).
 - **Interview Questions**: click-to-reveal accordion, not static text.
   `css/components.css` (`.interview-item`/`.interview-question`/
-  `.interview-answer`) + `js/accordion.js`. Every question needs a
-  written answer — don't ship a question without one.
+  `.interview-answer`) + `js/accordion.js`. If the user's questions are
+  split into groups (e.g. Beginner/Intermediate), render each group
+  under its own `<h3>` inside the `#interview` section; otherwise a
+  flat list of `.interview-item`s is fine. Every question needs a
+  written answer synthesized from the user's material — don't ship a
+  question without one.
 - **Code blocks**: `.code-block`/`.code-block-header`/`.copy-btn` +
   `js/copy-code.js` wires the copy button to the clipboard
-  automatically — no per-page JS needed.
-- No on-page section table-of-contents (was built, then removed per
-  user request) — don't re-add a `.topic-toc` sidebar.
-- No Chapter Summary / Cheat Sheet sections — removed per user
-  request; section numbering was renumbered sequentially afterward
-  with no gaps. If the master brief's checklist is used as a
-  reference, treat those two sections as out of scope until told
-  otherwise.
+  automatically — no per-page JS needed. `copy-btn` and
+  `interview-question` buttons intentionally have no `type="button"`
+  attribute site-wide (pre-existing pattern, not a bug to fix).
+- **No leading numbers on `<h2>` headings**, anywhere, ever — see step
+  4 of the per-topic procedure above.
+- No on-page section table-of-contents, no Chapter Summary/Cheat Sheet
+  sections — both were built once, then removed per user request;
+  don't re-add either.
 
 ## Search
 
@@ -210,11 +270,15 @@ overlay is still reachable via `Ctrl/Cmd+K`.
 
 ## Workflow rules (from the project brief)
 
-- Work phase-by-phase / sub-project by sub-project. Do not jump ahead.
-  (Unit ordering matters: Unit 2 depends on Unit 1 introducing C
-  syntax first — don't build later units out of order.)
-- After each sub-project: verify functionality, review code quality,
-  commit with a clear message, and push only when asked.
+- Work topic-by-topic, in the order the user pastes content (which
+  follows the official syllabus order). Do not get ahead of the user
+  or invent content for topics not yet provided.
+- When a user's pasted topic content spans multiple existing
+  AI-authored pages, always confirm the merge scope with
+  AskUserQuestion before deleting/merging anything — don't assume.
+- After each topic (or merge): verify (MCQ count, heading numbering,
+  sidebar link counts, no stale filename references), then commit with
+  a clear message. Push only when asked.
 - Git commits must **not** include `Co-Authored-By` trailers or any AI
   attribution — commits should read as authored by the repo owner.
 
@@ -225,5 +289,5 @@ syntax: `node --check js/<file>.js`. To preview: open `index.html` in
 a browser, or `Start-Process index.html` in PowerShell. No
 browser-automation/screenshot tool is available in this environment —
 visual/interactive verification (theme toggle, accordions, quiz
-scoring, responsive breakpoints) is a manual human step after each
-sub-project, not something an agent here can self-verify.
+scoring, responsive breakpoints) is a manual human step, not something
+an agent here can self-verify.
